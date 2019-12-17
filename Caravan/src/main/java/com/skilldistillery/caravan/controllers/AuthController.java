@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.caravan.entities.User;
-import com.skilldistillery.eventtracker.services.AuthService;
+import com.skilldistillery.caravan.services.AuthService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4210" })

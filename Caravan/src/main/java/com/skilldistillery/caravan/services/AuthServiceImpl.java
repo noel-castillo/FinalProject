@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.skilldistillery.caravan.entities.User;
-import com.skilldistillery.eventtracker.repositories.UserRepository;
+import com.skilldistillery.caravan.repositories.UserRepository;
 
 @Transactional
 @Repository

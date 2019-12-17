@@ -2,6 +2,7 @@ package com.skilldistillery.caravan.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,8 +28,10 @@ public class AdventureCalendar {
 	@JsonIgnore
 	private Adventure adventure;
 	
+	@Column(name="start_date")
 	private Date startDate;
 	
+	@Column(name="end_date")
 	private Date endDate;
 	
 

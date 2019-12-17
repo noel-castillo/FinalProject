@@ -51,17 +51,17 @@ DROP TABLE IF EXISTS `user_profile` ;
 
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `fname` VARCHAR(45) NULL,
-  `lname` VARCHAR(45) NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   `bio` VARCHAR(45) NULL,
   `mileage_points` INT NULL,
-  `profile_pic` INT NOT NULL,
+  `profile_pic_id` INT NOT NULL,
   `address_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_user_profile_image1_idx` (`profile_pic` ASC),
+  INDEX `fk_user_profile_image1_idx` (`profile_pic_id` ASC),
   INDEX `fk_user_profile_address1_idx` (`address_id` ASC),
   CONSTRAINT `fk_user_profile_image1`
-    FOREIGN KEY (`profile_pic`)
+    FOREIGN KEY (`profile_pic_id`)
     REFERENCES `image` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -473,3 +473,43 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'caravan'@'localhost
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `image` (`id`, `url`) VALUES (1, 'https://i.imgur.com/KPILGym.png');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `address`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (1, '456 Fake Avenue', 'Faketown', 'CO', 80220, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_profile`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `user` (`id`, `username`, `email`, `password`, `role`, `enabled`, `registration_date`, `phone`, `user_profile_id`) VALUES (1, 'userface', 'userface@usermail.com', 'userface', 'rider', NULL, NULL, NULL, 1);
+
+COMMIT;
+

@@ -9,7 +9,16 @@
     </provider>
 
 	<!-- Class Definitions -->
+	<class>com.skilldistillery.eventtracker.entities.Address</class>
+	<class>com.skilldistillery.eventtracker.entities.Adventure</class>
+	<class>com.skilldistillery.eventtracker.entities.Category</class>
+	<class>com.skilldistillery.eventtracker.entities.Image</class>
+	<class>com.skilldistillery.eventtracker.entities.Trip</class>
+	<class>com.skilldistillery.eventtracker.entities.TripCalendar</class>
+	<class>com.skilldistillery.eventtracker.entities.TripHost</class>
 	<class>com.skilldistillery.eventtracker.entities.User</class>
+	<class>com.skilldistillery.eventtracker.entities.UserProfile</class>
+	<class>com.skilldistillery.eventtracker.entities.Vehicle</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/caravandb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />

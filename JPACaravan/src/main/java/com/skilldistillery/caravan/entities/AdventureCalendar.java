@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class TripCalendar {
+public class AdventureCalendar {
 
 //	F I E L D S
 
@@ -21,9 +21,9 @@ public class TripCalendar {
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name = "trip_id")
+	@JoinColumn(name = "adventure_id")
 	@JsonIgnore
-	private Trip trip;
+	private Adventure adventure;
 	
 	private Date startDate;
 	
@@ -32,7 +32,7 @@ public class TripCalendar {
 
 //	C O N S T R U C T O R S
 
-	public TripCalendar() {
+	public AdventureCalendar() {
 		super();
 	}
 
@@ -40,7 +40,8 @@ public class TripCalendar {
 
 	@Override
 	public String toString() {
-		return "TripCalendar [id=" + id + ", trip=" + trip + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+		return "AdventureCalendar [id=" + id + ", adventure=" + adventure + ", startDate=" + startDate + ", endDate="
+				+ endDate + "]";
 	}
 
 	public int getId() {
@@ -51,12 +52,13 @@ public class TripCalendar {
 		this.id = id;
 	}
 
-	public Trip getTrip() {
-		return trip;
+
+	public Adventure getAdventure() {
+		return adventure;
 	}
 
-	public void setTrip(Trip trip) {
-		this.trip = trip;
+	public void setAdventure(Adventure adventure) {
+		this.adventure = adventure;
 	}
 
 	public Date getStartDate() {
@@ -79,10 +81,10 @@ public class TripCalendar {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((adventure == null) ? 0 : adventure.hashCode());
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
-		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
 		return result;
 	}
 
@@ -94,7 +96,12 @@ public class TripCalendar {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TripCalendar other = (TripCalendar) obj;
+		AdventureCalendar other = (AdventureCalendar) obj;
+		if (adventure == null) {
+			if (other.adventure != null)
+				return false;
+		} else if (!adventure.equals(other.adventure))
+			return false;
 		if (endDate == null) {
 			if (other.endDate != null)
 				return false;
@@ -106,11 +113,6 @@ public class TripCalendar {
 			if (other.startDate != null)
 				return false;
 		} else if (!startDate.equals(other.startDate))
-			return false;
-		if (trip == null) {
-			if (other.trip != null)
-				return false;
-		} else if (!trip.equals(other.trip))
 			return false;
 		return true;
 	}

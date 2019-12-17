@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class Adventure {
 	
 	private int duration;
 	
+	@Column(name="activity_level")
 	private String activityLvl;
 	
 	private String includes;

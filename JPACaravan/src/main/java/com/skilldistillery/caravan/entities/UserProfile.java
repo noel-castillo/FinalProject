@@ -30,6 +30,9 @@ public class UserProfile {
 	private String email;
 
 	private String bio;
+	
+	@Column(name="mileage_points")
+	private int mileagePoints;
 
 	@Column(name="registration_date")
 	private Date registrationDate;

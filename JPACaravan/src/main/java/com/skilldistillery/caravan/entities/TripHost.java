@@ -2,6 +2,7 @@ package com.skilldistillery.caravan.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +19,10 @@ public class TripHost {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name="start_date")
 	private Date startDate;
 
+	@Column(name="end_date")
 	private Date endDate;
 
 //	C O N S T R U C T O R S

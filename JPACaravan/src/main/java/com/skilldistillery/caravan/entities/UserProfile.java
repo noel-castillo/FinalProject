@@ -2,6 +2,7 @@ package com.skilldistillery.caravan.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,17 +21,21 @@ public class UserProfile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name="first_name")
 	private String firstName;
 
+	@Column(name="last_name")
 	private String lastName;
 
 	private String email;
 
 	private String bio;
 
+	@Column(name="registration_date")
 	private Date registrationDate;
 
-	private String profileImg;
+	@Column(name="profile_pic")
+	private String profilePic;
 
 	private User user;
 
@@ -49,7 +54,7 @@ public class UserProfile {
 	@Override
 	public String toString() {
 		return "UserProfile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", bio=" + bio + ", registrationDate=" + registrationDate + ", profileImg=" + profileImg
+				+ ", bio=" + bio + ", registrationDate=" + registrationDate + ", profilePic=" + profilePic
 				+ ", address=" + address + "]";
 	}
 
@@ -101,12 +106,12 @@ public class UserProfile {
 		this.registrationDate = registrationDate;
 	}
 
-	public String getProfileImg() {
-		return profileImg;
+	public String getProfilePic() {
+		return profilePic;
 	}
 
-	public void setProfileImg(String profileImg) {
-		this.profileImg = profileImg;
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
 	}
 
 	public User getUser() {
@@ -135,7 +140,7 @@ public class UserProfile {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((profileImg == null) ? 0 : profileImg.hashCode());
+		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
 		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -177,10 +182,10 @@ public class UserProfile {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
-		if (profileImg == null) {
-			if (other.profileImg != null)
+		if (profilePic == null) {
+			if (other.profilePic != null)
 				return false;
-		} else if (!profileImg.equals(other.profileImg))
+		} else if (!profilePic.equals(other.profilePic))
 			return false;
 		if (registrationDate == null) {
 			if (other.registrationDate != null)

@@ -16,6 +16,21 @@ CREATE SCHEMA IF NOT EXISTS `caravandb` ;
 USE `caravandb` ;
 
 -- -----------------------------------------------------
+-- Table `user`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user` ;
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  `role` VARCHAR(45) NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `image`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `image` ;
@@ -60,9 +75,11 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `email` VARCHAR(45) NULL,
   `phone` VARCHAR(45) NULL,
   `registration_date` DATE NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_profile_image1_idx` (`profile_pic_id` ASC),
   INDEX `fk_user_profile_address1_idx` (`address_id` ASC),
+  INDEX `fk_user_profile_user1_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_profile_image1`
     FOREIGN KEY (`profile_pic_id`)
     REFERENCES `image` (`id`)
@@ -72,27 +89,10 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `user`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user` ;
-
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
-  `role` VARCHAR(45) NULL,
-  `enabled` TINYINT NOT NULL DEFAULT 1,
-  `user_profile_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_user_user_profile1_idx` (`user_profile_id` ASC),
-  CONSTRAINT `fk_user_user_profile1`
-    FOREIGN KEY (`user_profile_id`)
-    REFERENCES `user_profile` (`id`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_profile_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -510,6 +510,17 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', 'userface', 'driver', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', 'user2', 'rider', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `image`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -536,19 +547,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, 'userface@usermail.com', '555-555-9876', '2017-06-15');
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`) VALUES (2, 'user', '2', 'i\'m user 2!', 300, 2, 2, 'user2@user2mail.com', '555-555-6789', '2019-04-30');
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `user`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `caravandb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `user_profile_id`) VALUES (1, 'userface', 'userface', 'driver', 1, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `user_profile_id`) VALUES (2, 'user2', 'user2', 'rider', 1, 2);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, 'userface@usermail.com', '555-555-9876', '2017-06-15', 1);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (2, 'user', '2', 'i\'m user 2!', 300, 2, 2, 'user2@user2mail.com', '555-555-6789', '2019-04-30', 2);
 
 COMMIT;
 

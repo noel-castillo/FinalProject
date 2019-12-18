@@ -31,6 +31,8 @@ public class UserProfile {
 
 	private String bio;
 	
+	private String phone;
+	
 	@Column(name="mileage_points")
 	private int mileagePoints;
 
@@ -142,6 +144,15 @@ public class UserProfile {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Override

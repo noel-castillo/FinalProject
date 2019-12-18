@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,12 +43,35 @@ public class UserProfileController {
 		return userProfile;
 	}
 	
+	// ADD UserProfile
+		@PostMapping(path = "userProfiles") 
+		public UserProfile create(@RequestBody UserProfile userProfile, HttpServletRequest req, HttpServletResponse resp, Principal prin) {
+
+			try {
+				userProfile = svc.create(userProfile, prin.getName());
+				// TODO SET 401 created
+				resp.setStatus(201);
+//				resp.addHeader("Location", "http://localhost:8083/api/logs" + logbook.getId());
+				StringBuffer url = req.getRequestURL();
+				url.append("/").append(userProfile.getId());
+				resp.addHeader("Location", url.toString());
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				// TODO SET 400 bad request
+				resp.setStatus(400);
+			}
+
+			return userProfile;
+		}
+		
+	
 	// UPDATE UserProfile
-		@PutMapping(path = "logs/{id}") 
+		@PutMapping(path = "userProfiles/{id}") 
 		public UserProfile edit(@PathVariable("id") Integer id, @RequestBody UserProfile userProfile, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 
 			try {
-				userProfile = svc.update(userProfile, principal.getName(), id);
+				userProfile = svc.update(userProfile, "shaun", id);
 				// TODO SET 401 created
 				resp.setStatus(201);
 //				resp.addHeader("Location", "http://localhost:8081/api/posts" + post.getId());

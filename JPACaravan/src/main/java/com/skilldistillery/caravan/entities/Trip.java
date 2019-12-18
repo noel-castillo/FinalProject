@@ -32,12 +32,12 @@ public class Trip {
 	private Vehicle vehicle;
 
 	@OneToOne
-	@JoinColumn(name = "address_id")
+	@JoinColumn(name = "depart_address_id")
 	@JsonIgnore
 	private Address departureAddress;
 
 	@OneToOne
-	@JoinColumn(name = "address_id")
+	@JoinColumn(name = "destination_address_id")
 	@JsonIgnore
 	private Address destinationAddress;
 

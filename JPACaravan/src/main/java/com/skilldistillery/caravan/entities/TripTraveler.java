@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "trip_host")
-public class TripHost {
+public class TripTraveler {
 
 //	F I E L D S
 
@@ -24,6 +24,14 @@ public class TripHost {
 	private double rating;
 
 	private String review;
+
+	@Column(name = "contribution_pledge")
+	private double contributionPledge;
+
+	private boolean attended;
+
+	@Column(name = "contribution_actual")
+	private double contributionActual;
 
 	@OneToOne
 	@JoinColumn(name = "trip_id")
@@ -37,7 +45,7 @@ public class TripHost {
 
 //	C O N S T R U C T O R S
 
-	public TripHost() {
+	public TripTraveler() {
 		super();
 	}
 
@@ -45,8 +53,9 @@ public class TripHost {
 
 	@Override
 	public String toString() {
-		return "TripHost [id=" + id + ", rating=" + rating + ", review=" + review + ", trip=" + trip + ", user=" + user
-				+ "]";
+		return "TripTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", contributionPledge="
+				+ contributionPledge + ", attended=" + attended + ", contributionActual=" + contributionActual
+				+ ", trip=" + trip + "]";
 	}
 
 	public int getId() {
@@ -73,6 +82,30 @@ public class TripHost {
 		this.review = review;
 	}
 
+	public double getContributionPledge() {
+		return contributionPledge;
+	}
+
+	public void setContributionPledge(double contributionPledge) {
+		this.contributionPledge = contributionPledge;
+	}
+
+	public boolean isAttended() {
+		return attended;
+	}
+
+	public void setAttended(boolean attended) {
+		this.attended = attended;
+	}
+
+	public double getContributionActual() {
+		return contributionActual;
+	}
+
+	public void setContributionActual(double contributionActual) {
+		this.contributionActual = contributionActual;
+	}
+
 	public Trip getTrip() {
 		return trip;
 	}
@@ -93,8 +126,13 @@ public class TripHost {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (attended ? 1231 : 1237);
 		long temp;
+		temp = Double.doubleToLongBits(contributionActual);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(contributionPledge);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + id;
 		temp = Double.doubleToLongBits(rating);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
@@ -111,7 +149,13 @@ public class TripHost {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TripHost other = (TripHost) obj;
+		TripTraveler other = (TripTraveler) obj;
+		if (attended != other.attended)
+			return false;
+		if (Double.doubleToLongBits(contributionActual) != Double.doubleToLongBits(other.contributionActual))
+			return false;
+		if (Double.doubleToLongBits(contributionPledge) != Double.doubleToLongBits(other.contributionPledge))
+			return false;
 		if (id != other.id)
 			return false;
 		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))

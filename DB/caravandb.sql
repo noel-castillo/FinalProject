@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `address_id` INT NOT NULL,
   `email` VARCHAR(45) NULL,
   `phone` VARCHAR(45) NULL,
+  `registration_date` DATE NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_profile_image1_idx` (`profile_pic_id` ASC),
   INDEX `fk_user_profile_address1_idx` (`address_id` ASC),
@@ -85,8 +86,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NULL,
   `password` VARCHAR(45) NULL,
   `role` VARCHAR(45) NULL,
-  `enabled` TINYINT NULL,
-  `registration_date` DATE NULL,
+  `enabled` TINYINT NOT NULL DEFAULT 1,
   `user_profile_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_user_profile1_idx` (`user_profile_id` ASC),
@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `trip` ;
 CREATE TABLE IF NOT EXISTS `trip` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(45) NULL,
-  `seats_availabe` INT NULL,
+  `seats_available` INT NULL,
   `cargo_capacity` DOUBLE NULL,
   `create_date` DATE NULL,
   `enabled` TINYINT NULL,
@@ -534,7 +534,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, NULL, NULL);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -544,7 +544,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `registration_date`, `user_profile_id`) VALUES (1, 'userface', 'userface', 'rider', NULL, NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `user_profile_id`) VALUES (1, 'userface', 'userface', 'rider', DEFAULT, 1);
 
 COMMIT;
 

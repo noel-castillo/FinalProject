@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -22,6 +23,10 @@ public class Address {
 
 	private String zip;
 
+	@OneToMany(mappedBy = "address")
+	private UserProfile userProfile;
+
+	
 //	C O N S T R U C T O R S
 
 	public Address() {
@@ -74,6 +79,14 @@ public class Address {
 
 	public void setZip(String zip) {
 		this.zip = zip;
+	}
+
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	@Override

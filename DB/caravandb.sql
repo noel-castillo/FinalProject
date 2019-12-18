@@ -514,8 +514,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2y$12$frK0F9/bYk7o1RDEwXnp4OlUHwQSolUkQ7NIUrKB17GBbm0wwsLvy\n', 'standard', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', 'us$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n', 'standard', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2y$12$frK0F9/bYk7o1RDEwXnp4OlUHwQSolUkQ7NIUrKB17GBbm0wwsLvy\n', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', '$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32 ', NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (3, 'shaun', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
 
 COMMIT;
@@ -539,6 +539,8 @@ START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (1, '456 Fake Avenue', 'Faketown', 'CO', 80220, '39.7', '105.0');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (2, '3764 Elvis Presley Boulevard', 'Memphis', 'TN', 38116, '35.15', '90.05');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (3, '987 Shaun Street', 'Shauntown', 'CO', 80116, '39.62', '104.87');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (4, '314 S Park St,', 'Kalamazoo', 'MI', 49007, NULL, NULL);
 
 COMMIT;
 
@@ -561,6 +563,7 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (1, 'toyota', 'corolla', 1996, 40, 3, 'very nice', 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (2, 'honda', 'accord', 1993, 38, 4, 'kinda old looking', 3);
 
 COMMIT;
 
@@ -571,6 +574,7 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (2, 'Let\'s go to Kalamazoo', 2, 36, '2019-12-29', 1, 25, 750, 2, 3, 4, 3);
 
 COMMIT;
 
@@ -581,6 +585,7 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `trip_host` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (1, 2, 5, 'Coolest Host ever.', 1);
+INSERT INTO `trip_host` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (2, 3, 5, 'Super cool host', 2);
 
 COMMIT;
 
@@ -622,6 +627,7 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `vehicle_image` (`vehicle_id`, `image_id`) VALUES (1, 2);
+INSERT INTO `vehicle_image` (`vehicle_id`, `image_id`) VALUES (2, 1);
 
 COMMIT;
 

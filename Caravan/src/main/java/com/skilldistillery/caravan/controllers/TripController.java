@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +29,8 @@ public class TripController {
 	private TripService svc;
 	
 	@GetMapping("trips")
-	public List<Trip> allRuns() {
-		return svc.index();
+	public List<Trip> allRuns(Principal principal) {
+		return svc.index(principal);
 	}
 	
 	@GetMapping("trips/{tid}")

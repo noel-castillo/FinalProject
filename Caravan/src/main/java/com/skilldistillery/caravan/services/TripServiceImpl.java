@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.services;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +47,7 @@ public class TripServiceImpl implements TripService{
 	}
 
 	@Override
-	public List<Trip> index() {
+	public List<Trip> index(Principal principal) {
 		return tRepo.findAll();
 	}
 

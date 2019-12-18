@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="message_board")
-public class MessageBoard {
+public class TripMessage {
 
 //	F I E L D S
 
@@ -31,7 +31,7 @@ public class MessageBoard {
 	@OneToOne
 	@JoinColumn(name = "reply_to_id")
 	@JsonIgnore
-	private MessageBoard replyToId;
+	private TripMessage replyToId;
 
 	@OneToOne
 	@JoinColumn(name = "user_id")
@@ -45,7 +45,7 @@ public class MessageBoard {
 
 //	C O N S T R U C T O R S
 
-	public MessageBoard() {
+	public TripMessage() {
 		super();
 	}
 
@@ -73,11 +73,11 @@ public class MessageBoard {
 		this.trip = trip;
 	}
 
-	public MessageBoard getReplyToId() {
+	public TripMessage getReplyToId() {
 		return replyToId;
 	}
 
-	public void setReplyToId(MessageBoard replyToId) {
+	public void setReplyToId(TripMessage replyToId) {
 		this.replyToId = replyToId;
 	}
 
@@ -126,7 +126,7 @@ public class MessageBoard {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MessageBoard other = (MessageBoard) obj;
+		TripMessage other = (TripMessage) obj;
 		if (content == null) {
 			if (other.content != null)
 				return false;

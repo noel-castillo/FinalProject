@@ -1,6 +1,7 @@
 package com.skilldistillery.caravan.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -46,7 +47,10 @@ class AdventureTest {
 	@DisplayName("Test Adventure Entity Mapping")
 	void test1() {
 		assertNotNull(adv);
+		assertEquals("high", adv.getActivityLvl());
 	}
+	
+	
 	
 	
 }

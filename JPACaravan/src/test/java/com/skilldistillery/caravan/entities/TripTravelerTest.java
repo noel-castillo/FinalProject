@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class TripMessageTest {
+class TripTravelerTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private TripMessage tripMessage;
+	private TripTraveler tripTraveler;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,30 +32,25 @@ class TripMessageTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		tripMessage = em.find(TripMessage.class, 1);
+		tripTraveler = em.find(TripTraveler.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		tripMessage = null;
+		tripTraveler = null;
 	}
 
 	@Test
 	@DisplayName("Test trip Entity Mapping")
 	void test() {
-		assertNotNull(tripMessage);
+		assertNotNull(tripTraveler);
 	}
 	
 	@Test
-	@DisplayName("Test trip message and user relationship Mapping")
+	@DisplayName("Test trip traveler and trip relationship Mapping")
 	void test1() {
-		assertNotNull(tripMessage.getUser());
-	}
-	@Test
-	@DisplayName("Test trip message and trip relationship Mapping")
-	void test2() {
-		assertNotNull(tripMessage.getTrip());
+		assertNotNull(tripTraveler.getTrip());
 	}
 
 }

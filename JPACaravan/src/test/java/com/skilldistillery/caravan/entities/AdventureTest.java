@@ -68,7 +68,7 @@ class AdventureTest {
 	@DisplayName("Test Adventure Entity Mapping Get Username")
 	void test4() {
 		assertNotNull(adv);
-		assertEquals("userface", adv.getHost().getUsername());
+		assertEquals("userface", adv.getHost().getUser().getUsername());
 	}
 	
 	@Test

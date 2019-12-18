@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -46,9 +47,25 @@ class TripTest {
 	void test() {
 		assertNotNull(trip);
 	}
-//
-//	@Test
-//	public void test_vehicle_association() {
-//		assertEquals("PG", trip.getVehicle().get);
-//	}
+
+	@Test
+	public void test_vehicle_association() {
+		assertEquals(40, trip.getVehicle().getCapacity());
+	}
+	
+	@Test
+	public void test_departureAddress_association() {
+		assertEquals("CO", trip.getDepartureAddress().getState());
+	}
+
+	@Test
+	public void test_destinationAddress_association() {
+		assertEquals("TN", trip.getDestinationAddress().getState());
+	}
+
+	@Test
+	public void test_host_association() {
+		assertEquals("userface", trip.getHost().getUsername());
+	}
+	
 }

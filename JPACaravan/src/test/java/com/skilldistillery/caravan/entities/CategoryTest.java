@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CategoryTest {
+class CategoriesTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
@@ -42,7 +42,7 @@ class CategoryTest {
 	}
 
 	@Test
-	@DisplayName("Test Address Entity Mapping")
+	@DisplayName("Test Categories Entity Mapping")
 	void test1() {
 		assertNotNull(cat);
 	}

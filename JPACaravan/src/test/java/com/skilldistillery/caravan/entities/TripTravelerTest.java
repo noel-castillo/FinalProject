@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -51,6 +52,12 @@ class TripTravelerTest {
 	@DisplayName("Test trip traveler and trip relationship Mapping")
 	void test1() {
 		assertNotNull(tripTraveler.getTrip());
+	}
+	
+	@Test
+	@DisplayName("Test trip traveler and user Mapping")
+	void test2() {
+		assertEquals("userface", tripTraveler.getUser().getUsername());
 	}
 
 }

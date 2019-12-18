@@ -516,6 +516,7 @@ START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2y$12$frK0F9/bYk7o1RDEwXnp4OlUHwQSolUkQ7NIUrKB17GBbm0wwsLvy\n', 'standard', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', 'us$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n', 'standard', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (3, 'shaun', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
 
 COMMIT;
 

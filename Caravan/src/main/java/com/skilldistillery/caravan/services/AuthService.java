@@ -4,6 +4,6 @@ import com.skilldistillery.caravan.entities.User;
 
 public interface AuthService {
 
-	User register(User user);
+	public User register(User user);
 
 }

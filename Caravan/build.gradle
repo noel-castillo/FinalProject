@@ -4,39 +4,35 @@ plugins {
 	id 'java'
 }
 
-group = 'com.skilldistillery.caravan'
+group = 'com.skilldistillery'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
 }
-
 ext {
     junit5Version = "5.4.2" 
 }
-
 dependencies {
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.7'
 	compile project(':JPACaravan')
-	compile('org.springframework.boot:spring-boot-starter-security') 
-	implementation ('org.springframework.boot:spring-boot-starter-tomcat')
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation ('org.springframework.boot:spring-boot-starter-tomcat')
 	runtimeOnly 'mysql:mysql-connector-java'
-	testImplementation("org.junit.jupiter:junit-jupiter:$junit5Version")
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
-	testCompile group: 'junit', name: 'junit', version: '4.12'
+	testImplementation("org.junit.jupiter:junit-jupiter:$junit5Version")
 }
-
 apply plugin: 'war'
 war {
   enabled = true
   archiveName = "${baseName}.war"     // Our app name, as defined in settings.gradle
   destinationDir = file("../")         // Project root directory
 }
-
 test {
 	useJUnitPlatform()
 }

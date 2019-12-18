@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -43,14 +44,15 @@ class TripCalendarTest {
 
 	@Test
 	@DisplayName("Test trip calendar Entity Mapping")
-	void test() {
+	void tes1() {
 		assertNotNull(tripCalendar);
 	}
 	
 	@Test
 	@DisplayName("Test trip calendar and trip relationship Mapping")
-	void test1() {
+	void test2() {
 		assertNotNull(tripCalendar.getTrip());
+		assertEquals("2017-07-20 01:00:00.0", tripCalendar.getEndDate().toString());
 	}
 
 }

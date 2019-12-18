@@ -46,13 +46,13 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public List<Address> index(String username) {
-		for(User element : userRepo.findAll()) {
-			if(element.getUsername().equals(username)) {
-				if(element.getRole().equals("admin")) {
-					return aRepo.findAll();
-				}
-			}
-		}
+//		for(User element : userRepo.findAll()) {
+//			if(element.getUsername().equals(username)) {
+//				if(element.getRole().equals("admin")) {
+//					return aRepo.findAll();
+//				}
+//			}
+//		}
 		
 		return aRepo.findAll();
 	}

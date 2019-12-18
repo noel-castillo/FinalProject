@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Adventure {
 
@@ -45,14 +43,8 @@ public class Adventure {
 //	@JsonIgnore
 	private UserProfile host;
 	
-	
-	
-	
-	
-	
-	
-
-
+	@OneToOne(mappedBy="adventure")
+	private AdventureCalendar adventureCalendar;
 
 //	C O N S T R U C T O R S
 
@@ -150,12 +142,21 @@ public class Adventure {
 		this.itinerary = itinerary;
 	}
 
+	public AdventureCalendar getAdventureCalendar() {
+		return adventureCalendar;
+	}
+
+	public void setAdventureCalendar(AdventureCalendar adventureCalendar) {
+		this.adventureCalendar = adventureCalendar;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((activityLvl == null) ? 0 : activityLvl.hashCode());
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((adventureCalendar == null) ? 0 : adventureCalendar.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + (enabled ? 1231 : 1237);
 		result = prime * result + ((host == null) ? 0 : host.hashCode());
@@ -187,6 +188,11 @@ public class Adventure {
 			if (other.address != null)
 				return false;
 		} else if (!address.equals(other.address))
+			return false;
+		if (adventureCalendar == null) {
+			if (other.adventureCalendar != null)
+				return false;
+		} else if (!adventureCalendar.equals(other.adventureCalendar))
 			return false;
 		if (description == null) {
 			if (other.description != null)

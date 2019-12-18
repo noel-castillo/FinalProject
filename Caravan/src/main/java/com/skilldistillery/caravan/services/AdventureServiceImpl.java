@@ -1,6 +1,5 @@
 package com.skilldistillery.caravan.services;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,19 +39,16 @@ public class AdventureServiceImpl implements AdventureService {
 	}
 	
 	@Override
-	public Adventure create(Adventure adventure, Principal principal) {
-		UserProfile user = upRepo.findByUser_Username(principal.getName());
+	public Adventure create(Adventure adventure, String username) {
+		UserProfile user = upRepo.findByUser_Username(username);
 		
 
 		if (user != null) {
-			System.out.println(user.getUser().getUsername());
-			System.out.println("****************************************************");
+			
 			adventure.setHost(user);
 			return aRepo.saveAndFlush(adventure);
 		} else {
-			System.out.println("in else");
-		
-			System.out.println("****************************************************");
+			
 			
 			return null;
 		}

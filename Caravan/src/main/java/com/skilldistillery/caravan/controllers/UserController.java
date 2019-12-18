@@ -41,6 +41,7 @@ public class UserController {
 	@GetMapping("users/{id}")
 	private User getById(@PathVariable int id, HttpServletRequest req, HttpServletResponse resp, Principal prin) {
 		try {
+			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());
 			resp.setStatus(201);

@@ -2,7 +2,6 @@ package com.skilldistillery.caravan.services;
 
 import java.util.List;
 
-import com.skilldistillery.caravan.entities.Adventure;
 import com.skilldistillery.caravan.entities.AdventureCalendar;
 
 public interface AdventureCalendarService {

@@ -1,6 +1,5 @@
 package com.skilldistillery.caravan.services;
 
-import java.security.Principal;
 import java.util.List;
 
 import com.skilldistillery.caravan.entities.Adventure;
@@ -11,7 +10,7 @@ public interface AdventureService {
 	
 	public Adventure show(int id);
 	
-	public Adventure create(Adventure adventure, Principal principal);
+	public Adventure create(Adventure adventure, String username);
 
 	public Adventure update(Adventure adventure, String username, int id);
 	

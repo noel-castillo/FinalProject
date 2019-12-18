@@ -6,17 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.caravan.entities.Categories;
-import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.repositories.CategoriesRepository;
-import com.skilldistillery.caravan.repositories.UserRepository;
 
 @Service
 public class CategoriesServiceImpl implements CategoriesService {
 	@Autowired
 	private CategoriesRepository categoriesRepo;
-	
-	@Autowired
-	private UserRepository userRepo;
 
 	@Override
 	public Categories createCategory(Categories category) {
@@ -43,18 +38,9 @@ public class CategoriesServiceImpl implements CategoriesService {
 
 	@Override
 	public List<Categories> index(String username) {
-//		for(User element : userRepo.findAll()) {
-//			if(element.getUsername().equals(username)) {
-//				if(element.getRole().equals("admin")) {
-//					return categoriesRepo.findAll();
-//				}
-//			}
-//		}
-		
+
 		return categoriesRepo.findAll();
 	}
-	
-        
 
 	@Override
 	public Categories findCategoryById(int id) {

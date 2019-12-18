@@ -94,7 +94,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 
 	@Override
-	public boolean destroy(String username, int id) {
+	public boolean destroy(int id) {
 
 		UserProfile uProfile = uRepo.findById(id).get();
 		

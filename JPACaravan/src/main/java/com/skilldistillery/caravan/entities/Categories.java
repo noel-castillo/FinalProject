@@ -5,8 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
-public class Category {
+@Entity(name="category")
+public class Categories {
 
 //	F I E L D S
 
@@ -19,7 +19,7 @@ public class Category {
 
 //	C O N S T R U C T O R S
 
-	public Category() {
+	public Categories() {
 		super();
 	}
 
@@ -58,7 +58,7 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Categories other = (Categories) obj;
 		if (id != other.id)
 			return false;
 		if (name == null) {

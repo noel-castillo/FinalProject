@@ -44,19 +44,33 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> index() {
-		
+
 		return uRepo.findAll();
 	}
 
 	@Override
 	public User show(String username, int id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		User user = uRepo.findByUsernameAndId(username, id);
+
+		if (user != null) {
+
+			return user;
+		} else {
+
+			return null;
+		}
+
 	}
 
 	@Override
 	public boolean destroy(String username, int id) {
-		// TODO Auto-generated method stub
+		User user = uRepo.findByUsernameAndId(username, id);
+
+		if (user != null) {
+			uRepo.delete(user);
+			return true;
+		}
 		return false;
 	}
 

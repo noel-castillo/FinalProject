@@ -53,7 +53,7 @@ public class UserController {
 	}
 
 	@PostMapping("users")
-	private User createUser(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	private User createUser(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {
 
 		User newUser = aSvc.register(user);
 		if (newUser != null) {

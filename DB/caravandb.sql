@@ -99,19 +99,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `trip_host`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `trip_host` ;
-
-CREATE TABLE IF NOT EXISTS `trip_host` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `trip_id` VARCHAR(45) NULL,
-  `trip_traveler_id` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `vehicle`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `vehicle` ;
@@ -130,6 +117,79 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   CONSTRAINT `fk_vehicle_user_profile1`
     FOREIGN KEY (`user_profile_id`)
     REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `trip`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `trip` ;
+
+CREATE TABLE IF NOT EXISTS `trip` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(45) NULL,
+  `seats_availabe` INT NULL,
+  `cargo_capacity` DOUBLE NULL,
+  `create_date` DATE NULL,
+  `enabled` TINYINT NULL,
+  `total_cost` DOUBLE NULL,
+  `miles` DOUBLE NULL,
+  `vehicle_id` INT NOT NULL,
+  `depart_address_id` INT NOT NULL,
+  `destination_address_id` INT NOT NULL,
+  `host_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
+  INDEX `fk_trip_address1_idx` (`depart_address_id` ASC),
+  INDEX `fk_trip_address2_idx` (`destination_address_id` ASC),
+  INDEX `fk_trip_user_profile1_idx` (`host_id` ASC),
+  CONSTRAINT `fk_trip_vehicle1`
+    FOREIGN KEY (`vehicle_id`)
+    REFERENCES `vehicle` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trip_address1`
+    FOREIGN KEY (`depart_address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trip_address2`
+    FOREIGN KEY (`destination_address_id`)
+    REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trip_user_profile1`
+    FOREIGN KEY (`host_id`)
+    REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `trip_host`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `trip_host` ;
+
+CREATE TABLE IF NOT EXISTS `trip_host` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_profile_id` INT NOT NULL,
+  `rating` DOUBLE NULL,
+  `review` VARCHAR(400) NULL,
+  `trip_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_trip_host_user_profile1_idx` (`user_profile_id` ASC),
+  INDEX `fk_trip_host_trip1_idx` (`trip_id` ASC),
+  CONSTRAINT `fk_trip_host_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_trip_host_trip1`
+    FOREIGN KEY (`trip_id`)
+    REFERENCES `trip` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -161,13 +221,19 @@ CREATE TABLE IF NOT EXISTS `adventure` (
   `price` DOUBLE NULL,
   `enabled` TINYINT NULL,
   `itinerary` VARCHAR(45) NULL,
-  `host_id` INT NULL,
   `address_id` INT NOT NULL,
+  `host_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_adventure_address1_idx` (`address_id` ASC),
+  INDEX `fk_adventure_user_profile1_idx` (`host_id` ASC),
   CONSTRAINT `fk_adventure_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adventure_user_profile1`
+    FOREIGN KEY (`host_id`)
+    REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -220,47 +286,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `trip`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `trip` ;
-
-CREATE TABLE IF NOT EXISTS `trip` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `depart_address_id` INT NULL,
-  `destination_address_id` INT NULL,
-  `description` VARCHAR(45) NULL,
-  `seats_availabe` INT NULL,
-  `cargo_capacity` DOUBLE NULL,
-  `create_date` DATE NULL,
-  `enabled` TINYINT NULL,
-  `total_cost` DOUBLE NULL,
-  `miles` DOUBLE NULL,
-  `address_id` INT NOT NULL,
-  `host_id` INT NOT NULL,
-  `vehicle_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_trip_address1_idx` (`address_id` ASC),
-  INDEX `fk_trip_trip_host1_idx` (`host_id` ASC),
-  INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
-  CONSTRAINT `fk_trip_address1`
-    FOREIGN KEY (`address_id`)
-    REFERENCES `address` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_trip_trip_host1`
-    FOREIGN KEY (`host_id`)
-    REFERENCES `trip_host` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_trip_vehicle1`
-    FOREIGN KEY (`vehicle_id`)
-    REFERENCES `vehicle` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `trip_category`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `trip_category` ;
@@ -290,24 +315,24 @@ DROP TABLE IF EXISTS `trip_traveler` ;
 
 CREATE TABLE IF NOT EXISTS `trip_traveler` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `rating` VARCHAR(45) NULL,
-  `review` VARCHAR(45) NULL,
-  `contribution_pledged` VARCHAR(45) NULL,
-  `attended` VARCHAR(45) NULL,
-  `contribution_actual` VARCHAR(45) NULL,
+  `rating` DOUBLE NULL,
+  `review` VARCHAR(400) NULL,
+  `contribution_pledged` DOUBLE NULL,
+  `attended` TINYINT NULL,
+  `contribution_actual` DOUBLE NULL,
   `trip_id` INT NOT NULL,
-  `user_id` INT NOT NULL,
+  `user_profile_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_traveler_trip1_idx` (`trip_id` ASC),
-  INDEX `fk_trip_traveler_user1_idx` (`user_id` ASC),
+  INDEX `fk_trip_traveler_user_profile1_idx` (`user_profile_id` ASC),
   CONSTRAINT `fk_trip_traveler_trip1`
     FOREIGN KEY (`trip_id`)
     REFERENCES `trip` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_trip_traveler_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
+  CONSTRAINT `fk_trip_traveler_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

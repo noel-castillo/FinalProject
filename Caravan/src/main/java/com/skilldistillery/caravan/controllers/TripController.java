@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,26 +29,27 @@ public class TripController {
 	private TripService svc;
 	
 	@GetMapping("trips")
-	public List<Trip> allTrips() {
+	public List<Trip> allTrips(Principal prin) {
 		return svc.index();
 	}
 	
 	@GetMapping("trips/{tid}")
-	public Trip getTrip(
-			@PathVariable Integer tid,
-			HttpServletResponse resp
-			)
-	{
-		Trip trip = svc.show(tid);
-		if(trip == null) {
+	public Trip getTrip(@PathVariable Integer tid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+		try {
+			System.out.println(prin.toString());
+			StringBuffer url = req.getRequestURL();
+			resp.addHeader("Location", url.toString());
+			resp.setStatus(201);
+			return svc.show(tid);
+		} catch (Exception e) {
 			resp.setStatus(404);
-		}
-		
-		return trip;
+			return null;
+		}	
 	}
 	
+	
 	@PostMapping("trips")
-	public Trip addTrip(@RequestBody Trip trip, HttpServletResponse resp, HttpServletRequest req) {
+	public Trip addTrip(@RequestBody Trip trip, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
 			svc.create(trip);
 			resp.setStatus(201);
@@ -76,10 +78,7 @@ public class TripController {
 	}
 	
 	@DeleteMapping("trips/{tid}")
-	public void deleteTrip(
-			@PathVariable Integer tid,
-			HttpServletResponse resp)
-			 {
+	public void deleteTrip(@PathVariable Integer tid, HttpServletResponse resp) {
 		try {
 			if (svc.destroy(tid)) {
 				resp.setStatus(204);

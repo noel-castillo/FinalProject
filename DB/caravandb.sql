@@ -169,11 +169,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `trip_host`
+-- Table `trip_host_review_of_passenger`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trip_host` ;
+DROP TABLE IF EXISTS `trip_host_review_of_passenger` ;
 
-CREATE TABLE IF NOT EXISTS `trip_host` (
+CREATE TABLE IF NOT EXISTS `trip_host_review_of_passenger` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_profile_id` INT NOT NULL,
   `rating` DOUBLE NULL,
@@ -309,11 +309,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `trip_traveler`
+-- Table `trip_traveler_review_of_host`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `trip_traveler` ;
+DROP TABLE IF EXISTS `trip_traveler_review_of_host` ;
 
-CREATE TABLE IF NOT EXISTS `trip_traveler` (
+CREATE TABLE IF NOT EXISTS `trip_traveler_review_of_host` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `rating` DOUBLE NULL,
   `review` VARCHAR(400) NULL,
@@ -425,7 +425,7 @@ CREATE TABLE IF NOT EXISTS `trip_traveler_img` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_trip_traveler_img_trip_traveler1`
     FOREIGN KEY (`trip_traveler_id`)
-    REFERENCES `trip_traveler` (`id`)
+    REFERENCES `trip_traveler_review_of_host` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -465,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `trip_host_img` (
   INDEX `fk_trip_host_img_image1_idx` (`image_id` ASC),
   CONSTRAINT `fk_trip_host_img_trip_host1`
     FOREIGN KEY (`trip_host_id`)
-    REFERENCES `trip_host` (`id`)
+    REFERENCES `trip_host_review_of_passenger` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_trip_host_img_image1`
@@ -515,7 +515,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2a$10$KzG5DFbaZeuvJoCif7PHTe7d.2obaHYg44nOwaEvFQeOFieX7Mfa2', NULL, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', '$2y$10$XDWoLVCP69pKoNt62pNmxupUKNZCaC7mM7aIAX5GBZDrNbBiDTbrO\n', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', '$2a$10$Tsz6Wn6fBbMYoEPPNCyuxusUqP1bnduB8tej9jR4m4NODWSWodmp2', NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (3, 'shaun', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
 
 COMMIT;
@@ -580,12 +580,12 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `trip_host`
+-- Data for table `trip_host_review_of_passenger`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_host` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (1, 2, 5, 'Coolest Host ever.', 1);
-INSERT INTO `trip_host` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (2, 3, 5, 'Super cool host', 2);
+INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (1, 2, 5, 'Coolest Host ever.', 1);
+INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (2, 3, 5, 'Super cool host', 2);
 
 COMMIT;
 
@@ -643,11 +643,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `trip_traveler`
+-- Data for table `trip_traveler_review_of_host`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_traveler` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1);
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1);
 
 COMMIT;
 

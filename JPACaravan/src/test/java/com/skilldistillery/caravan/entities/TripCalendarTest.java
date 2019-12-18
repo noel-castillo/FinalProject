@@ -54,5 +54,4 @@ class TripCalendarTest {
 		assertNotNull(tripCalendar.getTrip());
 		assertEquals("2017-07-20 01:00:00.0", tripCalendar.getEndDate().toString());
 	}
-
 }

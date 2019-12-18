@@ -1,19 +1,22 @@
 package com.skilldistillery.caravan.services;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.skilldistillery.caravan.entities.Address;
 
 public interface AddressService {
 
-	public Address create(Address address, String username);
+	public List<Address> index(Principal principal);
+	
+	public Address findAddressById(int id);
+	
+	public Address createAddress(Address address);
 
-	public Address update(Address address, String username, int id);
+	public Address updateAddress(int id, Address address);
 
-	public List<Address> index();
+	public boolean deleteAddressById(int id);
 
-	public Address show(String username, int id);
 
-	public boolean destroy(String username, int id);
 
 }

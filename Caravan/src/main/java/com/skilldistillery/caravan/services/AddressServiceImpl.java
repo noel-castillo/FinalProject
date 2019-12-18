@@ -1,26 +1,24 @@
 package com.skilldistillery.caravan.services;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.skilldistillery.caravan.entities.Address;
 import com.skilldistillery.caravan.repositories.AddressRepository;
-import com.skilldistillery.caravan.repositories.UserProfileRepository;
 
 public class AddressServiceImpl implements AddressService {
 	@Autowired
 	private AddressRepository aRepo;
-	@Autowired
-	private UserProfileRepository upRepo;
 
 	@Override
-	public Address create(Address address, String username) {
-			return aRepo.saveAndFlush(address);
+	public Address createAddress(Address address) {
+		return aRepo.saveAndFlush(address);
 	}
 
 	@Override
-	public Address update(Address address, String username, int id) {
+	public Address updateAddress(int id, Address address) {
 
 		Address oldAddress = aRepo.findById(id).get();
 
@@ -41,17 +39,17 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	public List<Address> index() {
+	public List<Address> index(Principal principal) {
 		return aRepo.findAll();
 	}
 
 	@Override
-	public Address show(String username, int id) {
+	public Address findAddressById(int id) {
 		return aRepo.findById(id).get();
 	}
 
 	@Override
-	public boolean destroy(String username, int id) {
+	public boolean deleteAddressById(int id) {
 		Address address = aRepo.findById(id).get();
 
 		if (address != null) {

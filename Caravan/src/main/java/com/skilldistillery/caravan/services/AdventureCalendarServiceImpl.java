@@ -3,10 +3,12 @@ package com.skilldistillery.caravan.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.caravan.entities.AdventureCalendar;
 import com.skilldistillery.caravan.repositories.AdventureCalendarRepository;
 
+@Service
 public class AdventureCalendarServiceImpl implements AdventureCalendarService {
 
 	@Autowired

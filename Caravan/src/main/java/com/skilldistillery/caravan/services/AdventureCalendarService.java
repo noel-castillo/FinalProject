@@ -10,9 +10,9 @@ public interface AdventureCalendarService {
 
 	public AdventureCalendar findAdventureCalendarById(int id);
 
-	public AdventureCalendar createAdventureCalendar(AdventureCalendar adventureCalendar);
+	public AdventureCalendar createAdventureCalendar(int adventureId, AdventureCalendar adventureCalendar);
 
-	public AdventureCalendar updateAdventureCalendar(int id, AdventureCalendar adventureCalendar);
+	public AdventureCalendar updateAdventureCalendar(int id, int cid, AdventureCalendar adventureCalendar);
 
-	public boolean deleteAdventureCalendarById(int id);
+	public boolean deleteAdventureCalendarById(int cid);
 }

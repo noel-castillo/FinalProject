@@ -106,6 +106,13 @@ class AdventureTest {
 		assertEquals("Grand Canyon", adv.getTitle());
 	}
 	
+	@Test
+	@DisplayName("Test Adventure Entity Mapping Get Adventure Calendar")
+	void test10() {
+		assertNotNull(adv);
+		assertNotNull(adv.getAdventureCalendar());
+	}
+	
 	
 	
 	

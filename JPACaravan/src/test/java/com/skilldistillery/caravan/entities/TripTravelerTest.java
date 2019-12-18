@@ -1,6 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class CategoryTest {
+class TripTravelerTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Category cat;
+	private TripTraveler tripTraveler;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,19 +32,25 @@ class CategoryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		cat = em.find(Category.class, 1);
+		tripTraveler = em.find(TripTraveler.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		cat = null;
+		tripTraveler = null;
 	}
 
 	@Test
-	@DisplayName("Test Address Entity Mapping")
+	@DisplayName("Test trip Entity Mapping")
+	void test() {
+		assertNotNull(tripTraveler);
+	}
+	
+	@Test
+	@DisplayName("Test trip traveler and trip relationship Mapping")
 	void test1() {
-		assertNotNull(cat);
+		assertNotNull(tripTraveler.getTrip());
 	}
 
 }

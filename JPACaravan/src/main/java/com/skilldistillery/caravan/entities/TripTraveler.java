@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "trip_host")
+@Table(name = "trip_traveler")
 public class TripTraveler {
 
 //	F I E L D S
@@ -25,7 +25,7 @@ public class TripTraveler {
 
 	private String review;
 
-	@Column(name = "contribution_pledge")
+	@Column(name = "contribution_pledged")
 	private double contributionPledge;
 
 	private boolean attended;

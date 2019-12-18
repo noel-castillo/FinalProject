@@ -46,5 +46,16 @@ class TripMessageTest {
 	void test() {
 		assertNotNull(tripMessage);
 	}
+	
+	@Test
+	@DisplayName("Test trip message and user relationship Mapping")
+	void test1() {
+		assertNotNull(tripMessage.getUser());
+	}
+	@Test
+	@DisplayName("Test trip message and trip relationship Mapping")
+	void test2() {
+		assertNotNull(tripMessage.getTrip());
+	}
 
 }

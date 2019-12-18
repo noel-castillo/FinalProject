@@ -47,4 +47,15 @@ class TripHostTest {
 		assertNotNull(tripHost);
 	}
 
+	@Test
+	@DisplayName("Test trip host and trip relationship Mapping")
+	void test1() {
+		assertNotNull(tripHost.getTrip());
+	}
+
+	@Test
+	@DisplayName("Test trip host and user relationship Mapping")
+	void test2() {
+		assertNotNull(tripHost.getUser());
+	}
 }

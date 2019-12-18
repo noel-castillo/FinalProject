@@ -1,7 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,11 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserProfileTest {
+class CategoriesTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private UserProfile userProfile;
+	private Categories cat;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,25 +32,19 @@ class UserProfileTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		userProfile = em.find(UserProfile.class, 1);
+		cat = em.find(Categories.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		userProfile = null;
+		cat = null;
 	}
 
 	@Test
-	@DisplayName("Test User Profile Entity Mapping")
-	void test() {
-		assertNotNull(userProfile);
-	}
-	
-	@Test
-	@DisplayName("Testing user Profile OTO address")
-	void test2() {
-		assertEquals("Faketown", userProfile.getAddress().getCity());
+	@DisplayName("Test Categories Entity Mapping")
+	void test1() {
+		assertNotNull(cat);
 	}
 
 }

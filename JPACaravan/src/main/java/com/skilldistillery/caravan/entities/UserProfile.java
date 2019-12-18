@@ -127,6 +127,23 @@ public class UserProfile {
 		this.address = address;
 	}
 
+	
+	public int getMileagePoints() {
+		return mileagePoints;
+	}
+
+	public void setMileagePoints(int mileagePoints) {
+		this.mileagePoints = mileagePoints;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -137,8 +154,10 @@ public class UserProfile {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + mileagePoints;
 		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
 		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -178,6 +197,8 @@ public class UserProfile {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (mileagePoints != other.mileagePoints)
+			return false;
 		if (profilePic == null) {
 			if (other.profilePic != null)
 				return false;
@@ -187,6 +208,11 @@ public class UserProfile {
 			if (other.registrationDate != null)
 				return false;
 		} else if (!registrationDate.equals(other.registrationDate))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

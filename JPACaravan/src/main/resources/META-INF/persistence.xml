@@ -9,16 +9,19 @@
     </provider>
 
 	<!-- Class Definitions -->
-	<class>com.skilldistillery.eventtracker.entities.Address</class>
-	<class>com.skilldistillery.eventtracker.entities.Adventure</class>
-	<class>com.skilldistillery.eventtracker.entities.Category</class>
-	<class>com.skilldistillery.eventtracker.entities.Image</class>
-	<class>com.skilldistillery.eventtracker.entities.Trip</class>
-	<class>com.skilldistillery.eventtracker.entities.TripCalendar</class>
-	<class>com.skilldistillery.eventtracker.entities.TripHost</class>
-	<class>com.skilldistillery.eventtracker.entities.User</class>
-	<class>com.skilldistillery.eventtracker.entities.UserProfile</class>
-	<class>com.skilldistillery.eventtracker.entities.Vehicle</class>
+	<class>com.skilldistillery.caravan.entities.Address</class>
+	<class>com.skilldistillery.caravan.entities.Adventure</class>
+	<class>com.skilldistillery.caravan.entities.AdventureCalendar</class>
+	<class>com.skilldistillery.caravan.entities.Category</class>
+	<class>com.skilldistillery.caravan.entities.Image</class>
+	<class>com.skilldistillery.caravan.entities.Trip</class>
+	<class>com.skilldistillery.caravan.entities.TripCalendar</class>
+	<class>com.skilldistillery.caravan.entities.TripHost</class>
+	<class>com.skilldistillery.caravan.entities.TripMessage</class>
+	<class>com.skilldistillery.caravan.entities.TripTraveler</class>
+	<class>com.skilldistillery.caravan.entities.User</class>
+	<class>com.skilldistillery.caravan.entities.UserProfile</class>
+	<class>com.skilldistillery.caravan.entities.Vehicle</class>
 
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/caravandb?useSSL=false&amp;useLegacyDatetimeCode=false&amp;serverTimezone=MST" />

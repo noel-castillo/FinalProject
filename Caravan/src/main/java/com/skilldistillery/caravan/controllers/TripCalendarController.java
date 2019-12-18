@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.caravan.entities.Trip;
 import com.skilldistillery.caravan.entities.TripCalendar;
 import com.skilldistillery.caravan.services.TripCalendarService;
 
@@ -77,7 +76,7 @@ public class TripCalendarController {
 	}
 	
 	@DeleteMapping("tripCalendars/{tcid}")
-	public void deleteFilm(
+	public void deleteTripCalendar (
 			@PathVariable Integer tcid,
 			HttpServletResponse resp)
 			 {

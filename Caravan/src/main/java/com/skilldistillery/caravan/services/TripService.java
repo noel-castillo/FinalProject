@@ -13,6 +13,5 @@ public interface TripService {
 
 	public Trip show(int id);
 
-
 	boolean destroy(int id);
 }

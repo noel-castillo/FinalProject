@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.caravan.entities.User;
+import com.skilldistillery.caravan.services.AuthService;
 import com.skilldistillery.caravan.services.UserService;
 
 @RestController
@@ -28,6 +29,9 @@ public class UserController {
 
 	@Autowired
 	private UserService svc;
+	
+	@Autowired
+	private AuthService aSvc;
 
 	@GetMapping("users")
 	public List<User> index(Principal prin) {
@@ -37,6 +41,7 @@ public class UserController {
 	@GetMapping("users/{id}")
 	private User getById(@PathVariable int id, HttpServletRequest req, HttpServletResponse resp, Principal prin) {
 		try {
+			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());
 			resp.setStatus(201);
@@ -50,7 +55,7 @@ public class UserController {
 	@PostMapping("users")
 	private User createUser(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 
-		User newUser = svc.create(user);
+		User newUser = aSvc.register(user);
 		if (newUser != null) {
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());

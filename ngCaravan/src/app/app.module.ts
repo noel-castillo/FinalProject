@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TripService } from './services/trip.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { TripCalendarService } from './services/trip-calendar.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    TripService
+    TripService,
+    TripCalendarService
   ],
   bootstrap: [AppComponent]
 })

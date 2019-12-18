@@ -47,6 +47,12 @@ class AddressTest {
 		assertNotNull(address);
 	}
 	
+	@Test
+	@DisplayName("Test more Address Entity Mappings")
+	void test2() {
+		assertEquals("Faketown", address.getCity());
+	}
+	
 	
 	
 }

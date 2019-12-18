@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.skilldistillery.caravan.entities.Address;
-import com.skilldistillery.caravan.entities.UserProfile;
 import com.skilldistillery.caravan.repositories.AddressRepository;
 import com.skilldistillery.caravan.repositories.UserProfileRepository;
 
@@ -23,7 +22,7 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public Address update(Address address, String username, int id) {
 
-		Address oldAddress = aRepo.findByUserProfile_User_UsernameAndId(username, id);
+		Address oldAddress = aRepo.findById(id).get();
 
 		if (oldAddress != null) {
 
@@ -48,12 +47,12 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address show(String username, int id) {
-		return aRepo.findByUserProfile_User_UsernameAndId(username, id);
+		return aRepo.findById(id).get();
 	}
 
 	@Override
 	public boolean destroy(String username, int id) {
-		Address address = aRepo.findByUserProfile_User_UsernameAndId(username, id);
+		Address address = aRepo.findById(id).get();
 
 		if (address != null) {
 			aRepo.delete(address);

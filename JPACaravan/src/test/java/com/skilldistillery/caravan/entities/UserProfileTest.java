@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.persistence.EntityManager;
@@ -42,9 +43,15 @@ class UserProfileTest {
 	}
 
 	@Test
-	@DisplayName("Test trip Entity Mapping")
+	@DisplayName("Test User Profile Entity Mapping")
 	void test() {
 		assertNotNull(userProfile);
+	}
+	
+	@Test
+	@DisplayName("Testing user Profile OTO address")
+	void test2() {
+		assertEquals("Faketown", userProfile.getAddress().getCity());
 	}
 
 }

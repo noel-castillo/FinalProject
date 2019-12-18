@@ -46,5 +46,9 @@ class TripTest {
 	void test() {
 		assertNotNull(trip);
 	}
-
+//
+//	@Test
+//	public void test_vehicle_association() {
+//		assertEquals("PG", trip.getVehicle().get);
+//	}
 }

@@ -118,8 +118,4 @@ public class TripCalendar {
 			return false;
 		return true;
 	}
-	
-	
-
-
 }

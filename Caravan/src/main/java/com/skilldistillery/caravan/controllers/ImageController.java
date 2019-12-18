@@ -91,7 +91,5 @@ public class ImageController {
 			response.setStatus(400);
 			return false;
 		}
-
 	}
-
 }

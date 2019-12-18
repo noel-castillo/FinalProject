@@ -215,12 +215,12 @@ DROP TABLE IF EXISTS `adventure` ;
 CREATE TABLE IF NOT EXISTS `adventure` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NULL,
-  `description` VARCHAR(45) NULL,
-  `activity_level` VARCHAR(45) NULL,
-  `includes` VARCHAR(45) NULL,
+  `description` VARCHAR(400) NULL,
+  `activity_level` VARCHAR(200) NULL,
+  `includes` VARCHAR(200) NULL,
   `price` DOUBLE NULL,
   `enabled` TINYINT NULL,
-  `itinerary` VARCHAR(45) NULL,
+  `itinerary` VARCHAR(200) NULL,
   `address_id` INT NOT NULL,
   `host_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -438,8 +438,8 @@ DROP TABLE IF EXISTS `dm` ;
 
 CREATE TABLE IF NOT EXISTS `dm` (
   `id` INT NOT NULL,
-  `sender_id` VARCHAR(45) NULL,
-  `receiver_id` VARCHAR(45) NULL,
+  `sender_id` INT NULL,
+  `receiver_id` INT NULL,
   `content` VARCHAR(45) NULL,
   `date_posted` VARCHAR(45) NULL,
   `user_profile_id` INT NOT NULL,
@@ -515,6 +515,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `image` (`id`, `url`) VALUES (1, 'https://i.imgur.com/KPILGym.png');
+INSERT INTO `image` (`id`, `url`) VALUES (2, 'https://imgur.com/2DmETHE');
 
 COMMIT;
 
@@ -524,7 +525,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (1, '456 Fake Avenue', 'Faketown', 'CO', 80220, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (1, '456 Fake Avenue', 'Faketown', 'CO', 80220, '39.7', '105.0');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (2, '3764 Elvis Presley Boulevard', 'Memphis', 'TN', 38116, '35.15', '90.05');
 
 COMMIT;
 
@@ -534,7 +536,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, NULL, NULL, NULL);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, 'userface@usermail.com', '555-555-9876', '2017-06-15');
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`) VALUES (2, 'user', '2', 'i\'m user 2!', 300, 2, 2, 'user2@user2mail.com', '555-555-6789', '2019-04-30');
 
 COMMIT;
 
@@ -544,7 +547,169 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `user_profile_id`) VALUES (1, 'userface', 'userface', 'rider', DEFAULT, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `user_profile_id`) VALUES (1, 'userface', 'userface', 'driver', 1, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`, `user_profile_id`) VALUES (2, 'user2', 'user2', 'rider', 1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vehicle`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capactiy`, `seats available`, `interior_description`, `user_profile_id`) VALUES (1, 'toyota', 'corolla', 1996, 40, 3, 'very nice', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip_host`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip_host` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (1, 2, 5, 'Coolest Host ever.', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `category` (`id`, `name`) VALUES (1, 'passenger trip');
+INSERT INTO `category` (`id`, `name`) VALUES (2, 'cargo');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `adventure`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `adventure` (`id`, `title`, `description`, `activity_level`, `includes`, `price`, `enabled`, `itinerary`, `address_id`, `host_id`) VALUES (1, 'Grand Canyon', 'Taking a week-long trip to the grand canyon with my pup Sally!', 'high', 'bed and breakfast', 250, 1, 'day one: see the canyon. day two: see more of the canyone. day three: see a little more canyone', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `adventure_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `adventure_category` (`category_id`, `adventure_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `vehicle_image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `vehicle_image` (`vehicle_id`, `image_id`) VALUES (1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip_category`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip_category` (`trip_id`, `category_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip_traveler`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip_traveler` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip_message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip_message` (`id`, `date_posted`, `content`, `reply_to_id`, `trip_id`, `user_profile_id`) VALUES (1, '2019-09-09', 'This trip is super awesome.', '1', 1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip_calendar`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (1, '2017-07-18', '2017-07-20', 'available', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `adventure_calendar`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `adventure_calendar` (`id`, `start_date`, `end_date`, `availability`, `adventure_id`) VALUES (1, '2019-10-15', '2019-10-25', 'yes', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip_traveler_img`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip_traveler_img` (`image_id`, `trip_traveler_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `dm`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `dm` (`id`, `sender_id`, `receiver_id`, `content`, `date_posted`, `user_profile_id`) VALUES (1, 1, 2, 'Hey. You\'re a cool guy.', '2017-09-30', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `trip_host_img`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `trip_host_img` (`trip_host_id`, `image_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `adventure_img`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `adventure_img` (`adventure_id`, `image_id`) VALUES (1, 2);
 
 COMMIT;
 

@@ -19,7 +19,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User create(User user) {
-
 		if (user != null) {
 			
 			return uRepo.saveAndFlush(user);

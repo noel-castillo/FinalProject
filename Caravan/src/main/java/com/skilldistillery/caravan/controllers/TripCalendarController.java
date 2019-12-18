@@ -17,42 +17,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.caravan.entities.Trip;
-import com.skilldistillery.caravan.services.TripService;
+import com.skilldistillery.caravan.entities.TripCalendar;
+import com.skilldistillery.caravan.services.TripCalendarService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({"*", "http://localhost:4260"})
-public class TripController {
-
-	@Autowired
-	private TripService svc;
+public class TripCalendarController {
 	
-	@GetMapping("trips")
-	public List<Trip> allTrips() {
+	@Autowired
+	private TripCalendarService svc;
+	
+	@GetMapping("tripCalendars")
+	public List<TripCalendar> allTripCalendars() {
 		return svc.index();
 	}
 	
-	@GetMapping("trips/{tid}")
-	public Trip getTrip(
-			@PathVariable Integer tid,
+	@GetMapping("tripCalendars/{tcid}")
+	public TripCalendar getTripCalendar(
+			@PathVariable Integer tcid,
 			HttpServletResponse resp
 			)
 	{
-		Trip trip = svc.show(tid);
-		if(trip == null) {
+		TripCalendar tripCal = svc.show(tcid);
+		if(tripCal == null) {
 			resp.setStatus(404);
 		}
 		
-		return trip;
+		return tripCal;
 	}
 	
-	@PostMapping("trips")
-	public Trip addTrip(@RequestBody Trip trip, HttpServletResponse resp, HttpServletRequest req) {
+	@PostMapping("tripCalendars")
+	public TripCalendar addTripCalendar(@RequestBody TripCalendar tripCal, HttpServletResponse resp, HttpServletRequest req) {
 		try {
-			svc.create(trip);
+			svc.create(tripCal);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
-			url.append("/").append(trip.getId());
+			url.append("/").append(tripCal.getId());
 			resp.addHeader("Location", url.toString());
 			
 		} catch (Exception e) {
@@ -60,28 +61,28 @@ public class TripController {
 			resp.setStatus(400);
 			e.printStackTrace();
 		}
-		return trip;
+		return tripCal;
 	}
 	
-	@PutMapping("trips/{tid}")
-	public Trip update(@PathVariable Integer tid, @RequestBody Trip trip, HttpServletResponse resp) {
+	@PutMapping("tripCalendars/{tcid}")
+	public TripCalendar update(@PathVariable Integer tcid, @RequestBody TripCalendar tripCal, HttpServletResponse resp) {
 		try {
-			trip = svc.update(trip, tid);
+			tripCal = svc.update(tripCal, tcid);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(401);
 		}
-		return trip;
+		return tripCal;
 	}
 	
-	@DeleteMapping("trips/{tid}")
-	public void deleteTrip(
-			@PathVariable Integer tid,
+	@DeleteMapping("tripCalendars/{tcid}")
+	public void deleteFilm(
+			@PathVariable Integer tcid,
 			HttpServletResponse resp)
 			 {
 		try {
-			if (svc.destroy(tid)) {
+			if (svc.destroy(tcid)) {
 				resp.setStatus(204);
 			}
 			else {

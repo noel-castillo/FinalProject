@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from 'selenium-webdriver/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Trip } from '../models/trip';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +11,7 @@ import { HttpClient } from 'selenium-webdriver/http';
 export class TripService {
 
   // F i e l d s
-  private baseUrl = '/Caravan/';
+  private baseUrl = 'http://localhost:8090';
   private url = environment.baseUrl + 'api/trips';
 
   // C o n s t r u c t o r
@@ -59,7 +62,7 @@ export class TripService {
           'Content-type': 'application/json'
         }
     };
-    return this.http.put<Run>(`${this.url}/${trip.id}`, trip, httpOptions).pipe(
+    return this.http.put<Trip>(`${this.url}/${trip.id}`, trip, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('TripService.update(): Error updating trip');

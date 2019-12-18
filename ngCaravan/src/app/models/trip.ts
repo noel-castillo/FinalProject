@@ -4,7 +4,7 @@ export class Trip {
   vehicle: Vehicle;
   departureAddress: Address ;
   destinationAddress: Address ;
-  description: String;
+  description: string;
   seatsAvailable: number;
   cargoCapacity: number;
   createDate: Date;
@@ -14,7 +14,7 @@ export class Trip {
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(host?: User, departureAddress?: Address, destinationAddress?: Address, description: String, seatsAvailable: number, cargoCapactiy: number, createDate: Date, enabled: boolean, totalCost: number, miles: number) {
+  constructor(host?: User, departureAddress?: Address, destinationAddress?: Address, description?: string, seatsAvailable?: number, cargoCapactiy?: number, createDate?: Date, enabled?: boolean, totalCost?: number, miles?: number) {
     this.host = host;
     this.departureAddress = departureAddress;
     this.destinationAddress = destinationAddress;

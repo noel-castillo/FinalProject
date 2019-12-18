@@ -1,5 +1,7 @@
 package com.skilldistillery.caravan.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,8 +35,6 @@ public class Adventure {
 	
 	private String description;
 	
-	private int duration;
-	
 	@Column(name="activity_level")
 	private String activityLvl;
 	
@@ -58,9 +58,9 @@ public class Adventure {
 
 	@Override
 	public String toString() {
-		return "Adventure [id=" + id + ", address=" + address + ", title=" + title + ", description=" + description
-				+ ", duration=" + duration + ", activityLvl=" + activityLvl + ", includes=" + includes + ", price="
-				+ price + ", enabled=" + enabled + ", itinerary=" + itinerary + "]";
+		return "Adventure [id=" + id + ", address=" + address + ", host=" + host + ", title=" + title + ", description="
+				+ description + ", activityLvl=" + activityLvl + ", includes=" + includes + ", price=" + price
+				+ ", enabled=" + enabled + ", itinerary=" + itinerary + "]";
 	}
 
 	public int getId() {
@@ -102,14 +102,7 @@ public class Adventure {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public int getDuration() {
-		return duration;
-	}
-
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
+	
 
 	public String getActivityLvl() {
 		return activityLvl;
@@ -158,7 +151,6 @@ public class Adventure {
 		result = prime * result + ((activityLvl == null) ? 0 : activityLvl.hashCode());
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + duration;
 		result = prime * result + (enabled ? 1231 : 1237);
 		result = prime * result + ((host == null) ? 0 : host.hashCode());
 		result = prime * result + id;
@@ -194,8 +186,6 @@ public class Adventure {
 			if (other.description != null)
 				return false;
 		} else if (!description.equals(other.description))
-			return false;
-		if (duration != other.duration)
 			return false;
 		if (enabled != other.enabled)
 			return false;

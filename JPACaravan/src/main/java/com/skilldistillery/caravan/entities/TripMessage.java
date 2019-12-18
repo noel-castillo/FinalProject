@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="message_board")
+@Table(name="trip_message")
 public class TripMessage {
 
 //	F I E L D S
@@ -34,7 +34,7 @@ public class TripMessage {
 	private TripMessage replyToId;
 
 	@OneToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_profile_id")
 	@JsonIgnore
 	private User user;
 

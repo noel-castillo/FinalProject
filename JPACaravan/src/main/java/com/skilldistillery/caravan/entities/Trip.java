@@ -54,7 +54,7 @@ public class Trip {
 
 	private boolean enabled;
 
-	@Column(name = "totalCost")
+	@Column(name = "total_cost")
 	private double totalCost;
 
 	private int miles;

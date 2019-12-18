@@ -37,10 +37,8 @@ public class UserProfile {
 	@Column(name="registration_date")
 	private Date registrationDate;
 
-	@Column(name="profile_pic")
+	@Column(name="profile_pic_id")
 	private String profilePic;
-
-	private User user;
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
@@ -117,14 +115,6 @@ public class UserProfile {
 		this.profilePic = profilePic;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 	public Address getAddress() {
 		return address;
 	}
@@ -145,7 +135,6 @@ public class UserProfile {
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
 		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -194,11 +183,6 @@ public class UserProfile {
 			if (other.registrationDate != null)
 				return false;
 		} else if (!registrationDate.equals(other.registrationDate))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

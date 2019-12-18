@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -21,6 +23,10 @@ public class User {
 	private String role;
 
 	private boolean enabled;
+	
+	@OneToOne
+	@JoinColumn(name="user_profile_id")
+	private UserProfile userProfile;
 
 //	C O N S T R U C T O R S
 
@@ -74,6 +80,14 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	@Override

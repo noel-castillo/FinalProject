@@ -23,9 +23,6 @@ public class Address {
 
 	private String zip;
 
-	@OneToMany(mappedBy = "address")
-	private UserProfile userProfile;
-
 	
 //	C O N S T R U C T O R S
 
@@ -81,13 +78,6 @@ public class Address {
 		this.zip = zip;
 	}
 
-	public UserProfile getUserProfile() {
-		return userProfile;
-	}
-
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
-	}
 
 	@Override
 	public int hashCode() {

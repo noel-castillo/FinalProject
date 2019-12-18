@@ -17,14 +17,7 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public Address create(Address address, String username) {
-		UserProfile userProfile = upRepo.findByUser_Username(username);
-
-		if (userProfile != null) {
-			address.setUserProfile(userProfile);
 			return aRepo.saveAndFlush(address);
-		} else {
-			return null;
-		}
 	}
 
 	@Override

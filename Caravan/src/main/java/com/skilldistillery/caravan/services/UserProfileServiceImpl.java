@@ -94,7 +94,14 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Override
 	public boolean destroy(String username, int id) {
-		// TODO Auto-generated method stub
+
+		UserProfile uProfile = uRepo.findById(id).get();
+		
+		if (uProfile != null) {
+			uRepo.delete(uProfile);
+			return true;
+		}
+		
 		return false;
 	}
 

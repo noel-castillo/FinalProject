@@ -514,8 +514,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2y$12$frK0F9/bYk7o1RDEwXnp4OlUHwQSolUkQ7NIUrKB17GBbm0wwsLvy\n', 'driver', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', 'us$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n', 'rider', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2y$12$frK0F9/bYk7o1RDEwXnp4OlUHwQSolUkQ7NIUrKB17GBbm0wwsLvy\n', 'standard', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', 'us$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32\n', 'standard', 1);
 
 COMMIT;
 

@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `user` ;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(45) NULL,
-  `password` VARCHAR(45) NULL,
+  `password` VARCHAR(150) NULL,
   `role` VARCHAR(45) NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))

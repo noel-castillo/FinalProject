@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `model` VARCHAR(45) NULL,
   `manufacture_year` INT NULL,
   `capacity` INT NULL,
-  `seats available` INT NULL,
+  `seats_available` INT NULL,
   `interior_description` VARCHAR(45) NULL,
   `user_profile_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -558,7 +558,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats available`, `interior_description`, `user_profile_id`) VALUES (1, 'toyota', 'corolla', 1996, 40, 3, 'very nice', 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (1, 'toyota', 'corolla', 1996, 40, 3, 'very nice', 1);
 
 COMMIT;
 

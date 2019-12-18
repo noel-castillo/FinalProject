@@ -1,7 +1,5 @@
 package com.skilldistillery.caravan.services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +13,23 @@ import com.skilldistillery.caravan.repositories.UserRepository;
 @Repository
 public class AuthServiceImpl implements AuthService {
 
-	@PersistenceContext
-	private EntityManager em;
+	@Autowired
+	private UserRepository repo;
 
 	@Autowired
 	private PasswordEncoder encoder;
 
-	@Autowired
-	private UserRepository userRepo;
-
 	@Override
 	public User register(User user) {
 
-		String encrypted = encoder.encode(user.getPassword());
-
-		user.setPassword(encrypted);
-
+//		encrypt and set the password for the User.
+		user.setPassword(encoder.encode(user.getPassword()));
+//		set the enabled field of the object to true.
 		user.setEnabled(true);
-
+//		set the role field of the object to "standard".
 		user.setRole("standard");
-
-		return userRepo.saveAndFlush(user);
-
+//		saveAndFlush the user using the UserRepo.
+//		return the User object.
+		return repo.saveAndFlush(user);
 	}
 }

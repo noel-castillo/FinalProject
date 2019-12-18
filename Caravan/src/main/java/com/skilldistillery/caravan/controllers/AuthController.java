@@ -15,25 +15,28 @@ import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.services.AuthService;
 
 @RestController
-@CrossOrigin({ "*", "http://localhost:4260" })
+@CrossOrigin({ "*", "http://localhost:4255" })
 public class AuthController {
 
 	@Autowired
-	private AuthService svc;
+	private AuthService authSvc;
 
-	@RequestMapping(path = "register", method = RequestMethod.POST)
+	@RequestMapping(path = "/register", method = RequestMethod.POST)
 	public User register(@RequestBody User user, HttpServletResponse res) {
 
 		if (user == null) {
 			res.setStatus(400);
+			return null;
 		}
 
-		user = svc.register(user);
+		else {
 
-		return user;
+			return authSvc.register(user);
+		}
+
 	}
 
-	@RequestMapping(path = "authenticate", method = RequestMethod.GET)
+	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
 	public Principal authenticate(Principal principal) {
 		return principal;
 	}

@@ -48,7 +48,6 @@ public class AdventureCalendarServiceImpl implements AdventureCalendarService {
 
 			oldAventureCalendar.setStartDate(adventureCalendar.getStartDate());
 			oldAventureCalendar.setEndDate(adventureCalendar.getEndDate());
-			oldAventureCalendar.setAdventure(adventureCalendar.getAdventure());
 
 			return aRepo.saveAndFlush(oldAventureCalendar);
 		}

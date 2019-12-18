@@ -43,6 +43,10 @@ public class UserProfile {
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 
 //	C O N S T R U C T O R S
 

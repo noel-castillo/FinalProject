@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.entities.UserProfile;
@@ -73,10 +72,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Override
 	public UserProfile show(String username) {
-		UserProfile user = uRepo.findByUser_Username(username);
-
-		if (user != null) {
-			return user;
+		
+		User user = usrRepo.findByUsername(username);
+		UserProfile userProfile = uRepo.findByUser(user);
+		
+		if (userProfile != null) {
+			return userProfile;
 		}
 		return null;
 	}

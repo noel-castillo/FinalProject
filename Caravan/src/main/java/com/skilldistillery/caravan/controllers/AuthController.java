@@ -15,7 +15,7 @@ import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.services.AuthService;
 
 @RestController
-@CrossOrigin({ "*", "http://localhost:4255" })
+@CrossOrigin({ "*", "http://localhost:4260" })
 public class AuthController {
 
 	@Autowired

@@ -14,7 +14,7 @@ public interface UserProfileService {
 
 	public UserProfile show(String username);
 
-	public boolean destroy(String username, int id);
+	public boolean destroy(int id);
 
 	public UserProfile showById(int id);
 

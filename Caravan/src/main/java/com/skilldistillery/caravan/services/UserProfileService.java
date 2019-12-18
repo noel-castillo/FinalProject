@@ -10,10 +10,12 @@ public interface UserProfileService {
 
 	public UserProfile update(UserProfile userProfile, String username, int id);
 
-	public List<UserProfile> index();
+	public List<UserProfile> index(String username);
 
-	public UserProfile show(String username, int id);
+	public UserProfile show(String username);
 
 	public boolean destroy(String username, int id);
+
+	public UserProfile showById(int id);
 
 }

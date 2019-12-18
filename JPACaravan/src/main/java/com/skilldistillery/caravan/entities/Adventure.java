@@ -37,7 +37,7 @@ public class Adventure {
 	
 	@OneToOne
 	@JoinColumn(name = "address_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Address address;
 	
 	@OneToOne

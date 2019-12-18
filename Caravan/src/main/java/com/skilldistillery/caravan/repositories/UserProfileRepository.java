@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.caravan.entities.UserProfile;
 
-public interface UserProfileRepository extends JpaRepository<UserProfile, Integer>{
-
+public interface UserProfileRepository extends JpaRepository<UserProfile, Integer> {
+	public UserProfile findByUser_Username(String username);
 }

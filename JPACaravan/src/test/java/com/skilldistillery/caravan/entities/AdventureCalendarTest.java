@@ -1,6 +1,9 @@
 package com.skilldistillery.caravan.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.time.LocalDate;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -42,8 +45,34 @@ class AdventureCalendarTest {
 	}
 
 	@Test
-	@DisplayName("Test Adventure Calendar Entity Mapping")
+	@DisplayName("Test Adventure Calendar entity mapping get adventure get title")
 	void test1() {
 		assertNotNull(ac);
+		assertEquals("Grand Canyon", ac.getAdventure().getTitle());
 	}
+	
+	@Test
+	@DisplayName("Test Adventure Calendar entity mapping get end date")
+	void test2() {
+		assertNotNull(ac);
+		assertEquals(LocalDate.parse("2019-10-15"), ac.getStartDate());
+	}
+	
+	@Test
+	@DisplayName("Test Adventure Calendar entity mapping get end date")
+	void test3() {
+		assertNotNull(ac);
+		assertEquals(LocalDate.parse("2019-10-25"), ac.getEndDate());
+	}
+	
+	@Test
+	@DisplayName("Test Adventure Calendar entity mapping get id")
+	void test4() {
+		assertNotNull(ac);
+		assertEquals(1, ac.getId());
+	}
+	
+	
+	
+	
 }

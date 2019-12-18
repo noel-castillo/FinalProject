@@ -4,10 +4,12 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.caravan.entities.Address;
 import com.skilldistillery.caravan.repositories.AddressRepository;
 
+@Service
 public class AddressServiceImpl implements AddressService {
 	@Autowired
 	private AddressRepository aRepo;

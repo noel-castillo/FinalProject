@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.services;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.caravan.entities.Adventure;
-import com.skilldistillery.caravan.entities.User;
+import com.skilldistillery.caravan.entities.UserProfile;
 import com.skilldistillery.caravan.repositories.AdventureRepository;
-import com.skilldistillery.caravan.repositories.UserRepository;
+import com.skilldistillery.caravan.repositories.UserProfileRepository;
 
 @Service
 public class AdventureServiceImpl implements AdventureService {
@@ -18,7 +19,7 @@ public class AdventureServiceImpl implements AdventureService {
 	private AdventureRepository aRepo;
 
 	@Autowired
-	private UserRepository uRepo;
+	private UserProfileRepository upRepo;
 
 	@Override
 	public List<Adventure> index() {
@@ -39,13 +40,20 @@ public class AdventureServiceImpl implements AdventureService {
 	}
 	
 	@Override
-	public Adventure create(Adventure adventure, String username) {
-		User user = uRepo.findByUsername(username);
+	public Adventure create(Adventure adventure, Principal principal) {
+		UserProfile user = upRepo.findByUser_Username(principal.getName());
+		
 
 		if (user != null) {
+			System.out.println(user.getUser().getUsername());
+			System.out.println("****************************************************");
 			adventure.setHost(user);
 			return aRepo.saveAndFlush(adventure);
 		} else {
+			System.out.println("in else");
+		
+			System.out.println("****************************************************");
+			
 			return null;
 		}
 

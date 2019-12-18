@@ -42,8 +42,8 @@ public class Adventure {
 	
 	@OneToOne
 	@JoinColumn(name = "host_id")
-	@JsonIgnore
-	private User host;
+//	@JsonIgnore
+	private UserProfile host;
 	
 	
 	
@@ -64,9 +64,9 @@ public class Adventure {
 
 	@Override
 	public String toString() {
-		return "Adventure [id=" + id + ", address=" + address + ", host=" + host + ", title=" + title + ", description="
-				+ description + ", activityLvl=" + activityLvl + ", includes=" + includes + ", price=" + price
-				+ ", enabled=" + enabled + ", itinerary=" + itinerary + "]";
+		return "Adventure [id=" + id + ", title=" + title + ", description=" + description + ", activityLvl="
+				+ activityLvl + ", includes=" + includes + ", price=" + price + ", enabled=" + enabled + ", itinerary="
+				+ itinerary + ", address=" + address + ", host=" + host + "]";
 	}
 
 	public int getId() {
@@ -85,11 +85,11 @@ public class Adventure {
 		this.address = address;
 	}
 
-	public User getHost() {
+	public UserProfile getHost() {
 		return host;
 	}
 
-	public void setHost(User host) {
+	public void setHost(UserProfile host) {
 		this.host = host;
 	}
 

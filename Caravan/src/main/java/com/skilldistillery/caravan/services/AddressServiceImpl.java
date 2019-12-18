@@ -1,18 +1,22 @@
 package com.skilldistillery.caravan.services;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.caravan.entities.Address;
+import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.repositories.AddressRepository;
+import com.skilldistillery.caravan.repositories.UserRepository;
 
 @Service
 public class AddressServiceImpl implements AddressService {
 	@Autowired
 	private AddressRepository aRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public Address createAddress(Address address) {
@@ -41,9 +45,19 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	public List<Address> index(Principal principal) {
+	public List<Address> index(String username) {
+		for(User element : userRepo.findAll()) {
+			if(element.getUsername().equals(username)) {
+				if(element.getRole().equals("admin")) {
+					return aRepo.findAll();
+				}
+			}
+		}
+		
 		return aRepo.findAll();
 	}
+	
+        
 
 	@Override
 	public Address findAddressById(int id) {

@@ -46,6 +46,7 @@ public class AdventureServiceImpl implements AdventureService {
 	@Override
 	public Adventure create(Adventure adventure, String username) {
 
+
 		User user = userRepo.findByUsername(username);
 		UserProfile userProfile = userProfileRepo.findByUser(user);
 

@@ -42,9 +42,15 @@ class TripCalendarTest {
 	}
 
 	@Test
-	@DisplayName("Test trip Entity Mapping")
+	@DisplayName("Test trip calendar Entity Mapping")
 	void test() {
 		assertNotNull(tripCalendar);
+	}
+	
+	@Test
+	@DisplayName("Test trip calendar and trip relationship Mapping")
+	void test1() {
+		assertNotNull(tripCalendar.getTrip());
 	}
 
 }

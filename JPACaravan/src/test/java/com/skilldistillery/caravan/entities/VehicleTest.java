@@ -42,9 +42,15 @@ class VehicleTest {
 	}
 
 	@Test
-	@DisplayName("Test trip Entity Mapping")
+	@DisplayName("Test Vehicle Entity Mapping")
 	void test() {
 		assertNotNull(vehicle);
+	}
+	
+	@Test
+	@DisplayName("Test Vehicle and User relationship Mapping")
+	void test1() {
+		assertNotNull(vehicle.getUserProfile());
 	}
 
 }

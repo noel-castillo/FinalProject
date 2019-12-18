@@ -21,6 +21,10 @@ public class Address {
 	private String state;
 
 	private String zip;
+	
+	private String latitude;
+	
+	private String longitude;
 
 	
 //	C O N S T R U C T O R S
@@ -29,12 +33,23 @@ public class Address {
 		super();
 	}
 
+	public Address(int id, String street, String city, String state, String zip, String latitude, String longitude) {
+		super();
+		this.id = id;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
+
 //	M E T H O D S
 
 	@Override
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", city=" + city + ", state=" + state + ", zip=" + zip
-				+ "]";
+				+ ", latitude=" + latitude + ", longitude=" + longitude + "]";
 	}
 
 	public int getId() {
@@ -77,6 +92,22 @@ public class Address {
 		this.zip = zip;
 	}
 
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 
 	@Override
 	public int hashCode() {

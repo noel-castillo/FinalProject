@@ -1,7 +1,5 @@
 package com.skilldistillery.caravan.entities;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,20 +19,11 @@ public class Adventure {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
-	@JoinColumn(name = "address_id")
-	@JsonIgnore
-	private Address address;
-	
-	@OneToOne
-	@JoinColumn(name = "host_id")
-	@JsonIgnore
-	private User host;
-	
 	private String title;
 	
 	private String description;
 	
+
 	@Column(name="activity_level")
 	private String activityLvl;
 	
@@ -45,6 +34,23 @@ public class Adventure {
 	private boolean enabled;
 	
 	private String itinerary;
+	
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	@JsonIgnore
+	private Address address;
+	
+	@OneToOne
+	@JoinColumn(name = "host_id")
+	@JsonIgnore
+	private User host;
+	
+	
+	
+	
+	
+	
+	
 
 
 

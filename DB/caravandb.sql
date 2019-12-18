@@ -129,7 +129,7 @@ DROP TABLE IF EXISTS `trip` ;
 
 CREATE TABLE IF NOT EXISTS `trip` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `description` VARCHAR(45) NULL,
+  `description` VARCHAR(255) NULL,
   `seats_available` INT NULL,
   `cargo_capacity` DOUBLE NULL,
   `create_date` DATE NULL,
@@ -514,8 +514,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2y$12$frK0F9/bYk7o1RDEwXnp4OlUHwQSolUkQ7NIUrKB17GBbm0wwsLvy\n', NULL, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', '$2y$12$IUjrdlgAwd6o/TSQfqiqN.sm6KFuSkDaadmxn2i59CkZ0nknVcc32 ', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2a$10$KzG5DFbaZeuvJoCif7PHTe7d.2obaHYg44nOwaEvFQeOFieX7Mfa2', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', '$2y$10$XDWoLVCP69pKoNt62pNmxupUKNZCaC7mM7aIAX5GBZDrNbBiDTbrO\n', NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (3, 'shaun', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
 
 COMMIT;
@@ -574,7 +574,7 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1);
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (2, 'Let\'s go to Kalamazoo', 2, 36, '2019-12-29', 1, 25, 750, 2, 3, 4, 3);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual ', 2, 36, '2019-12-29', 1, 25, 750, 2, 3, 4, 3);
 
 COMMIT;
 

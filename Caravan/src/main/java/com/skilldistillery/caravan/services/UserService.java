@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.skilldistillery.caravan.entities.User;
 
+
 public interface UserService {
 	public User create(User user);
 

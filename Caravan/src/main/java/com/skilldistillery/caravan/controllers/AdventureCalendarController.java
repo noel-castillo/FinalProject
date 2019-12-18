@@ -18,67 +18,68 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.caravan.entities.Address;
-import com.skilldistillery.caravan.services.AddressService;
+import com.skilldistillery.caravan.entities.AdventureCalendar;
+import com.skilldistillery.caravan.services.AdventureCalendarService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4260" })
-public class AddressController {
+public class AdventureCalendarController {
 
 	@Autowired
-	private AddressService svc;
+	private AdventureCalendarService svc;
 
-	@GetMapping("addresses")
-	public List<Address> index(Principal principal) {
+	@GetMapping("adventure-calendars")
+	public List<AdventureCalendar> index(Principal principal) {
 		return svc.index(principal.getName());
 	}
-	
-	@GetMapping("addresses/{id}")
-	public Address showAddress(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
 
-		Address address = svc.findAddressById(id);
-		if (address == null) {
+	@GetMapping("adventure-calendars/{id}")
+	public AdventureCalendar showAdventureCalendar(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
+
+		AdventureCalendar adventureCalendar = svc.findAdventureCalendarById(id);
+		if (adventureCalendar == null) {
 			response.setStatus(404);
 		}
-		return address;
+		return adventureCalendar;
 	}
 
-	@PostMapping("addresses")
-	public Address createAddress(@RequestBody Address address, HttpServletRequest request,
+	@PostMapping("adventure-calendars")
+	public AdventureCalendar createAddress(@RequestBody AdventureCalendar adventureCalendar, HttpServletRequest request,
 			HttpServletResponse response) {
-		if ((address = svc.createAddress(address)) != null) {
+		if ((adventureCalendar = svc.createAdventureCalendar(adventureCalendar)) != null) {
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
-			url.append("/").append(address.getId());
+			url.append("/").append(adventureCalendar.getId());
 			response.addHeader("Location", url.toString());
-			return address;
+			return adventureCalendar;
 		} else {
 			response.setStatus(400);
 			return null;
 		}
 	}
 
-	@PutMapping("addresses/{id}")
-	public Address updateAddress(@PathVariable int id, @RequestBody Address address, HttpServletRequest request,
+	@PutMapping("adventure-calendars/{id}")
+	public AdventureCalendar updateAdventureCalendar(@PathVariable int id, @RequestBody AdventureCalendar adventureCalendar, HttpServletRequest request,
 			HttpServletResponse response) {
 		try {
-			address = svc.updateAddress(id, address);
-			if (address == null) {
+			adventureCalendar = svc.updateAdventureCalendar(id, adventureCalendar);
+			if (adventureCalendar == null) {
 				response.setStatus(404);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.setStatus(400);
-			address = null;
+			adventureCalendar = null;
 		}
-		return address;
+		return adventureCalendar;
 	}
 
-	@DeleteMapping("addresses/{id}")
-	public boolean deleteAddress(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
+	@DeleteMapping("adventure-calendars/{id}")
+	public boolean deleteAdventureCalendar(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
 
 		try {
-			boolean deleted = svc.deleteAddressById(id);
+			boolean deleted = svc.deleteAdventureCalendarById(id);
 			if (deleted) {
 				response.setStatus(204);
 				return true;

@@ -11,7 +11,7 @@ import { throwError } from 'rxjs';
 export class TripTravelerService {
 // F i e l d s
 private baseUrl = 'http://localhost:8090';
-private url = environment.baseUrl + 'api/trips';
+private url = this.baseUrl + 'api/trips';
 
 // C o n s t r u c t o r
 
@@ -60,7 +60,7 @@ update(tripTraveler: TripTraveler) {
         'Content-type': 'application/json'
       }
   };
-  return this.http.put<TripTraveler>(`${this.url}/${tripTraveler}`, tripTraveler, httpOptions).pipe(
+  return this.http.put<TripTraveler>(`${this.url}/${tripTraveler.id}`, tripTraveler, httpOptions).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError('TripService.update(): Error updating trip');

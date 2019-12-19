@@ -11,7 +11,12 @@ import { Router } from '@angular/router';
 })
 export class CategoriesService {
 
+<<<<<<< HEAD
   // F I E L D S
+=======
+  baseUrl = 'http://localhost:8090/';
+  private url = 'api/categories';
+>>>>>>> 037dc9391f4ed3a0f16b85db9dca61843f77f6be
 
   baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/categories';

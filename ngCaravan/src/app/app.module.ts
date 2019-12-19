@@ -20,19 +20,9 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     AppComponent,
     NavbarComponent,
     AdventureComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    TripComponent,
-    AddressComponent
-=======
-    AddressComponent,
-    VehicleComponent
->>>>>>> e045bc99256895be22029f4d767d66a72206580c
-=======
     TripComponent,
     AddressComponent,
     VehicleComponent
->>>>>>> 6fa96fd01f25e673091af8c7e8af0622e5663934
 
   ],
   imports: [

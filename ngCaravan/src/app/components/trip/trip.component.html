@@ -2,6 +2,7 @@
 <div id="createNewTrip" *ngIf=" ! editTrip">
     <form #createNewTripForm="ngForm">
 
+        <hr>
         <label for="departureAddressStreet">Departure Address Street: </label>
         <input type="text" name="departureAddressStreet" ngModel placeholder="Departure address street"/><br>
 
@@ -14,6 +15,8 @@
         <label for="departureAddressZip">Departure Address Zip: </label>
         <input type="text" name="departureAddressZip" ngModel placeholder="Departure address zip"/><br>
 
+        <hr>
+
         <label for="destinationAddressStreet">Destination Address Street: </label>
         <input type="text" name="destinationAddressStreet" ngModel placeholder="Destination address street"/><br>
 
@@ -25,6 +28,8 @@
 
         <label for="destinationAddressZip">Destination Address Zip: </label>
         <input type="text" name="destinationAddressZip" ngModel placeholder="Destination address zip"/><br>
+
+        <hr>
 
         <label for="description">Description: </label>
         <input type="text" name="description" ngModel placeholder="Description"/><br>
@@ -62,48 +67,54 @@
   <p>Update Trip #{{editTrip.id}}</p>
   <form>
     <hr>
-    <label for="departureAddressStreet">Departure Address Street: </label>
-    <input type="text" name="departureAddressStreet" [(ngModel)]="editTrip.departureAddress.street"/><br>
+    <label for="updateDepartureAddressStreet">Departure Address Street: </label>
+    <input type="text" name="updateDepartureAddressStreet" [(ngModel)]="editTrip.departureAddress.street"/><br>
 
-    <label for="departureAddressCity">Departure Address City: </label>
-    <input type="text" name="departureAddressCity" [(ngModel)]="editTrip.departureAddress.city"/><br>
+    <label for="updateDepartureAddressCity">Departure Address City: </label>
+    <input type="text" name="updateDepartureAddressCity" [(ngModel)]="editTrip.departureAddress.city"/><br>
 
-    <label for="departureAddressState">Departure Address State: </label>
+    <label for="updateDepartureAddressState">Departure Address State: </label>
     <input type="text" name="departureAddressState" [(ngModel)]="editTrip.departureAddress.state"/><br>
 
-    <label for="departureAddressZip">Departure Address Zip: </label>
-    <input type="text" name="departureAddressZip" [(ngModel)]="editTrip.departureAddress.zip"/><br>
+    <label for="updateDepartureAddressZip">Departure Address Zip: </label>
+    <input type="text" name="updateDepartureAddressZip" [(ngModel)]="editTrip.departureAddress.zip"/><br>
 
     <hr>
 
-    <label for="destinationAddressStreet">Destination Address Street: </label>
-    <input type="text" name="destinationAddressStreet" [(ngModel)]="editTrip.destinationAddress.street"/><br>
+    <label for="updateDestinationAddressStreet">Destination Address Street: </label>
+    <input type="text" name="updateDestinationAddressStreet" [(ngModel)]="editTrip.destinationAddress.street"/><br>
 
-    <label for="destinationAddressCity">Destination Address City: </label>
-    <input type="text" name="destinationAddressCity" [(ngModel)]="editTrip.destinationAddress.city"/><br>
+    <label for="updateDestinationAddressCity">Destination Address City: </label>
+    <input type="text" name="updateDestinationAddressCity" [(ngModel)]="editTrip.destinationAddress.city"/><br>
 
-    <label for="destinationAddressState">Destination Address State: </label>
-    <input type="text" name="destinationAddressState" [(ngModel)]="editTrip.destinationAddress.state"/><br>
+    <label for="updateDestinationAddressState">Destination Address State: </label>
+    <input type="text" name="updateDestinationAddressState" [(ngModel)]="editTrip.destinationAddress.state"/><br>
 
-    <label for="destinationAddressZip">Destination Address Zip: </label>
-    <input type="text" name="destinationAddressZip" [(ngModel)]="editTrip.destinationAddress.zip"/><br>
+    <label for="updateDestinationAddressZip">Destination Address Zip: </label>
+    <input type="text" name="updateDestinationAddressZip" [(ngModel)]="editTrip.destinationAddress.zip"/><br>
 
     <hr>
 
-    <label for="description">Description: </label>
-    <input type="text" name="description" [(ngModel)]="editTrip.description"/><br>
+    <label for="updateDescription">Description: </label>
+    <input type="text" name="updateDescription" [(ngModel)]="editTrip.description"/><br>
 
-    <label for="seatsAvailable">Seats Available: </label>
-    <input type="number" name="seatsAvailable" [(ngModel)]="editTrip.seatsAvailable"/><br>
+    <label for="updateSeatsAvailable">Seats Available: </label>
+    <input type="number" name="updateSeatsAvailable" [(ngModel)]="editTrip.seatsAvailable"/><br>
 
-    <label for="cargoCapacity">Cargo Capacity: </label>
-    <input type="number" name="cargoCapacity" [(ngModel)]="editTrip.cargoCapacity"/><br>
+    <label for="updateCargoCapacity">Cargo Capacity: </label>
+    <input type="number" name="updateCargoCapacity" [(ngModel)]="editTrip.cargoCapacity"/><br>
 
-    <label for="totalCost">Total Cost: </label>
-    <input type="number" name="totalCost" [(ngModel)]="editTrip.totalCost"/><br>
+    <label for="updateTotalCost">Total Cost: </label>
+    <input type="number" name="updateTotalCost" [(ngModel)]="editTrip.totalCost"/><br>
 
-    <label for="miles">Miles: </label>
-    <input type="number" name="miles" [(ngModel)]="editTrip.miles"/><br>
+    <label for="updateMiles">Miles: </label>
+    <input type="number" name="updateMiles" [(ngModel)]="editTrip.miles"/><br>
+
+    <div>
+        <select name="vehiclelist">
+            <option *ngFor="let vehicle of vehicle" value="{{vehicle.id}}">{{vehicle.year}} {{vehicle.model}}</option>
+        </select>
+    </div>
 
     <input type="submit" name="submit" value="Update" (click)="updateTrip(editTrip)">
   </form>

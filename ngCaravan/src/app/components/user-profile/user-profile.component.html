@@ -1,6 +1,6 @@
-<p>user-profile works!</p>
+<h1>User Profiles</h1>
 
-<div>
+<div *ngIf=!selected>
   <table class="table table-hover table-striped">
       <thead class="thead-dark">
     <tr>
@@ -18,17 +18,79 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor='let address of addresses'>
-      <td (click)="displayAddress(address)">{{address.id}}</td>
-      <td >{{address.street}}</td>
-      <td>{{address.city}}</td>
-      <td>{{address.state}}</td>
-      <td>{{address.zip}}</td>
-      <td>{{address.latitude}}</td>
-      <td>{{address.longitude}}</td>
-      <td (click)="deleteAddress(address.id)">X</td>
+    <tr *ngFor='let userPro of userProfiles'>
+      <td (click)="displayUserProfiles(userPro)" >{{userPro.id}}</td>
+      <td >{{userPro.firstName}}</td>
+      <td>{{userPro.lastName}}</td>
+      <td>{{userPro.email}}</td>
+      <td>{{userPro.bio}}</td>
+      <td>{{userPro.phone}}</td>
+      <td>{{userPro.mileagePoints}}</td>
+      <td>{{userPro.registrationDate}}</td>
+      <td>{{userPro.profilePic}}</td>
+      <td>{{userPro.address}}</td>
+      <td>{{userPro.user}}</td>
     </tr>
   </tbody>
   </table>
 
+  </div>
+
+  <!-- <form>
+    <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newAddress.street">
+    <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newAddress.city">
+    <input type="text" name="state" placeholder="State" [(ngModel)]="newAddress.state">
+    <input type="text" name="zip" placeholder="Zip" [(ngModel)]="newAddress.zip">
+    <input type="text" name="latitude" placeholder="Latitude" [(ngModel)]="newAddress.latitude">
+    <input type="text" name="longitude" placeholder="Longitude" [(ngModel)]="newAddress.longitude">
+    <button class="btn btn-warning" (click)="addAddress(newAddress)">Add Address</button>
+  </form> -->
+
+  <div *ngIf="selected && ! editUserProfile">
+    <p>{{selected.id}}</p>
+    <p>{{selected.firstName}}</p>
+    <p>{{selected.lastName}}</p>
+    <p>{{selected.email}}</p>
+    <p>{{selected.bio}}</p>
+    <p>{{selected.phone}}</p>
+    <p>{{selected.mileagePoints}}</p>
+    <p>{{selected.registrationDate}}</p>
+    <p>{{selected.profilePic}}</p>
+    <p>{{selected.address}}</p>
+    <p>{{selected.user}}</p>
+    <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+    <button class="btn btn-warning" (click)="setEditUserProfile()">Edit</button>
+    <button class="btn btn-danger" (click)="deleteUserProfile(selected.id)">DELETE</button>
+  </div>
+
+  <div *ngIf="editUserProfile">
+    <h2>{{editUserProfile.id}}</h2>
+    <form>
+      <label for="firstName">First Name</label>
+      <input type="text" name="firstName" [(ngModel)]="editUserProfile.firstName"><br>
+      <label for="lastName">Last Name</label>
+      <input type="text" name="lastName" [(ngModel)]="editUserProfile.lastName"><br>
+      <label for="email">Email</label>
+      <input type="text" name="email" [(ngModel)]="editUserProfile.email"><br>
+      <label for="bio">Bio</label>
+      <input type="text" name="bio" [(ngModel)]="editUserProfile.bio"><br>
+      <label for="phone">Phone</label>
+      <input type="text" name="phone" [(ngModel)]="editUserProfile.phone"><br>
+      <label for="mileagePoints">Mileage Points</label>
+      <input type="text" name="mileagePoints" [(ngModel)]="editUserProfile.mileagePoints"><br>
+      <label for="registrationDate">Registration Date</label>
+      <input type="text" name="registrationDate" [(ngModel)]="editUserProfile.registrationDate"><br>
+
+      <label for="profilePic">Profile Pic</label>
+      <input type="text" name="profilePic" [(ngModel)]="editUserProfile.profilePic"><br>
+
+      <label for="address">Address</label>
+      <input type="text" name="address" [(ngModel)]="editUserProfile.address"><br>
+
+      <label for="user">User</label>
+      <input type="text" name="user" [(ngModel)]="editUserProfile.user"><br>
+
+      <button class="btn btn-warning" (click)="updateUserProfile(editUserProfile)">Save</button>
+      <button class="btn btn-warning" (click)="editUserProfile = null">Cancel</button>
+    </form>
   </div>

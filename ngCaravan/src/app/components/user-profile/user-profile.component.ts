@@ -13,7 +13,13 @@ export class UserProfileComponent implements OnInit {
 
   // F I E L D S
 
+  selected: UserProfile = null;
+
   userProfiles: UserProfile[] = [];
+
+  newUserProfile: UserProfile = new UserProfile();
+
+  editUserProfile: UserProfile = null;
 
 
   // C O N S T R U C T O R
@@ -41,8 +47,86 @@ export class UserProfileComponent implements OnInit {
     this.uSvc.index().subscribe(
       data => {
         this.userProfiles = data;
+        console.log('Size of UserProfile****' + this.userProfiles.length);
       },
       err => console.error('ngOnInit error in UserProfile Component')
+    );
+  }
+
+
+  reload() {
+    this.uSvc.index().subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.userProfiles = aGoodThingHappened;
+      },
+      (didntWork) => {
+        console.error('UserProfile Component reload() DID NOT WORK');
+      }
+    );
+  }
+
+  getNumOfUserProfiles() {
+    return this.userProfiles.length;
+  }
+
+  countUserProfiles(): number {
+    return this.userProfiles.length;
+  }
+
+  displayUserProfiles(userProfile) {
+    this.selected = userProfile;
+  }
+
+  displayTable() {
+    this.selected = null;
+  }
+
+  addUserProfile() {
+    this.uSvc.create(this.newUserProfile).subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.newUserProfile = new UserProfile();
+        this.reload();
+      },
+      (didntWork) => {
+        console.error('UserProfile Component addUserProfile() DID NOT WORK');
+        this.reload();
+      }
+    );
+  }
+
+  setEditUserProfile(userPro: UserProfile) {
+    this.editUserProfile = Object.assign({}, this.selected);
+  }
+
+  updateUserProfile(userPro: UserProfile) {
+    this.uSvc.updateUserProfile(userPro).subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.reload();
+        this.editUserProfile = null;
+        this.selected = null;
+      },
+      (didntWork) => {
+        console.error('UserProfile Component updateUserProfile(userPro) DID NOT WORK');
+        this.reload();
+      }
+
+    );
+  }
+
+  deleteUserProfile(id) {
+    this.uSvc.delete(id).subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.reload();
+      },
+      (didntWork) => {
+        console.error('Address Component deleteAddress(id) DID NOT WORK');
+        this.reload();
+      }
+
     );
   }
 

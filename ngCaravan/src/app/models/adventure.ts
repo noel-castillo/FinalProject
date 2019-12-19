@@ -10,20 +10,20 @@ export class Adventure {
   enabled: boolean;
   itinerary: string;
   address: Address;
-  host: User;
+
 
   constructor(
-  id: number,
-  title: string,
-  description: string,
-  activityLvl: string,
-  includes: string,
-  price: number,
-  enabled: boolean,
-  itinerary: string,
-  address: Address,
-  host: User
-  ){
+  id?: number,
+  title?: string,
+  description?: string,
+  activityLvl?: string,
+  includes?: string,
+  price?: number,
+  enabled?: boolean,
+  itinerary?: string,
+  address?: Address
+
+  ) {
   this.id = id,
   this.title = title;
   this.description = description,
@@ -32,8 +32,8 @@ export class Adventure {
   this.price = price,
   this.enabled = enabled,
   this.itinerary = itinerary,
-  this.address = address,
-  this.host = host
+  this.address = address
+
 
   }
 }

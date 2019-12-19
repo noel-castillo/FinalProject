@@ -20,7 +20,6 @@ export class TripService {
 
   // M e t h o d s
 
-
   index() {
     const httpOptions = {
       headers: new HttpHeaders({

@@ -25,25 +25,19 @@ export class UserProfileService {
   // M E T H O D S
 
   index() {
-    if (this.authService.checkLogin()) {
-      return null;
-    }
-
-    // Make credentials
     const credentials = this.authService.getCredentials();
-    // Send credentials as Authorization header (this is spring security convention for basic auth)
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    // this.checkLogin();
-    return this.http.get<UserProfile[]>(this.url + '?sorted=true', httpOptions)
+    return this.http.get<UserProfile[]>(this.url, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('KABOOM');
+          return throwError('error');
         })
       );
   }

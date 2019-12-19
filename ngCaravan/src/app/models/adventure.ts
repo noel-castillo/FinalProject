@@ -1,3 +1,4 @@
+import { UserProfile } from './user-profile';
 import { Address } from './address';
 
 
@@ -11,6 +12,7 @@ export class Adventure {
   enabled: boolean;
   itinerary: string;
   address: Address;
+  host: UserProfile;
 
 
   constructor(
@@ -22,7 +24,8 @@ export class Adventure {
   price?: number,
   enabled?: boolean,
   itinerary?: string,
-  address?: Address
+  address?: Address,
+  host?: UserProfile
 
   ) {
   this.id = id,
@@ -33,7 +36,8 @@ export class Adventure {
   this.price = price,
   this.enabled = enabled,
   this.itinerary = itinerary,
-  this.address = address;
+  this.address = address,
+  this.host = host;
 
 
   }

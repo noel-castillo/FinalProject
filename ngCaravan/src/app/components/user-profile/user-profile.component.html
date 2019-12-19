@@ -1,0 +1,105 @@
+<h1>User Profiles</h1>
+
+<div *ngIf=!selected>
+  <table class="table table-hover table-striped">
+      <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Bio</th>
+      <th>Phone</th>
+      <th>Mileage points</th>
+      <th>Registration Date</th>
+      <th>Profile Pic</th>
+      <th>Address</th>
+      <th>User</th>
+      <th>Vehicles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let userPro of userProfiles'>
+      <td (click)="displayUserProfiles(userPro)" >{{userPro.id}}</td>
+      <td >{{userPro.firstName}}</td>
+      <td>{{userPro.lastName}}</td>
+      <td>{{userPro.email}}</td>
+      <td>{{userPro.bio}}</td>
+      <td>{{userPro.phone}}</td>
+      <td>{{userPro.mileagePoints}}</td>
+      <td>{{userPro.registrationDate}}</td>
+      <td>{{userPro.profilePic}}</td>
+      <td>{{userPro.address.city}} {{userPro.address.state}}</td>
+      <td>{{userPro.user.username}}</td>
+      <td>{{userPro.vehicles}}</td>
+    </tr>
+  </tbody>
+  </table>
+
+  </div>
+
+  <form>
+    <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUserProfile.firstName">
+    <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUserProfile.lastName">
+    <input type="text" name="email" placeholder="Email" [(ngModel)]="newUserProfile.email">
+    <input type="text" name="bio" placeholder="Bio" [(ngModel)]="newUserProfile.bio">
+    <input type="text" name="phone" placeholder="Phone" [(ngModel)]="newUserProfile.phone">
+    <input type="number" name="mileagePoints" placeholder="Mileage Points" [(ngModel)]="newUserProfile.mileagePoints">
+    <input type="date" name="registrationDate" placeholder="Registration Date" [(ngModel)]="newUserProfile.registrationDate">
+    <input type="text" name="profilePic" placeholder="Profile Pic" [(ngModel)]="newUserProfile.profilePic">
+
+    <input type="text" name="address" placeholder="Address" [(ngModel)]="newUserProfile.address">
+    <input type="text" name="user" placeholder="User" [(ngModel)]="newUserProfile.user">
+    <input type="text" name="vehicles" placeholder="Vehicles" [(ngModel)]="newUserProfile.vehicles">
+    <button class="btn btn-warning" (click)="addUserProfile(newUserProfile)">Add UserProfile</button>
+  </form>
+
+  <div *ngIf="selected && ! editUserProfile">
+    <p>{{selected.id}}</p>
+    <p>{{selected.firstName}}</p>
+    <p>{{selected.lastName}}</p>
+    <p>{{selected.email}}</p>
+    <p>{{selected.bio}}</p>
+    <p>{{selected.phone}}</p>
+    <p>{{selected.mileagePoints}}</p>
+    <p>{{selected.registrationDate}}</p>
+    <p>{{selected.profilePic}}</p>
+    <p>{{selected.address.city}} {{selected.address.state}}</p>
+    <p>{{selected.user.username}}</p>
+    <p>{{selected.vehicles}}</p>
+    <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+    <button class="btn btn-warning" (click)="setEditUserProfile()">Edit</button>
+    <button class="btn btn-danger" (click)="deleteUserProfile(selected.id)">DELETE</button>
+  </div>
+
+  <div *ngIf="editUserProfile">
+    <h2>{{editUserProfile.id}}</h2>
+    <form>
+      <label for="firstName">First Name</label>
+      <input type="text" name="firstName" [(ngModel)]="editUserProfile.firstName"><br>
+      <label for="lastName">Last Name</label>
+      <input type="text" name="lastName" [(ngModel)]="editUserProfile.lastName"><br>
+      <label for="email">Email</label>
+      <input type="text" name="email" [(ngModel)]="editUserProfile.email"><br>
+      <label for="bio">Bio</label>
+      <input type="text" name="bio" [(ngModel)]="editUserProfile.bio"><br>
+      <label for="phone">Phone</label>
+      <input type="text" name="phone" [(ngModel)]="editUserProfile.phone"><br>
+      <label for="mileagePoints">Mileage Points</label>
+      <input type="text" name="mileagePoints" [(ngModel)]="editUserProfile.mileagePoints"><br>
+      <label for="registrationDate">Registration Date</label>
+      <input type="text" name="registrationDate" [(ngModel)]="editUserProfile.registrationDate"><br>
+
+      <label for="profilePic">Profile Pic</label>
+      <input type="text" name="profilePic" [(ngModel)]="editUserProfile.profilePic"><br>
+
+      <label for="address">Address</label>
+      <input type="text" name="address" [(ngModel)]="editUserProfile.address"><br>
+
+      <label for="user">User</label>
+      <input type="text" name="user" [(ngModel)]="editUserProfile.user"><br>
+
+      <button class="btn btn-warning" (click)="updateUserProfile(editUserProfile)">Save</button>
+      <button class="btn btn-warning" (click)="editUserProfile = null">Cancel</button>
+    </form>
+  </div>

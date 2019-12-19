@@ -45,14 +45,31 @@ export class AdventureService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Adventure>(this.url + id, httpOptions).pipe(
+    return this.http.get<Adventure>(this.url + '/' + id, httpOptions).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError('AdventureService.show(): Error getting adventure by ID');
     })
     );
   }
-  create(adventure: Adventure) {
+  create(createForm: NgForm) {
+    console.log('in create in service');
+    console.log(createForm);
+    const newAdventure = {
+        title: createForm.value.title,
+        description: createForm.value.description,
+        activityLvl: createForm.value.activityLvl,
+        includes: createForm.value.includes,
+        price: createForm.value.price,
+        enabled: true,
+        itinerary: createForm.value.itinerary,
+        address: {
+            street: createForm.value.street,
+            city: createForm.value.city,
+            state: createForm.value.state,
+            zip: createForm.value.zip
+        }
+    };
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -61,14 +78,14 @@ export class AdventureService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<Adventure>(this.url, adventure, httpOptions).pipe(
+    return this.http.post<Adventure>(this.url, newAdventure, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('AdventureService.create(): Error creating new adventure');
       })
     );
   }
-  update(adventure: Adventure, aid: number) {
+  update(adventure: Adventure) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -77,7 +94,7 @@ export class AdventureService {
         'Content-Type': 'application/json'
       })
     };
-    return this.http.put(this.url + '/' + aid, adventure, httpOptions).pipe(
+    return this.http.put(this.url + '/' + adventure.id, adventure, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('AdventureService.update(): Error updating adventure');
@@ -85,7 +102,7 @@ export class AdventureService {
     );
   }
 
-  destroy(adventure: Adventure, aid: number) {
+  destroy(adventure: Adventure) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -94,7 +111,7 @@ export class AdventureService {
 
       })
     };
-    return this.http.delete(this.url + '/' + aid, httpOptions).pipe(
+    return this.http.delete(this.url + '/' + adventure.id, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);
         return throwError('AdventureService.destroy(): Error deleting adventure by id');

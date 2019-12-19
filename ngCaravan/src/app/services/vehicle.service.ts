@@ -43,6 +43,25 @@ export class VehicleService {
       );
   }
 
+  getVehiclesByUser(){
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.get<Vehicle[]>(this.url + '/user/' + '?sorted=true', httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('KABOOM');
+        })
+      );
+  }
+
   checkLogin(): boolean {
     if (this.authService.getCredentials() === null) {
       this.router.navigateByUrl('login');

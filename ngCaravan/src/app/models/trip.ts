@@ -5,7 +5,6 @@ import { Vehicle } from './vehicle';
 export class Trip {
   id: number;
   host: User;
-  vehicle: Vehicle;
   departureAddress: Address ;
   destinationAddress: Address ;
   description: string;
@@ -15,10 +14,11 @@ export class Trip {
   enabled: boolean;
   totalCost: number;
   miles: number;
+  vehicle: Vehicle;
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(host?: User, departureAddress?: Address, destinationAddress?: Address, description?: string, seatsAvailable?: number, cargoCapactiy?: number, createDate?: Date, enabled?: boolean, totalCost?: number, miles?: number) {
+  constructor(host?: User, departureAddress?: Address, destinationAddress?: Address, description?: string, seatsAvailable?: number, cargoCapactiy?: number, createDate?: Date, enabled?: boolean, totalCost?: number, miles?: number, vehicle?: Vehicle) {
     this.host = host;
     this.departureAddress = departureAddress;
     this.destinationAddress = destinationAddress;
@@ -29,5 +29,6 @@ export class Trip {
     this.enabled = enabled;
     this.totalCost = totalCost;
     this.miles = miles;
+    this.vehicle = vehicle;
   }
 }

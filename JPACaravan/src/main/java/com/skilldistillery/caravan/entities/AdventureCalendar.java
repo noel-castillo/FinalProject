@@ -43,6 +43,13 @@ public class AdventureCalendar {
 
 //	M E T H O D S
 
+	public AdventureCalendar(Adventure adventure, LocalDate startDate, LocalDate endDate) {
+		super();
+		this.adventure = adventure;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
 	@Override
 	public String toString() {
 		return "AdventureCalendar [id=" + id + ", adventure=" + adventure + ", startDate=" + startDate + ", endDate="

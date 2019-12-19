@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	public User create(User user) {
 		if (user != null) {
 			
-			return uRepo.saveAndFlush(user);
+			return aSvc.register(user);
 		} else {
 
 			return null;

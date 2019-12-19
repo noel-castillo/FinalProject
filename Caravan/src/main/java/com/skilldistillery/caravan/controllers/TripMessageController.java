@@ -18,25 +18,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.caravan.entities.User;
-import com.skilldistillery.caravan.services.UserService;
+import com.skilldistillery.caravan.entities.TripMessage;
+import com.skilldistillery.caravan.services.TripMessageService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({ "*", "http://localhost:4260" })
-public class UserController {
+public class TripMessageController {
 
 	@Autowired
-	private UserService svc;
+	private TripMessageService svc;
 
 
-	@GetMapping("users")
-	public List<User> index(Principal prin) {
-		return svc.index();
+	@GetMapping("messages/{id}")
+	public List<TripMessage> index(Principal prin, @PathVariable int id) {
+		return svc.index(id);
 	}
 
-	@GetMapping("users/{id}")
-	private User getById(@PathVariable int id, HttpServletRequest req, HttpServletResponse resp, Principal prin) {
+	@GetMapping("message/{id}")
+	private TripMessage getById(@PathVariable int id, HttpServletRequest req, HttpServletResponse resp, Principal prin) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
@@ -49,10 +49,10 @@ public class UserController {
 		}
 	}
 
-	@PostMapping("users")
-	private User createUser(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {
+	@PostMapping("messages/{id}")
+	private TripMessage createMessage(@RequestBody TripMessage tripMes, HttpServletResponse resp, HttpServletRequest req, Principal prin,@PathVariable int id) {
 
-		User newUser = svc.create(user);
+		TripMessage newUser = svc.create(tripMes,prin.getName(),id );
 		if (newUser != null) {
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());
@@ -64,8 +64,8 @@ public class UserController {
 		}
 	}
 
-	@PutMapping("users/{id}")
-	private User updateUser(@RequestBody User user, @PathVariable int id, HttpServletResponse resp,
+	@PutMapping("messages/{id}")
+	private TripMessage updateMessage(@RequestBody TripMessage user, @PathVariable int id, HttpServletResponse resp,
 			HttpServletRequest req, Principal prin) {
 
 		try {
@@ -81,8 +81,8 @@ public class UserController {
 		}
 	}
 
-	@DeleteMapping("users/{id}")
-	private boolean deleteUser(@PathVariable int id, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	@DeleteMapping("messages/{id}")
+	private boolean deleteMessage(@PathVariable int id, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 
 		try {
 			resp.setStatus(201);

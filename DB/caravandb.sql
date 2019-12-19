@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `manufacture_year` INT NULL,
   `capacity` INT NULL,
   `seats_available` INT NULL,
-  `interior_description` VARCHAR(45) NULL,
+  `interior_description` VARCHAR(400) NULL,
   `user_profile_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vehicle_user_profile1_idx` (`user_profile_id` ASC),

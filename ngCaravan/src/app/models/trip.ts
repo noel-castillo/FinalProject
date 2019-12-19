@@ -1,3 +1,5 @@
+import { Address } from './address';
+
 export class Trip {
   id: number;
   host: User;

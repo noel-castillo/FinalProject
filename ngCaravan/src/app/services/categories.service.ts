@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { Categories } from '../models/categories';
 import { catchError } from 'rxjs/operators';
-import { Adventure } from '../models/adventure';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdventureService {
+export class CategoriesService {
 
   baseUrl = 'http://localhost:8090';
-  private url = this.baseUrl + 'api/adventures';
+  private url = 'api/categories';
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   index() {
     const httpOptions = {
@@ -22,14 +20,12 @@ export class AdventureService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Adventure[]>(this.url, httpOptions).pipe(
+    return this.http.get<Categories[]>(this.url, httpOptions).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError('AdventureService.index(): Error getting all adventures');
     })
     );
   }
-
-
 
 }

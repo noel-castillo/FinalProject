@@ -1,3 +1,5 @@
+import { AdventureService } from './services/adventure.service';
+import { AdventureComponent } from './components/adventure/adventure.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,10 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { TripCalendarService } from './services/trip-calendar.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdventureComponent
+
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   providers: [
     TripService,
-    TripCalendarService
+    TripCalendarService,
+    AdventureService
   ],
   bootstrap: [AppComponent]
 })

@@ -60,7 +60,7 @@ update(tripTraveler: TripTraveler) {
         'Content-type': 'application/json'
       }
   };
-  return this.http.put<TripTraveler>(`${this.url}/${tripTraveler.}`, tripTraveler, httpOptions).pipe(
+  return this.http.put<TripTraveler>(`${this.url}/${tripTraveler}`, tripTraveler, httpOptions).pipe(
     catchError((err: any) => {
       console.error(err);
       return throwError('TripService.update(): Error updating trip');

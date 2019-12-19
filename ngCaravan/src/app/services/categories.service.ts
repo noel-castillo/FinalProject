@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
 })
 export class CategoriesService {
 
-  baseUrl = 'http://localhost:8090';
+  baseUrl = 'http://localhost:8090/';
   private url = 'api/categories';
 
   constructor(private http: HttpClient) { }

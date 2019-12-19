@@ -12,7 +12,7 @@ export class TripCalendarService {
 
   // F i e l d s
 
-  private baseUrl = 'http://localhost:8090';
+  private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/tripCalendars';
 
   // C o n s t r u c t o r

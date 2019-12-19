@@ -1,6 +1,7 @@
 package com.skilldistillery.caravan.entities;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,11 +52,40 @@ class TripHostTest {
 	@DisplayName("Test trip host and trip relationship Mapping")
 	void test1() {
 		assertNotNull(tripHost.getTrip());
+		assertEquals(1, tripHost.getId());
 	}
 
 	@Test
 	@DisplayName("Test trip host and user relationship Mapping")
 	void test2() {
-		assertNotNull(tripHost.getUser());
+		assertNotNull(tripHost.getRating());
+		assertEquals(5.0, tripHost.getRating());
+	}
+	
+	@Test
+	@DisplayName("Test trip host and user relationship Mapping")
+	void test3() {
+		assertNotNull(tripHost.getReview());
+		assertEquals("Coolest Host ever.", tripHost.getReview());
+	}
+	
+	@Test
+	@DisplayName("Test trip host and user relationship Mapping")
+	void test4() {
+		assertNotNull(tripHost.getTrip());
+		assertEquals(600, tripHost.getTrip().getMiles());
+	}
+	
+	@Test
+	@DisplayName("Test trip host and user relationship Mapping")
+	void test5() {
+		assertNotNull(tripHost.getUser().getUser().getUsername());
+		assertEquals("user2", tripHost.getUser().getUser().getUsername());
+	}
+	@Test
+	@DisplayName("Test trip host and user relationship Mapping")
+	void test6() {
+		assertNotNull(tripHost.getUser().getFirstName());
+		assertEquals("user", tripHost.getUser().getFirstName());
 	}
 }

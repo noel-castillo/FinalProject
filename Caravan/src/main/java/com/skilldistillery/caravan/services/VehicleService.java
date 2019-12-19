@@ -11,11 +11,13 @@ public interface VehicleService {
 
 	Vehicle findVehicleById(int id);
 
-	Vehicle createVehicle(Vehicle vehicle);
+	Vehicle createVehicle(Vehicle vehicle, Principal principal);
 
 	Vehicle updateVehicle(int id, Vehicle vehicle);
 
 	boolean deleteVehicleById(int id);
+
+	List<Vehicle> indexByUser(Principal principal);
 
 
 }

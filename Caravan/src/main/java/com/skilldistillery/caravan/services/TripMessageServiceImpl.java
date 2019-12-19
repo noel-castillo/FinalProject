@@ -20,7 +20,7 @@ public class TripMessageServiceImpl implements TripMessageService {
 	private UserProfileRepository uRepo;
 
 	@Override
-	public TripMessage create(TripMessage tripMess, String username, int tripId) {
+	public TripMessage create(TripMessage tripMess, String username) {
 		UserProfile userProf = uRepo.findByUser_Username(username);
 
 		if (userProf != null) {

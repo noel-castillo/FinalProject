@@ -24,7 +24,7 @@ export class AdventureComponent implements OnInit {
     this.auth.login('shaun', 'wombat1').subscribe(
       data => {
         console.log('Logged in');
-        this.router.navigateByUrl('addresses');
+        this.router.navigateByUrl('adventures');
       },
       err => {
         console.error('Error logging in.');

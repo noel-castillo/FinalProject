@@ -1,1 +1,34 @@
 <p>user-profile works!</p>
+
+<div>
+  <table class="table table-hover table-striped">
+      <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Bio</th>
+      <th>Phone</th>
+      <th>Mileage points</th>
+      <th>Registration Date</th>
+      <th>Profile Pic</th>
+      <th>Address</th>
+      <th>User</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let address of addresses'>
+      <td (click)="displayAddress(address)">{{address.id}}</td>
+      <td >{{address.street}}</td>
+      <td>{{address.city}}</td>
+      <td>{{address.state}}</td>
+      <td>{{address.zip}}</td>
+      <td>{{address.latitude}}</td>
+      <td>{{address.longitude}}</td>
+      <td (click)="deleteAddress(address.id)">X</td>
+    </tr>
+  </tbody>
+  </table>
+
+  </div>

@@ -12,7 +12,7 @@ export class TripService {
 
   // F i e l d s
   private baseUrl = 'http://localhost:8090';
-  private url = environment.baseUrl + 'api/trips';
+  private url = this.baseUrl + 'api/trips';
 
   // C o n s t r u c t o r
 

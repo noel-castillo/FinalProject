@@ -1,4 +1,5 @@
-import { Address } from 'cluster';
+import { Address } from './address';
+
 
 export class Adventure {
   id: number;

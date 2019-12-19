@@ -32,6 +32,11 @@ public class VehicleController {
 	public List<Vehicle> findAllVehicles(Principal principal) {
 		return svc.index(principal);
 	}
+	
+	@GetMapping("vehicles/user")
+	public List<Vehicle> findVehiclesByUser(Principal principal) {
+		return svc.indexByUser(principal);
+	}
 
 	@GetMapping("vehicles/{id}")
 	public Vehicle showVehicle(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
@@ -45,8 +50,8 @@ public class VehicleController {
 
 	@PostMapping("vehicles")
 	public Vehicle createVehicle(@RequestBody Vehicle vehicle, HttpServletRequest request,
-			HttpServletResponse response) {
-		if ((vehicle = svc.createVehicle(vehicle)) != null) {
+			HttpServletResponse response, Principal principal) {
+		if ((vehicle = svc.createVehicle(vehicle, principal)) != null) {
 			response.setStatus(201);
 			StringBuffer url = request.getRequestURL();
 			url.append("/").append(vehicle.getId());

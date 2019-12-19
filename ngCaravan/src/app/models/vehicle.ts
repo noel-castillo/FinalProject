@@ -1,3 +1,4 @@
+import { UserProfile } from './user-profile';
 import { User } from './user';
 
 export class Vehicle {
@@ -9,12 +10,12 @@ export class Vehicle {
   capacity: number;
   seatsAvailable: number;
   interiorDescription: string;
-  user: User;
+  userProfile: UserProfile;
 
 
   // C O N S T R U C T O R
   constructor(id?: number, make?: string, model?: string, manufactureYear?: number, capacity?: number,
-              seatsAvailable?: number, interiorDescription?: string, user?: User) {
+              seatsAvailable?: number, interiorDescription?: string, userProfile?: UserProfile) {
     this.id = id;
     this.make = make;
     this.model = model;
@@ -22,7 +23,7 @@ export class Vehicle {
     this.capacity = capacity;
     this.seatsAvailable = seatsAvailable;
     this.interiorDescription = interiorDescription;
-    this.user = user;
+    this.userProfile = userProfile;
   }
 
 }

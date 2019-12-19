@@ -12,6 +12,7 @@ import { TripCalendarService } from './services/trip-calendar.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { AddressComponent } from './components/address/address.component';
+import { VehicleComponent } from './components/vehicle/vehicle.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AddressComponent } from './components/address/address.component';
     NavbarComponent,
     AdventureComponent,
     UserProfileComponent,
-    AddressComponent
+    AddressComponent,
+    VehicleComponent
   ],
   imports: [
     BrowserModule,

@@ -22,9 +22,6 @@ export class AdventureService {
   ) { }
 
   index() {
-    if (this.authService.checkLogin()) {
-      return null;
-    }
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -39,6 +36,7 @@ export class AdventureService {
     })
     );
   }
+
   show(id: string) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {

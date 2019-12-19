@@ -10,11 +10,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { TripCalendarService } from './services/trip-calendar.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+<<<<<<< HEAD
+import { TripMessageComponent } from './components/trip-message/trip-message.component';
+import { TripComponent } from './components/trip/trip.component';
+=======
 
 import { TripMessageComponent } from './components/trip-message/trip-message.component';
 
 import { TripComponent } from './components/trip/trip.component';
 
+>>>>>>> e5b931ac2e58a3404c082ac1922736ce89aa18d5
 import { AddressComponent } from './components/address/address.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 
@@ -24,6 +29,13 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     AppComponent,
     NavbarComponent,
     AdventureComponent,
+<<<<<<< HEAD
+    TripMessageComponent,
+    AddressComponent,
+    TripComponent,
+    AddressComponent,
+    VehicleComponent
+=======
 
     TripMessageComponent,
     AddressComponent,
@@ -32,6 +44,7 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     AddressComponent,
     VehicleComponent
 
+>>>>>>> e5b931ac2e58a3404c082ac1922736ce89aa18d5
 
   ],
   imports: [

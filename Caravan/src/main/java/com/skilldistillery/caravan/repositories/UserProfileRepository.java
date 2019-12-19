@@ -7,4 +7,5 @@ import com.skilldistillery.caravan.entities.UserProfile;
 
 public interface UserProfileRepository extends JpaRepository<UserProfile, Integer> {
 	public UserProfile findByUser(User user);
+	public UserProfile findByUser_Username(String username);
 }

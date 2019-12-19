@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,7 +27,7 @@ public class TripMessage {
 
 	@OneToOne
 	@JoinColumn(name = "trip_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Trip trip;
 
 	@OneToOne
@@ -35,10 +37,11 @@ public class TripMessage {
 
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-	@JsonIgnore
-	private User user;
+//	@JsonIgnore
+	private UserProfile userProfile;
 
 	@Column(name="date_posted")
+	@CreationTimestamp
 	private Date datePosted;
 
 	private String content;
@@ -53,7 +56,7 @@ public class TripMessage {
 
 	@Override
 	public String toString() {
-		return "MessageBoard [id=" + id + ", trip=" + trip + ", replyToId=" + replyToId + ", user=" + user
+		return "MessageBoard [id=" + id + ", trip=" + trip + ", replyToId=" + replyToId + ", userProfile=" + userProfile
 				+ ", datePosted=" + datePosted + ", content=" + content + "]";
 	}
 
@@ -81,12 +84,12 @@ public class TripMessage {
 		this.replyToId = replyToId;
 	}
 
-	public User getUser() {
-		return user;
+	public UserProfile getUserProfile() {
+		return userProfile;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	public Date getDatePosted() {
@@ -114,7 +117,7 @@ public class TripMessage {
 		result = prime * result + id;
 		result = prime * result + ((replyToId == null) ? 0 : replyToId.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result + ((userProfile == null) ? 0 : userProfile.hashCode());
 		return result;
 	}
 
@@ -149,10 +152,10 @@ public class TripMessage {
 				return false;
 		} else if (!trip.equals(other.trip))
 			return false;
-		if (user == null) {
-			if (other.user != null)
+		if (userProfile == null) {
+			if (other.userProfile != null)
 				return false;
-		} else if (!user.equals(other.user))
+		} else if (!userProfile.equals(other.userProfile))
 			return false;
 		return true;
 	}

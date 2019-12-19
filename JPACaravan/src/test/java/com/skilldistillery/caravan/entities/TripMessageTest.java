@@ -50,7 +50,7 @@ class TripMessageTest {
 	@Test
 	@DisplayName("Test trip message and user relationship Mapping")
 	void test1() {
-		assertNotNull(tripMessage.getUser());
+		assertNotNull(tripMessage.getUserProfile());
 	}
 	@Test
 	@DisplayName("Test trip message and trip relationship Mapping")

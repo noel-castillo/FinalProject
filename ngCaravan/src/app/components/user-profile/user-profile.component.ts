@@ -3,6 +3,8 @@ import { UserProfileService } from './../../services/user-profile.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Address } from 'src/app/models/address';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,6 +22,10 @@ export class UserProfileComponent implements OnInit {
   newUserProfile: UserProfile = new UserProfile();
 
   editUserProfile: UserProfile = null;
+
+  newAddress: Address = new Address();
+
+  newUser: User = new User();
 
 
   // C O N S T R U C T O R
@@ -68,6 +74,25 @@ export class UserProfileComponent implements OnInit {
 
   getNumOfUserProfiles() {
     return this.userProfiles.length;
+  }
+
+  getUserProfileById(id: number): UserProfile {
+
+    for(let i=0; i<this.userProfiles.length; i++) {
+        if (this.userProfiles[i].id === id) {
+          return this.userProfiles[i];
+        }
+    }
+    return null;
+  }
+
+  getUserProfileByUser(user: User): UserProfile {
+    for(let i=0; i<this.userProfiles.length; i++) {
+      if (this.userProfiles[i].user === user) {
+        return this.userProfiles[i];
+      }
+  }
+    return null;
   }
 
   countUserProfiles(): number {

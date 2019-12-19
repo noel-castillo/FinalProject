@@ -16,6 +16,7 @@ export class TripMessage {
     content?: string
   ) {
     this.id = id;
+    this.trip = trip;
     this.userProfile = userProfile;
     this.datePosted = datePosted;
     this.content = content;

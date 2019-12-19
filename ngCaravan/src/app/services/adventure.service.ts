@@ -4,6 +4,8 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Adventure } from '../models/adventure';
 import { NgForm } from '@angular/forms';
+import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +16,19 @@ export class AdventureService {
   private url = this.baseUrl + 'api/adventures';
 
   constructor(
+    private authService: AuthService,
+    private router: Router,
     private http: HttpClient
   ) { }
 
   index() {
+    if (this.authService.checkLogin()) {
+      return null;
+    }
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -31,8 +40,10 @@ export class AdventureService {
     );
   }
   show(id: string) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -44,10 +55,12 @@ export class AdventureService {
     );
   }
   create(adventure: Adventure) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       })
     };
     return this.http.post<Adventure>(this.url, adventure, httpOptions).pipe(
@@ -58,10 +71,12 @@ export class AdventureService {
     );
   }
   update(adventure: Adventure, aid: number) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest',
-        'Content-type': 'application/json'
+        'Content-Type': 'application/json'
       })
     };
     return this.http.put(this.url + '/' + aid, adventure, httpOptions).pipe(
@@ -73,9 +88,12 @@ export class AdventureService {
   }
 
   destroy(adventure: Adventure, aid: number) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
+
       })
     };
     return this.http.delete(this.url + '/' + aid, httpOptions).pipe(

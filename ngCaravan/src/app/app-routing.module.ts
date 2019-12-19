@@ -5,7 +5,6 @@ import { AdventureComponent } from './components/adventure/adventure.component';
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'addresses', component: AddressComponent},
   {path: 'adventures', component: AdventureComponent}
   // {path: 'adventure-calendars', component: AdventureCalendarComponent},

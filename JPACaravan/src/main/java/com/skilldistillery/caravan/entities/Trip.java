@@ -59,6 +59,9 @@ public class Trip {
 
 	private int miles;
 
+	@OneToOne(mappedBy = "trip")
+	private TripCalendar tripCalendar;
+
 //	C O N S T R U C T O R S
 
 	public Trip() {
@@ -170,6 +173,16 @@ public class Trip {
 	public void setMiles(int miles) {
 		this.miles = miles;
 	}
+	
+	
+
+	public TripCalendar getTripCalendar() {
+		return tripCalendar;
+	}
+
+	public void setTripCalendar(TripCalendar tripCalendar) {
+		this.tripCalendar = tripCalendar;
+	}
 
 	@Override
 	public int hashCode() {
@@ -188,6 +201,7 @@ public class Trip {
 		long temp;
 		temp = Double.doubleToLongBits(totalCost);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((tripCalendar == null) ? 0 : tripCalendar.hashCode());
 		result = prime * result + ((vehicle == null) ? 0 : vehicle.hashCode());
 		return result;
 	}
@@ -237,6 +251,11 @@ public class Trip {
 		if (seatsAvailable != other.seatsAvailable)
 			return false;
 		if (Double.doubleToLongBits(totalCost) != Double.doubleToLongBits(other.totalCost))
+			return false;
+		if (tripCalendar == null) {
+			if (other.tripCalendar != null)
+				return false;
+		} else if (!tripCalendar.equals(other.tripCalendar))
 			return false;
 		if (vehicle == null) {
 			if (other.vehicle != null)

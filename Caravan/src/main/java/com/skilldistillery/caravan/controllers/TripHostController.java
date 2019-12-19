@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +28,7 @@ public class TripHostController {
 	private TripHostService svc;
 	
 	@GetMapping("hosts")
-	public List<TripHost> getAllTripHosts() {
+	public List<TripHost> getAllTripHostReviews() {
 		return svc.index();
 	}
 	
@@ -47,7 +49,7 @@ public class TripHostController {
 	}
 	
 	@PostMapping("hosts")
-	public TripHost addTrip(@RequestBody TripHost review, 
+	public TripHost addTripHostReview(@RequestBody TripHost review, 
 			HttpServletResponse resp, 
 			HttpServletRequest req) {
 		try {
@@ -66,33 +68,38 @@ public class TripHostController {
 	
 	}
 	
-//	@PutMapping("trips/{tid}")
-//	public Trip update(@PathVariable Integer tid, @RequestBody Trip trip, HttpServletResponse resp) {
-//		try {
-//			trip = svc.update(trip, tid);
-//			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			resp.setStatus(401);
-//		}
-//		return trip;
-//	}
-//	
-//	@DeleteMapping("trips/{tid}")
-//	public void deleteTrip(
-//			@PathVariable Integer tid,
-//			HttpServletResponse resp)
-//			 {
-//		try {
-//			if (svc.destroy(tid)) {
-//				resp.setStatus(204);
-//			}
-//			else {
-//				resp.setStatus(404);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			resp.setStatus(400);
-//		}
-//	}
+	@PutMapping("hosts/{hid}")
+	public TripHost updateReview(@RequestBody TripHost review, 
+			@PathVariable int hid,
+			HttpServletResponse resp) {
+		try {
+			review = svc.update(review, hid);
+			resp.setStatus(200);
+			return review;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(401);
+			return null;
+		}
+
+	}
+	
+	@DeleteMapping("hosts/{hid}")
+	public void deleteTripHostReview(
+			@PathVariable int hid,
+			HttpServletResponse resp)
+			 {
+		try {
+			if (svc.destroy(hid)) {
+				resp.setStatus(204);
+			}
+			else {
+				resp.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp.setStatus(400);
+		}
+	}
 }

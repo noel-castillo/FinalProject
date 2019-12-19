@@ -10,13 +10,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { TripCalendarService } from './services/trip-calendar.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    AdventureComponent
+    AdventureComponent,
+    UserProfileComponent
 
   ],
   imports: [

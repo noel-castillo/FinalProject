@@ -25,6 +25,7 @@ export class TripComponent implements OnInit {
   editDestinationAddress = null;
 
   // C o n s t r u c t o r
+  // tslint:disable-next-line: max-line-length
   constructor(private auth: AuthService, private tripSvc: TripService, private vehicleSvc: VehicleService, private currentRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {

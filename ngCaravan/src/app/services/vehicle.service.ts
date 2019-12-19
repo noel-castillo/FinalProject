@@ -43,7 +43,7 @@ export class VehicleService {
       );
   }
 
-  getVehiclesByUser(){
+  getVehiclesByUser() {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({

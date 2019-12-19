@@ -2,11 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './components/address/address.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
-<<<<<<< HEAD
 import { TripComponent } from './components/trip/trip.component';
-=======
 import { VehicleComponent } from './components/vehicle/vehicle.component';
->>>>>>> e045bc99256895be22029f4d767d66a72206580c
 
 
 const routes: Routes = [

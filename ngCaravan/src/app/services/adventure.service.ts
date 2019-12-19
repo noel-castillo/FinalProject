@@ -9,7 +9,7 @@ import { Adventure } from '../models/adventure';
 })
 export class AdventureService {
 
-  baseUrl = 'http://localhost:8090';
+  baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/adventures';
 
   constructor(

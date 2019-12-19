@@ -6,26 +6,35 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.caravan.entities.Trip;
 import com.skilldistillery.caravan.entities.TripCalendar;
 import com.skilldistillery.caravan.repositories.TripCalendarRepository;
+import com.skilldistillery.caravan.repositories.TripRepository;
 
 @Service
 public class TripCalendarServiceImpl implements TripCalendarService {
-	
+
 	@Autowired
 	TripCalendarRepository tcRepo;
 	
+	@Autowired
+	TripRepository tRepo;
+
 	@Override
-	public TripCalendar create(TripCalendar tripCal) {
-		tcRepo.saveAndFlush(tripCal);
+	public TripCalendar create(TripCalendar tripCal, Integer tid) {
+		Trip trip = tRepo.findById(tid).get();
+		tripCal.setTrip(trip);
+		tripCal = tcRepo.saveAndFlush(tripCal);
+		trip.setTripCalendar(tripCal);
 		return tripCal;
+
 	}
 
 	@Override
 	public TripCalendar update(TripCalendar tripCal, int id) {
 		TripCalendar existing = null;
 		Optional<TripCalendar> opt = tcRepo.findById(id);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			existing = opt.get();
 			existing.setTrip(tripCal.getTrip());
 			existing.setStartDate(tripCal.getStartDate());
@@ -55,9 +64,11 @@ public class TripCalendarServiceImpl implements TripCalendarService {
 	public boolean destroy(int id) {
 		boolean deleted = false;
 		if (tcRepo.existsById(id)) {
-			tcRepo.deleteById(id);;
+			tcRepo.deleteById(id);
+			;
 			deleted = true;
 		}
-		return deleted;	}
+		return deleted;
+	}
 
 }

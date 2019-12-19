@@ -46,10 +46,10 @@ public class TripCalendarController {
 		return tripCal;
 	}
 	
-	@PostMapping("tripCalendars")
-	public TripCalendar addTripCalendar(@RequestBody TripCalendar tripCal, HttpServletResponse resp, HttpServletRequest req) {
+	@PostMapping("trips/{tid}/tripCalendars")
+	public TripCalendar addTripCalendar(@RequestBody TripCalendar tripCal, @PathVariable Integer tid, HttpServletResponse resp, HttpServletRequest req) {
 		try {
-			svc.create(tripCal);
+			svc.create(tripCal, tid);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(tripCal.getId());

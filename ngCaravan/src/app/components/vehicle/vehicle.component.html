@@ -1,0 +1,74 @@
+<h1>{{title}} <span class="badge badge-primary">{{countVehicles()}}</span></h1>
+<div *ngIf=!selected>
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Make</th>
+    <th>Model</th>
+    <th>Manufacture Year</th>
+    <th>Capacity</th>
+    <th>Seats Available</th>
+    <th>Interior Description</th>
+    <th>User</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor='let vehicle of vehicles'>
+    <td (click)="displayVehicle(vehicle)">{{vehicle.id}}</td>
+    <td >{{vehicle.make}}</td>
+    <td>{{vehicle.model}}</td>
+    <td>{{vehicle.manufactureYear}}</td>
+    <td>{{vehicle.capacity}}</td>
+    <td>{{vehicle.seatsAvailable}}</td>
+    <td>{{vehicle.interiorDescription}}</td>
+    <td>{{vehicle.userProfile.firstName}} {{vehicle.userProfile.lastName}}</td>
+    <td (click)="deleteVehicle(vehicle.id)">X</td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+<form>
+  <input type="text" name="make" placeholder="Make" [(ngModel)]="newVehicle.make">
+  <input type="text" name="model" placeholder="Model" [(ngModel)]="newVehicle.model">
+  <input type="text" name="manufactureYear" placeholder="Manufacture Year" [(ngModel)]="newVehicle.manufactureYear">
+  <input type="text" name="capacity" placeholder="Capacity" [(ngModel)]="newVehicle.capacity">
+  <input type="text" name="seatsAvailable" placeholder="Seats Available" [(ngModel)]="newVehicle.seatsAvailable">
+  <input type="text" name="interiorDescription" placeholder="Interior Description" [(ngModel)]="newVehicle.interiorDescription">
+  <button class="btn btn-warning" (click)="addVehicle(newVehicle)">Add Vehicle</button>
+</form>
+
+<div *ngIf="selected && ! editVehicle">
+  <p>{{selected.id}}</p>
+  <p>{{selected.make}}</p>
+  <p>{{selected.model}}</p>
+  <p>{{selected.manufactureYear}}</p>
+  <p>{{selected.capacity}}</p>
+  <p>{{selected.seatsAvailable}}</p>
+  <p>{{selected.interiorDescription}}</p>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditVehicle()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteVehicle(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editVehicle">
+  <h2>{{editVehicle.id}}</h2>
+  <form>
+    <label for="make">Make</label>
+    <input type="text" name="make" [(ngModel)]="editVehicle.make"><br>
+    <label for="model">Model</label>
+    <input type="text" name="model" [(ngModel)]="editVehicle.model"><br>
+    <label for="manufactureYear">Manufacture Year</label>
+    <input type="text" name="manufactureYear" [(ngModel)]="editVehicle.manufactureYear"><br>
+    <label for="capacity">Capacity</label>
+    <input type="text" name="capacity" [(ngModel)]="editVehicle.capacity"><br>
+    <label for="seatsAvailable">Seats Available</label>
+    <input type="text" name="seatsAvailable" [(ngModel)]="editVehicle.seatsAvailable"><br>
+    <label for="interiorDescription">Interior Description</label>
+    <input type="text" name="interiorDescription" [(ngModel)]="editVehicle.interiorDescription"><br>
+    <button class="btn btn-warning" (click)="updateVehicle(editVehicle)">Save</button>
+    <button class="btn btn-warning" (click)="editVehicle = null">Cancel</button>
+  </form>
+</div>

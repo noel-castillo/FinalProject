@@ -1,0 +1,66 @@
+<h1>TRIP COMPONENT!</h1>
+<div id="createNewTrip" *ngIf=" ! editTrip">
+    <form #createNewTripForm="ngForm">
+
+        <label for="departureAddress">Departure Address: </label>
+        <input type="text" name="departureAddress" ngModel placeholder="Departure address"/><br>
+
+        <label for="destinationAddress">Destination Address: </label>
+        <input type="text" name="destinationAddress" ngModel placeholder="Destination Address"/><br>
+
+        <label for="description">Description: </label>
+        <input type="text" name="description" ngModel placeholder="Description"/><br>
+
+        <label for="seatsAvailable">Seats Available</label>
+        <input type="number" name="seatsAvailable" ngModel placeholder="Seats available"/><br>
+
+        <label for="cargoCapacity">Cargo Capacity</label>
+        <input type="number" name="cargoCapacity" ngModel placeholder="Cargo capacity"/><br>
+
+        <label for="totalCost">Total Cost</label>
+        <input type="number" name="totalCost" ngModel placeholder="Total cost"/><br>
+
+        <label for="miles">Miles</label>
+        <input type="number" name="miles" ngModel placeholder="Miles"/><br>
+
+        <input type="submit" name="submit" value="Add" (click)="addTrip(createNewTripForm)">
+
+      </form>
+</div>
+
+<div *ngIf=" ! editTrip">
+
+   <p *ngFor="let trip of trips" (click) = "editTrip = trip"><em>Trip #{{trip.id}}</em> -- Departure Address: {{trip.departureAddress}} -- Destination Address: {{trip.destinationAddress}} -- Miles: {{trip.miles}} -- Seats Available: {{trip.seatsAvailable}} </p>
+
+</div>
+
+<div id="updateTripForm" *ngIf="editTrip">
+  <p>Update Run #{{editTrip.id}}</p>
+  <form>
+    <label for="departureAddress">Distance: </label>
+    <input type="text" name="departureAddress" [(ngModel)]="editTrip.departureAddress"/><br>
+
+    <label for="destinationAddress">Duration: </label>
+    <input type="text" name="destinationAddress" [(ngModel)]="editTrip.destinationAddress"/><br>
+
+    <label for="description">Description: </label>
+    <input type="text" name="description" [(ngModel)]="editTrip.description"/><br>
+
+    <label for="seatsAvailable">Seats Available: </label>
+    <input type="number" name="seatsAvailable" [(ngModel)]="editTrip.seatsAvailable"/><br>
+
+    <label for="cargoCapacity">Cargo Capacity: </label>
+    <input type="number" name="cargoCapacity" [(ngModel)]="editTrip.cargoCapacity"/><br>
+
+    <label for="totalCost">Total Cost: </label>
+    <input type="number" name="totalCost" [(ngModel)]="editTrip.totalCost"/><br>
+
+    <label for="miles">Miles: </label>
+    <input type="number" name="miles" [(ngModel)]="editTrip.miles"/><br>
+
+    <input type="submit" name="submit" value="Update" (click)="updateTrip(editTrip)">
+  </form>
+  <button (click) = "deleteRun(editTrip.id)" class="btn btn-primary"> Delete Trip </button>
+  <button (click) = "editTrip = null" class="btn btn-primary"> Back </button>
+
+</div>

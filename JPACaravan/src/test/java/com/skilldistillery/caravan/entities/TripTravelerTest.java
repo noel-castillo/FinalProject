@@ -55,7 +55,7 @@ class TripTravelerTest {
 	}
 	
 	@Test
-	@DisplayName("Test trip traveler and user Mapping")
+	@DisplayName("Test user association")
 	void test2() {
 		assertEquals("userface", tripTraveler.getUser().getUsername());
 	}

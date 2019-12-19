@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "trip_traveler")
+@Table(name = "trip_traveler_review_of_host")
 public class TripTraveler {
 
 //	F I E L D S

@@ -17,30 +17,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.caravan.entities.Trip;
-import com.skilldistillery.caravan.services.TripService;
+import com.skilldistillery.caravan.entities.TripTraveler;
+import com.skilldistillery.caravan.services.TripTravelerService;
 
 @RestController
 @RequestMapping("api")
 @CrossOrigin({"*", "http://localhost:4260"})
-public class TripController {
-
-	@Autowired
-	private TripService svc;
+public class TripTravelerController {
 	
-	@GetMapping("trips")
-	public List<Trip> allTrips(Principal prin) {
+	@Autowired
+	TripTravelerService svc;
+
+
+	@GetMapping("tripTravelers")
+	public List<TripTraveler> allTripTravelers(Principal prin) {
 		return svc.index();
 	}
 	
-	@GetMapping("trips/{tid}")
-	public Trip getTrip(@PathVariable Integer tid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	@GetMapping("tripTravelers/{ttid}")
+	public TripTraveler getTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());
 			resp.setStatus(201);
-			return svc.show(tid);
+			return svc.show(ttid);
 		} catch (Exception e) {
 			resp.setStatus(404);
 			return null;
@@ -48,38 +49,39 @@ public class TripController {
 	}
 	
 	
-	@PostMapping("trips")
-	public Trip addTrip(@RequestBody Trip trip, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	@PostMapping("tripTravelers")
+	public TripTraveler addTripTraveler(@RequestBody TripTraveler tripTraveler, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
-			svc.create(trip);
+			svc.create(tripTraveler);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
-			url.append("/").append(trip.getId());
+			url.append("/").append(tripTraveler.getId());
 			resp.addHeader("Location", url.toString());
 			
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			resp.setStatus(400);
 			e.printStackTrace();
 		}
-		return trip;
+		return tripTraveler;
 	}
 	
-	@PutMapping("trips/{tid}")
-	public Trip update(@PathVariable Integer tid, @RequestBody Trip trip, HttpServletResponse resp) {
+	@PutMapping("tripTravelers/{ttid}")
+	public TripTraveler update(@PathVariable Integer ttid, @RequestBody TripTraveler tripTraveler, HttpServletResponse resp) {
 		try {
-			trip = svc.update(trip, tid);
+			tripTraveler = svc.update(tripTraveler, ttid);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(401);
 		}
-		return trip;
+		return tripTraveler;
 	}
 	
-	@DeleteMapping("trips/{tid}")
-	public void deleteTrip(@PathVariable Integer tid, HttpServletResponse resp) {
+	@DeleteMapping("tripTravelers/{ttid}")
+	public void deleteTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp) {
 		try {
-			if (svc.destroy(tid)) {
+			if (svc.destroy(ttid)) {
 				resp.setStatus(204);
 			}
 			else {

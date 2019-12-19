@@ -18,7 +18,7 @@ public class TripServiceImpl implements TripService{
 	@Override
 	public Trip create(Trip trip) {
 		tRepo.saveAndFlush(trip);
-		return null;
+		return trip;
 	}
 
 	@Override
@@ -62,10 +62,9 @@ public class TripServiceImpl implements TripService{
 
 	@Override
 	public boolean destroy(int id) {
-		
 		boolean deleted = false;
 		if (tRepo.existsById(id)) {
-			tRepo.deleteById(id);;
+			tRepo.deleteById(id);
 			deleted = true;
 		}
 		return deleted;

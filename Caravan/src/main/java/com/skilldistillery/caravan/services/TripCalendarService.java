@@ -6,7 +6,7 @@ import com.skilldistillery.caravan.entities.TripCalendar;
 
 public interface TripCalendarService {
 	
-	public TripCalendar create(TripCalendar tripCal);
+	public TripCalendar create(TripCalendar tripCal, Integer tid);
 
 	public TripCalendar update(TripCalendar tripCal, int id);
 

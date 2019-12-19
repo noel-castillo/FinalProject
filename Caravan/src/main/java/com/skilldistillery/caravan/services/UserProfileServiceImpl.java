@@ -22,8 +22,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public UserProfile create(UserProfile userProfile, String username) {
 		User user = usrRepo.findByUsername(username);
+		
 		System.out.println(user);
 		userProfile.setUser(user);
+		
 		if (user != null) {
 			return uRepo.saveAndFlush(userProfile);
 		} else {

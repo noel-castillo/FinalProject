@@ -21,10 +21,10 @@ export class TripMessageService {
 
   // M E T H O D S
 
-  index() {
-    if (this.authService.checkLogin()) {
-      return null;
-    }
+  index(id: number) {
+    // if (this.authService.checkLogin()) {
+    //   return null;
+    // }
 
     // Make credentials
     const credentials = this.authService.getCredentials();
@@ -32,11 +32,12 @@ export class TripMessageService {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
-        'X-Requested-With': 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest',
+        'Content-Type': 'application/json'
       })
     };
     // this.checkLogin();
-    return this.http.get<TripMessage[]>(this.url + 'messages/?sorted=true', httpOptions)
+    return this.http.get<TripMessage[]>(this.url + 'messages/' + id , httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -66,7 +67,7 @@ export class TripMessageService {
       })
     };
 
-    return this.http.post<TripMessage>(this.url, newMessage, httpOptions)
+    return this.http.post<TripMessage>(this.url + 'messages', newMessage, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

@@ -34,6 +34,20 @@ export class TripService {
         })
       );
   }
+  show(id) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+      'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Trip[]>(this.url + '/' + id, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('error');
+        })
+      );
+  }
 
   create(newTrip: Trip) {
 

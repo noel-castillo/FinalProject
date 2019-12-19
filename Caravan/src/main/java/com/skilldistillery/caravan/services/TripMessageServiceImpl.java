@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.caravan.entities.Trip;
 import com.skilldistillery.caravan.entities.TripMessage;
 import com.skilldistillery.caravan.entities.UserProfile;
 import com.skilldistillery.caravan.repositories.TripMessageRepository;
+import com.skilldistillery.caravan.repositories.TripRepository;
 import com.skilldistillery.caravan.repositories.UserProfileRepository;
 
 @Service
@@ -19,12 +21,16 @@ public class TripMessageServiceImpl implements TripMessageService {
 	@Autowired
 	private UserProfileRepository uRepo;
 
+	@Autowired
+	private TripRepository trRepo;
+
 	@Override
 	public TripMessage create(TripMessage tripMess, String username) {
 		UserProfile userProf = uRepo.findByUser_Username(username);
+		Trip trip = trRepo.findByHost_Username(username);
 
 		if (userProf != null) {
-
+			tripMess.setTrip(trip);
 			tripMess.setUserProfile(userProf);
 			return tRepo.saveAndFlush(tripMess);
 		} else {

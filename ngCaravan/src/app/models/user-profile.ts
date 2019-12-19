@@ -19,8 +19,8 @@ export class UserProfile {
 
   // C O N S T R U C T O R
   constructor(id?: number, firstName?: string, lastName?: string, email?: string, bio?: string,
-    phone?: string, mileagePoints?: number, registrationDate?: Date, profilePic?: string,
-    address?: Address, user?: User) {
+              phone?: string, mileagePoints?: number, registrationDate?: Date, profilePic?: string,
+              address?: Address, user?: User) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;

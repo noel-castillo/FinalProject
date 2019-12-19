@@ -12,7 +12,7 @@ export class AddressService {
   // F i e l d s
 
   private baseUrl = 'http://localhost:8090';
-  private url = this.baseUrl + 'api/tripCalendars';
+  private url = this.baseUrl + 'api/addresses';
 
   // C o n s t r u c t o r
 
@@ -54,7 +54,7 @@ export class AddressService {
       );
   }
 
-  update(address: Address) {
+  updateAddress(address: Address) {
 
     const httpOptions = {
         headers: {

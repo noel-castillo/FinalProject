@@ -14,7 +14,6 @@ export class CategoriesService {
 
   // F I E L D S
 
-
   baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/categories';
 

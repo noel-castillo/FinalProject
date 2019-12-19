@@ -48,7 +48,7 @@ public class UserProfileController {
 			Principal prin) {
 
 		try {
-			userProfile = svc.create(userProfile, prin.getName());
+			userProfile = svc.create(userProfile, "shaun");
 			// TODO SET 401 created
 			resp.setStatus(201);
 //				resp.addHeader("Location", "http://localhost:8083/api/logs" + logbook.getId());

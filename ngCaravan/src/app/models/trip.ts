@@ -1,4 +1,6 @@
 import { Address } from './address';
+import { User } from './user';
+import { Vehicle } from './vehicle';
 
 export class Trip {
   id: number;

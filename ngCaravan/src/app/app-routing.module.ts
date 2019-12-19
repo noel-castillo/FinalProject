@@ -6,7 +6,8 @@ import { AdventureComponent } from './components/adventure/adventure.component';
 
 const routes: Routes = [
   {path: 'addresses', component: AddressComponent},
-  {path: 'adventures', component: AdventureComponent}
+  {path: 'adventures', component: AdventureComponent},
+  {path: 'adventures/:id', component: AdventureComponent},
   // {path: 'adventure-calendars', component: AdventureCalendarComponent},
   // {path: 'categories', component: CategoryComponent},
   // {path: 'images', component: ImageComponent},

@@ -114,7 +114,5 @@ export class VehicleService {
           return throwError('Could not delete Vehicle');
         })
       );
-
   }
-
 }

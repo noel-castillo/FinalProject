@@ -65,7 +65,7 @@ public class TripCalendarServiceImpl implements TripCalendarService {
 		boolean deleted = false;
 		if (tcRepo.existsById(id)) {
 			tcRepo.deleteById(id);
-			;
+			
 			deleted = true;
 		}
 		return deleted;

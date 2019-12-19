@@ -1,4 +1,5 @@
 import { Trip } from './trip';
+import { UserProfile } from './user-profile';
 export class TripHost {
   // F I E L D S
   id: number;

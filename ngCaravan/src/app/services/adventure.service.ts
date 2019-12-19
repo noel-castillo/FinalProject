@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AdventureService {
 
-  baseUrl = 'http://localhost:8090';
+  baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/adventures';
 
   constructor(

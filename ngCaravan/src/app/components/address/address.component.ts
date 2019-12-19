@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { AddressService } from 'src/app/services/address.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-address',
@@ -28,11 +29,21 @@ export class AddressComponent implements OnInit {
   // C O N S T R U C T O R
 
   // tslint:disable-next-line: max-line-length
-  constructor(private addrSvc: AddressService, private currentRoute: ActivatedRoute, private router: Router) { }
+  constructor(private auth: AuthService, private addrSvc: AddressService, private currentRoute: ActivatedRoute, private router: Router) { }
 
   // M E T H O D S
 
   ngOnInit() {
+    this.auth.login('shaun', 'wombat1').subscribe(
+      data => {
+        console.log('Logged in');
+        this.router.navigateByUrl('addresses');
+      },
+      err => {
+        console.error('Error logging in.');
+        console.error(err);
+      }
+    );
 
     // grabs the array of todos from the service & adds it to this component
     // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
@@ -40,20 +51,6 @@ export class AddressComponent implements OnInit {
     this.addrSvc.index().subscribe(
       data => {
         this.addresses = data;
-        if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
-          this.urlId = 0;
-          this.urlId = +this.currentRoute.snapshot.paramMap.get('id');
-          console.log(this.urlId);
-          this.addresses.forEach((d) => {
-            if (d.id === this.urlId) {
-              this.selected = d;
-              console.log(this.selected);
-            }
-          });
-          if (this.selected === null) {
-            this.router.navigateByUrl('**');
-          }
-        }
       },
       err => console.error('ngOnInit error in Address Component')
     );

@@ -79,13 +79,13 @@ class TripHostTest {
 	@Test
 	@DisplayName("Test trip host and user relationship Mapping")
 	void test5() {
-		assertNotNull(tripHost.getUser().getUser().getUsername());
-		assertEquals("user2", tripHost.getUser().getUser().getUsername());
+		assertNotNull(tripHost.getPassenger().getUser().getUsername());
+		assertEquals("user2", tripHost.getPassenger().getUser().getUsername());
 	}
 	@Test
 	@DisplayName("Test trip host and user relationship Mapping")
 	void test6() {
-		assertNotNull(tripHost.getUser().getFirstName());
-		assertEquals("user", tripHost.getUser().getFirstName());
+		assertNotNull(tripHost.getPassenger().getFirstName());
+		assertEquals("user", tripHost.getPassenger().getFirstName());
 	}
 }

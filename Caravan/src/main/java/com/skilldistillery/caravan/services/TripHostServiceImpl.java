@@ -39,13 +39,30 @@ public class TripHostServiceImpl implements TripHostService{
 
 	@Override
 	public TripHost update(TripHost review, int id) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(review.toString());
+		TripHost update = null;
+		Optional<TripHost> opt = thRepo.findById(id);
+		if (opt.isPresent()) {
+			update = opt.get();
+		}
+		update.setRating(review.getRating());
+		update.setReview(review.getReview());
+		update.setTrip(review.getTrip());
+		update.setPassenger(review.getPassenger());
+		thRepo.saveAndFlush(update);
+		return update;
 	}
 
 	@Override
 	public boolean destroy(int id) {
-		// TODO Auto-generated method stub
+		TripHost delete = null;
+		Optional<TripHost> opt = thRepo.findById(id);
+		if (opt.isPresent()) {
+			delete = opt.get();
+			thRepo.delete(delete);
+			return true;
+		}
+		
 		return false;
 	}
 	

@@ -76,11 +76,11 @@ public class TripHost {
 		this.trip = trip;
 	}
 
-	public UserProfile getUser() {
+	public UserProfile getPassenger() {
 		return passenger;
 	}
 
-	public void setUser(UserProfile passenger) {
+	public void setPassenger(UserProfile passenger) {
 		this.passenger = passenger;
 	}
 

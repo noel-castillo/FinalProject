@@ -1,6 +1,5 @@
 package com.skilldistillery.caravan.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,10 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name = "trip_host")
+@Table(name = "trip_host_review_of_passenger")
 public class TripHost {
 
 //	F I E L D S
@@ -27,13 +24,11 @@ public class TripHost {
 
 	@OneToOne
 	@JoinColumn(name = "trip_id")
-	@JsonIgnore
 	private Trip trip;
 
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-	@JsonIgnore
-	private User user;
+	private UserProfile passenger;
 
 //	C O N S T R U C T O R S
 
@@ -45,8 +40,8 @@ public class TripHost {
 
 	@Override
 	public String toString() {
-		return "TripHost [id=" + id + ", rating=" + rating + ", review=" + review + ", trip=" + trip + ", user=" + user
-				+ "]";
+		return "TripHost [id=" + id + ", rating=" + rating + ", review=" + review + ", trip=" + trip + ", passenger="
+				+ passenger + "]";
 	}
 
 	public int getId() {
@@ -81,12 +76,12 @@ public class TripHost {
 		this.trip = trip;
 	}
 
-	public User getUser() {
-		return user;
+	public UserProfile getUser() {
+		return passenger;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(UserProfile passenger) {
+		this.passenger = passenger;
 	}
 
 	@Override
@@ -94,12 +89,12 @@ public class TripHost {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
+		result = prime * result + ((passenger == null) ? 0 : passenger.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(rating);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -114,6 +109,11 @@ public class TripHost {
 		TripHost other = (TripHost) obj;
 		if (id != other.id)
 			return false;
+		if (passenger == null) {
+			if (other.passenger != null)
+				return false;
+		} else if (!passenger.equals(other.passenger))
+			return false;
 		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
 			return false;
 		if (review == null) {
@@ -125,11 +125,6 @@ public class TripHost {
 			if (other.trip != null)
 				return false;
 		} else if (!trip.equals(other.trip))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

@@ -46,7 +46,6 @@ public class AdventureServiceImpl implements AdventureService {
 	@Override
 	public Adventure create(Adventure adventure, String username) {
 
-
 		User user = userRepo.findByUsername(username);
 		UserProfile userProfile = userProfileRepo.findByUser(user);
 
@@ -66,12 +65,38 @@ public class AdventureServiceImpl implements AdventureService {
 
 	@Override
 	public Adventure update(Adventure adventure, String username, int id) {
+
+		Adventure adventureToUpdate = aRepo.findById(id).get();
+
+		if (adventureToUpdate != null) {
+
+			adventureToUpdate.setActivityLvl(adventure.getActivityLvl());
+			adventureToUpdate.setAddress(adventure.getAddress());
+			adventureToUpdate.setAdventureCalendar(adventure.getAdventureCalendar());
+			adventureToUpdate.setDescription(adventure.getDescription());
+			adventureToUpdate.setEnabled(adventure.isEnabled());
+			adventureToUpdate.setHost(adventure.getHost());
+			adventureToUpdate.setIncludes(adventure.getIncludes());
+			adventureToUpdate.setItinerary(adventure.getItinerary());
+			adventureToUpdate.setPrice(adventure.getPrice());
+			adventureToUpdate.setTitle(adventure.getTitle());
+
+			return aRepo.saveAndFlush(adventureToUpdate);
+		}
+
 		return null;
 	}
 
 	@Override
-	public boolean destroy(String username, int id) {
-		// TODO Auto-generated method stub
+	public boolean destroy(int id) {
+
+		Adventure adventure = aRepo.findById(id).get();
+
+		if (adventure != null) {
+			aRepo.delete(adventure);
+			return true;
+		}
+
 		return false;
 	}
 

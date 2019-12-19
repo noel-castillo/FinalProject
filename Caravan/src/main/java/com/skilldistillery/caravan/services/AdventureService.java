@@ -14,5 +14,5 @@ public interface AdventureService {
 
 	public Adventure update(Adventure adventure, String username, int id);
 	
-	public boolean destroy(String username, int id);
+	public boolean destroy(int id);
 }

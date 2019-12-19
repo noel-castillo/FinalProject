@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './components/address/address.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
+<<<<<<< HEAD
 import { TripComponent } from './components/trip/trip.component';
+=======
+import { VehicleComponent } from './components/vehicle/vehicle.component';
+>>>>>>> e045bc99256895be22029f4d767d66a72206580c
 
 
 const routes: Routes = [
-  {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'addresses', component: AddressComponent},
   {path: 'adventures', component: AdventureComponent},
   // {path: 'adventure-calendars', component: AdventureCalendarComponent},
@@ -19,7 +22,7 @@ const routes: Routes = [
   // {path: 'trip-travelers', component: TripTravelerComponent},
   // {path: 'users', component: UserComponent},
   // {path: 'user-profiles', component: UserProfileComponent},
-  // {path: 'vehicles', component: VehicleComponent}
+  {path: 'vehicles', component: VehicleComponent}
 ];
 
 @NgModule({

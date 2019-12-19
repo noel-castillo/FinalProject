@@ -7,6 +7,7 @@ import { TripComponent } from './components/trip/trip.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
+
 const routes: Routes = [
   {path: 'addresses', component: AddressComponent},
   {path: 'adventures', component: AdventureComponent},

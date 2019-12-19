@@ -28,6 +28,11 @@ public class Image {
 		super();
 	}
 
+	public Image(String url) {
+		super();
+		this.url = url;
+	}
+
 //	M E T H O D S
 
 	public int getId() {

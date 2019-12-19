@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './components/address/address.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
+import { TripComponent } from './components/trip/trip.component';
 
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'},
   {path: 'addresses', component: AddressComponent},
-  {path: 'adventures', component: AdventureComponent}
+  {path: 'adventures', component: AdventureComponent},
   // {path: 'adventure-calendars', component: AdventureCalendarComponent},
   // {path: 'categories', component: CategoryComponent},
   // {path: 'images', component: ImageComponent},
-  // {path: "trips", component: TripComponent},
+  {path: 'trips', component: TripComponent},
   // {path: 'trip-calendars', component: TripCalendarComponent},
   // {path: 'trip-hosts', component: TripHostComponent},
   // {path: 'trip-messages', component: TripMessageComponent},

@@ -15,6 +15,7 @@
       <th>Profile Pic</th>
       <th>Address</th>
       <th>User</th>
+      <th>Vehicles</th>
     </tr>
   </thead>
   <tbody>
@@ -28,23 +29,30 @@
       <td>{{userPro.mileagePoints}}</td>
       <td>{{userPro.registrationDate}}</td>
       <td>{{userPro.profilePic}}</td>
-      <td>{{userPro.address}}</td>
-      <td>{{userPro.user}}</td>
+      <td>{{userPro.address.city}} {{userPro.address.state}}</td>
+      <td>{{userPro.user.username}}</td>
+      <td>{{userPro.vehicles}}</td>
     </tr>
   </tbody>
   </table>
 
   </div>
 
-  <!-- <form>
-    <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newAddress.street">
-    <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newAddress.city">
-    <input type="text" name="state" placeholder="State" [(ngModel)]="newAddress.state">
-    <input type="text" name="zip" placeholder="Zip" [(ngModel)]="newAddress.zip">
-    <input type="text" name="latitude" placeholder="Latitude" [(ngModel)]="newAddress.latitude">
-    <input type="text" name="longitude" placeholder="Longitude" [(ngModel)]="newAddress.longitude">
-    <button class="btn btn-warning" (click)="addAddress(newAddress)">Add Address</button>
-  </form> -->
+  <form>
+    <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUserProfile.firstName">
+    <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUserProfile.lastName">
+    <input type="text" name="email" placeholder="State" [(ngModel)]="newUserProfile.email">
+    <input type="text" name="bio" placeholder="Zip" [(ngModel)]="newUserProfile.bio">
+    <input type="text" name="phone" placeholder="Latitude" [(ngModel)]="newUserProfile.phone">
+    <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.mileagePoints">
+    <input type="text" name="registrationDate" placeholder="Longitude" [(ngModel)]="newUserProfile.registrationDate">
+    <input type="text" name="profilePic" placeholder="Longitude" [(ngModel)]="newUserProfile.profilePic">
+
+    <!-- <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.longitude">
+    <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.longitude">
+    <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.longitude"> -->
+    <button class="btn btn-warning" (click)="addUserProfile(newUserProfile)">Add UserProfile</button>
+  </form>
 
   <div *ngIf="selected && ! editUserProfile">
     <p>{{selected.id}}</p>
@@ -56,8 +64,9 @@
     <p>{{selected.mileagePoints}}</p>
     <p>{{selected.registrationDate}}</p>
     <p>{{selected.profilePic}}</p>
-    <p>{{selected.address}}</p>
-    <p>{{selected.user}}</p>
+    <p>{{selected.address.city}} {{selected.address.state}}</p>
+    <p>{{selected.user.username}}</p>
+    <p>{{selected.vehicles}}</p>
     <button class="btn btn-secondary" (click)="displayTable()">Back</button>
     <button class="btn btn-warning" (click)="setEditUserProfile()">Edit</button>
     <button class="btn btn-danger" (click)="deleteUserProfile(selected.id)">DELETE</button>

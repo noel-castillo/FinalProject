@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './components/address/address.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
   // {path: 'trip-messages', component: TripMessageComponent},
   // {path: 'trip-travelers', component: TripTravelerComponent},
   // {path: 'users', component: UserComponent},
-  // {path: 'user-profiles', component: UserProfileComponent},
+  {path: 'user-profiles', component: UserProfileComponent},
   {path: 'vehicles', component: VehicleComponent}
 ];
 

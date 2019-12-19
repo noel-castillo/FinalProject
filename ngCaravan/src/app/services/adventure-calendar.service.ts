@@ -12,7 +12,7 @@ export class AdventureCalendarService {
  // F i e l d s
 
  private baseUrl = 'http://localhost:8090';
- private url = environment.baseUrl + 'api/adventureCalendars';
+ private url = this.baseUrl + 'api/adventureCalendars';
 
  // C o n s t r u c t o r
 

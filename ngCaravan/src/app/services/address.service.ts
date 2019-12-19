@@ -12,7 +12,7 @@ export class AddressService {
   // F i e l d s
 
   private baseUrl = 'http://localhost:8090';
-  private url = environment.baseUrl + 'api/tripCalendars';
+  private url = this.baseUrl + 'api/tripCalendars';
 
   // C o n s t r u c t o r
 

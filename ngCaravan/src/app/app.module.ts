@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { TripCalendarService } from './services/trip-calendar.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { AddressComponent } from './components/address/address.component';
 
 
 @NgModule({
@@ -18,8 +19,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AppComponent,
     NavbarComponent,
     AdventureComponent,
-    UserProfileComponent
-
+    UserProfileComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

@@ -11,5 +11,8 @@ export class AdventureComponent implements OnInit {
 
   ngOnInit() {
   }
+  loadAdventures() {
+
+  }
 
 }

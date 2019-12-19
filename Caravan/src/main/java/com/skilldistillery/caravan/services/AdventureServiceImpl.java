@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.caravan.entities.Address;
 import com.skilldistillery.caravan.entities.Adventure;
 import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.entities.UserProfile;
+import com.skilldistillery.caravan.repositories.AddressRepository;
 import com.skilldistillery.caravan.repositories.AdventureRepository;
 import com.skilldistillery.caravan.repositories.UserProfileRepository;
 import com.skilldistillery.caravan.repositories.UserRepository;
@@ -24,6 +26,10 @@ public class AdventureServiceImpl implements AdventureService {
 
 	@Autowired
 	private UserProfileRepository userProfileRepo;
+	
+	@Autowired
+	
+	private AddressRepository addRepo;
 
 	@Override
 	public List<Adventure> index() {
@@ -51,12 +57,12 @@ public class AdventureServiceImpl implements AdventureService {
 
 		if (userProfile != null) {
 			adventure.setHost(userProfile);
-			adventure.setAddress(userProfile.getAddress());
+			
+			Address address = addRepo.saveAndFlush(adventure.getAddress());
+			
+			adventure.setAddress(address);
 			return aRepo.saveAndFlush(adventure);
 		} else {
-			System.out.println("in else");
-
-			System.out.println("****************************************************");
 
 			return null;
 		}

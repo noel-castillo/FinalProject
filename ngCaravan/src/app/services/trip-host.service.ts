@@ -20,7 +20,9 @@ export class TripHostService {
 
   // C O N S T R U C T O R
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
+  constructor(private http: HttpClient,
+              private authService: AuthService,
+              private router: Router) { }
 
   // M E T H O D S
 

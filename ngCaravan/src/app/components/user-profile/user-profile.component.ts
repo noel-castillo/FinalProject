@@ -33,7 +33,7 @@ export class UserProfileComponent implements OnInit {
     this.auth.login('shaun', 'wombat1').subscribe(
       data => {
         console.log('Logged in');
-        this.router.navigateByUrl('user-profiles');
+        // this.router.navigateByUrl('user-profiles');
       },
       err => {
         console.error('Error logging in.');

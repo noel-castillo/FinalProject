@@ -41,16 +41,16 @@
   <form>
     <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUserProfile.firstName">
     <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUserProfile.lastName">
-    <input type="text" name="email" placeholder="State" [(ngModel)]="newUserProfile.email">
-    <input type="text" name="bio" placeholder="Zip" [(ngModel)]="newUserProfile.bio">
-    <input type="text" name="phone" placeholder="Latitude" [(ngModel)]="newUserProfile.phone">
-    <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.mileagePoints">
-    <input type="text" name="registrationDate" placeholder="Longitude" [(ngModel)]="newUserProfile.registrationDate">
-    <input type="text" name="profilePic" placeholder="Longitude" [(ngModel)]="newUserProfile.profilePic">
+    <input type="text" name="email" placeholder="Email" [(ngModel)]="newUserProfile.email">
+    <input type="text" name="bio" placeholder="Bio" [(ngModel)]="newUserProfile.bio">
+    <input type="text" name="phone" placeholder="Phone" [(ngModel)]="newUserProfile.phone">
+    <input type="number" name="mileagePoints" placeholder="Mileage Points" [(ngModel)]="newUserProfile.mileagePoints">
+    <input type="date" name="registrationDate" placeholder="Registration Date" [(ngModel)]="newUserProfile.registrationDate">
+    <input type="text" name="profilePic" placeholder="Profile Pic" [(ngModel)]="newUserProfile.profilePic">
 
-    <!-- <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.longitude">
-    <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.longitude">
-    <input type="text" name="mileagePoints" placeholder="Longitude" [(ngModel)]="newUserProfile.longitude"> -->
+    <input type="text" name="address" placeholder="Address" [(ngModel)]="newUserProfile.address">
+    <input type="text" name="user" placeholder="User" [(ngModel)]="newUserProfile.user">
+    <input type="text" name="vehicles" placeholder="Vehicles" [(ngModel)]="newUserProfile.vehicles">
     <button class="btn btn-warning" (click)="addUserProfile(newUserProfile)">Add UserProfile</button>
   </form>
 

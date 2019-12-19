@@ -32,7 +32,7 @@ export class Adventure {
   this.price = price,
   this.enabled = enabled,
   this.itinerary = itinerary,
-  this.address = address
+  this.address = address;
 
 
   }

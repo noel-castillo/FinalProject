@@ -47,11 +47,11 @@ public class TripController {
 		}	
 	}
 	
-	
 	@PostMapping("trips")
 	public Trip addTrip(@RequestBody Trip trip, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
-			svc.create(trip);
+			System.out.println(trip.toString());
+			svc.create(trip, prin);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(trip.getId());

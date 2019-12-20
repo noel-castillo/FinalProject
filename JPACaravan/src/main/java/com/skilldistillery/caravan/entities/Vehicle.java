@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Vehicle {
 
@@ -34,6 +36,7 @@ public class Vehicle {
 	
 	@ManyToOne
 	@JoinColumn(name="user_profile_id")
+	@JsonIgnore
 	private UserProfile userProfile;
 
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Trip } from '../models/trip';
 import { catchError } from 'rxjs/operators';
@@ -62,7 +61,7 @@ export class TripService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-
+    console.log(newTrip);
     return this.http.post<Trip>(this.url, newTrip, httpOptions)
       .pipe(
         catchError((err: any) => {

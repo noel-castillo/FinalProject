@@ -9,19 +9,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  constructor(private auth: AuthService, private route: Router) {}
 
-  constructor(private auth: AuthService, private route: Router) { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  login(form: NgForm) {
+    this.auth.login(form.value.username, form.value.password).subscribe(
+      dat => {
+        this.route.navigateByUrl('user-profiles');
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
-login(form: NgForm) {
-  this.auth.login(form.value.username, form.value).subscribe(
-    dat => {
-      this.route.navigateByUrl('user-profiles');
-    },
-    err => {
-      console.log(err);
-    }
-  );
-}
 }

@@ -38,14 +38,7 @@ export class TripService {
       );
   }
   show(id: number) {
-<<<<<<< HEAD
-<<<<<<< HEAD
     const credentials = this.authService.getCredentials();
-=======
->>>>>>> d47ca86a9b74bc42b5ff26dfd6980d147d07eade
-=======
-    const credentials = this.authService.getCredentials();
->>>>>>> 417f110b4c8948c83233d2100c64b95da3e2ea7a
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,

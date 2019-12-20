@@ -34,16 +34,6 @@ export class VehicleComponent implements OnInit {
   // M E T H O D S
 
   ngOnInit() {
-    this.auth.login('shaun', 'wombat1').subscribe(
-      data => {
-        console.log('Logged in');
-        this.router.navigateByUrl('vehicles');
-      },
-      err => {
-        console.error('Error logging in.');
-        console.error(err);
-      }
-    );
 
     // grabs the array of todos from the service & adds it to this component
     // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {

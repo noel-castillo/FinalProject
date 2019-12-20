@@ -22,7 +22,7 @@ export class TripHostComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private auth: AuthService
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.auth.login('shaun', 'wombat1').subscribe(
@@ -38,8 +38,7 @@ export class TripHostComponent implements OnInit {
     this.loadReviews();
     if (!this.selectedReview && this.currentRoute.snapshot.paramMap.get('id')) {
       console.log('in oninit if statement');
-      return this.thSvc
-        .show(this.currentRoute.snapshot.paramMap.get('id'))
+      return this.thSvc.show(this.currentRoute.snapshot.paramMap.get('id'))
         .subscribe(
           data => {
             this.selectedReview = data;

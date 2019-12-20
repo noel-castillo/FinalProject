@@ -41,6 +41,32 @@ public class UserProfileController {
 
 		return userProfile;
 	}
+	
+	@GetMapping("userProfiles/{username}")
+	public UserProfile returnSingleFromUsername(@PathVariable String username, HttpServletResponse resp, HttpServletRequest req) {
+		try {
+			StringBuffer url = req.getRequestURL();
+			resp.addHeader("Location", url.toString());
+			resp.setStatus(201);
+			return svc.showByUsername(username);
+		} catch (Exception e) {
+			resp.setStatus(401);
+			return null;
+		}
+	}
+	
+	@GetMapping("homeProfile")
+	public UserProfile returnSingleFromPrincipal(Principal prin, HttpServletResponse resp, HttpServletRequest req) {
+		try {
+			StringBuffer url = req.getRequestURL();
+			resp.addHeader("Location", url.toString());
+			resp.setStatus(201);
+			return svc.showByUsername(prin.getName());
+		} catch (Exception e) {
+			resp.setStatus(401);
+			return null;
+		}
+	}
 
 	// ADD UserProfile
 	@PostMapping(path = "userProfiles")
@@ -55,14 +81,15 @@ public class UserProfileController {
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(userProfile.getId());
 			resp.addHeader("Location", url.toString());
+			return userProfile;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO SET 400 bad request
 			resp.setStatus(400);
+			return null;
 		}
 
-		return userProfile;
 	}
 
 	// UPDATE UserProfile

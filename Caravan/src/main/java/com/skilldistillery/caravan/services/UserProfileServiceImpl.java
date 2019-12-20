@@ -108,4 +108,18 @@ public class UserProfileServiceImpl implements UserProfileService {
 		return false;
 	}
 
+	@Override
+	public UserProfile showByUsername(String username) {
+		UserProfile usrProf = uRepo.findByUser_Username(username);
+		
+		if(usrProf != null) {
+			return usrProf;
+			
+		}
+		else {
+			
+			return null;
+		}
+	}
+
 }

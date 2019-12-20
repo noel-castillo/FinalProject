@@ -55,7 +55,7 @@ public class TripTraveler {
 	public String toString() {
 		return "TripTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", contributionPledge="
 				+ contributionPledge + ", attended=" + attended + ", contributionActual=" + contributionActual
-				+ ", trip=" + trip + "]";
+				+ ", trip=" + trip + ", user=" + user + "]";
 	}
 
 	public int getId() {

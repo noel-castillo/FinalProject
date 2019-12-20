@@ -64,8 +64,9 @@
 </div>
 
 <div *ngIf=" ! editTrip">
-
-   <p *ngFor="let trip of trips" (click)="editTrip = trip"><em>Trip #{{trip.id}}</em> -- Departure Address: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} -- Destination Address: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} -- Miles: {{trip.miles}} -- Seats Available: {{trip.seatsAvailable}} </p>
+  <div *ngFor="let trip of trips">
+        <p *ngIf="trip.enabled === true" (click)="editTrip=trip"><em>Trip #{{trip.id}}</em> -- Departure Address: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} -- Destination Address: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} -- Miles: {{trip.miles}} -- Seats Available: {{trip.seatsAvailable}} </p>
+  </div>
 
 </div>
 

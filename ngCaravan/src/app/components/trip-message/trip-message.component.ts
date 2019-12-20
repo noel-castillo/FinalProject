@@ -18,9 +18,9 @@ export class TripMessageComponent implements OnInit {
 
   selected: TripMessage = null;
 
-  newMessage: TripMessage = new TripMessage();
+  newMessage = new TripMessage();
 
-  editMessage: TripMessage = null;
+  editMessage = null;
 
   urlId = 0;
 
@@ -90,19 +90,22 @@ export class TripMessageComponent implements OnInit {
     this.selected = null;
   }
 
-  addMessage() {
-
-    this.tmSvc.create(this.newMessage).subscribe(
-      aGoodThingHappened => {
-        console.log(aGoodThingHappened);
-        this.newMessage = new TripMessage();
-        this.reload();
-      },
-      didntWork => {
-        console.error('Address Component addAddress() DID NOT WORK');
-        this.reload();
-      }
-    );
+  addMessage(newMessag: TripMessage) {
+    if (newMessag.content != null) {
+      this.tmSvc.create(newMessag).subscribe(
+        aGoodThingHappened => {
+          console.log(aGoodThingHappened);
+          this.newMessage = new TripMessage();
+          this.reload();
+        },
+        didntWork => {
+          console.error('Address Component addAddress() DID NOT WORK');
+          this.reload();
+        }
+      );
+    } else {
+      console.log('no content');
+    }
   }
 
   setEditMessage(message: TripMessage) {

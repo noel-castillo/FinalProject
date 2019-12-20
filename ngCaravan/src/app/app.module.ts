@@ -30,9 +30,6 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     AddressComponent,
     VehicleComponent,
     UserProfileComponent
-    
-    
-    
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 
 	@Autowired
 	TripTravelerRepository ttRepo;
-	
+
 	@Override
 	public TripTraveler create(TripTraveler tripTraveler) {
 		ttRepo.saveAndFlush(tripTraveler);
@@ -25,7 +26,7 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 	public TripTraveler update(TripTraveler tripTraveler, int id) {
 		TripTraveler existing = null;
 		Optional<TripTraveler> opt = ttRepo.findById(id);
-		if(opt.isPresent()) {
+		if (opt.isPresent()) {
 			existing = opt.get();
 			existing.setRating(tripTraveler.getRating());
 			existing.setReview(tripTraveler.getReview());
@@ -52,7 +53,7 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 		if (opt.isPresent()) {
 			tripTraveler = opt.get();
 		}
-		return tripTraveler;	
+		return tripTraveler;
 	}
 
 	@Override
@@ -67,7 +68,16 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 
 	@Override
 	public List<TripTraveler> getRequests(String username) {
-		
-		return null;
+		List<TripTraveler> hostRequest = new ArrayList<TripTraveler>();
+
+		List<TripTraveler> requests = ttRepo.findByTrip_Host_User_Username(username);
+
+		requests.forEach(req -> {
+			if (!req.isApproved()) {
+				hostRequest.add(req);
+			}
+		});
+
+		return hostRequest;
 	}
 }

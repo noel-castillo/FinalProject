@@ -2,11 +2,11 @@
 <div *ngIf="!admin">
   <p>
     {{ currentProfile.firstName }}
-    {{ currentProfile.lastName }}
-    {{ currentProfile.user.username }}
   </p>
 
-  <div></div>
+  <div *ngFor="let req of hostTripRequest">
+<p>{{req.user.registrationDate}}</p>
+  </div>
 </div>
 <div *ngIf="admin">
   <div *ngIf="!selected">

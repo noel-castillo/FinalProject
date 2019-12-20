@@ -13,6 +13,8 @@ public interface UserService {
 	public List<User> index();
 
 	public User show(String username, int id);
+	
+	public User showUser(String username);
 
 	public boolean destroy(String username, int id);
 }

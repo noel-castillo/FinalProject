@@ -13,10 +13,7 @@ export class UserService {
   private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/';
 
-  constructor(
-    private http: HttpClient,
-    private authSvc: AuthService
-  ) {}
+  constructor(private http: HttpClient, private authSvc: AuthService) {}
 
   index() {
     const credentials = this.authSvc.getCredentials();
@@ -28,14 +25,33 @@ export class UserService {
       })
     };
 
-    return this.http.get<User[]>(this.url + 'users/?sorted=true', httpOptions).pipe(
+    return this.http
+      .get<User[]>(this.url + 'users/?sorted=true', httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('KABOOM');
+        })
+      );
+  }
+
+  getUserInSession() {
+    const credentials = this.authSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.get<User>(this.baseUrl + 'userSession', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('KABOOM');
+        return throwError('Could not add User Profile');
       })
     );
   }
-
   delete(id: number) {
     const credentials = this.authSvc.getCredentials();
     // Send credentials as Authorization header (this is spring security convention for basic auth)
@@ -83,12 +99,14 @@ export class UserService {
       })
     };
 
-    return this.http.put<User>(this.url + 'users/' + id, user, httpOptions).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('KABOOM');
-      })
-    );
+    return this.http
+      .put<User>(this.url + 'users/' + id, user, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('KABOOM');
+        })
+      );
   }
 
   create(newUser: User) {

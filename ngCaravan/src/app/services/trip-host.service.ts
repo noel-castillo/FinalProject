@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -58,7 +59,7 @@ export class TripHostService {
     );
   }
 
-  create(newTripHost: TripHost) {
+  create(createForm: NgForm) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({

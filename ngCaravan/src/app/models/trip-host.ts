@@ -10,7 +10,12 @@ export class TripHost {
 
 
   // C O N S T R U C T O R
-  constructor(id?: number, rating?: number, review?: string, trip?: Trip, passenger?: UserProfile) {
+  constructor(
+    id?: number,
+    rating?: number,
+    review?: string,
+    trip?: Trip,
+    passenger?: UserProfile) {
     this.id = id;
     this.rating = rating;
     this.review = review;

@@ -41,7 +41,7 @@ public class TripTraveler {
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
 	@JsonIgnore
-	private User user;
+	private UserProfile user;
 
 //	C O N S T R U C T O R S
 
@@ -55,7 +55,7 @@ public class TripTraveler {
 	public String toString() {
 		return "TripTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", contributionPledge="
 				+ contributionPledge + ", attended=" + attended + ", contributionActual=" + contributionActual
-				+ ", trip=" + trip + "]";
+				+ ", trip=" + trip + ", user=" + user + "]";
 	}
 
 	public int getId() {
@@ -114,11 +114,11 @@ public class TripTraveler {
 		this.trip = trip;
 	}
 
-	public User getUser() {
+	public UserProfile getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserProfile user) {
 		this.user = user;
 	}
 

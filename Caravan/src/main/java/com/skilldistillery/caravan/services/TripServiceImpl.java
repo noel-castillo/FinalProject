@@ -52,6 +52,9 @@ public class TripServiceImpl implements TripService {
 	@Override
 	public Trip update(Trip trip, int id) {
 		Trip existing = null;
+		Address departureAddress = null;
+		Address destinationAddress = null;
+		
 		Optional<Trip> opt = tRepo.findById(id);
 		if (opt.isPresent()) {
 			existing = opt.get();

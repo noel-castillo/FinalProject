@@ -20,6 +20,7 @@ import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
+import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
 
 
 
@@ -38,8 +39,10 @@ import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.
     CategoriesComponent,
     UserProfileComponent,
     ImageComponent,
-    RegisterComponent,
-    TripCalendarComponent
+    TripCalendarComponent,
+    TripTravelerComponent
+    AuthorizationServices,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { TripComponent } from './components/trip/trip.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { TripHostComponent } from './components/trip-host/trip-host.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
   // {path: 'images', component: ImageComponent},
   {path: 'trips', component: TripComponent},
   // {path: 'trip-calendars', component: TripCalendarComponent},
-  // {path: 'trip-hosts', component: TripHostComponent},
+  {path: 'trip-hosts', component: TripHostComponent},
   {path: 'trip-messages', component: TripMessageComponent},
   // {path: 'trip-travelers', component: TripTravelerComponent},
   // {path: 'users', component: UserComponent},

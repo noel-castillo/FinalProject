@@ -1,0 +1,57 @@
+<h1>Adventure Calendar</h1>
+
+<div *ngIf=!selected>
+  <table class="table table-hover table-striped">
+      <thead class="thead-dark">
+    <tr>
+      <th>ID</th>
+      <th>Adventure</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor='let advCal of adventureCalendars'>
+      <td (click)="displayAdventureCalendar(advCal)" >{{advCal.id}}</td>
+      <td >{{advCal.adventure}}</td>
+      <td>{{advCal.startDate}}</td>
+      <td>{{advCal.endDate}}</td>
+    </tr>
+  </tbody>
+  </table>
+
+  </div>
+
+  <!-- add Adventure Calendar  -->
+  <form>
+    <input type="text" name="adventure" placeholder="Adventure" [(ngModel)]="newAdventureCalendar.adventure">
+    <input type="date" name="startDate" placeholder="Start Date" [(ngModel)]="newAdventureCalendar.startDate">
+    <input type="date" name="endDate" placeholder="End Date" [(ngModel)]="newAdventureCalendar.endDate">
+    <br>
+    <button class="btn btn-warning" (click)="addAdventureCalendar(newAdventureCalendar)">Add Adventure Calendar</button>
+  </form>
+
+  <div *ngIf="selected && ! editAdventureCalendar">
+    <p>{{selected.id}}</p>
+    <p>{{selected.adventure}}</p>
+    <p>{{selected.startDate}}</p>
+    <p>{{selected.endDate}}</p>
+    <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+    <button class="btn btn-warning" (click)="setEditAdventureCalendar()">Edit</button>
+    <button class="btn btn-danger" (click)="deleteAdventureCalendar(selected.id)">DELETE</button>
+  </div>
+
+  <div *ngIf="editAdventureCalendar">
+    <h2>{{editAdventureCalendar.id}}</h2>
+    <form>
+      <!-- <label for="adventure">Adventure</label>
+      <input type="text" name="adventure" [(ngModel)]="editAdventureCalendar.adventure"><br> -->
+      <label for="startDate">Start Date</label>
+      <input type="date" name="startDate" [(ngModel)]="editAdventureCalendar.startDate"><br>
+      <label for="endDate">End Date</label>
+      <input type="date" name="endDate" [(ngModel)]="editAdventureCalendar.endDate"><br>
+
+      <button class="btn btn-warning" (click)="updateAdventureCalendar(editAdventureCalendar)">Save</button>
+      <button class="btn btn-warning" (click)="editAdventureCalendar = null">Cancel</button>
+    </form>
+  </div>

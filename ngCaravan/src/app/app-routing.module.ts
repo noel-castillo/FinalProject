@@ -10,10 +10,13 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { ImageComponent } from './components/image/image.component';
+import { AdventureCalendarComponent } from './components/adventure-calendar/adventure-calendar.component';
 
 import { RegisterComponent } from './components/register/register.component';
 
 import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
+import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
+import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
 
 
 
@@ -21,14 +24,15 @@ const routes: Routes = [
   {path: 'addresses', component: AddressComponent},
   {path: 'adventures', component: AdventureComponent},
   {path: 'adventures/:id', component: AdventureComponent},
-  // {path: 'adventure-calendars', component: AdventureCalendarComponent},
+  {path: 'adventure-calendars', component: AdventureCalendarComponent},
   {path: 'categories', component: CategoriesComponent},
   {path: 'images', component: ImageComponent},
   {path: 'trips', component: TripComponent},
+  {path: 'trips/:id', component: TripProfileComponent},
   {path: 'trip-calendars', component: TripCalendarComponent},
   {path: 'trip-hosts', component: TripHostComponent},
   {path: 'trip-messages', component: TripMessageComponent},
-  // {path: 'trip-travelers', component: TripTravelerComponent},
+  {path: 'trip-travelers', component: TripTravelerComponent},
   // {path: 'users', component: UserComponent},
   {path: 'user-profiles', component: UserProfileComponent},
   {path: 'vehicles', component: VehicleComponent},

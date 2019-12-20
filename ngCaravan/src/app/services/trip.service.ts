@@ -37,10 +37,20 @@ export class TripService {
         })
       );
   }
-  show(id) {
+  show(id: number) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    const credentials = this.authService.getCredentials();
+=======
+>>>>>>> d47ca86a9b74bc42b5ff26dfd6980d147d07eade
+=======
+    const credentials = this.authService.getCredentials();
+>>>>>>> 417f110b4c8948c83233d2100c64b95da3e2ea7a
     const httpOptions = {
       headers: new HttpHeaders({
-      'X-Requested-With': 'XMLHttpRequest'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
     return this.http.get<Trip[]>(this.url + '/' + id, httpOptions)
@@ -87,6 +97,25 @@ export class TripService {
       })
     );
   }
+
+  disable(trip: Trip) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.put<Trip>(`${this.url}/${trip.id}`, trip, httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('TripService.disable(): Error disabling trip');
+      })
+    );
+  }
+
 
   delete(id: number) {
     const credentials = this.authService.getCredentials();

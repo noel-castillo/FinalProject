@@ -18,9 +18,13 @@ import { AddressComponent } from './components/address/address.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { AdventureCalendarComponent } from './components/adventure-calendar/adventure-calendar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
 import { LoginComponent } from './components/login/login.component';
+import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
+import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
+
 
 
 
@@ -39,9 +43,13 @@ import { LoginComponent } from './components/login/login.component';
     CategoriesComponent,
     UserProfileComponent,
     ImageComponent,
-    RegisterComponent,
+    LoginComponent,
+    AdventureCalendarComponent,
     TripCalendarComponent,
-    LoginComponent
+    TripTravelerComponent,
+    RegisterComponent,
+    TripProfileComponent
+
   ],
   imports: [
     BrowserModule,

@@ -23,7 +23,6 @@ public class Trip {
 
 	@OneToOne
 	@JoinColumn(name = "host_id")
-
 	@JsonIgnore
 	private UserProfile host;
 

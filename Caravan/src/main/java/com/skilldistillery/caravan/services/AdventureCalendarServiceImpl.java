@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.caravan.entities.Address;
 import com.skilldistillery.caravan.entities.Adventure;
 import com.skilldistillery.caravan.entities.AdventureCalendar;
 import com.skilldistillery.caravan.repositories.AdventureCalendarRepository;
@@ -41,7 +40,7 @@ public class AdventureCalendarServiceImpl implements AdventureCalendarService {
 	}
 
 	@Override
-	public AdventureCalendar updateAdventureCalendar(int id, int cid, AdventureCalendar adventureCalendar) {
+	public AdventureCalendar updateAdventureCalendar(int cid, AdventureCalendar adventureCalendar) {
 		AdventureCalendar oldAventureCalendar = aRepo.findById(cid).get();
 
 		if (oldAventureCalendar != null) {

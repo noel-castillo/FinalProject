@@ -124,8 +124,9 @@
     </div>
 
     <input type="submit" name="submit" value="Update" (click)="updateTrip(editTrip)">
+    <button (click) = "disableTrip(editTrip)" class="btn btn-primary"> Delete Trip </button>
+
   </form>
-  <button (click) = "deleteTrip(editTrip.id)" class="btn btn-primary"> Delete Trip </button>
   <button (click) = "editTrip = null" class="btn btn-primary"> Back </button>
 
 </div>

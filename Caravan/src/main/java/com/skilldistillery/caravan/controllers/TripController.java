@@ -76,6 +76,8 @@ public class TripController {
 		return trip;
 	}
 	
+	
+	
 	@DeleteMapping("trips/{tid}")
 	public void deleteTrip(@PathVariable Integer tid, HttpServletResponse resp) {
 		try {

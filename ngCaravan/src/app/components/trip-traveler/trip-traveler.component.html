@@ -1,0 +1,70 @@
+<h1>{{title}} <span class="badge badge-primary">{{countTripTravelers()}}</span></h1>
+<div *ngIf=!selected>
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>User</th>
+    <th>Rating</th>
+    <th>Review</th>
+    <th>Contribution Pledge</th>
+    <th>Contribution Actual</th>
+    <th>Attended</th>
+    <th>Trip</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor='let tripTraveler of tripTravelers'>
+    <td (click)="displayTripTraveler(tripTraveler)">{{tripTraveler.id}}</td>
+    <td >{{tripTraveler.user}}</td>
+    <td>{{tripTraveler.rating}}</td>
+    <td>{{tripTraveler.review}}</td>
+    <td>{{tripTraveler.contributionPledge}}</td>
+    <td>{{tripTraveler.contributionActual}}</td>
+    <td>{{tripTraveler.attended}}</td>
+    <td>{{tripTraveler.trip.description}}</td>
+    <td (click)="deleteTripTraveler(tripTraveler.id)">X</td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+<form>
+  <input type="text" name="rating" placeholder="Rating" [(ngModel)]="newTripTraveler.rating">
+  <input type="text" name="review" placeholder="Review" [(ngModel)]="newTripTraveler.review">
+  <input type="text" name="contributionPledge" placeholder="Contribution Pledge" [(ngModel)]="newTripTraveler.contributionPledge">
+  <input type="text" name="contributionActual" placeholder="Contribution Actual" [(ngModel)]="newTripTraveler.contributionActual">
+  <input type="text" name="attended" placeholder="Attended" [(ngModel)]="newTripTraveler.attended">
+  <button class="btn btn-warning" (click)="addTripTraveler(newTripTraveler)">Add Trip Traveler</button>
+</form>
+
+<div *ngIf="selected && ! editTripTraveler">
+  <p>{{selected.id}}</p>
+  <p>{{selected.rating}}</p>
+  <p>{{selected.review}}</p>
+  <p>{{selected.contributionPledge}}</p>
+  <p>{{selected.contributionActual}}</p>
+  <p>{{selected.attended}}</p>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditTripTraveler()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteTripTraveler(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editTripTraveler">
+  <h2>{{editTripTraveler.id}}</h2>
+  <form>
+    <label for="rating">Rating</label>
+    <input type="text" name="rating" [(ngModel)]="editTripTraveler.rating"><br>
+    <label for="review">Review</label>
+    <input type="text" name="review" [(ngModel)]="editTripTraveler.review"><br>
+    <label for="contributionPledge">Contribution Pledge</label>
+    <input type="text" name="contributionPledge" [(ngModel)]="editTripTraveler.contributionPledge"><br>
+    <label for="contributionActual">Contribution Actual</label>
+    <input type="text" name="contributionActual" [(ngModel)]="editTripTraveler.contributionActual"><br>
+    <label for="attended">Attended</label>
+    <input type="checkbox" name="attended" [(ngModel)]="editTripTraveler.attended"><br>
+    <button class="btn btn-warning" (click)="updateTripTraveler(editTripTraveler)">Save</button>
+    <button class="btn btn-warning" (click)="editTripTraveler = null">Cancel</button>
+  </form>
+</div>

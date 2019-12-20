@@ -9,6 +9,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { ImageComponent } from './components/image/image.component';
+import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'images', component: ImageComponent},
   {path: 'trips', component: TripComponent},
-  // {path: 'trip-calendars', component: TripCalendarComponent},
+  {path: 'trip-calendars', component: TripCalendarComponent},
   {path: 'trip-hosts', component: TripHostComponent},
   {path: 'trip-messages', component: TripMessageComponent},
   // {path: 'trip-travelers', component: TripTravelerComponent},

@@ -1,0 +1,48 @@
+<h1>{{title}} <span class="badge badge-primary">{{countTripCalendars()}}</span></h1>
+<div *ngIf=!selected>
+  <table class="table table-hover table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let tripCalendar of tripCalendars'>
+        <td (click)="displayTripCalendar(tripCalendar)">{{tripCalendar.id}}</td>
+        <td>{{tripCalendar.startDate}}</td>
+        <td>{{tripCalendar.endDate}}</td>
+        <td (click)="deleteTripCalendar(tripCalendar.id)">X</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<form>
+  <input type="date" name="startDate" placeholder="Start Date" [(ngModel)]="newTripCalendar.startDate">
+  <input type="date" name="endDate" placeholder="End Date" [(ngModel)]="newTripCalendar.endDate">
+  <button class="btn btn-warning" (click)="addTripCalendar(newTripCalendar)">Add Trip Calendar</button>
+</form>
+
+<div *ngIf="selected && ! editTripCalendar">
+  <p>{{selected.id}}</p>
+  <p>{{selected.startDate}}</p>
+  <p>{{selected.endDate}}</p>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditTripCalendar()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteTripCalendar(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editTripCalendar">
+  <h2>{{editTripCalendar.id}}</h2>
+  <form>
+    <label for="startDate">Start Date</label>
+    <input type="date" name="startDate" [(ngModel)]="editTripCalendar.startDate"><br>
+    <label for="endDate">End Date</label>
+    <input type="date" name="endDate" [(ngModel)]="editTripCalendar.endDate"><br>
+    <button class="btn btn-warning" (click)="updateTripCalendar(editTripCalendar)">Save</button>
+    <button class="btn btn-warning" (click)="editTripCalendar = null">Cancel</button>
+  </form>
+</div>

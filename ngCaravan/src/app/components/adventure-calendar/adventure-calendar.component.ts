@@ -15,11 +15,11 @@ export class AdventureCalendarComponent implements OnInit {
 
   selected: AdventureCalendar = null;
 
-  userProfiles: AdventureCalendar[] = [];
+  adventureCalendars: AdventureCalendar[] = [];
 
-  newUserProfile: AdventureCalendar = new AdventureCalendar();
+  newAdventureCalendar: AdventureCalendar = new AdventureCalendar();
 
-  editUserProfile: AdventureCalendar = null;
+  editAdventureCalendar: AdventureCalendar = null;
 
 
 
@@ -29,6 +29,104 @@ export class AdventureCalendarComponent implements OnInit {
   constructor(private aSvc: AdventureCalendarService, private auth: AuthService, private currentRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.auth.login('shaun', 'wombat1').subscribe(
+      data => {
+        console.log('Logged in');
+        this.router.navigateByUrl('adventure-calendars');
+      },
+      err => {
+        console.error('Error logging in.');
+        console.error(err);
+      }
+    );
+
+    // grabs the array of todos from the service & adds it to this component
+    // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+    console.log(this.currentRoute.snapshot.paramMap.get('id'));
+    this.aSvc.index().subscribe(
+      data => {
+        this.adventureCalendars = data;
+      },
+      err => console.error('ngOnInit error in Adventure Calendar Component')
+    );
   }
+
+  reload() {
+    this.aSvc.index().subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.adventureCalendars = aGoodThingHappened;
+      },
+      (didntWork) => {
+        console.error('Adventure Calendar Component reload() DID NOT WORK');
+      }
+    );
+  }
+
+  getNumOfAdventureCalendars() {
+    return this.adventureCalendars.length;
+  }
+
+  countAdventureCalendars(): number {
+    return this.adventureCalendars.length;
+  }
+
+  displayAdventureCalendar(adventureCalendar) {
+    this.selected = adventureCalendar;
+  }
+
+  displayTable() {
+    this.selected = null;
+  }
+
+  addAdventureCalendar() {
+    this.aSvc.create(this.newAdventureCalendar).subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.newAdventureCalendar = new AdventureCalendar();
+        this.reload();
+      },
+      (didntWork) => {
+        console.error('Adventure Calendar Component addTripCalendar() DID NOT WORK');
+        this.reload();
+      }
+    );
+  }
+
+  setEditAdventureCalendar(adventureCalendar: AdventureCalendar) {
+    this.editAdventureCalendar = Object.assign({}, this.selected);
+  }
+
+  updateAdventureCalendar(adventureCalendar: AdventureCalendar) {
+    this.aSvc.update(adventureCalendar).subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.reload();
+        this.editAdventureCalendar = null;
+        this.selected = null;
+      },
+      (didntWork) => {
+        console.error('Adventure Calendar Component updateTripCalendar(tripCalendar) DID NOT WORK');
+        this.reload();
+      }
+
+    );
+  }
+
+  deleteAdventureCalendar(id) {
+    this.aSvc.delete(id).subscribe(
+      (aGoodThingHappened) => {
+        console.log(aGoodThingHappened);
+        this.reload();
+      },
+      (didntWork) => {
+        console.error('Adventure Calendar Component deleteAdventureCalendar(id) DID NOT WORK');
+        this.reload();
+      }
+
+    );
+  }
+
+
 
 }

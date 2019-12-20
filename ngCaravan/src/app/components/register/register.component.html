@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row">
+    <div class="col order-last"></div>
+    <div class="col-xl-9">
+      <form>
+        <div class="form-row">
+          <!-- <div class="col-md-4 mb-3">
+            <label for="email">Email address</label>
+            <br />
+            <input
+              type="email"
+              name="email"
+              class="form-control-md"
+              aria-describedby="emailHelp"
+              placeholder="Enter email"
+              [(ngModel)]="newUser.username "
+            />
+            <small id="emailHelp" style="color: black;" class="form-text"
+              >We'll never share your email with anyone else.</small
+            >
+          </div> -->
+
+          <div class="col-md-4 mb-3">
+            <label for="username">Username</label>
+            <br />
+            <input
+              type="text"
+              name="username"
+              class="form-control-md"
+              placeholder="Username"
+              [(ngModel)]="newUser.username"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="password">Password</label>
+            <br />
+            <input
+              type="password"
+              name="password"
+              class="form-control-md"
+              placeholder="Password"
+              [(ngModel)]="newUser.password"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-2 mb-3">
+            <button
+              type="button"
+              (click)="create(newUser)"
+              class="btn btn-warning btn-lg"
+            >
+              Register
+            </button>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <button
+              type="button"
+              class="btn btn-secondary btn-lg "
+              [routerLink]="['/home']"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col order-first"></div>
+  </div>
+</div>

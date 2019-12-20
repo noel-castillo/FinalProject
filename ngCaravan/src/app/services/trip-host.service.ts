@@ -69,7 +69,7 @@ export class TripHostService {
       })
     };
 
-    return this.http.post<TripHost>(this.url, newTripHost, httpOptions)
+    return this.http.post<TripHost>(this.url, createForm, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

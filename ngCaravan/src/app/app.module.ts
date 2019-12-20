@@ -24,6 +24,7 @@ import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.
 import { LoginComponent } from './components/login/login.component';
 import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
 import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
 
@@ -48,6 +49,7 @@ import { TripProfileComponent } from './components/trip-profile/trip-profile.com
     TripCalendarComponent,
     TripTravelerComponent,
     RegisterComponent,
+    SearchResultsComponent,
     TripProfileComponent
 
   ],

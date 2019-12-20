@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(150) NULL,
   `role` VARCHAR(45) NULL,
   `enabled` TINYINT NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
@@ -140,6 +141,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `depart_address_id` INT NULL,
   `destination_address_id` INT NULL,
   `host_id` INT NULL,
+  `title` VARCHAR(150) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
   INDEX `fk_trip_address1_idx` (`depart_address_id` ASC),
@@ -322,6 +324,7 @@ CREATE TABLE IF NOT EXISTS `trip_traveler_review_of_host` (
   `contribution_actual` DOUBLE NULL,
   `trip_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
+  `approved` TINYINT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_traveler_trip1_idx` (`trip_id` ASC),
   INDEX `fk_trip_traveler_user_profile1_idx` (`user_profile_id` ASC),
@@ -573,8 +576,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1);
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual ', 2, 36, '2019-12-29', 1, 25, 750, 2, 3, 4, 3);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1, NULL);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual ', 2, 36, '2019-12-29', 1, 25, 750, 2, 3, 4, 3, NULL);
 
 COMMIT;
 
@@ -647,7 +650,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1);
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1, NULL);
 
 COMMIT;
 

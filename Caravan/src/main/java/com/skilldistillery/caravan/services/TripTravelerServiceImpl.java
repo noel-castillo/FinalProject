@@ -64,4 +64,10 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 		}
 		return deleted;
 	}
+
+	@Override
+	public List<TripTraveler> getRequests(String username) {
+		
+		return null;
+	}
 }

@@ -66,6 +66,7 @@ export class UserProfileComponent implements OnInit {
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
+        this.checkIfAdmin();
       },
       err => {
         console.log(err);

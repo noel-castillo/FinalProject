@@ -42,6 +42,21 @@ export class TripHostService {
         })
       );
   }
+  show(id: string) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<TripHost>(this.url + '/' + id, httpOptions).pipe(
+    catchError((err: any) => {
+      console.error(err);
+      return throwError('TripHostService.show(): Error getting host review of passenger by ID');
+    })
+    );
+  }
 
   create(newTripHost: TripHost) {
     const credentials = this.authService.getCredentials();
@@ -62,7 +77,7 @@ export class TripHostService {
       );
   }
 
-  updateTripHost(host: TripHost) {
+  update(host: TripHost) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -81,7 +96,7 @@ export class TripHostService {
       );
   }
 
-  delete(id: number) {
+  destroy(id: number) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({

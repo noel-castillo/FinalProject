@@ -24,7 +24,6 @@
   </div>
 </div>
 <div *ngIf="selectedAdventure">
-  In adventure div:
   {{selectedAdventure.title}}
   {{selectedAdventure.description}}
   <button class="btn btn-primary" (click)="selectedAdventure = null">Back</button>
@@ -43,7 +42,7 @@
     <input type="text" name="city" class="form-control" placeholder="City" ngModel/>
     <input type="text" name="state" class="form-control" placeholder="State" ngModel/>
     <input type="number" name="zip" class="form-control" placeholder="Zip Code" ngModel/>
-    <button class="btn btn-primary" type="submit" value="New Portfolio" (click)="createAdventure(createForm)">Submit</button>
+    <button class="btn btn-primary" type="submit" value="New Adventure" (click)="createAdventure(createForm)">Submit</button>
     <button class="btn btn-primary" type="submit" value="Cancel" (click)="new = false">Cancel</button>
   </form>
 </div>
@@ -59,7 +58,7 @@
     <input type="text" name="city" class="form-control" placeholder="City" [(ngModel)]="editAdventure.address.city"/>
     <input type="text" name="state" class="form-control" placeholder="State" [(ngModel)]="editAdventure.address.state"/>
     <input type="number" name="zip" class="form-control" placeholder="Zip Code" [(ngModel)]="editAdventure.address.zip"/>
-    <button class="btn btn-primary" type="submit" value="New Portfolio" (click)="updateAdventure()">Submit</button>
+    <button class="btn btn-primary" type="submit" value="New Adventure" (click)="updateAdventure()">Submit</button>
     <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = false">Cancel</button>
     <button class="btn btn-danger" (click)="deleteAdventure()">Delete</button>
   </form>

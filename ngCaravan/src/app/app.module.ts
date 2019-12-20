@@ -17,6 +17,7 @@ import { TripMessageComponent } from './components/trip-message/trip-message.com
 import { TripComponent } from './components/trip/trip.component';
 import { AddressComponent } from './components/address/address.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { TripHostComponent } from './components/trip-host/trip-host.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     TripComponent,
     AddressComponent,
     VehicleComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    TripHostComponent
     
     
     

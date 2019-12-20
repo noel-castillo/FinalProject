@@ -1,0 +1,22 @@
+<div class="container">
+  <form #userForm="ngForm" class="form-inline" >
+    <label for="username" class="sm-2 mr-sm-2"></label>
+    <input
+      type="text"
+      class="form-control-sm sm-2 mr-sm-2"
+      placeholder="Enter Username"
+      name="username"
+      ngModel
+    />
+    <label for="password" class="sm-2 mr-sm-2"></label>
+    <input
+      type="password"
+      class="form-control-sm sm-2 mr-sm-2"
+      placeholder="Enter Password"
+      name="password"
+      ngModel
+    />
+    <div class="form-check mb-2 mr-sm-2"></div>
+    <button type="submit" (click)="login(userForm)" class="btn-sm btn-warning " >Submit</button>
+  </form>
+</div>

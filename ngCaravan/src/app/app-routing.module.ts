@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './components/address/address.component';
@@ -35,7 +36,8 @@ const routes: Routes = [
   // {path: 'users', component: UserComponent},
   {path: 'user-profiles', component: UserProfileComponent},
   {path: 'vehicles', component: VehicleComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

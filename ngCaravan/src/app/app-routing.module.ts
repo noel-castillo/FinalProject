@@ -8,6 +8,7 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { TripHostComponent } from './components/trip-host/trip-host.component';
+import { ImageComponent } from './components/image/image.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   {path: 'adventures/:id', component: AdventureComponent},
   // {path: 'adventure-calendars', component: AdventureCalendarComponent},
   {path: 'categories', component: CategoriesComponent},
-  // {path: 'images', component: ImageComponent},
+  {path: 'images', component: ImageComponent},
   {path: 'trips', component: TripComponent},
   // {path: 'trip-calendars', component: TripCalendarComponent},
   {path: 'trip-hosts', component: TripHostComponent},

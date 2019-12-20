@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Image } from '../models/image';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -11,19 +12,22 @@ import { Image } from '../models/image';
 export class ImageService {
 
   // F i e l d s
-  private baseUrl = 'http://localhost:8090';
+  private baseUrl = 'http://localhost:8090/';
   private url = this.baseUrl + 'api/images';
 
   // C o n s t r u c t o r
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // M e t h o d s
 
   index() {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-      'X-Requested-With': 'XMLHttpRequest'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
     return this.http.get<Image[]>(this.url, httpOptions)
@@ -35,12 +39,14 @@ export class ImageService {
       );
   }
 
-  create(newImage: Image) {
+  createImage(newImage: Image) {
 
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type':  'application/json'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
 
@@ -53,13 +59,15 @@ export class ImageService {
       );
   }
 
-  update(image: Image) {
+  updateImage(image: Image) {
 
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'Content-type': 'application/json'
-        }
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
     };
     return this.http.put<Image>(`${this.url}/${image.id}`, image, httpOptions).pipe(
       catchError((err: any) => {
@@ -69,12 +77,15 @@ export class ImageService {
     );
   }
 
-  delete(id: number) {
+  deleteImage(id: number) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-      headers: {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
-      }
-  };
+      })
+    };
     return this.http.delete(`${this.url}/${id}`, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);

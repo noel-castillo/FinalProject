@@ -1,3 +1,4 @@
+import { ImageComponent } from './components/image/image.component';
 import { AdventureService } from './services/adventure.service';
 import { AdventureComponent } from './components/adventure/adventure.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,7 +35,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
     UserProfileComponent,
     TripHostComponent,
     CategoriesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ImageComponent
 
   ],
   imports: [

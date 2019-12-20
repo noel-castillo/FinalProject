@@ -41,26 +41,35 @@ export class UserProfileComponent implements OnInit {
   // M E T H O D S
 
   ngOnInit() {
-    this.auth.login('shaun', 'wombat1').subscribe(
+    // this.auth.login('shaun', 'wombat1').subscribe(
+    //   data => {
+    //     console.log('Logged in');
+    //     // this.router.navigateByUrl('user-profiles');
+    //   },
+    //   err => {
+    //     console.error('Error logging in.');
+    //     console.error(err);
+    //   }
+    // );
+
+    // // grabs the array of todos from the service & adds it to this component
+    // // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+    // console.log(this.currentRoute.snapshot.paramMap.get('id'));
+    // this.uSvc.index().subscribe(
+    //   data => {
+    //     this.userProfiles = data;
+    //     console.log('Size of UserProfile****' + this.userProfiles.length);
+    //   },
+    //   err => console.error('ngOnInit error in UserProfile Component')
+    // );
+
+    this.uSvc.getUserInSessionProfile().subscribe(
       data => {
-        console.log('Logged in');
-        // this.router.navigateByUrl('user-profiles');
+        this.currentProfile = data;
       },
       err => {
-        console.error('Error logging in.');
-        console.error(err);
+        console.log(err);
       }
-    );
-
-    // grabs the array of todos from the service & adds it to this component
-    // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
-    console.log(this.currentRoute.snapshot.paramMap.get('id'));
-    this.uSvc.index().subscribe(
-      data => {
-        this.userProfiles = data;
-        console.log('Size of UserProfile****' + this.userProfiles.length);
-      },
-      err => console.error('ngOnInit error in UserProfile Component')
     );
   }
 

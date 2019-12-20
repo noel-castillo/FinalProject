@@ -91,6 +91,25 @@ export class TripService {
     );
   }
 
+  disable(trip: Trip) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.put<Trip>(`${this.url}/${trip.id}`, trip, httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('TripService.disable(): Error disabling trip');
+      })
+    );
+  }
+
+
   delete(id: number) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {

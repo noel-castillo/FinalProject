@@ -6,5 +6,5 @@ import com.skilldistillery.caravan.entities.Trip;
 
 public interface TripRepository extends JpaRepository<Trip, Integer> {
 
-	public Trip findByHost_Username(String username);
+	public Trip findByHost_User_Username(String username);
 }

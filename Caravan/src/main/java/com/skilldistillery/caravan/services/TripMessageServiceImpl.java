@@ -27,7 +27,7 @@ public class TripMessageServiceImpl implements TripMessageService {
 	@Override
 	public TripMessage create(TripMessage tripMess, String username) {
 		UserProfile userProf = uRepo.findByUser_Username(username);
-		Trip trip = trRepo.findByHost_Username(username);
+		Trip trip = trRepo.findByHost_User_Username(username);
 
 		if (userProf != null) {
 			tripMess.setTrip(trip);

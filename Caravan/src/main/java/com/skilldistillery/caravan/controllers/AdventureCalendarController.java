@@ -29,13 +29,13 @@ public class AdventureCalendarController {
 	@Autowired
 	private AdventureCalendarService svc;
 
-	@GetMapping("adventures/{id}/adventure-calendars")
+	@GetMapping("adventure-calendars")
 	public List<AdventureCalendar> index(Principal principal) {
 		return svc.index(principal.getName());
 	}
 
-	@GetMapping("adventures/{id}/adventure-calendars/{cid}")
-	public AdventureCalendar showAdventureCalendar(@PathVariable int id, @PathVariable int cid, HttpServletRequest request, HttpServletResponse response) {
+	@GetMapping("adventure-calendars/{cid}")
+	public AdventureCalendar showAdventureCalendar(@PathVariable int cid, HttpServletRequest request, HttpServletResponse response) {
 
 		AdventureCalendar adventureCalendar = svc.findAdventureCalendarById(cid);
 		if (adventureCalendar == null) {
@@ -59,11 +59,11 @@ public class AdventureCalendarController {
 		}
 	}
 
-	@PutMapping("adventures/{id}/adventure-calendars/{cid}")
-	public AdventureCalendar updateAdventureCalendar(@PathVariable int id, @PathVariable int cid, @RequestBody AdventureCalendar adventureCalendar, HttpServletRequest request,
+	@PutMapping("adventure-calendars/{cid}")
+	public AdventureCalendar updateAdventureCalendar(@PathVariable int cid, @RequestBody AdventureCalendar adventureCalendar, HttpServletRequest request,
 			HttpServletResponse response) {
 		try {
-			adventureCalendar = svc.updateAdventureCalendar(id, cid, adventureCalendar);
+			adventureCalendar = svc.updateAdventureCalendar(cid, adventureCalendar);
 			if (adventureCalendar == null) {
 				response.setStatus(404);
 			}
@@ -75,7 +75,7 @@ public class AdventureCalendarController {
 		return adventureCalendar;
 	}
 
-	@DeleteMapping("adventures/{id}/adventure-calendars/{cid}")
+	@DeleteMapping("adventure-calendars/{cid}")
 	public boolean deleteAdventureCalendar(@PathVariable int cid, HttpServletRequest request, HttpServletResponse response) {
 
 		try {

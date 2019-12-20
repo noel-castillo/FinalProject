@@ -1,3 +1,4 @@
+import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddressComponent } from './components/address/address.component';
@@ -15,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 
 import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
 import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
+import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
 
 
 
@@ -26,6 +28,7 @@ const routes: Routes = [
   {path: 'categories', component: CategoriesComponent},
   {path: 'images', component: ImageComponent},
   {path: 'trips', component: TripComponent},
+  {path: 'trips/:id', component: TripProfileComponent},
   {path: 'trip-calendars', component: TripCalendarComponent},
   {path: 'trip-hosts', component: TripHostComponent},
   {path: 'trip-messages', component: TripMessageComponent},
@@ -33,7 +36,8 @@ const routes: Routes = [
   // {path: 'users', component: UserComponent},
   {path: 'user-profiles', component: UserProfileComponent},
   {path: 'vehicles', component: VehicleComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

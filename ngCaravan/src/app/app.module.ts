@@ -21,7 +21,10 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { AdventureCalendarComponent } from './components/adventure-calendar/adventure-calendar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
+import { LoginComponent } from './components/login/login.component';
 import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
+import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
+
 
 
 
@@ -40,10 +43,13 @@ import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.
     CategoriesComponent,
     UserProfileComponent,
     ImageComponent,
+    LoginComponent,
     AdventureCalendarComponent,
     TripCalendarComponent,
     TripTravelerComponent,
-    RegisterComponent
+    RegisterComponent,
+    TripProfileComponent
+
   ],
   imports: [
     BrowserModule,

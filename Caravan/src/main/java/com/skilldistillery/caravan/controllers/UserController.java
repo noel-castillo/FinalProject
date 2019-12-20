@@ -48,6 +48,19 @@ public class UserController {
 			return null;
 		}
 	}
+	@GetMapping("userSession")
+	private User getBySession( HttpServletRequest req, HttpServletResponse resp, Principal prin) {
+		try {
+			System.out.println(prin.toString());
+			StringBuffer url = req.getRequestURL();
+			resp.addHeader("Location", url.toString());
+			resp.setStatus(201);
+			return svc.showUser(prin.getName());
+		} catch (Exception e) {
+			resp.setStatus(404);
+			return null;
+		}
+	}
 
 	@PostMapping("users")
 	private User createUser(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req) {

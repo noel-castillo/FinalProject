@@ -38,9 +38,14 @@ export class TripService {
       );
   }
   show(id: number) {
+
+    const credentials = this.authService.getCredentials();
+
     const httpOptions = {
       headers: new HttpHeaders({
-      'X-Requested-With': 'XMLHttpRequest'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
     return this.http.get<Trip[]>(this.url + '/' + id, httpOptions)

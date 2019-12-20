@@ -1,3 +1,4 @@
+import { UserProfile } from './user-profile';
 import { Trip } from './trip';
 import { User } from './user';
 
@@ -10,10 +11,10 @@ export class TripTraveler {
   contributionActual: number;
   attended: boolean;
   trip: Trip;
-  user: User;
+  user: UserProfile;
 
   // tslint:disable-next-line: max-line-length
-  constructor(id?: number, rating?: number, review?: string, contributionPledge?: number, contributionActual?: number, attended?: boolean, trip?: Trip, user?: User) {
+  constructor(id?: number, rating?: number, review?: string, contributionPledge?: number, contributionActual?: number, attended?: boolean, trip?: Trip, user?: UserProfile) {
 
     this.id = id;
     this.rating = rating;

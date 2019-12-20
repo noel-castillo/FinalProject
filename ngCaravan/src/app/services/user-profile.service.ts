@@ -41,6 +41,45 @@ export class UserProfileService {
         })
       );
   }
+getUserInSessionProfile(){
+  const credentials = this.authService.getCredentials();
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${credentials}`,
+      'X-Requested-With': 'XMLHttpRequest'
+    })
+  };
+
+  return this.http.get<UserProfile>(this.baseUrl + '/homeProfile',  httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not add User Profile');
+      })
+    );
+
+}
+  getProfileFromUsername(usrname: string) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.get<UserProfile>(this.url + '/' + usrname,  httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Could not add User Profile');
+        })
+      );
+
+  }
+
 
   checkLogin(): boolean {
     if (this.authService.getCredentials() === null) {

@@ -10,7 +10,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { ImageComponent } from './components/image/image.component';
 import { AdventureCalendarComponent } from './components/adventure-calendar/adventure-calendar.component';
+
+import { RegisterComponent } from './components/register/register.component';
+
 import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
+import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
+
 
 
 const routes: Routes = [
@@ -24,10 +29,11 @@ const routes: Routes = [
   {path: 'trip-calendars', component: TripCalendarComponent},
   {path: 'trip-hosts', component: TripHostComponent},
   {path: 'trip-messages', component: TripMessageComponent},
-  // {path: 'trip-travelers', component: TripTravelerComponent},
+  {path: 'trip-travelers', component: TripTravelerComponent},
   // {path: 'users', component: UserComponent},
   {path: 'user-profiles', component: UserProfileComponent},
-  {path: 'vehicles', component: VehicleComponent}
+  {path: 'vehicles', component: VehicleComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({

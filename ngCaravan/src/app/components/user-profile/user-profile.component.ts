@@ -12,8 +12,10 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-
   // F I E L D S
+  currentProfile = new UserProfile();
+
+  admin = false;
 
   selected: UserProfile = null;
 
@@ -27,11 +29,14 @@ export class UserProfileComponent implements OnInit {
 
   newUser: User = new User();
 
-
   // C O N S T R U C T O R
 
-  constructor(private uSvc: UserProfileService, private auth: AuthService, private currentRoute: ActivatedRoute, private router: Router) { }
-
+  constructor(
+    private uSvc: UserProfileService,
+    private auth: AuthService,
+    private currentRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   // M E T H O D S
 
@@ -59,14 +64,29 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  checkIfAdmin() {
+    this.uSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.currentProfile = data;
+        if (this.currentProfile.user.role === 'admin') {
+          this.admin = true;
+        } else {
+          this.admin = false;
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
   reload() {
     this.uSvc.index().subscribe(
-      (aGoodThingHappened) => {
+      aGoodThingHappened => {
         console.log(aGoodThingHappened);
         this.userProfiles = aGoodThingHappened;
       },
-      (didntWork) => {
+      didntWork => {
         console.error('UserProfile Component reload() DID NOT WORK');
       }
     );
@@ -77,21 +97,20 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserProfileById(id: number): UserProfile {
-
-    for(let i=0; i<this.userProfiles.length; i++) {
-        if (this.userProfiles[i].id === id) {
-          return this.userProfiles[i];
-        }
+    for (let i = 0; i < this.userProfiles.length; i++) {
+      if (this.userProfiles[i].id === id) {
+        return this.userProfiles[i];
+      }
     }
     return null;
   }
 
   getUserProfileByUser(user: User): UserProfile {
-    for(let i=0; i<this.userProfiles.length; i++) {
+    for (let i = 0; i < this.userProfiles.length; i++) {
       if (this.userProfiles[i].user === user) {
         return this.userProfiles[i];
       }
-  }
+    }
     return null;
   }
 
@@ -109,12 +128,12 @@ export class UserProfileComponent implements OnInit {
 
   addUserProfile() {
     this.uSvc.create(this.newUserProfile).subscribe(
-      (aGoodThingHappened) => {
+      aGoodThingHappened => {
         console.log(aGoodThingHappened);
         this.newUserProfile = new UserProfile();
         this.reload();
       },
-      (didntWork) => {
+      didntWork => {
         console.error('UserProfile Component addUserProfile() DID NOT WORK');
         this.reload();
       }
@@ -127,33 +146,31 @@ export class UserProfileComponent implements OnInit {
 
   updateUserProfile(userPro: UserProfile) {
     this.uSvc.updateUserProfile(userPro).subscribe(
-      (aGoodThingHappened) => {
+      aGoodThingHappened => {
         console.log(aGoodThingHappened);
         this.reload();
         this.editUserProfile = null;
         this.selected = null;
       },
-      (didntWork) => {
-        console.error('UserProfile Component updateUserProfile(userPro) DID NOT WORK');
+      didntWork => {
+        console.error(
+          'UserProfile Component updateUserProfile(userPro) DID NOT WORK'
+        );
         this.reload();
       }
-
     );
   }
 
   deleteUserProfile(id) {
     this.uSvc.delete(id).subscribe(
-      (aGoodThingHappened) => {
+      aGoodThingHappened => {
         console.log(aGoodThingHappened);
         this.reload();
       },
-      (didntWork) => {
+      didntWork => {
         console.error('Address Component deleteAddress(id) DID NOT WORK');
         this.reload();
       }
-
     );
   }
-
-
 }

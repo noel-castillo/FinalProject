@@ -1,3 +1,4 @@
+import { UserProfileService } from './../../services/user-profile.service';
 import { NgForm } from '@angular/forms';
 import { Vehicle } from 'src/app/models/vehicle';
 import { AddressService } from './../../services/address.service';
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private user: UserService,
+    private usrProfSvc: UserProfileService,
     private route: Router
   ) {}
 
@@ -33,8 +35,14 @@ export class RegisterComponent implements OnInit {
 
     this.auth.register(newUsr).subscribe(
       data => {
-        this.newUser = new User();
-        this.route.navigateByUrl('user-profiles');
+        this.auth.login(newUsr.username, newUsr.password).subscribe(
+          dat => {
+            this.route.navigateByUrl('user-profiles');
+          },
+          err => {
+            console.log(err);
+          }
+        );
       },
       err => {
         console.log(err);

@@ -49,10 +49,10 @@ public class TripMessageController {
 		}
 	}
 
-	@PostMapping("messages/{id}")
-	private TripMessage createMessage(@RequestBody TripMessage tripMes, HttpServletResponse resp, HttpServletRequest req, Principal prin,@PathVariable int id) {
+	@PostMapping("messages")
+	private TripMessage createMessage(@RequestBody TripMessage tripMes, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 
-		TripMessage newUser = svc.create(tripMes,prin.getName(),id );
+		TripMessage newUser = svc.create(tripMes,prin.getName() );
 		if (newUser != null) {
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());

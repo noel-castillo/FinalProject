@@ -21,6 +21,7 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { AdventureCalendarComponent } from './components/adventure-calendar/adventure-calendar.component';
+import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
 
 
 
@@ -38,7 +39,8 @@ import { AdventureCalendarComponent } from './components/adventure-calendar/adve
     CategoriesComponent,
     UserProfileComponent,
     ImageComponent,
-    AdventureCalendarComponent
+    AdventureCalendarComponent,
+    TripCalendarComponent
 
   ],
   imports: [

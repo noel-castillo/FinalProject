@@ -20,6 +20,7 @@ import { AddressComponent } from './components/address/address.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
 
 
 
@@ -36,7 +37,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
     TripHostComponent,
     CategoriesComponent,
     UserProfileComponent,
-    ImageComponent
+    ImageComponent,
+    TripCalendarComponent
 
   ],
   imports: [

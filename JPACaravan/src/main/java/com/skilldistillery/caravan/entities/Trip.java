@@ -61,29 +61,45 @@ public class Trip {
 
 	@OneToOne(mappedBy = "trip")
 	private TripCalendar tripCalendar;
+		
+	private String title;
 
 //	C O N S T R U C T O R S
 
 	public Trip() {
 		super();
 	}
+	
+	public Trip(UserProfile host, Vehicle vehicle, Address departureAddress, Address destinationAddress, String description,
+			int seatsAvailable, int cargoCapacity, Date createDate, boolean enabled, double totalCost, int miles,
+			TripCalendar tripCalendar, String title) {
+		super();
+		this.host = host;
+		this.vehicle = vehicle;
+		this.departureAddress = departureAddress;
+		this.destinationAddress = destinationAddress;
+		this.description = description;
+		this.seatsAvailable = seatsAvailable;
+		this.cargoCapacity = cargoCapacity;
+		this.createDate = createDate;
+		this.enabled = enabled;
+		this.totalCost = totalCost;
+		this.miles = miles;
+		this.tripCalendar = tripCalendar;
+		this.title = title;
+	}
 
 //	M E T H O D S
 
 	@Override
 	public String toString() {
-		return "Trip [id=" + id + ", vehicle=" + vehicle + ", departureAddress=" + departureAddress
-				+ ", destinationAddress=" + destinationAddress + ", description=" + description + ", seatsAvailable="
-				+ seatsAvailable + ", cargoCapacity=" + cargoCapacity + ", createDate=" + createDate + ", enabled="
-				+ enabled + ", totalCost=" + totalCost + ", miles=" + miles + "]";
+		return "Trip [id=" + id + ", host=" + host + ", description=" + description + ", seatsAvailable="
+				+ seatsAvailable + ", cargoCapacity=" + cargoCapacity + ", enabled=" + enabled + ", totalCost="
+				+ totalCost + ", miles=" + miles + ", title=" + title + "]";
 	}
 
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public UserProfile getHost() {
@@ -174,8 +190,6 @@ public class Trip {
 		this.miles = miles;
 	}
 	
-	
-
 	public TripCalendar getTripCalendar() {
 		return tripCalendar;
 	}
@@ -184,25 +198,19 @@ public class Trip {
 		this.tripCalendar = tripCalendar;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + cargoCapacity;
-		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
-		result = prime * result + ((departureAddress == null) ? 0 : departureAddress.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((destinationAddress == null) ? 0 : destinationAddress.hashCode());
-		result = prime * result + (enabled ? 1231 : 1237);
-		result = prime * result + ((host == null) ? 0 : host.hashCode());
 		result = prime * result + id;
-		result = prime * result + miles;
-		result = prime * result + seatsAvailable;
-		long temp;
-		temp = Double.doubleToLongBits(totalCost);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((tripCalendar == null) ? 0 : tripCalendar.hashCode());
-		result = prime * result + ((vehicle == null) ? 0 : vehicle.hashCode());
 		return result;
 	}
 
@@ -215,52 +223,7 @@ public class Trip {
 		if (getClass() != obj.getClass())
 			return false;
 		Trip other = (Trip) obj;
-		if (cargoCapacity != other.cargoCapacity)
-			return false;
-		if (createDate == null) {
-			if (other.createDate != null)
-				return false;
-		} else if (!createDate.equals(other.createDate))
-			return false;
-		if (departureAddress == null) {
-			if (other.departureAddress != null)
-				return false;
-		} else if (!departureAddress.equals(other.departureAddress))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (destinationAddress == null) {
-			if (other.destinationAddress != null)
-				return false;
-		} else if (!destinationAddress.equals(other.destinationAddress))
-			return false;
-		if (enabled != other.enabled)
-			return false;
-		if (host == null) {
-			if (other.host != null)
-				return false;
-		} else if (!host.equals(other.host))
-			return false;
 		if (id != other.id)
-			return false;
-		if (miles != other.miles)
-			return false;
-		if (seatsAvailable != other.seatsAvailable)
-			return false;
-		if (Double.doubleToLongBits(totalCost) != Double.doubleToLongBits(other.totalCost))
-			return false;
-		if (tripCalendar == null) {
-			if (other.tripCalendar != null)
-				return false;
-		} else if (!tripCalendar.equals(other.tripCalendar))
-			return false;
-		if (vehicle == null) {
-			if (other.vehicle != null)
-				return false;
-		} else if (!vehicle.equals(other.vehicle))
 			return false;
 		return true;
 	}

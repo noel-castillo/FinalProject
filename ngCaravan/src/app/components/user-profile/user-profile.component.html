@@ -1,6 +1,10 @@
 <h1>User Profiles</h1>
 <div *ngIf="!admin">
-
+<p>
+  {{currentProfile.firstName}}
+  {{currentProfile.lastName}}
+  {{currentProfile.user.username}}
+</p>
 </div>
 <div *ngIf="admin">
   <div *ngIf="!selected">

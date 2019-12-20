@@ -128,6 +128,21 @@ export class TripComponent implements OnInit {
     );
   }
 
+  disableTrip(trip: Trip) {
+    console.log(trip);
+    trip.enabled = false;
+    this.tripSvc.disable(trip).subscribe(
+      data => {
+        this.loadTrips();
+        this.editTrip = null;
+      },
+      err => {
+        console.error('TripComponenent.disableTrip(): error disabling trip');
+        console.error(err);
+      }
+    );
+  }
+
   deleteTrip(id: number) {
     this.tripSvc.delete(id).subscribe(
       data => {

@@ -41,7 +41,7 @@ export class UserProfileService {
         })
       );
   }
-getUserInSessionProfile(){
+getUserInSessionProfile() {
   const credentials = this.authService.getCredentials();
   const httpOptions = {
     headers: new HttpHeaders({

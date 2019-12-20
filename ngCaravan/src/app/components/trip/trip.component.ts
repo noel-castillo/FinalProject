@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { TripService } from 'src/app/services/trip.service';
-import { Trip } from 'src/app/models/trip';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Trip } from 'src/app/models/trip';
 import { Vehicle } from 'src/app/models/vehicle';
+import { AuthService } from 'src/app/services/auth.service';
+import { TripService } from 'src/app/services/trip.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
+import { Address } from 'src/app/models/address';
 
 @Component({
   selector: 'app-trip',
@@ -19,10 +20,11 @@ export class TripComponent implements OnInit {
   trips: Trip[] = [];
   vehicles: Vehicle[] = [];
   editTrip: Trip = null;
-  createDepartAddress = null;
+  createDepartAddress = new Address();
   editDepartAddress = null;
-  createDestinationAddress = null;
-  editDestinationAddress = null;
+  createDestinationAddress = new Address();
+  editDestinationAddress = new Address();
+  tripVehicle: Vehicle = new Vehicle();
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
@@ -32,7 +34,7 @@ export class TripComponent implements OnInit {
     this.auth.login('shaun', 'wombat1').subscribe(
       data => {
         console.log('Logged in');
-        this.router.navigateByUrl('addresses');
+        this.router.navigateByUrl('trips');
       },
       err => {
         console.error('Error logging in.');
@@ -76,8 +78,20 @@ export class TripComponent implements OnInit {
   addTrip(form: NgForm) {
     const myNewTrip = new Trip();
 
-    myNewTrip.departureAddress = form.value.departureAddress;
-    myNewTrip.destinationAddress = form.value.destinationAddress;
+    const myNewDestAddress = new Address();
+    myNewDestAddress.street = form.value.destinationAddressStreet;
+    myNewDestAddress.city = form.value.destinationAddressCity;
+    myNewDestAddress.state = form.value.destinationAddressState;
+    myNewDestAddress.zip = form.value.destinationAddressZip;
+
+    const myNewDepartAddress = new Address();
+    myNewDepartAddress.street = form.value.departureAddressStreet;
+    myNewDepartAddress.city = form.value.departureAddressCity;
+    myNewDepartAddress.state = form.value.departureAddressState;
+    myNewDepartAddress.zip = form.value.departureAddressZip;
+
+    myNewTrip.departureAddress = myNewDepartAddress;
+    myNewTrip.destinationAddress = myNewDestAddress;
     myNewTrip.description = form.value.description;
     myNewTrip.seatsAvailable = form.value.seatsAvailable;
     myNewTrip.cargoCapacity = form.value.cargoCapacity;
@@ -85,10 +99,13 @@ export class TripComponent implements OnInit {
     myNewTrip.totalCost = form.value.totalCost;
     myNewTrip.miles = form.value.miles;
 
+    myNewTrip.vehicle = this.tripVehicle;
+
     console.log(myNewTrip);
     this.tripSvc.create(myNewTrip).subscribe(
       data => {
         console.log(data);
+        this.tripVehicle = null;
         this.loadTrips();
       },
       err => {

@@ -24,21 +24,21 @@ public class Trip {
 	@OneToOne
 	@JoinColumn(name = "host_id")
 	@JsonIgnore
-	private User host;
+	private UserProfile host;
 
 	@OneToOne
 	@JoinColumn(name = "vehicle_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Vehicle vehicle;
 
 	@OneToOne
 	@JoinColumn(name = "depart_address_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Address departureAddress;
 
 	@OneToOne
 	@JoinColumn(name = "destination_address_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Address destinationAddress;
 
 	private String description;
@@ -86,11 +86,11 @@ public class Trip {
 		this.id = id;
 	}
 
-	public User getHost() {
+	public UserProfile getHost() {
 		return host;
 	}
 
-	public void setHost(User host) {
+	public void setHost(UserProfile host) {
 		this.host = host;
 	}
 

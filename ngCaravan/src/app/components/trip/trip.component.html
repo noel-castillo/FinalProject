@@ -24,7 +24,7 @@
         <input type="text" name="destinationAddressCity" ngModel placeholder="Destination address city"/><br>
 
         <label for="destinationAddressState">Destination Address State: </label>
-        <input type="text" name="departureAddressState" ngModel placeholder="Destination address state"/><br>
+        <input type="text" name="destinationAddressState" ngModel placeholder="Destination address state"/><br>
 
         <label for="destinationAddressZip">Destination Address Zip: </label>
         <input type="text" name="destinationAddressZip" ngModel placeholder="Destination address zip"/><br>
@@ -46,11 +46,17 @@
         <label for="miles">Miles</label>
         <input type="number" name="miles" ngModel placeholder="Miles"/><br>
 
-        <div>
-          <select name="vehiclelist">
-              <option *ngFor="let vehicle of vehicle" value="{{vehicle.id}}">{{vehicle.year}} {{vehicle.model}}</option>
+        <!-- <div>
+          <select name="vehicle">
+              <option (click)="tripVehicle = vehicle" *ngFor="let vehicle of vehicles" value="{{vehicle}}">{{vehicle.manufactureYear}} {{vehicle.model}}</option>
           </select>
-        </div>
+        </div> -->
+
+        <div *ngFor="let vehicle of vehicles">
+            <button (click)="tripVehicle = vehicle" class="btn btn-primary"> {{vehicle.manufactureYear}} {{vehicle.model}} </button>
+          </div>
+
+
 
         <input type="submit" name="submit" value="Add" (click)="addTrip(createNewTripForm)">
 
@@ -59,7 +65,7 @@
 
 <div *ngIf=" ! editTrip">
 
-   <p *ngFor="let trip of trips" (click)="editTrip = trip"><em>Trip #{{trip.id}}</em> -- Departure Address: {{trip.departureAddress}} -- Destination Address: {{trip.destinationAddress}} -- Miles: {{trip.miles}} -- Seats Available: {{trip.seatsAvailable}} </p>
+   <p *ngFor="let trip of trips" (click)="editTrip = trip"><em>Trip #{{trip.id}}</em> -- Departure Address: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} -- Destination Address: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} -- Miles: {{trip.miles}} -- Seats Available: {{trip.seatsAvailable}} </p>
 
 </div>
 
@@ -112,7 +118,7 @@
 
     <div>
         <select name="vehiclelist">
-            <option *ngFor="let vehicle of vehicle" value="{{vehicle.id}}">{{vehicle.year}} {{vehicle.model}}</option>
+            <option *ngFor="let vehicle of vehicles" value="{{vehicle.id}}">{{vehicle.year}} {{vehicle.model}}</option>
         </select>
     </div>
 

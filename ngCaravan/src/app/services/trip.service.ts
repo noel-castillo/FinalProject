@@ -48,7 +48,7 @@ export class TripService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-
+    console.log(newTrip);
     return this.http.post<Trip>(this.url, newTrip, httpOptions)
       .pipe(
         catchError((err: any) => {

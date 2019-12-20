@@ -37,7 +37,8 @@ const routes: Routes = [
   {path: 'user-profiles', component: UserProfileComponent},
   {path: 'vehicles', component: VehicleComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'trip-profiles', component: TripProfileComponent}
 ];
 
 @NgModule({

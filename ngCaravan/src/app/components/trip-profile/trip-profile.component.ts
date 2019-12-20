@@ -1,3 +1,4 @@
+import { UserProfile } from './../../models/user-profile';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +19,7 @@ export class TripProfileComponent implements OnInit {
   // F i e l d s
 
   trip: Trip = new Trip();
+  trips: Trip[] = [];
   vehicles: Vehicle[] = [];
   editTrip: Trip = null;
   createDepartAddress = new Address();
@@ -25,11 +27,52 @@ export class TripProfileComponent implements OnInit {
   createDestinationAddress = new Address();
   editDestinationAddress = new Address();
   tripVehicle: Vehicle = new Vehicle();
+  selected: Trip = null;
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
   constructor(private auth: AuthService, private tripSvc: TripService, private vehicleSvc: VehicleService, private currentRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+
+     // grabs the array of trips from the service & adds it to this component
+  // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+    console.log(this.currentRoute.snapshot.paramMap.get('id'));
+    this.tripSvc.index().subscribe(
+        data => {
+          this.trips = data;
+        },
+        err => {
+          console.error('ngOnInit error in Trip Profile Component');
+        }
+    );
+    this.vehicleSvc.getVehiclesByUser().subscribe(
+      data => {
+        this.vehicles = data;
+      },
+      err => {
+        console.error('Error getting vehicle list');
+      }
+    );
+
   }
+
+  // disableTrip(trip: Trip) {
+  //   console.log(trip);
+  //   trip.enabled = false;
+  //   this.tripSvc.disable(trip).subscribe(
+  //     data => {
+  //       this.loadTrips();
+  //       this.editTrip = null;
+  //     },
+  //     err => {
+  //       console.error('TripComponenent.disableTrip(): error disabling trip');
+  //       console.error(err);
+  //     }
+  //   );
+  // }
+
+
+
+
 }

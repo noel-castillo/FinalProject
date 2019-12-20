@@ -28,8 +28,6 @@ export class TripHostComponent implements OnInit {
 
   constructor(
     private thSvc: TripHostService,
-    private tripSvc: TripService,
-    private tripTravSvc: TripTravelerService,
     private currentRoute: ActivatedRoute,
     private router: Router,
     private auth: AuthService,
@@ -61,8 +59,7 @@ export class TripHostComponent implements OnInit {
     this.loadReviews();
     if (!this.selectedReview && this.currentRoute.snapshot.paramMap.get('id')) {
       console.log('in oninit if statement');
-      return this.thSvc
-        .show(this.currentRoute.snapshot.paramMap.get('id'))
+      return this.thSvc.show(this.currentRoute.snapshot.paramMap.get('id'))
         .subscribe(
           data => {
             this.selectedReview = data;

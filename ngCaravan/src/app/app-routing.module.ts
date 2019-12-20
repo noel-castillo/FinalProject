@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: 'trips/:id', component: TripProfileComponent},
   {path: 'trip-calendars', component: TripCalendarComponent},
   {path: 'trip-hosts', component: TripHostComponent},
-  {path: 'trip-messages', component: TripMessageComponent},
+  {path: 'messages', component: TripMessageComponent},
   {path: 'trip-travelers', component: TripTravelerComponent},
   // {path: 'users', component: UserComponent},
   {path: 'user-profiles', component: UserProfileComponent},

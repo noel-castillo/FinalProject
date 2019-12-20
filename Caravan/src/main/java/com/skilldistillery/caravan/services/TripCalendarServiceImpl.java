@@ -36,11 +36,10 @@ public class TripCalendarServiceImpl implements TripCalendarService {
 		Optional<TripCalendar> opt = tcRepo.findById(id);
 		if (opt.isPresent()) {
 			existing = opt.get();
-			existing.setTrip(tripCal.getTrip());
 			existing.setStartDate(tripCal.getStartDate());
 			existing.setEndDate(tripCal.getEndDate());
+			existing = tcRepo.saveAndFlush(existing);
 
-			tcRepo.saveAndFlush(existing);
 		}
 		return existing;
 	}

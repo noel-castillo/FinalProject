@@ -11,9 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { TripCalendarService } from './services/trip-calendar.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
-
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-
 import { TripMessageComponent } from './components/trip-message/trip-message.component';
 import { TripComponent } from './components/trip/trip.component';
 import { AddressComponent } from './components/address/address.component';
@@ -21,6 +19,8 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { TripHostComponent } from './components/trip-host/trip-host.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.component';
+
 
 
 
@@ -38,8 +38,9 @@ import { RegisterComponent } from './components/register/register.component';
     CategoriesComponent,
     UserProfileComponent,
     ImageComponent,
-    RegisterComponent
-
+    AuthorizationServices,
+    RegisterComponent,
+    TripCalendarComponent
   ],
   imports: [
     BrowserModule,

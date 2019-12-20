@@ -25,16 +25,6 @@ export class AdventureComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.auth.login('shaun', 'wombat1').subscribe(
-      data => {
-        console.log('Logged in');
-
-      },
-      err => {
-        console.error('Error logging in.');
-        console.error(err);
-      }
-    );
     this.loadAdventures();
     if (!this.selectedAdventure && this.currentRoute.snapshot.paramMap.get('id')) {
       console.log('in oninit if statement');

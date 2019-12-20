@@ -4,13 +4,14 @@ import { AddressComponent } from './components/address/address.component';
 import { AdventureComponent } from './components/adventure/adventure.component';
 import { TripComponent } from './components/trip/trip.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 
 const routes: Routes = [
   {path: 'addresses', component: AddressComponent},
   {path: 'adventures', component: AdventureComponent},
   // {path: 'adventure-calendars', component: AdventureCalendarComponent},
-  // {path: 'categories', component: CategoryComponent},
+  {path: 'categories', component: CategoriesComponent},
   // {path: 'images', component: ImageComponent},
   {path: 'trips', component: TripComponent},
   // {path: 'trip-calendars', component: TripCalendarComponent},

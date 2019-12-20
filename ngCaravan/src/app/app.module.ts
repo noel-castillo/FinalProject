@@ -13,6 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { TripComponent } from './components/trip/trip.component';
 import { AddressComponent } from './components/address/address.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     AdventureComponent,
     TripComponent,
     AddressComponent,
-    VehicleComponent
+    VehicleComponent,
+    CategoriesComponent
 
   ],
   imports: [

@@ -26,13 +26,11 @@ export class CategoriesService {
   // M E T H O D S
 
   index() {
-
-    // if (this.authService.checkLogin()) {
-    //   return null;
-    // }
-
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -46,10 +44,12 @@ export class CategoriesService {
 
   create(categories: Categories) {
 
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type':  'application/json'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
 
@@ -62,13 +62,15 @@ export class CategoriesService {
       );
   }
 
-  update(categories: Categories) {
+  updateCategory(categories: Categories) {
 
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'Content-type': 'application/json'
-        }
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
     };
     return this.http.put<Categories>(`${this.url}/${categories.id}`, categories, httpOptions).pipe(
       catchError((err: any) => {
@@ -78,12 +80,15 @@ export class CategoriesService {
     );
   }
 
-  delete(id: number) {
+  deleteCategory(id: number) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-      headers: {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
         'X-Requested-With': 'XMLHttpRequest'
-      }
-  };
+      })
+    };
     return this.http.delete(`${this.url}/${id}`, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);

@@ -1,0 +1,42 @@
+<h1>{{title}} <span class="badge badge-primary">{{countCategories()}}</span></h1>
+<div *ngIf=!selected>
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor='let category of categories'>
+    <td (click)="displayCategory(category)">{{category.id}}</td>
+    <td >{{category.name}}</td>
+    <td (click)="deleteCategory(category.id)">X</td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+<form>
+  <input type="text" name="name" placeholder="Name" [(ngModel)]="newCategory.name">
+  <button class="btn btn-warning" (click)="addCategory(newCategory)">Add Category</button>
+</form>
+
+<div *ngIf="selected && ! editCategory">
+  <p>{{selected.id}}</p>
+  <p>{{selected.name}}</p>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditCategory()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteCategory(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editCategory">
+  <h2>{{editCategory.id}}</h2>
+  <form>
+    <label for="name">Name</label>
+    <input type="text" name="name" [(ngModel)]="editCategory.name"><br>
+    <button class="btn btn-warning" (click)="updateCategory(editCategory)">Save</button>
+    <button class="btn btn-warning" (click)="editCategory = null">Cancel</button>
+  </form>
+</div>

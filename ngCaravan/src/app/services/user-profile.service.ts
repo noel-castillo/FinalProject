@@ -10,7 +10,6 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class UserProfileService {
-
   // F I E L D S
 
   private baseUrl = 'http://localhost:8090/';
@@ -20,7 +19,11 @@ export class UserProfileService {
 
   // C O N S T R U C T O R
 
-  constructor(private http: HttpClient, private authService: AuthService, private router: Router) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   // M E T H O D S
 
@@ -29,37 +32,36 @@ export class UserProfileService {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<UserProfile[]>(this.url, httpOptions)
+    return this.http.get<UserProfile[]>(this.url, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('error');
+      })
+    );
+  }
+  getUserInSessionProfile() {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http
+      .get<UserProfile>(this.baseUrl + 'api/homeProfile', httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('error');
+          return throwError('Could not add User Profile');
         })
       );
   }
-getUserInSessionProfile(){
-  const credentials = this.authService.getCredentials();
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${credentials}`,
-      'X-Requested-With': 'XMLHttpRequest'
-    })
-  };
-
-  return this.http.get<UserProfile>(this.baseUrl + '/homeProfile',  httpOptions)
-    .pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('Could not add User Profile');
-      })
-    );
-
-}
   getProfileFromUsername(usrname: string) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
@@ -70,16 +72,15 @@ getUserInSessionProfile(){
       })
     };
 
-    return this.http.get<UserProfile>(this.url + '/' + usrname,  httpOptions)
+    return this.http
+      .get<UserProfile>(this.url + '/' + usrname, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError('Could not add User Profile');
         })
       );
-
   }
-
 
   checkLogin(): boolean {
     if (this.authService.getCredentials() === null) {
@@ -92,7 +93,6 @@ getUserInSessionProfile(){
   }
 
   create(newUserProfile: UserProfile) {
-
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -102,7 +102,8 @@ getUserInSessionProfile(){
       })
     };
 
-    return this.http.post<UserProfile>(this.url, newUserProfile, httpOptions)
+    return this.http
+      .post<UserProfile>(this.url, newUserProfile, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -121,7 +122,8 @@ getUserInSessionProfile(){
       })
     };
 
-    return this.http.put(this.url + '/' + userProfile.id, userProfile, httpOptions)
+    return this.http
+      .put(this.url + '/' + userProfile.id, userProfile, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -140,13 +142,11 @@ getUserInSessionProfile(){
       })
     };
 
-    return this.http.delete(this.url + '/' + id, httpOptions)
-      .pipe(
-        catchError((err: any) => {
-          console.log(err);
-          return throwError('Could not delete User Profile');
-        })
-      );
-
+    return this.http.delete(this.url + '/' + id, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('Could not delete User Profile');
+      })
+    );
   }
 }

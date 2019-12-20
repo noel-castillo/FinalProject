@@ -11,25 +11,30 @@ import com.skilldistillery.caravan.entities.Address;
 import com.skilldistillery.caravan.entities.Trip;
 import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.entities.UserProfile;
+import com.skilldistillery.caravan.entities.Vehicle;
 import com.skilldistillery.caravan.repositories.AddressRepository;
 import com.skilldistillery.caravan.repositories.TripRepository;
 import com.skilldistillery.caravan.repositories.UserProfileRepository;
 import com.skilldistillery.caravan.repositories.UserRepository;
+import com.skilldistillery.caravan.repositories.VehicleRepository;
 
 @Service
 public class TripServiceImpl implements TripService {
 
 	@Autowired
-	TripRepository tRepo;
+	private TripRepository tRepo;
 
 	@Autowired
-	AddressRepository addrRepo;
+	private AddressRepository addrRepo;
 
 	@Autowired
 	private UserRepository userRepo;
 
 	@Autowired
 	private UserProfileRepository userProfileRepo;
+
+	@Autowired
+	private VehicleRepository vRepo;
 
 	@Override
 	public Trip create(Trip trip, Principal prin) {
@@ -54,14 +59,49 @@ public class TripServiceImpl implements TripService {
 		Trip existing = null;
 		Address departureAddress = null;
 		Address destinationAddress = null;
+		Vehicle tripVehicle = null;
+		
+		Optional<Address> optDepAddress = addrRepo.findById(trip.getDepartureAddress().getId());
+		if(optDepAddress.isPresent()) {
+			departureAddress = optDepAddress.get();
+			departureAddress.setCity(trip.getDepartureAddress().getCity());
+			departureAddress.setState(trip.getDepartureAddress().getState());
+			departureAddress.setZip(trip.getDepartureAddress().getZip());
+			departureAddress.setStreet(trip.getDepartureAddress().getStreet());
+			addrRepo.saveAndFlush(departureAddress);
+		}
+		
+		Optional<Address> optDestAddress = addrRepo.findById(trip.getDestinationAddress().getId());
+		if(optDestAddress.isPresent()) {
+			destinationAddress = optDestAddress.get();
+			destinationAddress.setCity(trip.getDestinationAddress().getCity());
+			destinationAddress.setState(trip.getDestinationAddress().getState());
+			destinationAddress.setZip(trip.getDestinationAddress().getZip());
+			destinationAddress.setStreet(trip.getDestinationAddress().getStreet());
+			addrRepo.saveAndFlush(destinationAddress);
+		}
+		
+		Optional<Vehicle> optVehicle = vRepo.findById(trip.getVehicle().getId());
+		if(optVehicle.isPresent()) {
+			tripVehicle = optVehicle.get();
+			tripVehicle.setCapacity(trip.getVehicle().getCapacity());
+			tripVehicle.setInteriorDescription(trip.getVehicle().getInteriorDescription());
+			tripVehicle.setMake(trip.getVehicle().getMake());
+			tripVehicle.setModel(trip.getVehicle().getModel());
+			tripVehicle.setManufactureYear(trip.getVehicle().getManufactureYear());
+			tripVehicle.setSeatsAvailable(trip.getVehicle().getCapacity());
+			tripVehicle.setUserProfile(trip.getVehicle().getUserProfile());
+			vRepo.saveAndFlush(tripVehicle);
+		}
+		
 		
 		Optional<Trip> opt = tRepo.findById(id);
 		if (opt.isPresent()) {
 			existing = opt.get();
 			existing.setHost(trip.getHost());
-			existing.setVehicle(trip.getVehicle());
-			existing.setDepartureAddress(trip.getDepartureAddress());
-			existing.setDestinationAddress(trip.getDestinationAddress());
+			existing.setVehicle(tripVehicle);
+			existing.setDepartureAddress(departureAddress);
+			existing.setDestinationAddress(destinationAddress);
 			existing.setDescription(trip.getDescription());
 			existing.setSeatsAvailable(trip.getSeatsAvailable());
 			existing.setCargoCapacity(trip.getCargoCapacity());

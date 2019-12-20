@@ -43,10 +43,25 @@ public class TripTraveler {
 	@JsonIgnore
 	private UserProfile user;
 
+	private boolean approved;
+
 //	C O N S T R U C T O R S
 
 	public TripTraveler() {
 		super();
+	}
+
+	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
+			double contributionActual, Trip trip, UserProfile user, boolean approved) {
+		super();
+		this.rating = rating;
+		this.review = review;
+		this.contributionPledge = contributionPledge;
+		this.attended = attended;
+		this.contributionActual = contributionActual;
+		this.trip = trip;
+		this.user = user;
+		this.approved = approved;
 	}
 
 //	M E T H O D S
@@ -55,7 +70,7 @@ public class TripTraveler {
 	public String toString() {
 		return "TripTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", contributionPledge="
 				+ contributionPledge + ", attended=" + attended + ", contributionActual=" + contributionActual
-				+ ", trip=" + trip + ", user=" + user + "]";
+				+ ", approved=" + approved + "]";
 	}
 
 	public int getId() {
@@ -122,22 +137,19 @@ public class TripTraveler {
 		this.user = user;
 	}
 
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (attended ? 1231 : 1237);
-		long temp;
-		temp = Double.doubleToLongBits(contributionActual);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(contributionPledge);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + id;
-		temp = Double.doubleToLongBits(rating);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((review == null) ? 0 : review.hashCode());
-		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -150,30 +162,7 @@ public class TripTraveler {
 		if (getClass() != obj.getClass())
 			return false;
 		TripTraveler other = (TripTraveler) obj;
-		if (attended != other.attended)
-			return false;
-		if (Double.doubleToLongBits(contributionActual) != Double.doubleToLongBits(other.contributionActual))
-			return false;
-		if (Double.doubleToLongBits(contributionPledge) != Double.doubleToLongBits(other.contributionPledge))
-			return false;
 		if (id != other.id)
-			return false;
-		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
-			return false;
-		if (review == null) {
-			if (other.review != null)
-				return false;
-		} else if (!review.equals(other.review))
-			return false;
-		if (trip == null) {
-			if (other.trip != null)
-				return false;
-		} else if (!trip.equals(other.trip))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

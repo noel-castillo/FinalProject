@@ -38,7 +38,6 @@ import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.
     CategoriesComponent,
     UserProfileComponent,
     ImageComponent,
-    AuthorizationServices,
     RegisterComponent,
     TripCalendarComponent
   ],

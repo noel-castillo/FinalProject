@@ -31,15 +31,5 @@ export class TripProfileComponent implements OnInit {
   constructor(private auth: AuthService, private tripSvc: TripService, private vehicleSvc: VehicleService, private currentRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.auth.login('shaun', 'wombat1').subscribe(
-      data => {
-        console.log('Logged in');
-        this.router.navigateByUrl('trips');
-      },
-      err => {
-        console.error('Error logging in.');
-        console.error(err);
-      }
-    );
   }
 }

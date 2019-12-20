@@ -29,16 +29,6 @@ export class AdventureCalendarComponent implements OnInit {
   constructor(private aSvc: AdventureCalendarService, private auth: AuthService, private currentRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.auth.login('shaun', 'wombat1').subscribe(
-      data => {
-        console.log('Logged in');
-        this.router.navigateByUrl('adventure-calendars');
-      },
-      err => {
-        console.error('Error logging in.');
-        console.error(err);
-      }
-    );
 
     // grabs the array of todos from the service & adds it to this component
     // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {

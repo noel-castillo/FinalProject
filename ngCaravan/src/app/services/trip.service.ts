@@ -38,9 +38,7 @@ export class TripService {
       );
   }
   show(id: number) {
-
     const credentials = this.authService.getCredentials();
-
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,

@@ -64,8 +64,8 @@ class TripTest {
 	}
 
 	@Test
-	public void test_host_association() {
-		assertEquals("userface", trip.getHost().getUsername());
+	public void test_host_user_profile_association() {
+		assertEquals("userface", trip.getHost().getUser().getUsername());
 	}
 	
 }

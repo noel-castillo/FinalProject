@@ -5,7 +5,7 @@ import java.util.List;
 import com.skilldistillery.caravan.entities.TripMessage;
 
 public interface TripMessageService {
-	public TripMessage create(TripMessage tripmMess, String username, int tripId);
+	public TripMessage create(TripMessage tripmMess, String username);
 
 	public TripMessage update(TripMessage user, String username, int id);
 

@@ -520,6 +520,9 @@ USE `caravandb`;
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (1, 'userface', '$2a$10$KzG5DFbaZeuvJoCif7PHTe7d.2obaHYg44nOwaEvFQeOFieX7Mfa2', 'admin', 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (2, 'user2', '$2a$10$Tsz6Wn6fBbMYoEPPNCyuxusUqP1bnduB8tej9jR4m4NODWSWodmp2', NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (3, 'shaun', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (4, 'johnson', 'johnson', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (5, 'frank', 'frank', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (6, 'jimbob', 'jimbob', NULL, 1);
 
 COMMIT;
 
@@ -531,6 +534,10 @@ START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `image` (`id`, `url`) VALUES (1, 'https://i.imgur.com/KPILGym.png');
 INSERT INTO `image` (`id`, `url`) VALUES (2, 'https://imgur.com/2DmETHE');
+INSERT INTO `image` (`id`, `url`) VALUES (3, 'https://imgur.com/2DmETHE');
+INSERT INTO `image` (`id`, `url`) VALUES (4, 'https://imgur.com/2DmETHE');
+INSERT INTO `image` (`id`, `url`) VALUES (5, 'https://imgur.com/2DmETHE');
+INSERT INTO `image` (`id`, `url`) VALUES (6, 'https://imgur.com/2DmETHE');
 
 COMMIT;
 
@@ -540,10 +547,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (1, '456 Fake Avenue', 'Faketown', 'CO', 80220, '39.7', '105.0');
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (2, '3764 Elvis Presley Boulevard', 'Memphis', 'TN', 38116, '35.15', '90.05');
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (3, '987 Shaun Street', 'Shauntown', 'CO', 80116, '39.62', '104.87');
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (4, '314 S Park St,', 'Kalamazoo', 'MI', 49007, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (1, '456 Fake Avenue', 'Faketown', 'CO', 80220, '39.7', '-105.0');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (2, '3764 Elvis Presley Boulevard', 'Memphis', 'TN', 38116, '35.15', '-90.05');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (3, '987 Shaun Street', 'Shauntown', 'CO', 80116, '39.62', '-104.87');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (4, '314 S Park St', 'Kalamazoo', 'MI', 49007, '42.29', '-85.59');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (5, '2530 Arlene Ave', 'Lincoln', 'NE', 68502, '40.78', '-96.69');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (6, 'W 99th Street', 'Chicago', 'IL', 60655, '41.71', '-87.72');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (7, '7857 Texhoma Ave', 'Los Angeles', 'CA', 91325, '34.21', '-118.52');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (8, '3235 76 Country Blvd & Hwy 165', 'Branson', 'MO', 65616, '36.64', '-93.28');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (9, '88 River Road', 'Gatlinburg', 'TN', 37738, '35.71', '-83.51');
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (10, '915 Westgate Resorts Rd', 'Gatlinburg', 'TN', 37738, '35.71', '-83.51');
 
 COMMIT;
 
@@ -556,6 +569,9 @@ USE `caravandb`;
 INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, 'userface@usermail.com', '555-555-9876', '2017-06-15', 1);
 INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (2, 'user', '2', 'i\'m user 2!', 300, 2, 2, 'user2@user2mail.com', '555-555-6789', '2019-04-30', 2);
 INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (3, 'shaun', 'mcshaun', 'Hi, my name is Shaun. I like to go on trips and stuff.', 250, 2, 2, 'shaun@shaunmail.com', '555-234-1239', '2019-12-18', 3);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (4, 'johnson', 'mcjohnson', 'Hello, I am Johnson McJohnson! Let\'s go road tripping together :D', 14, 2, 5, 'johnson@johnson.com', '555-234-1238', '2019-12-19', 4);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (5, 'frank', 'mcfrank', 'Hi. I\'m Frank, and boy do I like to go on road trips.', 1000, 2, 6, 'frank@frank.com', '555-234-1237', '2019-12-20', 5);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (6, 'jimbob', 'mcjimbob', 'Howdy thar! Come a-travelin\' with me, Jimbob McJimbob', 750, 2, 7, 'jimbob@jimbob.com', '555-234-1236', '2019-12-21', 6);
 
 COMMIT;
 
@@ -565,8 +581,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (1, 'toyota', 'corolla', 1996, 40, 3, 'very nice', 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (2, 'honda', 'accord', 1993, 38, 4, 'kinda old looking', 3);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (1, 'Toyota', 'Corolla', 1996, 40, 3, 'very nice', 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (2, 'Honda', 'Accord', 1993, 38, 4, 'kinda old looking', 3);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (3, 'GMC', 'Yukon', 2012, 37, 5, 'Very nice and clean.', 4);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (4, 'Chevrolet', 'Tahoe', 2010, 30, 4, 'Lots of room to stretch out.', 5);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`) VALUES (5, 'Ford', 'Mustag', 1999, 25, 1, 'Sporty, so not a lot of room inside.', 6);
 
 COMMIT;
 
@@ -576,8 +595,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1, NULL);
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual ', 2, 36, '2019-12-29', 1, 25, 750, 2, 3, 4, 3, NULL);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1, 'Goin to Graceland');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual ', 2, 36, '2019-12-29', 1, 250, 750, 2, 3, 4, 3, 'Kalamazoo');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (3, 'I am going to the Titanic Museum in Branson, Missouri. Come along for the ride.', 3, 38, '2019-12-28', 1, 400, 800, 3, 5, 8, 4, 'Branson Titanic Museum');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (4, 'I\'m going to the awesome aquarium in Gatlinburg, TN', 2, 30, '2019-12-27', 1, 275, 300, 4, 6, 9, 5, 'Gatlinburg Aquarium');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (5, 'I plan to go this really sweet indoor water park in Pigeon Forge, TN', 2, 40, '2019-12-26', 1, 1200, 3000, 5, 7, 10, 6, 'Pigeon Forge Indoor Water Park');
 
 COMMIT;
 
@@ -670,7 +692,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (1, '2017-07-18', '2017-07-20', 'available', 1);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (1, '2020-02-18', '2017-07-20', NULL, 1);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (2, '2020-01-20', '2020-01-25', NULL, 2);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (3, '2020-01-21', '2020-01-26', NULL, 3);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (4, '2020-01-22', '2020-01-27', NULL, 4);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (5, '2020-01-23', '2020-01-28', NULL, 5);
 
 COMMIT;
 

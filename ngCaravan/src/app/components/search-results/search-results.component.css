@@ -957,6 +957,55 @@ ol {
   Footer
 -----------------------*/
 
+.newslatter-form {
+	position: relative;
+	margin-bottom: 85px;
+}
+
+.newslatter-form input {
+	width: 100%;
+	border: 1px solid #7E7E7E;
+	height: 66px;
+	color: #fff;
+	background: #333333;
+	padding-left: 35px;
+	font-weight: 700;
+	font-style: italic;
+}
+
+.newslatter input::-webkit-input-placeholder {
+	color: #fff;
+}
+
+.newslatter input::-moz-placeholder {
+	color: #fff;
+}
+
+.newslatter input:-ms-input-placeholder {
+	color: #fff;
+}
+
+.newslatter input::-ms-input-placeholder {
+	color: #fff;
+}
+
+.newslatter input::placeholder {
+	color: #fff;
+}
+
+.newslatter button {
+	position: absolute;
+	right: 0;
+	background: #FF5581;
+	width: 292px;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 700;
+	border: 1px solid #FF5581;
+	height: 100%;
+	cursor: pointer;
+}
+
 .footer-section {
 	background: #1d1d1d;
 	padding-top: 120px;

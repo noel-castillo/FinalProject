@@ -37,7 +37,24 @@ export class TripTravelerService {
         })
       );
   }
+getRequests() {
+  const credentials = this.authService.getCredentials();
+  const httpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Basic ${credentials}`,
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    })
+  };
 
+  return this.http.get<TripTraveler>(this.baseUrl + '/tripHostTravelers', httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('error');
+      })
+    );
+}
   createTripTraveler(newTripTraveler: TripTraveler) {
 
     const credentials = this.authService.getCredentials();

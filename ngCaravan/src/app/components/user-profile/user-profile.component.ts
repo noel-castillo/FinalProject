@@ -19,6 +19,8 @@ export class UserProfileComponent implements OnInit {
 
   admin = false;
 
+  trip = false;
+
   selected: UserProfile = null;
 
   userProfiles: UserProfile[] = [];
@@ -31,7 +33,7 @@ export class UserProfileComponent implements OnInit {
 
   newUser: User = new User();
 
-  hostTripRequest: TripTraveler[] ;
+  hostTripRequest: TripTraveler[];
 
   // C O N S T R U C T O R
 

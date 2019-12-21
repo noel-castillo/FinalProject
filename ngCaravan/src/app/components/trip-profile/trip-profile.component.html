@@ -1,1 +1,38 @@
-<p>trip-profile works!</p>
+<h1>Trip Profile Component</h1>
+
+<div *ngIf="!selected">
+  <table class="table table-hover table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Title</th>
+        <th>ID</th>
+        <th>Host</th>
+        <th>Departure Address</th>
+        <th>Destination Address</th>
+        <th>Description</th>
+        <th>Seats Avialable</th>
+        <th>Cargo Capacity</th>
+        <th>Create Date</th>
+        <th>Total Cost</th>
+        <th>Miles</th>
+        <th>Vehicle</th>
+      </tr>
+    </thead>
+    <!-- <tbody>
+      <tr *ngFor="let trip of trips">
+        <td (click)="displayTrips(userPro)">{{ trip.id }}</td>
+        <td>{{ trip.firstName }}</td>
+        <td>{{ trip.lastName }}</td>
+        <td>{{ trip.email }}</td>
+        <td>{{ trip.bio }}</td>
+        <td>{{ trip.phone }}</td>
+        <td>{{ trip.mileagePoints }}</td>
+        <td>{{ trip.registrationDate }}</td>
+        <td>{{ trip.profilePic }}</td>
+        <td>{{ userPro.address.city }} {{ userPro.address.state }}</td>
+        <td>{{ userPro.user.username }}</td>
+        <td>{{ userPro.vehicles }}</td>
+      </tr>
+    </tbody> -->
+  </table>
+</div>

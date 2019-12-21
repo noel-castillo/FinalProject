@@ -1,3 +1,4 @@
+import { TripTravelerService } from './../../services/trip-traveler.service';
 import { UserProfile } from './../../models/user-profile';
 import { UserProfileService } from './../../services/user-profile.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
+import { TripTraveler } from 'src/app/models/trip-traveler';
 
 @Component({
   selector: 'app-user-profile',
@@ -29,13 +31,16 @@ export class UserProfileComponent implements OnInit {
 
   newUser: User = new User();
 
+  hostTripRequest: TripTraveler[] ;
+
   // C O N S T R U C T O R
 
   constructor(
     private uSvc: UserProfileService,
     private auth: AuthService,
     private currentRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tripTravSvc: TripTravelerService
   ) {}
 
   // M E T H O D S
@@ -66,6 +71,7 @@ export class UserProfileComponent implements OnInit {
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
+        this.checkIfAdmin();
       },
       err => {
         console.log(err);
@@ -97,6 +103,14 @@ export class UserProfileComponent implements OnInit {
       },
       didntWork => {
         console.error('UserProfile Component reload() DID NOT WORK');
+      }
+    );
+    this.tripTravSvc.getRequests().subscribe(
+      data => {
+        this.hostTripRequest.push(data);
+      },
+      err => {
+        console.log(err);
       }
     );
   }

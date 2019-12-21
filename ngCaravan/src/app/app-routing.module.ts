@@ -1,3 +1,4 @@
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'vehicles', component: VehicleComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'search-results', component: SearchResultsComponent},
   {path: 'trip-profiles', component: TripProfileComponent}
 ];
 

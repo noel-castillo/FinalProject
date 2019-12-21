@@ -23,13 +23,10 @@
     "angular2": "^2.0.0-beta.0",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
-<<<<<<< HEAD
-=======
     "live-server": "^1.2.1",
     "main": "^1000.0.1",
     "mixitup": "^3.3.1",
     "owl": "0.0.6",
->>>>>>> fca4bd31d73e3ef82d4900fd39cb908ec148a4d9
     "rxjs": "~6.4.0",
     "systemjs": "^6.1.7",
     "tslib": "^1.10.0",

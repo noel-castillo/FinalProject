@@ -1,13 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";
-@import "css/bootstrap.min.css";
-@import "css/flaticon.css";
-@import "css/font-awesome.min.css";
-@import "css/magnific-popup.css";
-@import "css/nice-select.css";
-@import "css/owl.carousel.min.css";
-@import "css/slicknav.min.css";
-@import "css/style.css";
 /******************************************************************
     Template Name: Local Direction
     Description: Local Direction HTML Template
@@ -47,7 +37,7 @@ body {
 	height: 100%;
 	font-family: "Lato", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	/* font-smoothing: antialiased; */
+	font-smoothing: antialiased;
 	background: none;
 }
 
@@ -610,7 +600,7 @@ ol {
 	display: inline-block;
 	padding-top: 20px;
 	padding-bottom: 15px;
-	/* float: right; */
+	float: right;
 }
 
 .trend-item .trend-text h4 {
@@ -1858,7 +1848,7 @@ ol {
 	position: absolute;
 	left: 50%;
 	top: 52px;
-	/* background-image: url(../../../assets/img/line.png); */
+	background-image: url(../assets/img/line.png);
 	height: 1556px;
 	width: 319px;
 	content: "";
@@ -2567,6 +2557,3 @@ ol {
 		margin-left: 0;
 	}
 }
-
-
-

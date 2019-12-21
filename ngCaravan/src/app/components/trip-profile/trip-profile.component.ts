@@ -1,3 +1,4 @@
+import { TripHost } from 'src/app/models/trip-host';
 import { UserProfile } from './../../models/user-profile';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -18,6 +19,8 @@ export class TripProfileComponent implements OnInit {
 
   // F i e l d s
 
+  tripHost: UserProfile;
+
   trip: Trip = new Trip();
   trips: Trip[] = [];
   vehicles: Vehicle[] = [];
@@ -37,10 +40,12 @@ export class TripProfileComponent implements OnInit {
 
      // grabs the array of trips from the service & adds it to this component
   // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
-    console.log(this.currentRoute.snapshot.paramMap.get('id'));
+    // console.log(this.currentRoute.snapshot.paramMap.get('id'));
     this.tripSvc.index().subscribe(
         data => {
           this.trips = data;
+          console.log('*** TRIP HOST *** ' + this.trips[0].host.id);
+          this.tripHost = this.trips[0].host;
         },
         err => {
           console.error('ngOnInit error in Trip Profile Component');
@@ -55,6 +60,10 @@ export class TripProfileComponent implements OnInit {
       }
     );
 
+  }
+
+  displayTripProfiles(tripProfile) {
+    this.selected = tripProfile;
   }
 
   // disableTrip(trip: Trip) {

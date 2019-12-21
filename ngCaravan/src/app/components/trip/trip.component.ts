@@ -14,9 +14,8 @@ import { Address } from 'src/app/models/address';
   styleUrls: ['./trip.component.css']
 })
 export class TripComponent implements OnInit {
-
   // F i e l d s
-
+  new = false;
   trips: Trip[] = [];
   vehicles: Vehicle[] = [];
   editTrip: Trip = null;
@@ -28,20 +27,25 @@ export class TripComponent implements OnInit {
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
-  constructor(private auth: AuthService, private tripSvc: TripService, private vehicleSvc: VehicleService, private currentRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private auth: AuthService,
+    private tripSvc: TripService,
+    private vehicleSvc: VehicleService,
+    private currentRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-
-  // grabs the array of trips from the service & adds it to this component
-  // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+    // grabs the array of trips from the service & adds it to this component
+    // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
     console.log(this.currentRoute.snapshot.paramMap.get('id'));
     this.tripSvc.index().subscribe(
-        data => {
-          this.trips = data;
-        },
-        err => {
-          console.error('ngOnInit error in Address Component');
-        }
+      data => {
+        this.trips = data;
+      },
+      err => {
+        console.error('ngOnInit error in Address Component');
+      }
     );
     this.vehicleSvc.getVehiclesByUser().subscribe(
       data => {
@@ -60,7 +64,7 @@ export class TripComponent implements OnInit {
         this.trips = data;
       },
       err => {
-      console.error(err);
+        console.error(err);
       }
     );
   }
@@ -144,5 +148,5 @@ export class TripComponent implements OnInit {
         console.error(error);
       }
     );
- }
+  }
 }

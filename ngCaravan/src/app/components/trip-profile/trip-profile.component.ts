@@ -19,7 +19,7 @@ export class TripProfileComponent implements OnInit {
 
   // F i e l d s
 
-  tripHost: UserProfile = null;
+  tripHost: UserProfile;
 
   trip: Trip = new Trip();
   trips: Trip[] = [];
@@ -40,11 +40,12 @@ export class TripProfileComponent implements OnInit {
 
      // grabs the array of trips from the service & adds it to this component
   // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
-    console.log(this.currentRoute.snapshot.paramMap.get('id'));
+    // console.log(this.currentRoute.snapshot.paramMap.get('id'));
     this.tripSvc.index().subscribe(
         data => {
           this.trips = data;
-          this.trips[0].host = this.tripHost;
+          console.log('*** TRIP HOST *** ' + this.trips[0].host.id);
+          this.tripHost = this.trips[0].host;
         },
         err => {
           console.error('ngOnInit error in Trip Profile Component');

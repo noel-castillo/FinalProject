@@ -28,7 +28,12 @@
         </div>
       </div>
       <div *ngIf="checkIfLoggedIn()">
-        <app-logout></app-logout>
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" [routerLink]="['/user-profiles']"
+            >Profile</a
+          >
+          <app-logout></app-logout>
+        </div>
       </div>
     </div>
   </div>

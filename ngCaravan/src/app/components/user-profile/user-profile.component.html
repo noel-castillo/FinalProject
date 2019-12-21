@@ -3,9 +3,19 @@
   <p>
     {{ currentProfile.firstName }}
   </p>
+    <p>{{ currentProfile.lastName }}</p>
+    <p>{{ currentProfile.mileagePoints }}</p>
+    <p>{{ currentProfile.bio }}</p>
+    <p>{{ currentProfile.email }}</p>
+    <p>{{ currentProfile.phone }}</p>
+    <p>{{ currentProfile.address.street}}</p>
 
+  <a class="nav-item nav-link" (click)="trip = !trip">Trips</a>
+  <div *ngIf="trip">
+    <app-trip></app-trip>
+  </div>
   <div *ngFor="let req of hostTripRequest">
-<p>{{req.user.registrationDate}}</p>
+    <p>{{ req.trip.title }}</p>
   </div>
 </div>
 <div *ngIf="admin">

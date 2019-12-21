@@ -1,4 +1,9 @@
+import { Adventure } from 'src/app/models/adventure';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Trip } from 'src/app/models/trip';
+import { AdventureService } from 'src/app/services/adventure.service';
+import { TripService } from 'src/app/services/trip.service';
 
 declare var jQuery: any;
 
@@ -11,9 +16,47 @@ declare var jQuery: any;
 
 export class SearchResultsComponent implements OnInit {
 
-  constructor() { }
+  // F i e l d s
+
+  trips: Trip[] = [];
+  adventures: Adventure[] = [];
+  types: string[] = ['trips', 'adventures'];
+  searchType: string;
+
+  // C o n s t r u c t o r
+
+  constructor(private tripSvc: TripService, private adventureSvc: AdventureService) { }
+
+
+  search(form: NgForm) {
+    if (form.value.searchType === 'trips') {
+      this.tripSvc.index().subscribe(
+        data => {
+          this.trips = data;
+        },
+        err => {
+          console.error('Search-Results Component: Unable to load trips');
+        }
+      );
+
+    }
+
+    if (form.value.searchType === 'adventures') {
+      this.adventureSvc.index().subscribe(
+        data => {
+          this.adventures = data;
+        },
+        err => {
+          console.error('Search-Results Component: Unable to load adventures');
+        }
+      );
+    }
+
+  }
 
   ngOnInit() {
+    this.trips = null;
+    this.adventures = null;
     // tslint:disable-next-line: only-arrow-functions
     (function($) {
       // tslint:disable-next-line: only-arrow-functions

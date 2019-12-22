@@ -1,5 +1,5 @@
-<div class="container-fluid" *ngIf="!selectedReview">
-  <div>
+<div class="container-fluid" *ngIf="admin">
+  <div *ngIf="!selectedReview">
     <table class="table table-striped table-hover">
       <thead class="thead thead-dark">
         <tr>
@@ -27,8 +27,7 @@
     </table>
     <button class="btn btn-success" (click)="new = true">Create New Review</button>
   </div>
-
-
+</div>
 
   <div>
     <table class="table table-striped table-hover">
@@ -46,10 +45,10 @@
       <tbody>
         <tr></tr>
         <tr  *ngFor="let pass of reviews">
-          <div *ngIf="pass.trip.host.id === currentUser.id">
+          <div *ngIf="pass.trip.host.id == currentUser.id">
             {{ pass.id }}
           <td>{{pass.trip.id}}</td>
-          <td>{{pass.trip.host}} review of {{ pass.passenger.firstName }} {{pass.passenger.lastName}}
+          <td>{{pass.trip.host.firstName}} {{pass.trip.host.lastName}} review of {{ pass.passenger.firstName }} {{pass.passenger.lastName}}
           </td>
           <td>{{pass.rating}}</td>
           <td>{{pass.review}}</td>
@@ -59,7 +58,7 @@
     </table>
     <button class="btn btn-success" (click)="new = true">Create New Review</button>
   </div>
-</div>
+
 
 <div *ngIf="selectedReview">
   {{selectedReview.id}}

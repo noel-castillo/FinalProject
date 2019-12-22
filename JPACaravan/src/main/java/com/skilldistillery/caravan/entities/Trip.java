@@ -23,7 +23,7 @@ public class Trip {
 
 	@OneToOne
 	@JoinColumn(name = "host_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private UserProfile host;
 
 	@OneToOne
@@ -61,7 +61,8 @@ public class Trip {
 
 	@OneToOne(mappedBy = "trip")
 	private TripCalendar tripCalendar;
-		
+	
+	
 	private String title;
 
 //	C O N S T R U C T O R S

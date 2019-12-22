@@ -23,6 +23,7 @@ export class TripHostComponent implements OnInit {
   new = false;
   editReview: TripHost = null;
   currentUser: UserProfile;
+  admin = false;
 
 
 
@@ -35,28 +36,18 @@ export class TripHostComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.auth.login('shaun', 'wombat1').subscribe(
-      data => {
+    this.loadReviews();
 
-      },
-      err => {
-        console.error('Error logging in.');
-        console.error(err);
-      }
-    );
     this.userProSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentUser = data;
-        console.log('in user pro service');
-        console.log(this.currentUser);
-        console.log(this.currentUser.id);
+        this.checkIfAdmin();
       },
       error => {
         console.error(error);
         this.router.navigateByUrl('not-found');
       }
     );
-    this.loadReviews();
     if (!this.selectedReview && this.currentRoute.snapshot.paramMap.get('id')) {
       console.log('in oninit if statement');
       return this.thSvc.show(this.currentRoute.snapshot.paramMap.get('id'))
@@ -70,6 +61,21 @@ export class TripHostComponent implements OnInit {
           }
         );
     }
+  }
+  checkIfAdmin() {
+    this.userProSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.currentUser = data;
+        if (this.currentUser.user.role === 'admin') {
+          this.admin = true;
+        } else {
+          this.admin = false;
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   loadReviews() {
     this.thSvc.index().subscribe(

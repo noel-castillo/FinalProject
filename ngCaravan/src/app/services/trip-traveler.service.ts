@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TripTraveler } from '../models/trip-traveler';
 import { catchError } from 'rxjs/operators';

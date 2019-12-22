@@ -83,7 +83,7 @@
     <input type="number" name="rating" class="form-control" placeholder="Rating" [(ngModel)]="editReview.rating"/>
     <input type="text" name="review" class="form-control" placeholder="Review" [(ngModel)]="editReview.review"/>
     <button class="btn btn-primary" type="submit" value="Edit Review" (click)="updateReview()">Submit</button>
-    <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = false">Cancel</button>
+    <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = null">Cancel</button>
     <button class="btn btn-danger" (click)="deleteReview()">Delete</button>
   </form>
 </div>

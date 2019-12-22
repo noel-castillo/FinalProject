@@ -9,17 +9,17 @@
           <form #searchForm="ngForm" class="filter-search">
             <div class='category-search'>
               <h5>Search For</h5>
-              <select name="searchType"class="ca-search" ngModel>
-                <option  type="text" (click)="searchType='trips'" [value]="trips" >Trips</option>
-                <option  type="text" (click)="searchType='adventures'" [value]="adventures" >Adventures</option>
+              <select name="searchType" for="searchType" class="ca-search" ngModel>
+                <option (click)="searchType = 1" value=1>Trips</option>
+                <option (click)="searchType = 2" value=2>Adventures</option>
               </select>
             </div>
             <div class="location-search newslatter-form">
               <label for="location"></label>
-                <input type="text" name="location" placeholder="Your Location" ngModel>
+              <input type="text" name="location" placeholder="Your Location" ngModel>
             </div>
             <button type="submit" (click)="search(searchForm)">Search Now</button>
-            </form>
+          </form>
         </div>
       </div>
     </div>
@@ -54,6 +54,39 @@
             <div class="open">Save</div>
           </div>
           <div class="tic-text">Adventures</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section *ngIf="trips" class="trending-restaurant spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title">
+          <h2>Top trending for your location</h2>
+          <p>Join others in your adventures throughout the world</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div *ngFor="let trip of trips" class="trend-item">
+          <div class="trend-pic">
+            <!-- <img src="../../../assets/img/trending/trending-1.jpg" alt=""> -->
+            <img [src]="trip.host.profilePic.url" alt="">
+            <div class="rating">{{trip.host.mileagePoints}}</div>
+          </div>
+          <div class="trend-text">
+            <h4>{{trip.title}}</h4>
+            <span>Departing: {{trip.departureAddress.city}}, {{trip.departureAddress.state}}</span>
+            <span>Arriving: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}}</span>
+            <p>{{trip.description}}.</p>
+            <div class="closed">Join</div>
+            <div class="open">Save</div>
+          </div>
+          <div class="tic-text">Road Trips</div>
         </div>
       </div>
     </div>

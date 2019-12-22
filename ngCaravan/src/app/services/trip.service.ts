@@ -33,7 +33,7 @@ export class TripService {
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('error');
+          return throwError('Trip Service index() ERROR');
         })
       );
   }

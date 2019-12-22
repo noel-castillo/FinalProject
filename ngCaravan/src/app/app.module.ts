@@ -26,7 +26,11 @@ import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.
 import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+<<<<<<< HEAD
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+=======
+import { AdventureProfileComponent } from './components/adventure-profile/adventure-profile.component';
+>>>>>>> 857ea038cb72416f2613ac9c81651ef114d0d5ea
 
 
 
@@ -54,7 +58,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterComponent,
     TripProfileComponent,
     LogoutComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    AdventureProfileComponent
 
 
   ],

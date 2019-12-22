@@ -21,7 +21,9 @@ export class SearchResultsComponent implements OnInit {
   trips: Trip[] = [];
   adventures: Adventure[] = [];
   types: string[] = ['trips', 'adventures'];
-  searchType: string;
+  searchType: number;
+  searchTrips = 'trips';
+  searchAdventures = 'adventures';
 
   // C o n s t r u c t o r
 
@@ -33,8 +35,8 @@ export class SearchResultsComponent implements OnInit {
   search(form: NgForm) {
     console.log(form.value.location);
     console.log(form.value.searchType);
-    console.log(this.searchType);
-    if (this.searchType === 'trips') {
+    // if (form.value.searchType === 1 || this.searchType === 1) {
+    if (true) {
       this.tripSvc.index().subscribe(
         data => {
           this.trips = data;
@@ -46,6 +48,7 @@ export class SearchResultsComponent implements OnInit {
 
     }
 
+    // if (form.value.searchType === 2 || this.searchType === 2) {
     if (true) {
       this.adventureSvc.index().subscribe(
         data => {

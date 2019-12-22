@@ -50,7 +50,7 @@
             <h4>{{adventure.title}}</h4>
             <span>{{adventure.address.city}}, {{adventure.address.state}}</span>
             <p>{{adventure.description}}.</p>
-            <div [routerLink]="['/adventure-profile/' + adventure.id + '']" class="closed">Join</div>
+            <div [routerLink]="['/adventure-profile/' + adventure.id + '']" class="closed">View Details</div>
             <div class="open">Save</div>
           </div>
           <div class="tic-text">Adventures</div>
@@ -83,7 +83,7 @@
             <span>Departing: {{trip.departureAddress.city}}, {{trip.departureAddress.state}}</span>
             <span>Arriving: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}}</span>
             <p>{{trip.description}}.</p>
-            <div class="closed">Join</div>
+            <div [routerLink]="['/trip-profile/' + trip.id + '']" class="closed">View Details</div>
             <div class="open">Save</div>
           </div>
           <div class="tic-text">Road Trips</div>

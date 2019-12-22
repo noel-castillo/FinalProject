@@ -42,7 +42,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'search-results', component: SearchResultsComponent},
-  {path: 'trip-profiles', component: TripProfileComponent}
+  {path: 'trip-profile/:id', component: TripProfileComponent}
 ];
 
 @NgModule({

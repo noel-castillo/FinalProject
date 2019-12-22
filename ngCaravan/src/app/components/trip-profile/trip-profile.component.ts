@@ -23,16 +23,8 @@ export class TripProfileComponent implements OnInit {
 
   tripHost: UserProfile;
 
-  trip: Trip = null;
-  trips: Trip[] = [];
-  vehicles: Vehicle[] = [];
-  editTrip: Trip = null;
-  createDepartAddress = new Address();
-  editDepartAddress = null;
-  createDestinationAddress = new Address();
-  editDestinationAddress = new Address();
-  tripVehicle: Vehicle = new Vehicle();
-  selected: Trip = null;
+  trip: Trip;
+  address = '';
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
@@ -138,49 +130,15 @@ export class TripProfileComponent implements OnInit {
      // grabs the array of trips from the service & adds it to this component
   // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
     // console.log(this.currentRoute.snapshot.paramMap.get('id'));
-    this.tripSvc.index().subscribe(
+    this.tripSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
         data => {
-          this.trips = data;
-          console.log('*** TRIP HOST *** ' + this.trips[0].host.id);
-          this.tripHost = this.trips[0].host;
-          // hardcoding TRIP FIXME
-          this.trip = this.trips[2];
+          this.trip = data;
         },
         err => {
           console.error('ngOnInit error in Trip Profile Component');
         }
     );
-    this.vehicleSvc.getVehiclesByUser().subscribe(
-      data => {
-        this.vehicles = data;
-      },
-      err => {
-        console.error('Error getting vehicle list');
-      }
-    );
 
   }
-
-  displayTripProfiles(tripProfile) {
-    this.selected = tripProfile;
-  }
-
-  // disableTrip(trip: Trip) {
-  //   console.log(trip);
-  //   trip.enabled = false;
-  //   this.tripSvc.disable(trip).subscribe(
-  //     data => {
-  //       this.loadTrips();
-  //       this.editTrip = null;
-  //     },
-  //     err => {
-  //       console.error('TripComponenent.disableTrip(): error disabling trip');
-  //       console.error(err);
-  //     }
-  //   );
-  // }
-
-
-
 
 }

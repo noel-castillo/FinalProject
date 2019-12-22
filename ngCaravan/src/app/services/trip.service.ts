@@ -38,7 +38,7 @@ export class TripService {
       );
   }
 
-  show(id: number) {
+  show(id: string) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -47,7 +47,7 @@ export class TripService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Trip[]>(this.url + '/' + id, httpOptions)
+    return this.http.get<Trip>(this.url + '/' + id, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

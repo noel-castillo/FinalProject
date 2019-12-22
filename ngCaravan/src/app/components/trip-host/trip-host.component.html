@@ -1,5 +1,5 @@
-<div class="container-fluid" *ngIf="!selectedReview">
-  <div>
+<div class="container-fluid" *ngIf="admin">
+  <div *ngIf="!selectedReview">
     <table class="table table-striped table-hover">
       <thead class="thead thead-dark">
         Trip Host Reviews of Passengers
@@ -29,6 +29,38 @@
     <button class="btn btn-success" (click)="new = true">Create New Review</button>
   </div>
 </div>
+
+  <div>
+    <table class="table table-striped table-hover">
+      <thead class="thead thead-dark">
+        <tr>
+          <th>
+           My Hosted Trips
+          </th>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr></tr>
+        <tr  *ngFor="let pass of reviews">
+          <div *ngIf="pass.trip.host.id == currentUser.id">
+            {{ pass.id }}
+          <td>{{pass.trip.id}}</td>
+          <td>{{pass.trip.host.firstName}} {{pass.trip.host.lastName}} review of {{ pass.passenger.firstName }} {{pass.passenger.lastName}}
+          </td>
+          <td>{{pass.rating}}</td>
+          <td>{{pass.review}}</td>
+        </div>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-success" (click)="new = true">Create New Review</button>
+  </div>
+
+
 <div *ngIf="selectedReview">
   {{selectedReview.id}}
   {{selectedReview.review}}
@@ -36,6 +68,7 @@
   <button class="btn btn-warning" (click)="editAdventure = selectedReview">Edit</button>
   <button class="btn btn-success" (click)="new = true">Create New Adventure</button>
 </div>
+
 <div *ngIf="new">
   <form #createForm="ngForm">
     <input type="number" name="rating" class="form-control" placeholder="Rating" ngModel/>
@@ -44,12 +77,13 @@
     <button class="btn btn-primary" type="submit" value="Cancel" (click)="new = false">Cancel</button>
   </form>
 </div>
+
 <div *ngIf="editReview">
   <form #createForm="ngForm">
     <input type="number" name="rating" class="form-control" placeholder="Rating" [(ngModel)]="editReview.rating"/>
     <input type="text" name="review" class="form-control" placeholder="Review" [(ngModel)]="editReview.review"/>
     <button class="btn btn-primary" type="submit" value="Edit Review" (click)="updateReview()">Submit</button>
-    <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = false">Cancel</button>
+    <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = null">Cancel</button>
     <button class="btn btn-danger" (click)="deleteReview()">Delete</button>
   </form>
 </div>

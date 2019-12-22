@@ -26,6 +26,7 @@ import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.
 import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -62,7 +63,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     TripService,

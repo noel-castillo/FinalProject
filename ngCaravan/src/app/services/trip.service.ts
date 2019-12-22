@@ -37,6 +37,7 @@ export class TripService {
         })
       );
   }
+
   show(id: number) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
@@ -108,7 +109,6 @@ export class TripService {
       })
     );
   }
-
 
   delete(id: number) {
     const credentials = this.authService.getCredentials();

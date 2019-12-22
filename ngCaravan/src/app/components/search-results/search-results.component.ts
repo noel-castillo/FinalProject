@@ -1,6 +1,6 @@
-import { Adventure } from 'src/app/models/adventure';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Adventure } from 'src/app/models/adventure';
 import { Trip } from 'src/app/models/trip';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { TripService } from 'src/app/services/trip.service';
@@ -27,9 +27,14 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(private tripSvc: TripService, private adventureSvc: AdventureService) { }
 
+  // M E T H O D S
+
 
   search(form: NgForm) {
-    if (form.value.searchType === 'trips') {
+    console.log(form.value.location);
+    console.log(form.value.searchType);
+    console.log(this.searchType);
+    if (this.searchType === 'trips') {
       this.tripSvc.index().subscribe(
         data => {
           this.trips = data;
@@ -41,7 +46,7 @@ export class SearchResultsComponent implements OnInit {
 
     }
 
-    if (form.value.searchType === 'adventures') {
+    if (true) {
       this.adventureSvc.index().subscribe(
         data => {
           this.adventures = data;

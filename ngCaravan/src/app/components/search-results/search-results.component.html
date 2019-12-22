@@ -50,7 +50,7 @@
             <h4>{{adventure.title}}</h4>
             <span>{{adventure.address.city}}, {{adventure.address.state}}</span>
             <p>{{adventure.description}}.</p>
-            <div class="closed">Join</div>
+            <div [routerLink]="['/adventure-profile/' + adventure.id + '']" class="closed">Join</div>
             <div class="open">Save</div>
           </div>
           <div class="tic-text">Adventures</div>

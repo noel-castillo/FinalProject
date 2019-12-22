@@ -4,66 +4,51 @@ import { Adventure } from 'src/app/models/adventure';
 import { Trip } from 'src/app/models/trip';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { TripService } from 'src/app/services/trip.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 declare var jQuery: any;
 
 @Component({
-  selector: 'app-search-results',
-  templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.css'],
-
+  selector: 'app-adventure-profile',
+  templateUrl: './adventure-profile.component.html',
+  styleUrls: ['./adventure-profile.component.css']
 })
+export class AdventureProfileComponent implements OnInit {
 
-export class SearchResultsComponent implements OnInit {
+  // F I E L D S
 
-  // F i e l d s
+  adventure: Adventure;
+  address = '';
 
-  trips: Trip[] = [];
-  adventures: Adventure[] = [];
-  types: string[] = ['trips', 'adventures'];
-  searchType: number;
-  searchTrips = 'trips';
-  searchAdventures = 'adventures';
+  // C O N S T R U C T O R
 
-  // C o n s t r u c t o r
-
-  constructor(private tripSvc: TripService, private adventureSvc: AdventureService) { }
+  constructor(private adventureSvc: AdventureService, private currentRoute: ActivatedRoute,
+              private router: Router, ) { }
 
   // M E T H O D S
 
+  loadAdventure() {
+    this.adventureSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
+      data => {
+        this.adventure = data;
+        console.log(this.adventure.title);
+        this.address = '';
+        this.address += this.adventure.address.street + ', ';
+        this.address += this.adventure.address.city + ', ';
+        this.address += this.adventure.address.state + ' ';
+        this.address += this.adventure.address.zip + ' ';
+        this.address.replace(/ /g, '+');
 
-  search(form: NgForm) {
-    console.log(form.value.location);
-    console.log(form.value.searchType);
-    // if (form.value.searchType === 1 || this.searchType === 1) {
-    if (true) {
-      this.tripSvc.index().subscribe(
-        data => {
-          this.trips = data;
-        },
-        err => {
-          console.error('Search-Results Component: Unable to load trips');
-        }
-      );
-
-    }
-
-    // if (form.value.searchType === 2 || this.searchType === 2) {
-    if (true) {
-      this.adventureSvc.index().subscribe(
-        data => {
-          this.adventures = data;
-        },
-        err => {
-          console.error('Search-Results Component: Unable to load adventures');
-        }
-      );
-    }
-
+      },
+      err => {
+        console.error('Adventure Profile Component: Unable to load adventure');
+      }
+    );
   }
+
+  // ngOnInit
+
   ngOnInit() {
-    this.trips = null;
-    this.adventures = null;
     // tslint:disable-next-line: only-arrow-functions
     (function($) {
       // tslint:disable-next-line: only-arrow-functions
@@ -159,6 +144,10 @@ export class SearchResultsComponent implements OnInit {
 
     })(jQuery);
 
+    this.loadAdventure();
+
   }
+
+
 
 }

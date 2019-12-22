@@ -28,39 +28,45 @@
 
   </body>
 
-  <div id="bottom-bar" >
-
+  <div id="bottom-bar">
     <div class="text-center">
-      <a href="#" style="color:black"><i class="material-icons" routerLink="home">
-      featured_play_list
-      </i><br>List</a>
+    <a class="nav-item nav-link active" [routerLink]="['/home']">
+      <i class="material-icons">
+        home
+        </i><br>Home<span class="sr-only">(current)</span></a>
     </div>
 
     <div class="text-center">
-      <a href="#" style="color:black"><i class="material-icons" routerLink="home">
+      <a class="nav-item nav-link" style="color:black" [routerLink]="['/messages']"><i class="material-icons">
+      chat_bubble_outline
+      </i><br>Messages</a>
+    </div>
+
+    <div class="text-center">
+      <a class="nav-item nav-link" style="color:black" [routerLink]="['/user-profiles']"><i class="material-icons">
       face
       </i><br>Profile</a>
     </div>
 
     <div class="text-center">
-      <a href="#" style="color:black"><i class="material-icons" routerLink="home">
+      <a class="nav-item nav-link" style="color:black" [routerLink]="['/search-results']"><i class="material-icons">
       search
       </i><br>Explore</a>
     </div>
 
     <div class="text-center">
-      <a href="#" style="color:black"><i class="material-icons" routerLink="home">
+      <a class="nav-item nav-link" style="color:black" [routerLink]="['/trips']"><i class="material-icons">
       work
-      </i><br>Trips </a>
+      </i><br>Trips</a>
     </div>
 
-    <div class="text-center">
-      <a href="#" style="color:black"><i class="material-icons" routerLink="home">
-      fastfood
-      </i><br>Food </a>
-    </div>
+    <!-- <div class="text-center">
+      <a class="nav-item nav-link" style="color:black" [routerLink]="['/adventures']"><i class="material-icons">
+      emoji_flags
+      </i><br>Adventures</a>
+    </div> -->
 
-    <!-- https://material.io/resources/icons/?style=baseline  material icons to use here-->
+    <!-- https://material.io/resources/icons/?style=baseline *** material icons to use here-->
   </div>
 
 <script src="assets/js/jquery.magnific-popup.min.js"></script>

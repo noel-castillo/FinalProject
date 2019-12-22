@@ -502,6 +502,23 @@ CREATE TABLE IF NOT EXISTS `adventure_img` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `adventure_traveler_review_of_host`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `adventure_traveler_review_of_host` ;
+
+CREATE TABLE IF NOT EXISTS `adventure_traveler_review_of_host` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `rating` INT NULL,
+  `review` VARCHAR(400) NULL,
+  `attended` TINYINT NULL,
+  `adventure_id` INT NOT NULL,
+  `user_profile_id` INT NOT NULL,
+  `traveler_status` ENUM('finished', 'accepted', 'denied', 'awaiting', 'saved') NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS caravan@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';

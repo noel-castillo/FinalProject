@@ -1,5 +1,5 @@
 package com.skilldistillery.caravan.entities;
 
-public enum TripTravelerStatus {
+public enum TravelerStatus {
 	OVER, ACCEPTED, NOTACCEPTED, NOTCOMMITED;
 }

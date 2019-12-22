@@ -34,6 +34,20 @@ public class TripTravelerController {
 		return svc.index();
 	}
 	
+	@GetMapping("tripHostTravelers")
+	public List<TripTraveler> allTripsRequests(Principal prin,HttpServletResponse resp, HttpServletRequest req) {
+		try {
+			System.out.println(prin.toString());
+			StringBuffer url = req.getRequestURL();
+			resp.addHeader("Location", url.toString());
+			resp.setStatus(201);
+			return svc.getRequests(prin.getName());
+		} catch (Exception e) {
+			resp.setStatus(404);
+			return null;
+		}	
+	}
+	
 	@GetMapping("tripTravelers/{ttid}")
 	public TripTraveler getTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {

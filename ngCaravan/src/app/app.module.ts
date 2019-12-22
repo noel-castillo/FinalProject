@@ -26,6 +26,7 @@ import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.
 import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { AdventureProfileComponent } from './components/adventure-profile/adventure-profile.component';
 
 
 
@@ -53,7 +54,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     RegisterComponent,
     TripProfileComponent,
     LogoutComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    AdventureProfileComponent
 
 
   ],

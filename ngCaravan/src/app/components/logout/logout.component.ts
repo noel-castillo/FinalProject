@@ -19,6 +19,7 @@ export class LogoutComponent implements OnInit {
   logout() {
     if (this.authSvc.checkLogin()) {
       this.authSvc.logout();
+      this.route.navigateByUrl('login');
     } else {
       this.route.navigateByUrl('login');
     }

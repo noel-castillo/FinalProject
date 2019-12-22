@@ -1,3 +1,4 @@
+import { Image } from './image';
 import { Vehicle } from './vehicle';
 import { Address } from './address';
 import { User } from './user';
@@ -13,7 +14,7 @@ export class UserProfile {
   phone: string;
   mileagePoints: number;
   registrationDate: Date;
-  profilePic: string;
+  profilePic: Image;
   address: Address;
   user: User;
   vehicles: Vehicle[];
@@ -21,7 +22,7 @@ export class UserProfile {
 
   // C O N S T R U C T O R
   constructor(id?: number, firstName?: string, lastName?: string, email?: string, bio?: string,
-              phone?: string, mileagePoints?: number, registrationDate?: Date, profilePic?: string,
+              phone?: string, mileagePoints?: number, registrationDate?: Date, profilePic?: Image,
               address?: Address, user?: User, vehicles?: Vehicle[]) {
     this.id = id;
     this.firstName = firstName;

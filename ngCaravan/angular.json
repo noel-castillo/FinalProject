@@ -26,7 +26,14 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.nice-select.min.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/mixitup.min.js",
+              "src/assets/js/jquery.slicknav.js",
+              "src/assets/js/main2.js",
+              "src/assets/js/owl.carousel.min.js"
+            ]
           },
           "configurations": {
             "production": {

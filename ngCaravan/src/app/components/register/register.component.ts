@@ -39,13 +39,11 @@ export class RegisterComponent implements OnInit {
           dat => {
             this.route.navigateByUrl('user-profiles');
           },
-          err => {
-            console.log(err);
-          }
+          err => {}
         );
       },
       err => {
-        console.log(err);
+        console.log('Unable To Register');
         this.route.navigateByUrl('register');
       }
     );

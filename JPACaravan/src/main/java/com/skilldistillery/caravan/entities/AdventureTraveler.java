@@ -37,6 +37,7 @@ public class AdventureTraveler {
 	@JsonIgnore
 	private UserProfile user;
 
+	@Column(name = "traveler_status")
 	private TravelerStatus status;
 
 //	C O N S T R U C T O R S

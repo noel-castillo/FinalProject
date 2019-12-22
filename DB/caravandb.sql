@@ -673,7 +673,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `trip_traveler_review_of_hostcol`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1, NULL, NULL);
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `trip_traveler_review_of_hostcol`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1, 0, NULL);
 
 COMMIT;
 

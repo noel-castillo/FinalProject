@@ -23,7 +23,7 @@ export class AdventureProfileComponent implements OnInit {
   // C O N S T R U C T O R
 
   constructor(private adventureSvc: AdventureService, private currentRoute: ActivatedRoute,
-              private router: Router, ) { }
+              private router: Router ) { }
 
   // M E T H O D S
 

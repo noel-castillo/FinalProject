@@ -23,7 +23,7 @@ export class TripProfileComponent implements OnInit {
 
   tripHost: UserProfile;
 
-  trip: Trip = new Trip();
+  trip: Trip = null;
   trips: Trip[] = [];
   vehicles: Vehicle[] = [];
   editTrip: Trip = null;
@@ -143,6 +143,8 @@ export class TripProfileComponent implements OnInit {
           this.trips = data;
           console.log('*** TRIP HOST *** ' + this.trips[0].host.id);
           this.tripHost = this.trips[0].host;
+          // hardcoding TRIP FIXME
+          this.trip = this.trips[2];
         },
         err => {
           console.error('ngOnInit error in Trip Profile Component');

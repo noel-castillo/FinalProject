@@ -1,6 +1,7 @@
 package com.skilldistillery.caravan.services;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,9 +61,9 @@ public class TripServiceImpl implements TripService {
 		Address departureAddress = null;
 		Address destinationAddress = null;
 		Vehicle tripVehicle = null;
-		
+
 		Optional<Address> optDepAddress = addrRepo.findById(trip.getDepartureAddress().getId());
-		if(optDepAddress.isPresent()) {
+		if (optDepAddress.isPresent()) {
 			departureAddress = optDepAddress.get();
 			departureAddress.setCity(trip.getDepartureAddress().getCity());
 			departureAddress.setState(trip.getDepartureAddress().getState());
@@ -70,9 +71,9 @@ public class TripServiceImpl implements TripService {
 			departureAddress.setStreet(trip.getDepartureAddress().getStreet());
 			addrRepo.saveAndFlush(departureAddress);
 		}
-		
+
 		Optional<Address> optDestAddress = addrRepo.findById(trip.getDestinationAddress().getId());
-		if(optDestAddress.isPresent()) {
+		if (optDestAddress.isPresent()) {
 			destinationAddress = optDestAddress.get();
 			destinationAddress.setCity(trip.getDestinationAddress().getCity());
 			destinationAddress.setState(trip.getDestinationAddress().getState());
@@ -80,9 +81,9 @@ public class TripServiceImpl implements TripService {
 			destinationAddress.setStreet(trip.getDestinationAddress().getStreet());
 			addrRepo.saveAndFlush(destinationAddress);
 		}
-		
+
 		Optional<Vehicle> optVehicle = vRepo.findById(trip.getVehicle().getId());
-		if(optVehicle.isPresent()) {
+		if (optVehicle.isPresent()) {
 			tripVehicle = optVehicle.get();
 			tripVehicle.setCapacity(trip.getVehicle().getCapacity());
 			tripVehicle.setInteriorDescription(trip.getVehicle().getInteriorDescription());
@@ -93,8 +94,7 @@ public class TripServiceImpl implements TripService {
 			tripVehicle.setUserProfile(trip.getVehicle().getUserProfile());
 			vRepo.saveAndFlush(tripVehicle);
 		}
-		
-		
+
 		Optional<Trip> opt = tRepo.findById(id);
 		if (opt.isPresent()) {
 			existing = opt.get();
@@ -117,8 +117,17 @@ public class TripServiceImpl implements TripService {
 	}
 
 	@Override
-	public List<Trip> index() {
-		return tRepo.findAll();
+	public List<Trip> index(String username) {
+
+		List<Trip> tripsNotHosted = new ArrayList<Trip>();
+
+		tRepo.findAll().forEach(trip -> {
+			if (!trip.getHost().getUser().getUsername().equals(username)) {
+				tripsNotHosted.add(trip);
+			}
+		});
+
+		return tripsNotHosted;
 	}
 
 	@Override

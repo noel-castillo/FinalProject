@@ -1,9 +1,15 @@
+import { UserProfileService } from './../../services/user-profile.service';
+import { UserProfile } from './../../models/user-profile';
+import { TripTravelerService } from 'src/app/services/trip-traveler.service';
+import { TripService } from 'src/app/services/trip.service';
 import { TripHost } from 'src/app/models/trip-host';
 import { Component, OnInit } from '@angular/core';
 import { TripHostService } from 'src/app/services/trip-host.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
+import { Trip } from 'src/app/models/trip';
+import { TripTraveler } from 'src/app/models/trip-traveler';
 
 @Component({
   selector: 'app-trip-host',
@@ -16,26 +22,32 @@ export class TripHostComponent implements OnInit {
   selectedReview: TripHost;
   new = false;
   editReview: TripHost = null;
+  currentUser: UserProfile;
+  admin = false;
+
+
 
   constructor(
     private thSvc: TripHostService,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private auth: AuthService
-  ) { }
+    private auth: AuthService,
+    private userProSvc: UserProfileService
+    ) { }
 
   ngOnInit() {
-    this.auth.login('shaun', 'wombat1').subscribe(
-      data => {
-        console.log('Logged in');
+    this.loadReviews();
 
+    this.userProSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.currentUser = data;
+        this.checkIfAdmin();
       },
-      err => {
-        console.error('Error logging in.');
-        console.error(err);
+      error => {
+        console.error(error);
+        this.router.navigateByUrl('not-found');
       }
     );
-    this.loadReviews();
     if (!this.selectedReview && this.currentRoute.snapshot.paramMap.get('id')) {
       console.log('in oninit if statement');
       return this.thSvc.show(this.currentRoute.snapshot.paramMap.get('id'))
@@ -49,6 +61,21 @@ export class TripHostComponent implements OnInit {
           }
         );
     }
+  }
+  checkIfAdmin() {
+    this.userProSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.currentUser = data;
+        if (this.currentUser.user.role === 'admin') {
+          this.admin = true;
+        } else {
+          this.admin = false;
+        }
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
   loadReviews() {
     this.thSvc.index().subscribe(

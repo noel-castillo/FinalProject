@@ -30,7 +30,7 @@ public class TripController {
 	
 	@GetMapping("trips")
 	public List<Trip> allTrips(Principal prin) {
-		return svc.index();
+		return svc.index(prin.getName());
 	}
 	
 	@GetMapping("trips/{tid}")

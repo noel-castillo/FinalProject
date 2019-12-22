@@ -1,0 +1,119 @@
+<div class="map">
+  <iframe src="http://maps.google.com/maps?q=${address}&z=15&output=embed" height="657" style="border:0;"
+    allowfullscreen=""></iframe>
+</div>
+
+<!-- About Secton Begin -->
+<section class="about-section">
+  <div class="intro-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="about-intro">
+            <div class="rating">4.9</div>
+            <div class="intro-text">
+              <h2>{{adventure.title}}</h2>
+              <p>{{adventure.address.city}}, {{adventure.address.state}}</p>
+              <p>{{adventure.description}}</p>
+              <div class="closed">Join</div>
+              <div class="open">Save</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 offset-lg-1">
+          <div class="intro-share">
+            <div class="share-btn">
+              <a href="#" class="share">Share</a>
+              <a href="#">Submit a Review</a>
+            </div>
+            <div class="share-icon">
+              <a href="#"><i class="fa fa-map-marker"></i></a>
+              <a href="#"><i class="fa fa-book"></i></a>
+              <a href="#"><i class="fa fa-hand-o-right"></i></a>
+              <a href="#"><i class="fa fa-user-o"></i></a>
+              <a href="#"><i class="fa fa-star-o"></i></a>
+            </div>
+          </div>x
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-item">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="about-left">
+            <div class="about-desc">
+              <h4>About the Adventure</h4>
+              <p>Activity Level: {{adventure.activityLvl}}</p>
+              <p>Includes: {{adventure.includes}}</p>
+              <p>Price: ${{adventure.price}}</p>
+              <p>{{adventure.itinerary}}</p>
+            </div>
+            <div class="about-video">
+              <img src="" alt="">
+              <a href="https://www.youtube.com/watch?v=fySJrtzyMy4" class="pop-up"><i class="fa fa-play"></i></a>
+            </div>
+            <div class="client-reviews">
+              <h3>Reviews</h3>
+              <div class="reviews-item">
+                <div class="rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <h5>“A Great Place”</h5>
+                <p>Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin
+                  vulputate congue rutrum. Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora
+                  torquent per conubia nostra, per inceptos himenaeos. </p>
+                <div class="client-text">
+                  <h5>Michael Smith</h5>
+                  <span>March 03, 2019</span>
+                </div>
+              </div>
+              <div class="reviews-item">
+                <div class="rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <h5>“The best food in town”</h5>
+                <p>Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin
+                  vulputate congue rutrum. Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora
+                  torquent per conubia nostra, per inceptos himenaeos. </p>
+                <div class="client-text">
+                  <h5>Michael Smith</h5>
+                  <span>March 03, 2019</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="about-right">
+            <div class="contact-info">
+              <div class="map">
+                <iframe src="http://maps.google.com/maps?q=${address}&z=15&output=embed" height="385" style="border:0;"
+                  allowfullscreen=""></iframe>
+                <img src="" alt="">
+              </div>
+              <div class="contact-text">
+                <h4>Contact Info</h4>
+                <span>{{adventure.host.firstName}} {{adventure.host.lastName}}</span>
+                <ul>
+                  <li>{{adventure.host.phone}}</li>
+                  <li>{{adventure.host.email}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- About Secton End -->

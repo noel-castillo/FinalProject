@@ -16,6 +16,7 @@ export class TripTravelerComponent implements OnInit {
 
   tripTravelers: TripTraveler[] = [];
 
+  tid: number;
 
   selected: TripTraveler = null;
 
@@ -74,7 +75,7 @@ export class TripTravelerComponent implements OnInit {
   }
 
   addTripTraveler() {
-    this.tripTravelerSvc.createTripTraveler(this.newTripTraveler).subscribe(
+    this.tripTravelerSvc.createTripTraveler(this.newTripTraveler, this.tid).subscribe(
       (aGoodThingHappened) => {
         console.log(aGoodThingHappened);
         this.newTripTraveler = new TripTraveler();

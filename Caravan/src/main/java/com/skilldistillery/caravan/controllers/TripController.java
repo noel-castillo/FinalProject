@@ -29,8 +29,18 @@ public class TripController {
 	private TripService svc;
 	
 	@GetMapping("trips")
-	public List<Trip> allTrips(Principal prin) {
-		return svc.index(prin.getName());
+	public List<Trip> index() {
+		return svc.index();
+	}
+	
+	@GetMapping("notHosted")
+	public List<Trip> allTripsNotHosted(Principal prin) {
+		return svc.indexNotHosted(prin.getName());
+	}
+	
+	@GetMapping("Hosted")
+	public List<Trip> allTripsHosted(Principal prin) {
+		return svc.indexHosted(prin.getName());
 	}
 	
 	@GetMapping("trips/{tid}")

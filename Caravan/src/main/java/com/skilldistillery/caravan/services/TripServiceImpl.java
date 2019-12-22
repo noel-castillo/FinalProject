@@ -117,7 +117,7 @@ public class TripServiceImpl implements TripService {
 	}
 
 	@Override
-	public List<Trip> index(String username) {
+	public List<Trip> indexNotHosted(String username) {
 
 		List<Trip> tripsNotHosted = new ArrayList<Trip>();
 
@@ -148,6 +148,17 @@ public class TripServiceImpl implements TripService {
 			deleted = true;
 		}
 		return deleted;
+	}
+
+	@Override
+	public List<Trip> index() {
+		return tRepo.findAll();
+	}
+
+	@Override
+	public List<Trip> indexHosted(String username) {
+		
+		return tRepo.findByHost_User_Username(username);
 	}
 
 }

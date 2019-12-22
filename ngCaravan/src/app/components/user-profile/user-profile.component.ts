@@ -1,3 +1,4 @@
+import { TripService } from 'src/app/services/trip.service';
 import { TripTravelerService } from './../../services/trip-traveler.service';
 import { UserProfile } from './../../models/user-profile';
 import { UserProfileService } from './../../services/user-profile.service';
@@ -7,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
 import { TripTraveler } from 'src/app/models/trip-traveler';
+import { Trip } from 'src/app/models/trip';
 
 @Component({
   selector: 'app-user-profile',
@@ -19,7 +21,9 @@ export class UserProfileComponent implements OnInit {
 
   admin = false;
 
-  trip = false;
+  trips: Trip[] = [];
+
+  hostedTrips: Trip[] = [];
 
   selected: UserProfile = null;
 
@@ -33,7 +37,11 @@ export class UserProfileComponent implements OnInit {
 
   newUser: User = new User();
 
-  hostTripRequest: TripTraveler[];
+  hostTripRequest: TripTraveler[] = [];
+
+  tripRequest: TripTraveler[] = [];
+
+  tripTraveler = false;
 
   // C O N S T R U C T O R
 
@@ -42,7 +50,8 @@ export class UserProfileComponent implements OnInit {
     private auth: AuthService,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private tripTravSvc: TripTravelerService
+    private tripTravSvc: TripTravelerService,
+    private tripSvc: TripService
   ) {}
 
   // M E T H O D S
@@ -73,23 +82,37 @@ export class UserProfileComponent implements OnInit {
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
-        this.checkIfAdmin();
       },
       err => {
         console.log(err);
       }
     );
-  }
 
-  checkIfAdmin() {
-    this.uSvc.getUserInSessionProfile().subscribe(
+    this.tripSvc.index().subscribe(
       data => {
-        this.currentProfile = data;
-        if (this.currentProfile.user.role === 'admin') {
-          this.admin = true;
-        } else {
-          this.admin = false;
-        }
+        this.trips = data;
+        this.trips.forEach(trip => {
+          if (trip.host.user.username === this.currentProfile.user.username) {
+            this.hostedTrips.push(trip);
+          }
+        });
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+    this.tripTravSvc.index().subscribe(
+      data => {
+        this.tripRequest = data;
+        this.tripRequest.forEach(req => {
+          if (
+            req.trip.host.user.username === this.currentProfile.user.username &&
+            req.approved === false
+          ) {
+            this.hostTripRequest.push(req);
+          }
+        });
       },
       err => {
         console.log(err);

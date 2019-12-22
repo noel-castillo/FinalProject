@@ -63,10 +63,10 @@ public class TripTravelerController {
 	}
 	
 	
-	@PostMapping("tripTravelers")
-	public TripTraveler addTripTraveler(@RequestBody TripTraveler tripTraveler, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	@PostMapping("trips/{tid}/tripTravelers")
+	public TripTraveler addTripTraveler(@PathVariable Integer tid, @RequestBody TripTraveler tripTraveler, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
-			svc.create(tripTraveler);
+			svc.create(tripTraveler, tid, prin);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(tripTraveler.getId());

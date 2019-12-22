@@ -1,43 +1,3 @@
-<!-- <p>Trip Profile Component</p> -->
-<!-- <p>Trip Host: {{tripHost.firstName}}</p> -->
-
-<!-- <div *ngIf="!selected">
-  <table class="table table-hover table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Host</th>
-        <th>Departure Address</th>
-        <th>Destination Address</th>
-        <th>Description</th>
-        <th>Seats Avialable</th>
-        <th>Cargo Capacity</th>
-        <th>Create Date</th>
-        <th>Total Cost</th>
-        <th>Miles</th>
-        <th>Vehicle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let trip of trips">
-        <td (click)="displayTripProfiles(trip)">{{ trip.id }}</td>
-        <td>{{ trip.title }}</td>
-        <td>{{ trip.host.firstName }} {{ trip.host.lastName }}</td>
-        <td>{{ trip.departureAddress.city }} {{ trip.departureAddress.state }}</td>
-        <td>{{ trip.destinationAddress.city }} {{ trip.destinationAddress.state }}</td>
-        <td>{{ trip.description }}</td>
-        <td>{{ trip.seatsAvailable }}</td>
-        <td>{{ trip.cargoCapacity }}</td>
-        <td>{{ trip.createDate }}</td>
-        <td>{{ trip.totalCost }}</td>
-        <td>{{ trip.miles }}</td>
-        <td>{{ trip.vehicle.make }} {{ trip.vehicle.model }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
     <!-- About Secton Begin -->
     <section class="about-section">
         <div class="intro-item">
@@ -49,8 +9,8 @@
                             <div class="intro-text">
                                 <h2>{{trip.title}}</h2>
                                 <p>{{trip.description}}</p>
-                                <div class="open">Opens Tomorow at 10am</div>
-                                <div class="closed">Closed now</div>
+                                <div (click)="addTrip(trip.id)" class="closed">Join</div>
+                                <div class="open">Save</div>
                             </div>
                         </div>
                     </div>

@@ -55,7 +55,7 @@ getRequests() {
       })
     );
 }
-  createTripTraveler(newTripTraveler: TripTraveler) {
+  createTripTraveler(newTripTraveler: TripTraveler, tid: number) {
 
     const credentials = this.authService.getCredentials();
     const httpOptions = {
@@ -66,7 +66,8 @@ getRequests() {
       })
     };
 
-    return this.http.post<TripTraveler>(this.url, newTripTraveler, httpOptions)
+    // tslint:disable-next-line: max-line-length
+    return this.http.post<TripTraveler>(this.baseUrl + 'api/trips/' + tid + '/tripTravelers', newTripTraveler, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

@@ -61,7 +61,6 @@ export class SearchResultsComponent implements OnInit {
     }
 
   }
-
   ngOnInit() {
     this.trips = null;
     this.adventures = null;

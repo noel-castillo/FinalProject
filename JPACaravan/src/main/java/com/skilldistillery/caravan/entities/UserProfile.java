@@ -43,8 +43,9 @@ public class UserProfile {
 	@Column(name = "registration_date")
 	private Date registrationDate;
 
-	@Column(name = "profile_pic_id")
-	private String profilePic;
+	@OneToOne
+	@JoinColumn(name = "profile_pic_id")
+	private Image profilePic;
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
@@ -130,11 +131,11 @@ public class UserProfile {
 		this.registrationDate = registrationDate;
 	}
 
-	public String getProfilePic() {
+	public Image getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(String profilePic) {
+	public void setProfilePic(Image profilePic) {
 		this.profilePic = profilePic;
 	}
 

@@ -10,7 +10,7 @@ public interface TripService {
 
 	public Trip update(Trip trip, int id);
 
-	public List<Trip> index();
+	public List<Trip> index(String username);
 
 	public Trip show(int id);
 

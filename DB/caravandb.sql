@@ -325,6 +325,7 @@ CREATE TABLE IF NOT EXISTS `trip_traveler_review_of_host` (
   `trip_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
   `approved` TINYINT NULL DEFAULT 0,
+  `trip_traveler_review_of_hostcol` ENUM('finished', 'accepted', 'denied', 'awaiting', 'saved') NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_traveler_trip1_idx` (`trip_id` ASC),
   INDEX `fk_trip_traveler_user_profile1_idx` (`user_profile_id` ASC),
@@ -672,7 +673,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1, NULL);
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `trip_traveler_review_of_hostcol`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1, NULL, NULL);
 
 COMMIT;
 

@@ -26,6 +26,7 @@ import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.
 import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdventureProfileComponent } from './components/adventure-profile/adventure-profile.component';
 import { TripsNotHostedComponent } from './components/trips-not-hosted/trips-not-hosted.component';
 
@@ -66,7 +67,8 @@ import { TripsNotHostedComponent } from './components/trips-not-hosted/trips-not
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     TripService,

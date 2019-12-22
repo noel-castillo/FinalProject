@@ -126,6 +126,18 @@ a:focus {
   overflow: hide;
 }
 
+@media screen and (max-width: 450px) {
+  #topnav {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 451px) {
+  #bottom-bar {
+    display: none;
+  }
+}
+
 ul,
 ol {
 	padding: 0;

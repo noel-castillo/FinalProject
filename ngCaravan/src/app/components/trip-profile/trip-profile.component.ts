@@ -1,3 +1,4 @@
+import { TripTraveler } from 'src/app/models/trip-traveler';
 import { TripHost } from 'src/app/models/trip-host';
 import { UserProfile } from './../../models/user-profile';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import { Vehicle } from 'src/app/models/vehicle';
 import { AuthService } from 'src/app/services/auth.service';
 import { TripService } from 'src/app/services/trip.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
+import { TripTravelerService } from 'src/app/services/trip-traveler.service';
 
 declare var jQuery: any;
 
@@ -25,10 +27,23 @@ export class TripProfileComponent implements OnInit {
 
   trip: Trip;
   address = '';
+  tripTraveler: TripTraveler = new TripTraveler();
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
-  constructor(private auth: AuthService, private tripSvc: TripService, private vehicleSvc: VehicleService, private currentRoute: ActivatedRoute, private router: Router) { }
+  constructor(private auth: AuthService, private tripSvc: TripService, private tripTravelerSvc: TripTravelerService, private vehicleSvc: VehicleService, private currentRoute: ActivatedRoute, private router: Router) { }
+
+  addTrip(tid) {
+    this.tripTravelerSvc.createTripTraveler(this.tripTraveler, tid).subscribe (
+      data => {
+        console.log(data);
+        this.tripTraveler = data;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
 
   ngOnInit() {
     // tslint:disable-next-line: only-arrow-functions

@@ -1,5 +1,6 @@
 package com.skilldistillery.caravan.services;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -7,17 +8,37 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.caravan.entities.Trip;
 import com.skilldistillery.caravan.entities.TripTraveler;
+import com.skilldistillery.caravan.entities.User;
+import com.skilldistillery.caravan.entities.UserProfile;
+import com.skilldistillery.caravan.repositories.TripRepository;
 import com.skilldistillery.caravan.repositories.TripTravelerRepository;
+import com.skilldistillery.caravan.repositories.UserProfileRepository;
+import com.skilldistillery.caravan.repositories.UserRepository;
 
 @Service
 public class TripTravelerServiceImpl implements TripTravelerService {
 
 	@Autowired
 	TripTravelerRepository ttRepo;
+	
+	@Autowired
+	TripRepository tripRepo;
+	
+	@Autowired
+	UserProfileRepository userProfileRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 
 	@Override
-	public TripTraveler create(TripTraveler tripTraveler) {
+	public TripTraveler create(TripTraveler tripTraveler, int tid, Principal principal) {
+		User user = userRepo.findByUsername(principal.getName());
+		UserProfile userProfile= userProfileRepo.findByUser(user);
+		Trip trip = tripRepo.findById(tid).get();
+		tripTraveler.setUser(userProfile);
+		tripTraveler.setTrip(trip);
 		ttRepo.saveAndFlush(tripTraveler);
 		return tripTraveler;
 	}

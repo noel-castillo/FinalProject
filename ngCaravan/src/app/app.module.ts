@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdventureProfileComponent } from './components/adventure-profile/adventure-profile.component';
 import { TripsNotHostedComponent } from './components/trips-not-hosted/trips-not-hosted.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AdventureTravelerComponent } from './components/adventure-traveler/adventure-traveler.component';
 
 
 
@@ -60,7 +61,9 @@ import { AdminComponent } from './components/admin/admin.component';
     SearchResultsComponent,
     AdventureProfileComponent,
     TripsNotHostedComponent,
-    AdminComponent
+    AdminComponent,
+    AdventureTravelerComponent
+
 
 
   ],

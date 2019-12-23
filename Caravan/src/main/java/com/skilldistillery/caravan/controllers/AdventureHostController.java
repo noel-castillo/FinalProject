@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.caravan.entities.AdventureHost;
 import com.skilldistillery.caravan.entities.AdventureTraveler;
-import com.skilldistillery.caravan.entities.TripTraveler;
+import com.skilldistillery.caravan.services.AdventureHostService;
 import com.skilldistillery.caravan.services.AdventureTravelerService;
 
 @RestController
@@ -27,16 +28,16 @@ import com.skilldistillery.caravan.services.AdventureTravelerService;
 public class AdventureHostController {
 	
 	@Autowired
-	AdventureTravelerService svc;
+	AdventureHostService svc;
 
 
-	@GetMapping("adventureTravelers")
-	public List<AdventureTraveler> allAdventureTravelers(Principal prin) {
+	@GetMapping("adventureHosts")
+	public List<AdventureHost> allAdventureTravelers(Principal prin) {
 		return svc.index();
 	}
 	
-	@GetMapping("adventureHostTravelers")
-	public List<AdventureTraveler> allTripsRequests(Principal prin,HttpServletResponse resp, HttpServletRequest req) {
+	@GetMapping("myAdventureHosts")
+	public List<AdventureHost> allTripsRequests(Principal prin,HttpServletResponse resp, HttpServletRequest req) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
@@ -49,8 +50,8 @@ public class AdventureHostController {
 		}	
 	}
 	
-	@GetMapping("adventureTravelers/{atid}")
-	public AdventureTraveler getTripTraveler(@PathVariable Integer atid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	@GetMapping("adventureHosts/{atid}")
+	public AdventureHost getTripHost(@PathVariable Integer atid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
@@ -64,13 +65,13 @@ public class AdventureHostController {
 	}
 	
 	
-	@PostMapping("adventures/{aid}/adventureTravelers")
-	public AdventureTraveler addTripTraveler(@PathVariable Integer aid, @RequestBody AdventureTraveler adventureTraveler, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	@PostMapping("adventures/{aid}/adventureHosts")
+	public AdventureHost addTripHost(@PathVariable Integer aid, @RequestBody AdventureHost adventureHost, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
-			svc.create(adventureTraveler, aid, prin);
+			svc.create(adventureHost, aid, prin);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
-			url.append("/").append(adventureTraveler.getId());
+			url.append("/").append(adventureHost.getId());
 			resp.addHeader("Location", url.toString());
 			
 		} catch (Exception e) {
@@ -78,19 +79,19 @@ public class AdventureHostController {
 			resp.setStatus(400);
 			e.printStackTrace();
 		}
-		return adventureTraveler;
+		return adventureHost;
 	}
 	
 	@PutMapping("adventureTravelers/{atid}")
-	public AdventureTraveler update(@PathVariable Integer atid, @RequestBody AdventureTraveler adventureTraveler, HttpServletResponse resp) {
+	public AdventureHost update(@PathVariable Integer atid, @RequestBody AdventureHost adventureHost, HttpServletResponse resp) {
 		try {
-			adventureTraveler = svc.update(adventureTraveler, atid);
+			adventureHost = svc.update(adventureHost, atid);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(401);
 		}
-		return adventureTraveler;
+		return adventureHost;
 	}
 	
 	@DeleteMapping("adventureTravelers/{atid}")

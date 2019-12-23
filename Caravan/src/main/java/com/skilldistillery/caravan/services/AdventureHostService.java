@@ -12,9 +12,11 @@ public List<AdventureHost> index();
 	
 	public AdventureHost show(int id);
 	
-	public AdventureHost create(AdventureHost review);
+	public AdventureHost create(AdventureHost adventureHost, int aid, Principal principal);
 
-	public AdventureHost update(AdventureHost review, int id);
+	public AdventureHost update(AdventureHost adventureHost, int id);
 
 	boolean destroy(int id);
+
+	List<AdventureHost> getRequests(String username);
 }

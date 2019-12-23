@@ -27,59 +27,87 @@ public class AdventureHostServiceImpl implements AdventureHostService {
 
 
 	@Autowired
-	AdventureHostRepository thRepo;
+	AdventureHostRepository aHRepo;
+	
+	@Autowired
+	AdventureRepository adventureRepo;
+	
+	@Autowired
+	UserProfileRepository userProfileRepo;
+	
+	@Autowired
+	UserRepository userRepo;
 
 	@Override
 	public List<AdventureHost> index() {
-		return thRepo.findAll();
+		return aHRepo.findAll();
 	}
 
 	@Override
 	public AdventureHost show(int id) {
 		AdventureHost host = null;
-		Optional<AdventureHost> opt =  thRepo.findById(id);
+		Optional<AdventureHost> opt =  aHRepo.findById(id);
 		if (opt.isPresent()) {
 			host = opt.get();
-			return host;
 		}
-		return null;
+		return host;
 	}
 
 	@Override
-	public AdventureHost create(AdventureHost review) {
-		return thRepo.saveAndFlush(review);
+	public AdventureHost create(AdventureHost adventureHost, int aid, Principal principal) {
 
+		User user = userRepo.findByUsername(principal.getName());
+		UserProfile userProfile= userProfileRepo.findByUser(user);
+		Adventure adventure = adventureRepo.findById(aid).get();
+		adventureHost.setUser(userProfile);
+		adventureHost.setAdventure(adventure);
+		return aHRepo.saveAndFlush(adventureHost);
 	}
 
 	@Override
-	public AdventureHost update(AdventureHost review, int id) {
-		System.out.println(review.toString());
-		AdventureHost update = null;
-		Optional<AdventureHost> opt = thRepo.findById(id);
+	public AdventureHost update(AdventureHost tripHost, int id) {
+
+		AdventureHost existing = null;
+		Optional<AdventureHost> opt = aHRepo.findById(id);
 		if (opt.isPresent()) {
-			update = opt.get();
+			existing = opt.get();
+			existing.setRating(tripHost.getRating());
+			existing.setReview(tripHost.getReview());
+//			existing.setAttended(tripHost.isAttended());
+//			existing.setTrip(tripTraveler.getTrip());
+//			existing.setUser(tripTraveler.getUser());
+
+			aHRepo.saveAndFlush(existing);
 		}
-		update.setRating(review.getRating());
-		update.setReview(review.getReview());
-		update.setAdventure(review.getAdventure());//was set trip
-		update.setUser(review.getUser());//was set passenger
-		thRepo.saveAndFlush(update);
-		return update;
+		return existing;
+	
 	}
 
 	@Override
 	public boolean destroy(int id) {
-		AdventureHost delete = null;
-		Optional<AdventureHost> opt = thRepo.findById(id);
-		if (opt.isPresent()) {
-			delete = opt.get();
-			thRepo.delete(delete);
-			return true;
+		boolean deleted = false;
+		if (aHRepo.existsById(id)) {
+			aHRepo.deleteById(id);
+			deleted = true;
 		}
-		
-		return false;
+		return deleted;
 	}
 	
+	
+	@Override
+	public List<AdventureHost> getRequests(String username) {
+		List<AdventureHost> hostRequest = new ArrayList<AdventureHost>();
+
+		List<AdventureHost> requests = aHRepo.findByAdventure_Host_User_Username(username);
+
+		requests.forEach(req -> {
+			
+				hostRequest.add(req);
+			
+		});
+
+		return hostRequest;
+	}
 	
 
 

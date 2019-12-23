@@ -66,6 +66,7 @@
     </div>
   </div>
 
+
   <div *ngIf=" ! editTrip">
     <div *ngFor="let trip of trips">
       <p *ngIf="trip.enabled === true" [routerLink]="['/trips/' + trip.id + '']" ><em>Trip #{{trip.id}}</em> -- Departure Address: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} -- Destination Address: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} -- Miles: {{trip.miles}} -- Seats Available: {{trip.seatsAvailable}} </p>
@@ -73,6 +74,15 @@
       <br>
     </div>
 
+  </div>
+
+  <div *ngFor="let trip of trips" class="card mb-3">
+    <img src="../../../assets/img/roadTrip.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{trip.title}}</h5>
+      <p class="card-text">{{trip.description}}</p>
+      <button [routerLink]="['/trips/' + trip.id + '']">More Details</button>
+    </div>
   </div>
 
   <div id="updateTripForm" *ngIf="editTrip">

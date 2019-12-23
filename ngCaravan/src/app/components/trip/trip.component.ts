@@ -1,3 +1,4 @@
+import { ImageService } from 'src/app/services/image.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -7,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TripService } from 'src/app/services/trip.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { Address } from 'src/app/models/address';
+import { Image } from 'src/app/models/image';
 
 @Component({
   selector: 'app-trip',

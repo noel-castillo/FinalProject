@@ -183,13 +183,13 @@ CREATE TABLE IF NOT EXISTS `trip_host_review_of_passenger` (
   `trip_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_host_user_profile1_idx` (`user_profile_id` ASC),
-  INDEX `fk_trip_host_trip1_idx` (`trip_id` ASC),
+  INDEX `fk_trip_host_review_of_passenger_trip1_idx` (`trip_id` ASC),
   CONSTRAINT `fk_trip_host_user_profile1`
     FOREIGN KEY (`user_profile_id`)
     REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_trip_host_trip1`
+  CONSTRAINT `fk_trip_host_review_of_passenger_trip1`
     FOREIGN KEY (`trip_id`)
     REFERENCES `trip` (`id`)
     ON DELETE NO ACTION
@@ -543,11 +543,18 @@ CREATE TABLE IF NOT EXISTS `adventure_host_review_of_traveler` (
   `rating` DOUBLE NULL,
   `review` VARCHAR(45) NULL,
   `user_profile_id` INT NOT NULL,
+  `adventure_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_adventure_host_review_of_traveler_user_profile1_idx` (`user_profile_id` ASC),
+  INDEX `fk_adventure_host_review_of_traveler_adventure1_idx` (`adventure_id` ASC),
   CONSTRAINT `fk_adventure_host_review_of_traveler_user_profile1`
     FOREIGN KEY (`user_profile_id`)
     REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adventure_host_review_of_traveler_adventure1`
+    FOREIGN KEY (`adventure_id`)
+    REFERENCES `adventure` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -661,7 +668,7 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (1, 2, 5, 'Coolest Host ever.', 1);
-INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (2, 3, 5, 'Super cool host', 2);
+INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (2, 3, 5, 'Super cool host', 1);
 
 COMMIT;
 

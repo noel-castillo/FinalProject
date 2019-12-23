@@ -1,6 +1,7 @@
 package com.skilldistillery.caravan.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Trip {
@@ -62,9 +62,15 @@ public class Trip {
 	@OneToOne(mappedBy = "trip")
 	private TripCalendar tripCalendar;
 	
-	
 	private String title;
 
+//	@JsonIgnore
+	@OneToMany(mappedBy = "trip")
+	private List<TripTraveler> tripTravelerReviewsOfHost;
+	
+
+	private List<TripHost> tripHostReviewsofTravelers;
+	
 //	C O N S T R U C T O R S
 
 	public Trip() {
@@ -207,6 +213,22 @@ public class Trip {
 		this.title = title;
 	}
 
+	public List<TripTraveler> getTripTravelerReviewsOfHost() {
+		return tripTravelerReviewsOfHost;
+	}
+
+	public void setTripTravelerReviewsOfHost(List<TripTraveler> tripTravelerReviewsOfHost) {
+		this.tripTravelerReviewsOfHost = tripTravelerReviewsOfHost;
+	}
+
+	public List<TripHost> getTripHostReviewsofTravelers() {
+		return tripHostReviewsofTravelers;
+	}
+
+	public void setTripHostReviewsofTravelers(List<TripHost> tripHostReviewsofTravelers) {
+		this.tripHostReviewsofTravelers = tripHostReviewsofTravelers;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

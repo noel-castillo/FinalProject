@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,11 +35,6 @@ public class TripTraveler {
 	private double contributionActual;
 
 	@OneToOne
-	@JoinColumn(name = "trip_id")
-//	@JsonIgnore
-	private Trip trip;
-
-	@OneToOne
 	@JoinColumn(name = "user_profile_id")
 //	@JsonIgnore
 	private UserProfile user;
@@ -46,6 +42,11 @@ public class TripTraveler {
 	private boolean approved;
 
 //	private TripTravelerStatus tripStatus;
+	
+//	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "trip_id")
+	private Trip trip;
 	
 	
 	

@@ -82,7 +82,7 @@ public class AdventureHostController {
 		return adventureHost;
 	}
 	
-	@PutMapping("adventureTravelers/{atid}")
+	@PutMapping("adventureHosts/{atid}")
 	public AdventureHost update(@PathVariable Integer atid, @RequestBody AdventureHost adventureHost, HttpServletResponse resp) {
 		try {
 			adventureHost = svc.update(adventureHost, atid);
@@ -94,7 +94,7 @@ public class AdventureHostController {
 		return adventureHost;
 	}
 	
-	@DeleteMapping("adventureTravelers/{atid}")
+	@DeleteMapping("adventureHosts/{atid}")
 	public void deleteTripTraveler(@PathVariable Integer atid, HttpServletResponse resp) {
 		try {
 			if (svc.destroy(atid)) {

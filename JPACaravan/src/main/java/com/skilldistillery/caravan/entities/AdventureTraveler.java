@@ -11,8 +11,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//@Entity
-//@Table(name = "adventure_traveler_review_of_host")
+@Entity
+@Table(name = "adventure_traveler_review_of_host")
 public class AdventureTraveler {
 
 //	F I E L D S
@@ -39,6 +39,8 @@ public class AdventureTraveler {
 
 	@Column(name = "traveler_status")
 	private TravelerStatus status;
+	
+	private boolean approved;
 
 //	C O N S T R U C T O R S
 
@@ -118,12 +120,22 @@ public class AdventureTraveler {
 	public void setStatus(TravelerStatus status) {
 		this.status = status;
 	}
+	
+
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((adventure == null) ? 0 : adventure.hashCode());
+		result = prime * result + (approved ? 1231 : 1237);
 		result = prime * result + (attended ? 1231 : 1237);
 		result = prime * result + id;
 		long temp;
@@ -148,6 +160,8 @@ public class AdventureTraveler {
 			if (other.adventure != null)
 				return false;
 		} else if (!adventure.equals(other.adventure))
+			return false;
+		if (approved != other.approved)
 			return false;
 		if (attended != other.attended)
 			return false;

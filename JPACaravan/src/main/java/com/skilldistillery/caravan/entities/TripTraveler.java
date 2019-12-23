@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -44,7 +45,15 @@ public class TripTraveler {
 	@Column(name = "traveler_status")
 	private String status;
 
-
+//	private TripTravelerStatus tripStatus;
+	
+//	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "trip_id")
+	private Trip trip;
+	
+	
+	
 //	C O N S T R U C T O R S
 
 	public TripTraveler() {

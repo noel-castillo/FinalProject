@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "trip_traveler_review_of_host")
 public class TripTraveler {
@@ -35,20 +33,18 @@ public class TripTraveler {
 
 	@OneToOne
 	@JoinColumn(name = "trip_id")
-//	@JsonIgnore
 	private Trip trip;
 
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-//	@JsonIgnore
 	private UserProfile user;
 
 	private boolean approved;
 
-//	private TripTravelerStatus tripStatus;
-	
-	
-	
+	@Column(name = "traveler_status")
+	private String status;
+
+
 //	C O N S T R U C T O R S
 
 	public TripTraveler() {
@@ -69,6 +65,20 @@ public class TripTraveler {
 	}
 
 //	M E T H O D S
+
+	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
+			double contributionActual, Trip trip, UserProfile user, boolean approved, String status) {
+		super();
+		this.rating = rating;
+		this.review = review;
+		this.contributionPledge = contributionPledge;
+		this.attended = attended;
+		this.contributionActual = contributionActual;
+		this.trip = trip;
+		this.user = user;
+		this.approved = approved;
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
@@ -92,8 +102,6 @@ public class TripTraveler {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-
-	
 
 	public String getReview() {
 		return review;
@@ -151,6 +159,14 @@ public class TripTraveler {
 		this.approved = approved;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -166,6 +182,7 @@ public class TripTraveler {
 		temp = Double.doubleToLongBits(rating);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -196,6 +213,11 @@ public class TripTraveler {
 			if (other.review != null)
 				return false;
 		} else if (!review.equals(other.review))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
 		if (trip == null) {
 			if (other.trip != null)

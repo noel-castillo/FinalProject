@@ -208,6 +208,33 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  denyTripTraveler(req: TripTraveler) {
+    req.status = 'denied';
+
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        console.log('Success');
+        this.ngOnInit();
+      },
+      err => {
+        console.log('Fail');
+      }
+      );
+    }
+    approveTripTraveler(req: TripTraveler) {
+      req.status = 'approved';
+
+      this.tripTravSvc.updateTripTraveler(req).subscribe(
+        data => {
+          console.log('Success');
+          this.ngOnInit();
+      },
+      err => {
+        console.log('Fail');
+      }
+    );
+  }
+
   deleteUserProfile(id) {
     this.uSvc.delete(id).subscribe(
       aGoodThingHappened => {

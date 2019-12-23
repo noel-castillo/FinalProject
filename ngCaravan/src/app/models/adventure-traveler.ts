@@ -10,9 +10,10 @@ export class AdventureTraveler {
   adventure: Adventure;
   user: UserProfile;
   status: string;
+  approved: boolean;
 
   // tslint:disable-next-line: max-line-length
-  constructor(id?: number, rating?: number, review?: string, attended?: boolean, adventure?: Adventure, user?: UserProfile, status?: string) {
+  constructor(id?: number, rating?: number, review?: string, attended?: boolean, adventure?: Adventure, user?: UserProfile, status?: string, approved?: boolean) {
 
     this.id = id;
     this.rating = rating;
@@ -21,5 +22,6 @@ export class AdventureTraveler {
     this.adventure = adventure;
     this.user = user;
     this.status = status;
+    this.approved = approved;
   }
 }

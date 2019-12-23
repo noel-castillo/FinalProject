@@ -19,6 +19,7 @@ import { TripCalendarComponent } from './components/trip-calendar/trip-calendar.
 import { TripTravelerComponent } from './components/trip-traveler/trip-traveler.component';
 import { TripProfileComponent } from './components/trip-profile/trip-profile.component';
 import { AdventureProfileComponent } from './components/adventure-profile/adventure-profile.component';
+import { AdventureTravelerComponent } from './components/adventure-traveler/adventure-traveler.component';
 
 
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'adventures/:id', component: AdventureComponent},
   {path: 'adventure-calendars', component: AdventureCalendarComponent},
   {path: 'adventure-profile/:id', component: AdventureProfileComponent},
+  {path: 'adventure-travelers', component: AdventureTravelerComponent},
   {path: 'categories', component: CategoriesComponent},
   {path: 'images', component: ImageComponent},
   {path: 'trips', component: TripComponent},

@@ -1,0 +1,58 @@
+<h1>{{title}} <span class="badge badge-primary">{{countAdventureTravelers()}}</span></h1>
+<div *ngIf=!selected>
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>User</th>
+    <th>Rating</th>
+    <th>Review</th>
+    <th>Attended</th>
+    <th>Trip</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor='let adventureTraveler of adventureTravelers'>
+    <td (click)="displayAdventureTraveler(adventureTraveler)">{{adventureTraveler.id}}</td>
+    <td >{{adventureTraveler.user}}</td>
+    <td>{{adventureTraveler.rating}}</td>
+    <td>{{adventureTraveler.review}}</td>
+    <td>{{adventureTraveler.attended}}</td>
+    <td>{{adventureTraveler.adventure.description}}</td>
+    <td (click)="deleteAdventureTraveler(adventureTraveler.id)">X</td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+<form>
+  <input type="text" name="rating" placeholder="Rating" [(ngModel)]="newAdventureTraveler.rating">
+  <input type="text" name="review" placeholder="Review" [(ngModel)]="newAdventureTraveler.review">
+  <!-- <input type="text" name="attended" placeholder="Attended" [(ngModel)]="newTripTraveler.attended"> -->
+  <button class="btn btn-warning" (click)="addAdventureTraveler(newAdventureTraveler)">Add Adventure Traveler</button>
+</form>
+
+<div *ngIf="selected && ! editAdventureTraveler">
+  <p>{{selected.id}}</p>
+  <p>{{selected.rating}}</p>
+  <p>{{selected.review}}</p>
+  <p>{{selected.attended}}</p>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditAdventureTraveler()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteAdventureTraveler(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editAdventureTraveler">
+  <h2>{{editAdventureTraveler.id}}</h2>
+  <form>
+    <label for="rating">Rating</label>
+    <input type="text" name="rating" [(ngModel)]="editAdventureTraveler.rating"><br>
+    <label for="review">Review</label>
+    <input type="text" name="review" [(ngModel)]="editAdventureTraveler.review"><br>
+    <label for="attended">Attended</label>
+    <input type="checkbox" name="attended" [(ngModel)]="editAdventureTraveler.attended"><br>
+    <button class="btn btn-warning" (click)="updateAdventureTraveler(editAdventureTraveler)">Save</button>
+    <button class="btn btn-warning" (click)="editAdventureTraveler = null">Cancel</button>
+  </form>
+</div>

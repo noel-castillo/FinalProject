@@ -35,16 +35,20 @@ public class TripTraveler {
 
 	@OneToOne
 	@JoinColumn(name = "trip_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Trip trip;
 
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private UserProfile user;
 
 	private boolean approved;
 
+//	private TripTravelerStatus tripStatus;
+	
+	
+	
 //	C O N S T R U C T O R S
 
 	public TripTraveler() {
@@ -88,6 +92,8 @@ public class TripTraveler {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
+
+	
 
 	public String getReview() {
 		return review;
@@ -149,7 +155,19 @@ public class TripTraveler {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (approved ? 1231 : 1237);
+		result = prime * result + (attended ? 1231 : 1237);
+		long temp;
+		temp = Double.doubleToLongBits(contributionActual);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(contributionPledge);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + id;
+		temp = Double.doubleToLongBits(rating);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((review == null) ? 0 : review.hashCode());
+		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 
@@ -162,7 +180,32 @@ public class TripTraveler {
 		if (getClass() != obj.getClass())
 			return false;
 		TripTraveler other = (TripTraveler) obj;
+		if (approved != other.approved)
+			return false;
+		if (attended != other.attended)
+			return false;
+		if (Double.doubleToLongBits(contributionActual) != Double.doubleToLongBits(other.contributionActual))
+			return false;
+		if (Double.doubleToLongBits(contributionPledge) != Double.doubleToLongBits(other.contributionPledge))
+			return false;
 		if (id != other.id)
+			return false;
+		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
+			return false;
+		if (review == null) {
+			if (other.review != null)
+				return false;
+		} else if (!review.equals(other.review))
+			return false;
+		if (trip == null) {
+			if (other.trip != null)
+				return false;
+		} else if (!trip.equals(other.trip))
+			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
 			return false;
 		return true;
 	}

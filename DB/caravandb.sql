@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `trip_traveler_review_of_host` (
   `trip_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
   `approved` TINYINT NULL DEFAULT 0,
-  `trip_traveler_review_of_hostcol` ENUM('finished', 'accepted', 'denied', 'awaiting', 'saved') NULL,
+  `trip_traveler_review_of_hostcol` VARCHAR(35) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_traveler_trip1_idx` (`trip_id` ASC),
   INDEX `fk_trip_traveler_user_profile1_idx` (`user_profile_id` ASC),
@@ -513,10 +513,22 @@ CREATE TABLE IF NOT EXISTS `adventure_traveler_review_of_host` (
   `rating` INT NULL,
   `review` VARCHAR(400) NULL,
   `attended` TINYINT NULL,
+  `traveler_status` VARCHAR(35) NULL,
   `adventure_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
-  `traveler_status` ENUM('finished', 'accepted', 'denied', 'awaiting', 'saved') NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  INDEX `fk_adventure_traveler_review_of_host_adventure1_idx` (`adventure_id` ASC),
+  INDEX `fk_adventure_traveler_review_of_host_user_profile1_idx` (`user_profile_id` ASC),
+  CONSTRAINT `fk_adventure_traveler_review_of_host_adventure1`
+    FOREIGN KEY (`adventure_id`)
+    REFERENCES `adventure` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adventure_traveler_review_of_host_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';

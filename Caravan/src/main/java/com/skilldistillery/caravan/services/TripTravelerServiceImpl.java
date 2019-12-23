@@ -54,6 +54,7 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 			existing.setContributionPledge(tripTraveler.getContributionPledge());
 			existing.setContributionActual(tripTraveler.getContributionActual());
 			existing.setAttended(tripTraveler.isAttended());
+			existing.setStatus(tripTraveler.getStatus());
 //			existing.setTrip(tripTraveler.getTrip());
 //			existing.setUser(tripTraveler.getUser());
 

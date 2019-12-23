@@ -33,8 +33,11 @@ public class TripTraveler {
 	private double contributionActual;
 
 	@OneToOne
+	@JoinColumn(name = "trip_id")
+	private Trip trip;
+
+	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-//	@JsonIgnore
 	private UserProfile user;
 
 	private boolean approved;
@@ -69,6 +72,20 @@ public class TripTraveler {
 
 //	M E T H O D S
 
+	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
+			double contributionActual, Trip trip, UserProfile user, boolean approved, String status) {
+		super();
+		this.rating = rating;
+		this.review = review;
+		this.contributionPledge = contributionPledge;
+		this.attended = attended;
+		this.contributionActual = contributionActual;
+		this.trip = trip;
+		this.user = user;
+		this.approved = approved;
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "TripTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", contributionPledge="
@@ -91,8 +108,6 @@ public class TripTraveler {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-
-	
 
 	public String getReview() {
 		return review;
@@ -156,9 +171,8 @@ public class TripTraveler {
 
 	public void setTravelerStatus(String travelerStatus) {
 		this.travelerStatus = travelerStatus;
-	}
 
-	@Override
+  @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -173,6 +187,7 @@ public class TripTraveler {
 		temp = Double.doubleToLongBits(rating);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -203,6 +218,11 @@ public class TripTraveler {
 			if (other.review != null)
 				return false;
 		} else if (!review.equals(other.review))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
 			return false;
 		if (trip == null) {
 			if (other.trip != null)

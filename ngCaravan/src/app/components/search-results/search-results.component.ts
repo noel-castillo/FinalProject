@@ -36,13 +36,16 @@ export class SearchResultsComponent implements OnInit {
     console.log(form);
     console.log(form.value.location);
     console.log(form.value.searchType);
+    // if (form.value.searchType === 1 || this.searchType === 1) {
+    if (true) {
+      
     console.log(form.value);
     console.log('searchNum: ' + this.searchNum);
 
 
     if (form.value.searchType === '1' || this.searchNum === '1') {
       this.adventures = null;
-      this.tripSvc.index().subscribe(
+     this.tripSvc.indexNotHOsted().subscribe(
         data => {
           this.trips = data;
         },

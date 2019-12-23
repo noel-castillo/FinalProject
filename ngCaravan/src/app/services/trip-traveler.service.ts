@@ -15,7 +15,7 @@ export class TripTravelerService {
 
   // C o n s t r u c t o r
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   // M e t h o d s
 
@@ -28,7 +28,25 @@ export class TripTravelerService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<TripTraveler[]>(this.url, httpOptions)
+    return this.http.get<TripTraveler[]>(this.url, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('error');
+      })
+    );
+  }
+  getRequests() {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http
+      .get<TripTraveler[]>(this.baseUrl + '/tripHostTravelers', httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -36,26 +54,7 @@ export class TripTravelerService {
         })
       );
   }
-getRequests() {
-  const credentials = this.authService.getCredentials();
-  const httpOptions = {
-    headers: new HttpHeaders({
-      Authorization: `Basic ${credentials}`,
-      'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    })
-  };
-
-  return this.http.get<TripTraveler>(this.baseUrl + '/tripHostTravelers', httpOptions)
-    .pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError('error');
-      })
-    );
-}
   createTripTraveler(newTripTraveler: TripTraveler, tid: number) {
-
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -66,7 +65,13 @@ getRequests() {
     };
 
     // tslint:disable-next-line: max-line-length
-    return this.http.post<TripTraveler>(this.baseUrl + 'api/trips/' + tid + '/tripTravelers', newTripTraveler, httpOptions)
+    newTripTraveler.travelerStatus = 'pending';
+    return this.http
+      .post<TripTraveler>(
+        this.baseUrl + 'api/trips/' + tid + '/tripTravelers',
+        newTripTraveler,
+        httpOptions
+      )
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -76,7 +81,6 @@ getRequests() {
   }
 
   updateTripTraveler(tripTraveler: TripTraveler) {
-
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -85,12 +89,18 @@ getRequests() {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.put<TripTraveler>(`${this.url}/${tripTraveler.id}`, tripTraveler, httpOptions).pipe(
-      catchError((err: any) => {
-        console.error(err);
-        return throwError('TripService.update(): Error updating trip');
-      })
-    );
+    return this.http
+      .put<TripTraveler>(
+        `${this.url}/${tripTraveler.id}`,
+        tripTraveler,
+        httpOptions
+      )
+      .pipe(
+        catchError((err: any) => {
+          console.error(err);
+          return throwError('TripService.update(): Error updating trip');
+        })
+      );
   }
 
   deleteTripTraveler(id: number) {
@@ -109,5 +119,4 @@ getRequests() {
       })
     );
   }
-
 }

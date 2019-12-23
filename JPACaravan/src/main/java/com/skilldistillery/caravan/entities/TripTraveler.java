@@ -40,13 +40,12 @@ public class TripTraveler {
 
 	@Column(name = "traveler_status")
 	private String travelerStatus;
-	
+
 //	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
-	
-	
+
 //	C O N S T R U C T O R S
 
 	public TripTraveler() {
@@ -54,32 +53,20 @@ public class TripTraveler {
 	}
 
 	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
-			double contributionActual, Trip trip, UserProfile user, boolean approved) {
+			double contributionActual, UserProfile user, boolean approved, String travelerStatus, Trip trip) {
 		super();
 		this.rating = rating;
 		this.review = review;
 		this.contributionPledge = contributionPledge;
 		this.attended = attended;
 		this.contributionActual = contributionActual;
-		this.trip = trip;
 		this.user = user;
 		this.approved = approved;
+		this.travelerStatus = travelerStatus;
+		this.trip = trip;
 	}
 
 //	M E T H O D S
-
-	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
-			double contributionActual, Trip trip, UserProfile user, boolean approved, String status) {
-		super();
-		this.rating = rating;
-		this.review = review;
-		this.contributionPledge = contributionPledge;
-		this.attended = attended;
-		this.contributionActual = contributionActual;
-		this.trip = trip;
-		this.user = user;
-		this.approved = approved;
-	}
 
 	@Override
 	public String toString() {
@@ -168,7 +155,7 @@ public class TripTraveler {
 		this.travelerStatus = travelerStatus;
 	}
 
-  @Override
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

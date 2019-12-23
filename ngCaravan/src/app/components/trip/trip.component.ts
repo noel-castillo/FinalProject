@@ -44,6 +44,7 @@ export class TripComponent implements OnInit {
     this.tripSvc.index().subscribe(
       data => {
         this.trips = data;
+        console.log(this.trips);
       },
       err => {
         console.error('ngOnInit error in Address Component');

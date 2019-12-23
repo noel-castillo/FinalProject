@@ -38,7 +38,7 @@ public class AdventureTraveler {
 	private UserProfile user;
 
 	@Column(name = "traveler_status")
-	private TravelerStatus status;
+	private String travelerStatus;
 	
 	private boolean approved;
 
@@ -62,7 +62,7 @@ public class AdventureTraveler {
 	@Override
 	public String toString() {
 		return "AdventureTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", attended=" + attended
-				+ ", adventure=" + adventure.getTitle() + ", user=" + user.getFirstName() + ", status=" + status + "]";
+				+ ", adventure=" + adventure.getTitle() + ", user=" + user.getFirstName();
 	}
 
 	public int getId() {
@@ -113,15 +113,6 @@ public class AdventureTraveler {
 		this.user = user;
 	}
 
-	public TravelerStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(TravelerStatus status) {
-		this.status = status;
-	}
-	
-
 	public boolean isApproved() {
 		return approved;
 	}
@@ -142,7 +133,6 @@ public class AdventureTraveler {
 		temp = Double.doubleToLongBits(rating);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -173,8 +163,6 @@ public class AdventureTraveler {
 			if (other.review != null)
 				return false;
 		} else if (!review.equals(other.review))
-			return false;
-		if (status != other.status)
 			return false;
 		if (user == null) {
 			if (other.user != null)

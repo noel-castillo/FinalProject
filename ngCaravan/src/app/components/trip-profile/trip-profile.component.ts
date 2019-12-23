@@ -20,7 +20,6 @@ declare var jQuery: any;
   styleUrls: ['./trip-profile.component.css']
 })
 export class TripProfileComponent implements OnInit {
-
   // F i e l d s
 
   tripHost: UserProfile;
@@ -31,10 +30,18 @@ export class TripProfileComponent implements OnInit {
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
-  constructor(private auth: AuthService, private tripSvc: TripService, private tripTravelerSvc: TripTravelerService, private vehicleSvc: VehicleService, private currentRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private auth: AuthService,
+    private tripSvc: TripService,
+    private tripTravelerSvc: TripTravelerService,
+    private vehicleSvc: VehicleService,
+    private currentRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   addTrip(tid) {
-    this.tripTravelerSvc.createTripTraveler(this.tripTraveler, tid).subscribe (
+    this.tripTraveler.status = 'pending';
+    this.tripTravelerSvc.createTripTraveler(this.tripTraveler, tid).subscribe(
       data => {
         console.log(data);
         this.tripTraveler = data;
@@ -56,7 +63,6 @@ export class TripProfileComponent implements OnInit {
 
     // tslint:disable-next-line: only-arrow-functions
     (function($) {
-
       /*------------------
           Preloader
       --------------------*/
@@ -83,7 +89,9 @@ export class TripProfileComponent implements OnInit {
       });
 
       $('.slicknav_nav ul ').prepend('<li class="header-right-warp"></li>');
-      $('.header-right').clone().prependTo('.slicknav_nav > ul > .header-right-warp');
+      $('.header-right')
+        .clone()
+        .prependTo('.slicknav_nav > ul > .header-right-warp');
 
       /*----------------------
           Testimonial Slider
@@ -94,9 +102,12 @@ export class TripProfileComponent implements OnInit {
         nav: true,
         items: 1,
         dots: false,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: [
+          '<i class="fa fa-angle-left"></i>',
+          '<i class="fa fa-angle-right"></i>'
+        ],
         smartSpeed: 1200,
-        autoplay: false,
+        autoplay: false
       });
 
       /*------------------
@@ -124,36 +135,47 @@ export class TripProfileComponent implements OnInit {
       /*-------------------
       Radio Btn
     --------------------- */
-      $('.filter-left .category-filter .category-option .co-item label').on('click', function() {
-        $('.filter-left .category-filter .category-option .co-item label').removeClass('active');
-        $(this).addClass('active');
-      });
+      $('.filter-left .category-filter .category-option .co-item label').on(
+        'click',
+        function() {
+          $(
+            '.filter-left .category-filter .category-option .co-item label'
+          ).removeClass('active');
+          $(this).addClass('active');
+        }
+      );
 
-      $('.filter-left .rating-filter .rating-option .ro-item label').on('click', function() {
-        $('.filter-left .rating-filter .rating-option .ro-item label').removeClass('active');
-        $(this).addClass('active');
-      });
+      $('.filter-left .rating-filter .rating-option .ro-item label').on(
+        'click',
+        function() {
+          $(
+            '.filter-left .rating-filter .rating-option .ro-item label'
+          ).removeClass('active');
+          $(this).addClass('active');
+        }
+      );
 
-      $('.filter-left .distance-filter .distance-option .do-item label').on('click', function() {
-        $('.filter-left .distance-filter .distance-option .do-item label').removeClass('active');
-        $(this).addClass('active');
-      });
-
+      $('.filter-left .distance-filter .distance-option .do-item label').on(
+        'click',
+        function() {
+          $(
+            '.filter-left .distance-filter .distance-option .do-item label'
+          ).removeClass('active');
+          $(this).addClass('active');
+        }
+      );
     })(jQuery);
 
-
-     // grabs the array of trips from the service & adds it to this component
-  // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+    // grabs the array of trips from the service & adds it to this component
+    // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
     // console.log(this.currentRoute.snapshot.paramMap.get('id'));
     this.tripSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
-        data => {
-          this.trip = data;
-        },
-        err => {
-          console.error('ngOnInit error in Trip Profile Component');
-        }
+      data => {
+        this.trip = data;
+      },
+      err => {
+        console.error('ngOnInit error in Trip Profile Component');
+      }
     );
-
   }
-
 }

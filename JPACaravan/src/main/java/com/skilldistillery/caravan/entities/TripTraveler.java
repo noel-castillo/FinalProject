@@ -43,15 +43,12 @@ public class TripTraveler {
 	private boolean approved;
 
 	@Column(name = "traveler_status")
-	private String status;
-
-//	private TripTravelerStatus tripStatus;
+	private String travelerStatus;
 	
 //	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
-	
 	
 	
 //	C O N S T R U C T O R S
@@ -168,15 +165,14 @@ public class TripTraveler {
 		this.approved = approved;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getTravelerStatus() {
+		return travelerStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	public void setTravelerStatus(String travelerStatus) {
+		this.travelerStatus = travelerStatus;
 
-	@Override
+  @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;

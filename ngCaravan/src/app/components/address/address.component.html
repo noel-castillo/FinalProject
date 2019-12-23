@@ -1,0 +1,72 @@
+<h1>{{title}} <span class="badge badge-primary">{{countAddresses()}}</span></h1>
+<div *ngIf=!selected>
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Street</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor='let address of addresses'>
+    <td (click)="displayAddress(address)">{{address.id}}</td>
+    <td >{{address.street}}</td>
+    <td>{{address.city}}</td>
+    <td>{{address.state}}</td>
+    <td>{{address.zip}}</td>
+    <td>{{address.latitude}}</td>
+    <td>{{address.longitude}}</td>
+    <td (click)="deleteAddress(address.id)">X</td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+<form>
+  <input type="text" name="street" placeholder="Street" [(ngModel)]="newAddress.street">
+  <input type="text" name="city" placeholder="City" [(ngModel)]="newAddress.city">
+  <input type="text" name="state" placeholder="State" [(ngModel)]="newAddress.state">
+  <input type="text" name="zip" placeholder="Zip" [(ngModel)]="newAddress.zip">
+  <input type="text" name="latitude" placeholder="Latitude" [(ngModel)]="newAddress.latitude">
+  <input type="text" name="longitude" placeholder="Longitude" [(ngModel)]="newAddress.longitude">
+  <button class="btn btn-warning" (click)="addAddress(newAddress)">Add Address</button>
+</form>
+
+<div *ngIf="selected && ! editAddress">
+  <p>{{selected.id}}</p>
+  <p>{{selected.street}}</p>
+  <p>{{selected.city}}</p>
+  <p>{{selected.state}}</p>
+  <p>{{selected.zip}}</p>
+  <p>{{selected.latitude}}</p>
+  <p>{{selected.longitude}}</p>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditAddress()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteAddress(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editAddress">
+  <h2>{{editAddress.id}}</h2>
+  <form>
+    <label for="street">Street</label>
+    <input type="text" name="street" [(ngModel)]="editAddress.street"><br>
+    <label for="city">City</label>
+    <input type="text" name="city" [(ngModel)]="editAddress.city"><br>
+    <label for="state">State</label>
+    <input type="text" name="state" [(ngModel)]="editAddress.state"><br>
+    <label for="zip">Zip</label>
+    <input type="text" name="zip" [(ngModel)]="editAddress.zip"><br>
+    <label for="Latitude">Latitude</label>
+    <input type="text" name="latitude" [(ngModel)]="editAddress.latitude"><br>
+    <label for="Longitude">Longitude</label>
+    <input type="text" name="longitude" [(ngModel)]="editAddress.longitude"><br>
+    <button class="btn btn-warning" (click)="updateAddress(editAddress)">Save</button>
+    <button class="btn btn-warning" (click)="editAddress = null">Cancel</button>
+  </form>
+</div>

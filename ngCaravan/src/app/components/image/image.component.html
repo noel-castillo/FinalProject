@@ -1,0 +1,42 @@
+<h1>{{title}} <span class="badge badge-primary">{{countImages()}}</span></h1>
+<div *ngIf=!selected>
+  <table class="table table-hover table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let image of images'>
+        <td (click)="displayImage(image)">{{image.id}}</td>
+        <td>{{image.url}}</td>
+        <td (click)="deleteImage(image.id)">X</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<form>
+  <input type="text" name="url" placeholder="Image URL" [(ngModel)]="newImage.url">
+  <button class="btn btn-warning" (click)="addImage(newImage)">Add Image</button>
+</form>
+
+<div *ngIf="selected && ! editImage">
+  <p>{{selected.id}}</p>
+  <p>{{selected.url}}</p>
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditImage()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteImage(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editImage">
+  <h2>{{editImage.id}}</h2>
+  <form>
+    <label for="name">Name</label>
+    <input type="text" name="name" [(ngModel)]="editImage.url"><br>
+    <button class="btn btn-warning" (click)="updateImage(editImage)">Save</button>
+    <button class="btn btn-warning" (click)="editImage = null">Cancel</button>
+  </form>
+</div>

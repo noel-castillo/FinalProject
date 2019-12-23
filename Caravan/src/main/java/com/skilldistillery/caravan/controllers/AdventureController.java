@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.caravan.entities.Adventure;
-import com.skilldistillery.caravan.entities.UserProfile;
 import com.skilldistillery.caravan.services.AdventureService;
 
 @RestController
 @CrossOrigin({ "*", "http://localhost:4260" })
 @RequestMapping("api")
 public class AdventureController {
+	
 
 	@Autowired
 	AdventureService advSvc;
@@ -46,9 +46,9 @@ public class AdventureController {
 		try {
 			adventure = advSvc.create(adventure, principal.getName());
 			resp.setStatus(201);
-//			StringBuffer url = req.getRequestURL();
-//			url.append("/").append(adventure.getId());
-//			resp.addHeader("Location", url.toString());
+			StringBuffer url = req.getRequestURL();
+			url.append("/").append(adventure.getId());
+			resp.addHeader("Location", url.toString());
 			return adventure;
 
 		} catch (Exception e) {
@@ -59,23 +59,21 @@ public class AdventureController {
 
 	}
 
-	// UPDATE UserProfile
+
 	@PutMapping(path = "adventures/{id}")
 	public Adventure edit(@PathVariable("id") Integer id, @RequestBody Adventure adventure, HttpServletRequest req, HttpServletResponse resp, Principal principal) {
 
 		try {
 			adventure = advSvc.update(adventure, principal.getName(), id);
-			// TODO SET 401 created
 			resp.setStatus(201);
-//					resp.addHeader("Location", "http://localhost:8081/api/posts" + post.getId());
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(adventure.getId());
 			resp.addHeader("Location", url.toString());
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO SET 400 bad request
 			resp.setStatus(400);
+			return null;
 		}
 
 		return adventure;

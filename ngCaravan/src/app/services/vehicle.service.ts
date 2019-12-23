@@ -25,21 +25,35 @@ export class VehicleService {
   // M E T H O D S
 
   index() {
-    if (this.authService.checkLogin()) {
-      return null;
-    }
-
-    // Make credentials
     const credentials = this.authService.getCredentials();
-    // Send credentials as Authorization header (this is spring security convention for basic auth)
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
     // this.checkLogin();
     return this.http.get<Vehicle[]>(this.url + '?sorted=true', httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('KABOOM');
+        })
+      );
+  }
+
+  getVehiclesByUser() {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
+    return this.http.get<Vehicle[]>(this.url + '/user/' + '?sorted=true', httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

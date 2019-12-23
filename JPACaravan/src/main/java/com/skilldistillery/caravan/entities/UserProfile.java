@@ -1,6 +1,7 @@
 package com.skilldistillery.caravan.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="user_profile")
+@Table(name = "user_profile")
 public class UserProfile {
 
 //	F I E L D S
@@ -21,34 +25,47 @@ public class UserProfile {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
 	private String email;
 
 	private String bio;
-	
+
 	private String phone;
-	
-	@Column(name="mileage_points")
+
+	@Column(name = "mileage_points")
 	private int mileagePoints;
 
-	@Column(name="registration_date")
+	@Column(name = "registration_date")
 	private Date registrationDate;
 
-	@Column(name="profile_pic_id")
-	private String profilePic;
+	@OneToOne
+	@JoinColumn(name = "profile_pic_id")
+	private Image profilePic;
 
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
+
 	@OneToOne
-	@JoinColumn(name="user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
+
+	@OneToMany(mappedBy = "userProfile")
+	@JsonIgnore
+	private List<Vehicle> Vehicles;
+
+	@OneToMany(mappedBy = "host")
+	@JsonIgnore
+	private List<Trip> hostedTrips;
+
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private List<TripTraveler> tripsJoined;
 
 //	C O N S T R U C T O R S
 
@@ -61,8 +78,9 @@ public class UserProfile {
 	@Override
 	public String toString() {
 		return "UserProfile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", bio=" + bio + ", registrationDate=" + registrationDate + ", profilePic=" + profilePic
-				+ ", address=" + address + "]";
+				+ ", bio=" + bio + ", phone=" + phone + ", mileagePoints=" + mileagePoints + ", registrationDate="
+				+ registrationDate + ", profilePic=" + profilePic + ", address=" + address + ", user=" + user
+				+ ", Vehicles=" + Vehicles + ", hostedTrips=" + hostedTrips + ", tripsJoined=" + tripsJoined + "]";
 	}
 
 	public int getId() {
@@ -113,11 +131,11 @@ public class UserProfile {
 		this.registrationDate = registrationDate;
 	}
 
-	public String getProfilePic() {
+	public Image getProfilePic() {
 		return profilePic;
 	}
 
-	public void setProfilePic(String profilePic) {
+	public void setProfilePic(Image profilePic) {
 		this.profilePic = profilePic;
 	}
 
@@ -129,7 +147,6 @@ public class UserProfile {
 		this.address = address;
 	}
 
-	
 	public int getMileagePoints() {
 		return mileagePoints;
 	}
@@ -145,7 +162,6 @@ public class UserProfile {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 
 	public String getPhone() {
 		return phone;
@@ -155,19 +171,48 @@ public class UserProfile {
 		this.phone = phone;
 	}
 
+	public List<Vehicle> getVehicles() {
+		return Vehicles;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		Vehicles = vehicles;
+	}
+
+	
+	public List<Trip> getHostedTrips() {
+		return hostedTrips;
+	}
+
+	public void setHostedTrips(List<Trip> hostedTrips) {
+		this.hostedTrips = hostedTrips;
+	}
+
+	public List<TripTraveler> getTripsJoined() {
+		return tripsJoined;
+	}
+
+	public void setTripsJoined(List<TripTraveler> tripsJoined) {
+		this.tripsJoined = tripsJoined;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((Vehicles == null) ? 0 : Vehicles.hashCode());
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
 		result = prime * result + ((bio == null) ? 0 : bio.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((hostedTrips == null) ? 0 : hostedTrips.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + mileagePoints;
+		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
 		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
+		result = prime * result + ((tripsJoined == null) ? 0 : tripsJoined.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -181,6 +226,11 @@ public class UserProfile {
 		if (getClass() != obj.getClass())
 			return false;
 		UserProfile other = (UserProfile) obj;
+		if (Vehicles == null) {
+			if (other.Vehicles != null)
+				return false;
+		} else if (!Vehicles.equals(other.Vehicles))
+			return false;
 		if (address == null) {
 			if (other.address != null)
 				return false;
@@ -201,6 +251,11 @@ public class UserProfile {
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
+		if (hostedTrips == null) {
+			if (other.hostedTrips != null)
+				return false;
+		} else if (!hostedTrips.equals(other.hostedTrips))
+			return false;
 		if (id != other.id)
 			return false;
 		if (lastName == null) {
@@ -209,6 +264,11 @@ public class UserProfile {
 		} else if (!lastName.equals(other.lastName))
 			return false;
 		if (mileagePoints != other.mileagePoints)
+			return false;
+		if (phone == null) {
+			if (other.phone != null)
+				return false;
+		} else if (!phone.equals(other.phone))
 			return false;
 		if (profilePic == null) {
 			if (other.profilePic != null)
@@ -219,6 +279,11 @@ public class UserProfile {
 			if (other.registrationDate != null)
 				return false;
 		} else if (!registrationDate.equals(other.registrationDate))
+			return false;
+		if (tripsJoined == null) {
+			if (other.tripsJoined != null)
+				return false;
+		} else if (!tripsJoined.equals(other.tripsJoined))
 			return false;
 		if (user == null) {
 			if (other.user != null)

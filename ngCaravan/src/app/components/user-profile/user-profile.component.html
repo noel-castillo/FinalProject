@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <p>
+        {{ currentProfile.firstName }}
+      </p>
+      <p>
+        {{ currentProfile.lastName }}
+      </p>
+    </div>
+    <div class="col">
+      <!-- <img src="{{ currentProfile.profilePic.url }}" /> -->
+    </div>
+  </div>
+  <ngb-accordion #acc="ngbAccordion">
+    <ngb-panel id="toggle-1" title="Hosted Trips">
+      <ng-template ngbPanelContent>
+        <div *ngFor="let trip of hostedTrips">
+          <div class="row">
+            <ngb-accordion #acc="ngbAccordion">
+              <ngb-panel id="toggle-1" title="{{ trip.title }}">
+                <ng-template ngbPanelContent>
+                  {{ trip.description }}
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="toggle-2" title="Posts">
+                <ng-template ngbPanelContent>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="toggle-3" title="Reviews">
+                <ng-template ngbPanelContent>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+            <br />
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+    <ngb-panel id="toggle-2" title="Trip Request">
+      <ng-template ngbPanelContent>
+        <table class="table table-hover table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>User</th>
+              <th class="text-center">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of hostTripRequest">
+              <td>{{ request.user.firstName }} {{ request.user.lastName }}</td>
+              <td>
+                <button
+                  class="btn-success"
+                  (click)="approveTripTraveler(request)"
+                >
+                  Approve
+                </button>
+              </td>
+              <td>
+                <button class="btn-danger" (click)="denyTripTraveler(request)">
+                  Deny
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>

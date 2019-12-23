@@ -1,0 +1,57 @@
+<h1>{{title}} <span class="badge badge-primary">{{countMessage()}}</span></h1>
+<div *ngIf=!selected>
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th></th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor='let message of messages'>
+    <td (click)="displayMessage(message)">{{message.id}}</td>
+    <td >{{message.id}}</td>
+    <td>{{message.trip.description}}</td>
+    <td>{{message.content}}</td>
+    <td>{{message.userProfile.email}}</td>
+
+    <td (click)="deleteMessage(message.id)">X</td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+
+<form>
+  <input type="text" name="content" placeholder="Content" [(ngModel)]="newMessage.content">
+
+  <button class="btn btn-warning" (click)="addMessage(newMessage)">Add Message</button>
+</form>
+
+<div *ngIf="selected && ! editMessage">
+  <p>{{selected.id}}</p>
+  <p>{{selected.content}}</p>
+  <p>{{selected.trip.description}}</p>
+  <p>{{selected.datePosted}}</p>
+  <p>{{selected.userProfile.user.username}}</p>
+
+  <button class="btn btn-secondary" (click)="displayTable()">Back</button>
+  <button class="btn btn-warning" (click)="setEditMessage()">Edit</button>
+  <button class="btn btn-danger" (click)="deleteMessage(selected.id)">DELETE</button>
+</div>
+
+<div *ngIf="editMessage">
+  <h2>{{editMessage.id}}</h2>
+  <form>
+    <label for="content">Street</label>
+    <input type="content" name="content" [(ngModel)]="editMessage.content"><br>
+
+    <button class="btn btn-warning" (click)="updateMessage(editMessage)">Save</button>
+    <button class="btn btn-warning" (click)="editAddress = null">Cancel</button>
+  </form>
+</div>

@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { TripCalendar } from '../models/trip-calendar';
+import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TripCalendar } from '../models/trip-calendar';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +17,17 @@ export class TripCalendarService {
 
   // C o n s t r u c t o r
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // M e t h o d s
 
   index() {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-      'X-Requested-With': 'XMLHttpRequest'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
     return this.http.get<TripCalendar[]>(this.url, httpOptions)
@@ -36,12 +39,14 @@ export class TripCalendarService {
       );
   }
 
-  create(newTripCalendar: TripCalendar) {
+  createTripCalendar(newTripCalendar: TripCalendar) {
 
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type':  'application/json'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
 
@@ -54,13 +59,15 @@ export class TripCalendarService {
       );
   }
 
-  update(tripCalendar: TripCalendar) {
+  updateTripCalendar(tripCalendar: TripCalendar) {
 
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'Content-type': 'application/json'
-        }
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
     };
     return this.http.put<TripCalendar>(`${this.url}/${tripCalendar.id}`, tripCalendar, httpOptions).pipe(
       catchError((err: any) => {
@@ -70,12 +77,15 @@ export class TripCalendarService {
     );
   }
 
-  delete(id: number) {
+  deleteTripCalendar(id: number) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-      headers: {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
         'X-Requested-With': 'XMLHttpRequest'
-      }
-  };
+      })
+    };
     return this.http.delete(`${this.url}/${id}`, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Trip } from '../models/trip';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +16,56 @@ export class TripService {
 
   // C o n s t r u c t o r
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   // M e t h o d s
 
   index() {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-      'X-Requested-With': 'XMLHttpRequest'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
     return this.http.get<Trip[]>(this.url, httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Trip Service index() ERROR');
+        })
+      );
+  }
+
+  indexNotHOsted() {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Trip[]>(this.baseUrl + 'api/notHosted', httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Trip Service index() ERROR');
+        })
+      );
+  }
+
+  show(id: string) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Trip>(this.url + '/' + id, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -36,14 +75,15 @@ export class TripService {
   }
 
   create(newTrip: Trip) {
-
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'X-Requested-With': 'XMLHttpRequest',
-        'Content-Type':  'application/json'
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
-
+    console.log(newTrip);
     return this.http.post<Trip>(this.url, newTrip, httpOptions)
       .pipe(
         catchError((err: any) => {
@@ -54,12 +94,13 @@ export class TripService {
   }
 
   update(trip: Trip) {
-
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          'Content-type': 'application/json'
-        }
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
     };
     return this.http.put<Trip>(`${this.url}/${trip.id}`, trip, httpOptions).pipe(
       catchError((err: any) => {
@@ -69,12 +110,34 @@ export class TripService {
     );
   }
 
-  delete(id: number) {
+  disable(trip: Trip) {
+    const credentials = this.authService.getCredentials();
     const httpOptions = {
-      headers: {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
         'X-Requested-With': 'XMLHttpRequest'
-      }
-  };
+      })
+    };
+
+    return this.http.put<Trip>(`${this.url}/${trip.id}`, trip, httpOptions).pipe(
+      catchError((err: any) => {
+        console.error(err);
+        return throwError('TripService.disable(): Error disabling trip');
+      })
+    );
+  }
+
+  delete(id: number) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+
     return this.http.delete(`${this.url}/${id}`, httpOptions).pipe(
       catchError((err: any) => {
         console.error(err);

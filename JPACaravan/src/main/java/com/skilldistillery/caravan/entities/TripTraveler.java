@@ -6,10 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "trip_traveler_review_of_host")
@@ -34,19 +33,37 @@ public class TripTraveler {
 	private double contributionActual;
 
 	@OneToOne
-	@JoinColumn(name = "trip_id")
-	@JsonIgnore
-	private Trip trip;
-
-	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-	@JsonIgnore
-	private User user;
+	private UserProfile user;
+
+	private boolean approved;
+
+	@Column(name = "traveler_status")
+	private String travelerStatus;
+
+//	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "trip_id")
+	private Trip trip;
 
 //	C O N S T R U C T O R S
 
 	public TripTraveler() {
 		super();
+	}
+
+	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
+			double contributionActual, UserProfile user, boolean approved, String travelerStatus, Trip trip) {
+		super();
+		this.rating = rating;
+		this.review = review;
+		this.contributionPledge = contributionPledge;
+		this.attended = attended;
+		this.contributionActual = contributionActual;
+		this.user = user;
+		this.approved = approved;
+		this.travelerStatus = travelerStatus;
+		this.trip = trip;
 	}
 
 //	M E T H O D S
@@ -55,7 +72,7 @@ public class TripTraveler {
 	public String toString() {
 		return "TripTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", contributionPledge="
 				+ contributionPledge + ", attended=" + attended + ", contributionActual=" + contributionActual
-				+ ", trip=" + trip + "]";
+				+ ", approved=" + approved + "]";
 	}
 
 	public int getId() {
@@ -114,18 +131,35 @@ public class TripTraveler {
 		this.trip = trip;
 	}
 
-	public User getUser() {
+	public UserProfile getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserProfile user) {
 		this.user = user;
+	}
+
+	public boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+
+	public String getTravelerStatus() {
+		return travelerStatus;
+	}
+
+	public void setTravelerStatus(String travelerStatus) {
+		this.travelerStatus = travelerStatus;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (approved ? 1231 : 1237);
 		result = prime * result + (attended ? 1231 : 1237);
 		long temp;
 		temp = Double.doubleToLongBits(contributionActual);
@@ -150,6 +184,8 @@ public class TripTraveler {
 		if (getClass() != obj.getClass())
 			return false;
 		TripTraveler other = (TripTraveler) obj;
+		if (approved != other.approved)
+			return false;
 		if (attended != other.attended)
 			return false;
 		if (Double.doubleToLongBits(contributionActual) != Double.doubleToLongBits(other.contributionActual))

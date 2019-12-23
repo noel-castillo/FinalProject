@@ -1,1 +1,66 @@
-<p>adventure works!</p>
+<div class="container-fluid" *ngIf="!selectedAdventure">
+  <div>
+    <table class="table table-striped table-hover">
+      <thead class="thead thead-dark">
+        <tr>
+          <th>
+           Adventures
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let adventure of adventures" (click)="selectedAdventure = adventure">
+          <td>
+            {{ adventure.id }}
+          </td>
+          <td>
+            {{ adventure.title }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-success" (click)="new = true">Create New Adventure</button>
+  </div>
+</div>
+<div *ngIf="selectedAdventure">
+  {{selectedAdventure.title}}
+  {{selectedAdventure.description}}
+  <button class="btn btn-primary" (click)="selectedAdventure = null">Back</button>
+  <button class="btn btn-warning" (click)="editAdventure = selectedAdventure">Edit</button>
+  <button class="btn btn-success" (click)="new = true">Create New Adventure</button>
+</div>
+<div *ngIf="new">
+  <form #createForm="ngForm">
+    <input type="text" name="title" class="form-control" placeholder="Adventure Title" ngModel/>
+    <input type="text" name="description" class="form-control" placeholder="Adventure Description" ngModel/>
+    <input type="text" name="activityLvl" class="form-control" placeholder="Activity Level" ngModel/>
+    <input type="text" name="includes" class="form-control" placeholder="Includes" ngModel/>
+    <input type="number" name="price" class="form-control" placeholder="Price" ngModel/>
+    <input type="text" name="itinerary" class="form-control" placeholder="Itinerary" ngModel/>
+    <input type="text" name="street" class="form-control" placeholder="Street Address" ngModel/>
+    <input type="text" name="city" class="form-control" placeholder="City" ngModel/>
+    <input type="text" name="state" class="form-control" placeholder="State" ngModel/>
+    <input type="number" name="zip" class="form-control" placeholder="Zip Code" ngModel/>
+    <button class="btn btn-primary" type="submit" value="New Adventure" (click)="createAdventure(createForm)">Submit</button>
+    <button class="btn btn-primary" type="submit" value="Cancel" (click)="new = false">Cancel</button>
+  </form>
+</div>
+<div *ngIf="editAdventure">
+  <form #createForm="ngForm">
+    <input type="text" name="title" class="form-control" placeholder="Adventure Title" [(ngModel)]="editAdventure.title"/>
+    <input type="text" name="description" class="form-control" placeholder="Adventure Description" [(ngModel)]="editAdventure.description"/>
+    <input type="text" name="activityLvl" class="form-control" placeholder="Activity Level" [(ngModel)]="editAdventure.activityLvl"/>
+    <input type="text" name="includes" class="form-control" placeholder="Includes" [(ngModel)]="editAdventure.includes"/>
+    <input type="number" name="price" class="form-control" placeholder="Price" [(ngModel)]="editAdventure.price"/>
+    <input type="text" name="itinerary" class="form-control" placeholder="Itinerary" [(ngModel)]="editAdventure.itinerary"/>
+    <input type="text" name="street" class="form-control" placeholder="Street Address" [(ngModel)]="editAdventure.address.street"/>
+    <input type="text" name="city" class="form-control" placeholder="City" [(ngModel)]="editAdventure.address.city"/>
+    <input type="text" name="state" class="form-control" placeholder="State" [(ngModel)]="editAdventure.address.state"/>
+    <input type="number" name="zip" class="form-control" placeholder="Zip Code" [(ngModel)]="editAdventure.address.zip"/>
+    <button class="btn btn-primary" type="submit" value="New Adventure" (click)="updateAdventure()">Submit</button>
+    <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = false">Cancel</button>
+    <button class="btn btn-danger" (click)="deleteAdventure()">Delete</button>
+  </form>
+</div>
+

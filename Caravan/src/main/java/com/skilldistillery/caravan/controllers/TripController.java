@@ -29,8 +29,18 @@ public class TripController {
 	private TripService svc;
 	
 	@GetMapping("trips")
-	public List<Trip> allTrips(Principal prin) {
+	public List<Trip> index() {
 		return svc.index();
+	}
+	
+	@GetMapping("notHosted")
+	public List<Trip> allTripsNotHosted(Principal prin) {
+		return svc.indexNotHosted(prin.getName());
+	}
+	
+	@GetMapping("Hosted")
+	public List<Trip> allTripsHosted(Principal prin) {
+		return svc.indexHosted(prin.getName());
 	}
 	
 	@GetMapping("trips/{tid}")
@@ -47,11 +57,11 @@ public class TripController {
 		}	
 	}
 	
-	
 	@PostMapping("trips")
 	public Trip addTrip(@RequestBody Trip trip, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
-			svc.create(trip);
+			System.out.println(trip.toString());
+			svc.create(trip, prin);
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(trip.getId());
@@ -75,6 +85,8 @@ public class TripController {
 		}
 		return trip;
 	}
+	
+	
 	
 	@DeleteMapping("trips/{tid}")
 	public void deleteTrip(@PathVariable Integer tid, HttpServletResponse resp) {

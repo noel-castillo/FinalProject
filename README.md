@@ -11,7 +11,7 @@
 | **ADVENTURE-CALENDARS**|                     |              |               |         |
 | GET       | `/api/adventure-calendars`      |              | Collection of representations of all _adventure-calendars_  | **List** or **collection** endpoint |
 | GET       | `/api/adventure-calendars/3`   |              | Representation of _adventure-calendar_ `3` | **Retrieve** endpoint |
-| POST      | `/api/adventure-calendars`      | Representation of a new _adventure-calendar_  | Description of the result of the operation | **Create** endpoint |
+| POST      | `/api/adventures/3/adventure-calendars`      | Representation of a new _adventure-calendar_ for adventure 3  | Description of the result of the operation | **Create** endpoint |
 | PUT       | `/api/adventure-calendars/3`   | Representation of a new version of adventure-calendar `3` | | **Replace** endpoint |
 | DELETE    | `/api/adventure-calendars/3`   |              | | **Delete** route |
 | **ADVENTURES**|                     |              |               |         |
@@ -35,7 +35,7 @@
 | **TRIP-CALENDARS**|                     |              |               |         |
 | GET       | `/api/tripCalendars`      |              | Collection of representations of all _tripCalendars_  | **List** or **collection** endpoint |
 | GET       | `/api/tripCalendars/3`   |              | Representation of _tripCalendar_ `3` | **Retrieve** endpoint |
-| POST      | `/api/tripCalendars`      | Representation of a new _tripCalendar_  | Description of the result of the operation | **Create** endpoint |
+| POST      | `/api/trips/3/tripCalendars`      | Representation of a new _tripCalendar_ for trip 3 | Description of the result of the operation | **Create** endpoint |
 | PUT       | `/api/tripCalendars/3`   | Representation of a new version of tripCalendar `3` | | **Replace** endpoint |
 | DELETE    | `/api/tripCalendars/3`   |              | | **Delete** route |
 | **TRIPS**|                     |              |               |         |
@@ -73,6 +73,7 @@
 | **USER-PROFILES**|                     |              |               |         |
 | GET       | `/api/userProfiles`      |              | Collection of representations of all _userProfiles_  | **List** or **collection** endpoint |
 | GET       | `/api/userProfiles/username`   |              | Representation of _userProfile_ `username` | **Retrieve** endpoint |
+| GET       | `/api/userProfiles/3`   |              | Representation of _userProfile_ `3` | **Retrieve** endpoint |
 | GET       | `/api/homeProfile`   |              | Representation of _homeProfile_  | **Retrieve** endpoint |
 | POST      | `/api/userProfiles`      | Representation of a new _userProfile_  | Description of the result of the operation | **Create** endpoint |
 | PUT       | `/api/userProfiles/3`   | Representation of a new version of userProfile `3` | | **Replace** endpoint |

@@ -88,7 +88,6 @@ export class UserProfileService {
       this.router.navigateByUrl('login');
       return false;
     } else {
-      this.router.navigateByUrl('userProfiles');
       return true;
     }
   }

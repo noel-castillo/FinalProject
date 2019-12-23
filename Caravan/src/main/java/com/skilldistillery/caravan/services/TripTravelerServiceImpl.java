@@ -43,15 +43,15 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 		for(TripTraveler element : ttRepo.findAll()) {
 			if(element.getTrip() == trip && element.getUser() == userProfile) {
 				System.out.println("Match Found in creating Trip Traveler");
-				element.setStatus(tripTraveler.getStatus());
+				element.setTravelerStatus(tripTraveler.getTravelerStatus());
 				return element;
 			}
 		}
 		
 		tripTraveler.setUser(userProfile);
 		tripTraveler.setTrip(trip);
-		ttRepo.saveAndFlush(tripTraveler);
-		return tripTraveler;
+		return ttRepo.saveAndFlush(tripTraveler);
+		
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 			existing.setContributionPledge(tripTraveler.getContributionPledge());
 			existing.setContributionActual(tripTraveler.getContributionActual());
 			existing.setAttended(tripTraveler.isAttended());
-			existing.setStatus(tripTraveler.getStatus());
+			existing.setTravelerStatus(tripTraveler.getTravelerStatus());
 //			existing.setTrip(tripTraveler.getTrip());
 //			existing.setUser(tripTraveler.getUser());
 

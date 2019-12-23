@@ -5,6 +5,8 @@ import { Trip } from 'src/app/models/trip';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { TripService } from 'src/app/services/trip.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdventureTravelerService } from 'src/app/services/adventure-traveler.service';
+import { AdventureTraveler } from 'src/app/models/adventure-traveler';
 
 declare var jQuery: any;
 
@@ -19,13 +21,26 @@ export class AdventureProfileComponent implements OnInit {
 
   adventure: Adventure;
   address = '';
+  adventureTraveler: AdventureTraveler = new AdventureTraveler();
 
   // C O N S T R U C T O R
 
-  constructor(private adventureSvc: AdventureService, private currentRoute: ActivatedRoute,
+  constructor(private adventureSvc: AdventureService, private adventureTravelerSvc: AdventureTravelerService, private currentRoute: ActivatedRoute,
               private router: Router ) { }
 
   // M E T H O D S
+
+  addAdventure(aid) {
+    this.adventureTravelerSvc.createAdventureTraveler(this.adventureTraveler, aid).subscribe (
+      data => {
+        console.log(data);
+        this.adventureTraveler = data;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
 
   loadAdventure() {
     this.adventureSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(

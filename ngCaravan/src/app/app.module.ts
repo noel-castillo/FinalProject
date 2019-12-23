@@ -62,7 +62,7 @@ import { AdventureTravelerComponent } from './components/adventure-traveler/adve
     SearchResultsComponent,
     AdventureProfileComponent,
     TripsNotHostedComponent,
-    TripRequestPipe
+    TripRequestPipe,
     AdminComponent,
     AdventureTravelerComponent
 

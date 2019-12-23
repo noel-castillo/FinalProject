@@ -17,10 +17,11 @@ export class Trip {
   miles: number;
   vehicle: Vehicle;
   title: string;
+  featureImage: string;
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(host?: UserProfile, departureAddress?: Address, destinationAddress?: Address, description?: string, seatsAvailable?: number, cargoCapactiy?: number, createDate?: Date, enabled?: boolean, totalCost?: number, miles?: number, vehicle?: Vehicle, title?: string) {
+  constructor(host?: UserProfile, departureAddress?: Address, destinationAddress?: Address, description?: string, seatsAvailable?: number, cargoCapactiy?: number, createDate?: Date, enabled?: boolean, totalCost?: number, miles?: number, vehicle?: Vehicle, title?: string, featureImage?: string) {
     this.host = host;
     this.departureAddress = departureAddress;
     this.destinationAddress = destinationAddress;
@@ -33,5 +34,6 @@ export class Trip {
     this.miles = miles;
     this.vehicle = vehicle;
     this.title = title;
+    this.featureImage = featureImage;
   }
 }

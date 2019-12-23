@@ -43,19 +43,30 @@
       <ng-template ngbPanelContent>
         <table class="table table-hover table-striped">
           <thead class="thead-dark">
-        <tr>
-          <th>User</th>
-          <th class="text-center">Status                          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor='let request of hostTripRequest'>
-          <td>{{request.user.firstName}} {{request.user.lastName}}</td>
-          <td><button class="btn-success" (click)="approveTripTraveler(request)">Approve</button></td>
-          <td><button class="btn-danger" (click)="denyTripTraveler(request)">Deny</button></td>
-        </tr>
-      </tbody>
-      </table>
+            <tr>
+              <th>User</th>
+              <th class="text-center">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let request of hostTripRequest | tripRequest">
+              <td>{{ request.user.firstName }} {{ request.user.lastName }}</td>
+              <td>
+                <button
+                  class="btn-success"
+                  (click)="approveTripTraveler(request)"
+                >
+                  Approve
+                </button>
+              </td>
+              <td>
+                <button class="btn-danger" (click)="denyTripTraveler(request)">
+                  Deny
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </ng-template>
     </ngb-panel>
   </ngb-accordion>

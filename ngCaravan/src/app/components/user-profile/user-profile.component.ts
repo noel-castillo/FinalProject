@@ -104,14 +104,7 @@ export class UserProfileComponent implements OnInit {
 
     this.tripTravSvc.index().subscribe(
       data => {
-        this.tripRequest = data;
-        this.tripRequest.forEach(req => {
-          if (
-            req.trip.host.user.username === this.currentProfile.user.username
-          ) {
-            this.hostTripRequest.push(req);
-          }
-        });
+        this.hostTripRequest = data;
       },
       err => {
         console.log(err);
@@ -219,15 +212,15 @@ export class UserProfileComponent implements OnInit {
       err => {
         console.log('Fail');
       }
-      );
-    }
-    approveTripTraveler(req: TripTraveler) {
-      req.status = 'approved';
+    );
+  }
+  approveTripTraveler(req: TripTraveler) {
+    req.status = 'approved';
 
-      this.tripTravSvc.updateTripTraveler(req).subscribe(
-        data => {
-          console.log('Success');
-          this.ngOnInit();
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        console.log('Success');
+        this.ngOnInit();
       },
       err => {
         console.log('Fail');

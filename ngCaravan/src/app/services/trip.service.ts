@@ -38,6 +38,24 @@ export class TripService {
       );
   }
 
+  indexNotHOsted() {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Trip[]>(this.baseUrl + 'api/notHosted', httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Trip Service index() ERROR');
+        })
+      );
+  }
+
   show(id: string) {
     const credentials = this.authService.getCredentials();
     const httpOptions = {

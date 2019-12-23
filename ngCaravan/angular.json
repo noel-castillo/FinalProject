@@ -29,6 +29,7 @@
             ],
             "scripts": [
               "src/assets/js/jquery.nice-select.min.js",
+              "src/assets/js/jquery.nice-select.js",
               "src/assets/js/jquery.magnific-popup.min.js",
               "src/assets/js/mixitup.min.js",
               "src/assets/js/jquery.slicknav.js",

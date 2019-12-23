@@ -590,12 +590,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `image` (`id`, `url`) VALUES (1, 'https://i.imgur.com/KPILGym.png');
+INSERT INTO `image` (`id`, `url`) VALUES (1, 'https://i.imgur.com/Iy01VVJ.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (2, 'https://imgur.com/2DmETHE');
 INSERT INTO `image` (`id`, `url`) VALUES (3, 'https://imgur.com/2DmETHE');
 INSERT INTO `image` (`id`, `url`) VALUES (4, 'https://imgur.com/2DmETHE');
 INSERT INTO `image` (`id`, `url`) VALUES (5, 'https://imgur.com/2DmETHE');
 INSERT INTO `image` (`id`, `url`) VALUES (6, 'https://imgur.com/2DmETHE');
+INSERT INTO `image` (`id`, `url`) VALUES (7, NULL);
 
 COMMIT;
 

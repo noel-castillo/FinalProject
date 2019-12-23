@@ -32,6 +32,7 @@ import { TripsNotHostedComponent } from './components/trips-not-hosted/trips-not
 import { TripRequestPipe } from './pipes/trip-request.pipe';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdventureTravelerComponent } from './components/adventure-traveler/adventure-traveler.component';
+import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
 
 
 
@@ -64,7 +65,8 @@ import { AdventureTravelerComponent } from './components/adventure-traveler/adve
     TripsNotHostedComponent,
     TripRequestPipe,
     AdminComponent,
-    AdventureTravelerComponent
+    AdventureTravelerComponent,
+    BottomBarComponent
 
 
 

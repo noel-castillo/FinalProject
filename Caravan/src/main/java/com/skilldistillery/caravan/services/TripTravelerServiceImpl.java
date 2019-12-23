@@ -22,36 +22,37 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 
 	@Autowired
 	TripTravelerRepository ttRepo;
-	
+
 	@Autowired
 	TripRepository tripRepo;
-	
+
 	@Autowired
 	UserProfileRepository userProfileRepo;
-	
+
 	@Autowired
 	UserRepository userRepo;
 
 	@Override
 	public TripTraveler create(TripTraveler tripTraveler, int tid, Principal principal) {
-		
+
 		User user = userRepo.findByUsername(principal.getName());
-		UserProfile userProfile= userProfileRepo.findByUser(user);
+		UserProfile userProfile = userProfileRepo.findByUser(user);
 		Trip trip = tripRepo.findById(tid).get();
-		
-		//Iterate through existing trip travelers with matching user and trip then only change status if exists
-		for(TripTraveler element : ttRepo.findAll()) {
-			if(element.getTrip() == trip && element.getUser() == userProfile) {
+
+		// Iterate through existing trip travelers with matching user and trip then only
+		// change status if exists
+		for (TripTraveler element : ttRepo.findAll()) {
+			if (element.getTrip() == trip && element.getUser() == userProfile) {
 				System.out.println("Match Found in creating Trip Traveler");
 				element.setTravelerStatus(tripTraveler.getTravelerStatus());
 				return element;
 			}
 		}
-		
+
 		tripTraveler.setUser(userProfile);
 		tripTraveler.setTrip(trip);
-		ttRepo.saveAndFlush(tripTraveler);
-		return tripTraveler;
+		return ttRepo.saveAndFlush(tripTraveler);
+		
 	}
 
 	@Override
@@ -112,5 +113,17 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 		});
 
 		return hostRequest;
+	}
+
+	@Override
+	public List<TripTraveler> getMyTrips(String username) {
+		List<TripTraveler> myTrips = new ArrayList<TripTraveler>();
+
+		for (TripTraveler element : ttRepo.findAll()) {
+			if (element.getUser().getUser().getUsername().equals(username)) {
+				myTrips.add(element);
+			}
+		}
+		return null;
 	}
 }

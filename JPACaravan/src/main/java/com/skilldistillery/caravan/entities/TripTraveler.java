@@ -39,13 +39,13 @@ public class TripTraveler {
 
 	private boolean approved;
 
-//	private TripTravelerStatus tripStatus;
+	@Column(name = "traveler_status")
+	private String travelerStatus;
 	
 //	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;
-	
 	
 	
 //	C O N S T R U C T O R S
@@ -148,6 +148,14 @@ public class TripTraveler {
 
 	public void setApproved(boolean approved) {
 		this.approved = approved;
+	}
+
+	public String getTravelerStatus() {
+		return travelerStatus;
+	}
+
+	public void setTravelerStatus(String travelerStatus) {
+		this.travelerStatus = travelerStatus;
 	}
 
 	@Override

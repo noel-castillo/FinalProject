@@ -516,7 +516,7 @@ CREATE TABLE IF NOT EXISTS `adventure_traveler_review_of_host` (
   `traveler_status` VARCHAR(35) NULL,
   `adventure_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
-  `approved` VARCHAR(45) NULL,
+  `approved` TINYINT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_adventure_traveler_review_of_host_adventure1_idx` (`adventure_id` ASC),
   INDEX `fk_adventure_traveler_review_of_host_user_profile1_idx` (`user_profile_id` ASC),

@@ -10,12 +10,9 @@ declare var jQuery: any;
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
-  styleUrls: ['./search-results.component.css'],
-
+  styleUrls: ['./search-results.component.css']
 })
-
 export class SearchResultsComponent implements OnInit {
-
   // F i e l d s
 
   trips: Trip[] = [];
@@ -27,25 +24,25 @@ export class SearchResultsComponent implements OnInit {
 
   // C o n s t r u c t o r
 
-  constructor(private tripSvc: TripService, private adventureSvc: AdventureService) { }
+  constructor(
+    private tripSvc: TripService,
+    private adventureSvc: AdventureService
+  ) {}
 
   // M E T H O D S
-
 
   search(form: NgForm) {
     console.log(form);
     console.log(form.value.location);
     console.log(form.value.searchType);
     // if (form.value.searchType === 1 || this.searchType === 1) {
-    if (true) {
-      
+
     console.log(form.value);
     console.log('searchNum: ' + this.searchNum);
 
-
     if (form.value.searchType === '1' || this.searchNum === '1') {
       this.adventures = null;
-     this.tripSvc.indexNotHOsted().subscribe(
+      this.tripSvc.indexNotHOsted().subscribe(
         data => {
           this.trips = data;
         },
@@ -53,7 +50,6 @@ export class SearchResultsComponent implements OnInit {
           console.error('Search-Results Component: Unable to load trips');
         }
       );
-
     } else if (form.value.searchType === '2' || this.searchNum === '2') {
       this.trips = null;
       this.adventureSvc.index().subscribe(
@@ -65,22 +61,20 @@ export class SearchResultsComponent implements OnInit {
         }
       );
     }
-
   }
   ngOnInit() {
     this.trips = null;
     this.adventures = null;
     // tslint:disable-next-line: only-arrow-functions
-    (function ($) {
+    (function($) {
       // tslint:disable-next-line: only-arrow-functions
-      $(document).ready(function () {
+      $(document).ready(function() {
         console.log('Hello from jQuery!');
       });
     })(jQuery);
 
     // tslint:disable-next-line: only-arrow-functions
-    (function ($) {
-
+    (function($) {
       /*------------------
           Preloader
       --------------------*/
@@ -92,7 +86,7 @@ export class SearchResultsComponent implements OnInit {
       /*------------------
           Background Set
       --------------------*/
-      $('.set-bg').each(function () {
+      $('.set-bg').each(function() {
         // tslint:disable-next-line: prefer-const
         let bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
@@ -107,7 +101,9 @@ export class SearchResultsComponent implements OnInit {
       });
 
       $('.slicknav_nav ul ').prepend('<li class="header-right-warp"></li>');
-      $('.header-right').clone().prependTo('.slicknav_nav > ul > .header-right-warp');
+      $('.header-right')
+        .clone()
+        .prependTo('.slicknav_nav > ul > .header-right-warp');
 
       /*----------------------
           Testimonial Slider
@@ -118,9 +114,12 @@ export class SearchResultsComponent implements OnInit {
         nav: true,
         items: 1,
         dots: false,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: [
+          '<i class="fa fa-angle-left"></i>',
+          '<i class="fa fa-angle-right"></i>'
+        ],
         smartSpeed: 1200,
-        autoplay: false,
+        autoplay: false
       });
 
       /*------------------
@@ -149,23 +148,35 @@ export class SearchResultsComponent implements OnInit {
       /*-------------------
       Radio Btn
     --------------------- */
-      $('.filter-left .category-filter .category-option .co-item label').on('click', function () {
-        $('.filter-left .category-filter .category-option .co-item label').removeClass('active');
-        $(this).addClass('active');
-      });
+      $('.filter-left .category-filter .category-option .co-item label').on(
+        'click',
+        function() {
+          $(
+            '.filter-left .category-filter .category-option .co-item label'
+          ).removeClass('active');
+          $(this).addClass('active');
+        }
+      );
 
-      $('.filter-left .rating-filter .rating-option .ro-item label').on('click', function () {
-        $('.filter-left .rating-filter .rating-option .ro-item label').removeClass('active');
-        $(this).addClass('active');
-      });
+      $('.filter-left .rating-filter .rating-option .ro-item label').on(
+        'click',
+        function() {
+          $(
+            '.filter-left .rating-filter .rating-option .ro-item label'
+          ).removeClass('active');
+          $(this).addClass('active');
+        }
+      );
 
-      $('.filter-left .distance-filter .distance-option .do-item label').on('click', function () {
-        $('.filter-left .distance-filter .distance-option .do-item label').removeClass('active');
-        $(this).addClass('active');
-      });
-
+      $('.filter-left .distance-filter .distance-option .do-item label').on(
+        'click',
+        function() {
+          $(
+            '.filter-left .distance-filter .distance-option .do-item label'
+          ).removeClass('active');
+          $(this).addClass('active');
+        }
+      );
     })(jQuery);
-
   }
-
 }

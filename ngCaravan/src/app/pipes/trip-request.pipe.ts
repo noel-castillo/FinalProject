@@ -6,7 +6,7 @@ import { TripTraveler } from '../models/trip-traveler';
 })
 export class TripRequestPipe implements PipeTransform {
   transform(request: TripTraveler): TripTraveler {
-    if (request.approved === false && request.status === 'pending') {
+    if (request.approved === false && request.travelerStatus === 'pending') {
       return request;
     }
   }

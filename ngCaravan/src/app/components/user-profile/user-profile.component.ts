@@ -104,7 +104,12 @@ export class UserProfileComponent implements OnInit {
 
     this.tripTravSvc.index().subscribe(
       data => {
-        this.hostTripRequest = data;
+        this.tripRequest = data;
+        this.tripRequest.forEach(req => {
+          if (req.travelerStatus === 'pending') {
+            this.hostTripRequest.push(req);
+          }
+        });
       },
       err => {
         console.log(err);
@@ -122,9 +127,9 @@ export class UserProfileComponent implements OnInit {
         console.error('UserProfile Component reload() DID NOT WORK');
       }
     );
-    this.tripTravSvc.getRequests().subscribe(
+    this.tripTravSvc.index().subscribe(
       data => {
-        this.hostTripRequest.push(data);
+        this.hostTripRequest = data;
       },
       err => {
         console.log(err);
@@ -202,7 +207,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   denyTripTraveler(req: TripTraveler) {
-    req.status = 'denied';
+    req.travelerStatus = 'denied';
 
     this.tripTravSvc.updateTripTraveler(req).subscribe(
       data => {
@@ -215,8 +220,8 @@ export class UserProfileComponent implements OnInit {
     );
   }
   approveTripTraveler(req: TripTraveler) {
-    req.status = 'approved';
-
+    req.travelerStatus = 'approved';
+    console.log(req);
     this.tripTravSvc.updateTripTraveler(req).subscribe(
       data => {
         console.log('Success');

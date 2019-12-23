@@ -70,6 +70,7 @@
     <div *ngFor="let trip of trips">
       <p *ngIf="trip.enabled === true" [routerLink]="['/trips/' + trip.id + '']" ><em>Trip #{{trip.id}}</em> -- Departure Address: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} -- Destination Address: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} -- Miles: {{trip.miles}} -- Seats Available: {{trip.seatsAvailable}} </p>
       <button (click)="editTrip=trip" class="btn btn-primary"> Edit </button>
+      <br>
     </div>
 
   </div>

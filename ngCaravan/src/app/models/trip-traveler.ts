@@ -1,6 +1,5 @@
 import { UserProfile } from './user-profile';
 import { Trip } from './trip';
-import { User } from './user';
 
 export class TripTraveler {
   id: number;
@@ -12,7 +11,7 @@ export class TripTraveler {
   trip: Trip;
   user: UserProfile;
   approved: boolean;
-  status: string;
+  travelerStatus: string;
 
   // tslint:disable-next-line: max-line-length
   constructor(
@@ -25,7 +24,7 @@ export class TripTraveler {
     trip?: Trip,
     user?: UserProfile,
     approved?: boolean,
-    status?: string
+    travelerStatus?: string
   ) {
     this.id = id;
     this.rating = rating;
@@ -36,6 +35,6 @@ export class TripTraveler {
     this.trip = trip;
     this.user = user;
     this.approved = approved;
-    this.status = status;
+    this.travelerStatus = status;
   }
 }

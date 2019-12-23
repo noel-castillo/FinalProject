@@ -17,4 +17,6 @@ public interface TripTravelerService {
 	boolean destroy(int id);
 	
 	public List<TripTraveler> getRequests(String username);
+
+	public List<TripTraveler> getMyTrips(String name);
 }

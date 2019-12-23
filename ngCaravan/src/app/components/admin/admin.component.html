@@ -1,0 +1,27 @@
+<div class="container-fluid" *ngIf="admin">
+  <div *ngIf="!selectedReview">
+    <table class="table table-striped table-hover">
+      <thead class="thead thead-dark">
+        Trip Host Reviews of Passengers
+        <tr>
+          <th>Passenger</th>
+          <th>Trip ID</th>
+          <th>Host</th>
+          <th>Rating</th>
+          <th>Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let review of reviews" (click)="selectedReview = review">
+          <td>{{review.passenger.firstName}} {{review.passenger.lastName}}</td>
+          <td>{{review.trip.id}}</td>
+          <td>{{review.trip.host.firstName}} {{review.trip.host.lastName}}</td>
+          <td>{{review.rating}}</td>
+          <td>{{review.review}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-success" (click)="new = true">Create New Review</button>
+  </div>
+</div>

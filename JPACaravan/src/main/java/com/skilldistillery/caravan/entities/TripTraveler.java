@@ -34,7 +34,6 @@ public class TripTraveler {
 
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-//	@JsonIgnore
 	private UserProfile user;
 
 	private boolean approved;
@@ -69,6 +68,19 @@ public class TripTraveler {
 
 //	M E T H O D S
 
+	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
+			double contributionActual, Trip trip, UserProfile user, boolean approved, String status) {
+		super();
+		this.rating = rating;
+		this.review = review;
+		this.contributionPledge = contributionPledge;
+		this.attended = attended;
+		this.contributionActual = contributionActual;
+		this.trip = trip;
+		this.user = user;
+		this.approved = approved;
+	}
+
 	@Override
 	public String toString() {
 		return "TripTraveler [id=" + id + ", rating=" + rating + ", review=" + review + ", contributionPledge="
@@ -91,8 +103,6 @@ public class TripTraveler {
 	public void setRating(double rating) {
 		this.rating = rating;
 	}
-
-	
 
 	public String getReview() {
 		return review;

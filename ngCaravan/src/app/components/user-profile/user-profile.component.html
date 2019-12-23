@@ -28,7 +28,7 @@
                   Anim pariatur cliche reprehenderit, enim eiusmod high life
                 </ng-template>
               </ngb-panel>
-              <ngb-panel id="toggle-2" title="Reviews">
+              <ngb-panel id="toggle-3" title="Reviews">
                 <ng-template ngbPanelContent>
                   Anim pariatur cliche reprehenderit, enim eiusmod high life
                 </ng-template>
@@ -50,9 +50,9 @@
       </thead>
       <tbody>
         <tr *ngFor='let request of hostTripRequest'>
-          <td>{{request.user.user.username}}</td>
-          <td><button class="btn-success" >Approve</button></td>
-          <td><button class="btn-danger" >Deny</button></td>
+          <td>{{request.user.firstName}} {{request.user.lastName}}</td>
+          <td><button class="btn-success" (click)="approveTripTraveler(request)">Approve</button></td>
+          <td><button class="btn-danger" (click)="denyTripTraveler(request)">Deny</button></td>
         </tr>
       </tbody>
       </table>

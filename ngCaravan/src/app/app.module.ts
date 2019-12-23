@@ -29,6 +29,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdventureProfileComponent } from './components/adventure-profile/adventure-profile.component';
 import { TripsNotHostedComponent } from './components/trips-not-hosted/trips-not-hosted.component';
+import { AdventureTravelerComponent } from './components/adventure-traveler/adventure-traveler.component';
 
 
 
@@ -58,7 +59,8 @@ import { TripsNotHostedComponent } from './components/trips-not-hosted/trips-not
     LogoutComponent,
     SearchResultsComponent,
     AdventureProfileComponent,
-    TripsNotHostedComponent
+    TripsNotHostedComponent,
+    AdventureTravelerComponent
 
 
   ],

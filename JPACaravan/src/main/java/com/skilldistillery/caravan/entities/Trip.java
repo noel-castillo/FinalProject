@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Trip {
 
@@ -64,11 +66,11 @@ public class Trip {
 	
 	private String title;
 
-//	@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "trip")
 	private List<TripTraveler> tripTravelerReviewsOfHost;
 	
-//	@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "trip")
 	private List<TripHost> tripHostReviewsOfTravelers;
 	

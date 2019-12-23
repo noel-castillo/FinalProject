@@ -75,6 +75,9 @@ export class TripTravelerComponent implements OnInit {
   }
 
   addTripTraveler() {
+    this.newTripTraveler.approved = false;
+    this.newTripTraveler.attended = false;
+
     this.tripTravelerSvc.createTripTraveler(this.newTripTraveler, this.tid).subscribe(
       (aGoodThingHappened) => {
         console.log(aGoodThingHappened);

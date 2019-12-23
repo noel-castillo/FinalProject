@@ -45,13 +45,14 @@ export class UserService {
       })
     };
 
-    return this.http.get<User>(this.baseUrl + 'userSession', httpOptions).pipe(
+    return this.http.get<User>(this.url + 'userSession', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('Could not add User Profile');
       })
     );
   }
+
   delete(id: number) {
     const credentials = this.authSvc.getCredentials();
     // Send credentials as Authorization header (this is spring security convention for basic auth)

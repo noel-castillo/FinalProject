@@ -1,15 +1,11 @@
-import { UserProfileService } from './../../services/user-profile.service';
-import { UserProfile } from './../../models/user-profile';
-import { TripTravelerService } from 'src/app/services/trip-traveler.service';
-import { TripService } from 'src/app/services/trip.service';
-import { TripHost } from 'src/app/models/trip-host';
 import { Component, OnInit } from '@angular/core';
-import { TripHostService } from 'src/app/services/trip-host.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
-import { Trip } from 'src/app/models/trip';
-import { TripTraveler } from 'src/app/models/trip-traveler';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TripHost } from 'src/app/models/trip-host';
+import { AuthService } from 'src/app/services/auth.service';
+import { TripHostService } from 'src/app/services/trip-host.service';
+import { UserProfile } from 'src/app/models/user-profile';
+import { UserProfileService } from 'src/app/services/user-profile.service';
 
 @Component({
   selector: 'app-trip-host',
@@ -24,8 +20,6 @@ export class TripHostComponent implements OnInit {
   editReview: TripHost = null;
   currentUser: UserProfile;
   admin = false;
-
-
 
   constructor(
     private thSvc: TripHostService,

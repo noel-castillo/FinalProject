@@ -47,12 +47,6 @@ public class TripTraveler {
 
 //	private TripTravelerStatus tripStatus;
 	
-//	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "trip_id")
-	private Trip trip;
-	
-	
 	
 //	C O N S T R U C T O R S
 

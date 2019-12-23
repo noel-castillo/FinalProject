@@ -9,7 +9,7 @@
       </p>
     </div>
     <div class="col">
-      <img src="{{ currentProfile.profilePic.url }}" />
+      <!-- <img src="{{ currentProfile.profilePic.url }}" /> -->
     </div>
   </div>
   <ngb-accordion #acc="ngbAccordion">
@@ -21,6 +21,11 @@
               <ngb-panel id="toggle-1" title="{{ trip.title }}">
                 <ng-template ngbPanelContent>
                   {{ trip.description }}
+                </ng-template>
+              </ngb-panel>
+              <ngb-panel id="toggle-2" title="Posts">
+                <ng-template ngbPanelContent>
+                  Anim pariatur cliche reprehenderit, enim eiusmod high life
                 </ng-template>
               </ngb-panel>
               <ngb-panel id="toggle-2" title="Reviews">
@@ -40,13 +45,14 @@
           <thead class="thead-dark">
         <tr>
           <th>User</th>
-          <th>Status</th>
+          <th class="text-center">Status                          </th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor='let request of hostTripRequest'>
-          <td>{{request.user}}</td>
-          <td><a></a></td>
+          <td>{{request.user.user.username}}</td>
+          <td><button class="btn-success" >Approve</button></td>
+          <td><button class="btn-danger" >Deny</button></td>
         </tr>
       </tbody>
       </table>

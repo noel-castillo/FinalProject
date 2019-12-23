@@ -107,8 +107,7 @@ export class UserProfileComponent implements OnInit {
         this.tripRequest = data;
         this.tripRequest.forEach(req => {
           if (
-            req.trip.host.user.username === this.currentProfile.user.username &&
-            req.approved === false
+            req.trip.host.user.username === this.currentProfile.user.username
           ) {
             this.hostTripRequest.push(req);
           }

@@ -33,10 +33,6 @@ public class TripTraveler {
 	private double contributionActual;
 
 	@OneToOne
-	@JoinColumn(name = "trip_id")
-	private Trip trip;
-
-	@OneToOne
 	@JoinColumn(name = "user_profile_id")
 	private UserProfile user;
 
@@ -83,7 +79,6 @@ public class TripTraveler {
 		this.trip = trip;
 		this.user = user;
 		this.approved = approved;
-		this.status = status;
 	}
 
 	@Override
@@ -171,6 +166,7 @@ public class TripTraveler {
 
 	public void setTravelerStatus(String travelerStatus) {
 		this.travelerStatus = travelerStatus;
+	}
 
   @Override
 	public int hashCode() {
@@ -187,7 +183,6 @@ public class TripTraveler {
 		temp = Double.doubleToLongBits(rating);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
-		result = prime * result + ((status == null) ? 0 : status.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -218,11 +213,6 @@ public class TripTraveler {
 			if (other.review != null)
 				return false;
 		} else if (!review.equals(other.review))
-			return false;
-		if (status == null) {
-			if (other.status != null)
-				return false;
-		} else if (!status.equals(other.status))
 			return false;
 		if (trip == null) {
 			if (other.trip != null)

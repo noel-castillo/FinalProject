@@ -48,7 +48,7 @@ export class UserService {
     return this.http.get<User>(this.url + 'userSession', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
-        return throwError('Could not add User Profile');
+        return throwError('Could not return User in Session');
       })
     );
   }

@@ -1,4 +1,3 @@
-import { TripTraveler } from 'src/app/models/trip-traveler';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

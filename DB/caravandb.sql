@@ -441,7 +441,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `dm` ;
 
 CREATE TABLE IF NOT EXISTS `dm` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `sender_id` INT NULL,
   `receiver_id` INT NULL,
   `content` VARCHAR(45) NULL,
@@ -511,7 +511,7 @@ DROP TABLE IF EXISTS `adventure_traveler_review_of_host` ;
 CREATE TABLE IF NOT EXISTS `adventure_traveler_review_of_host` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `rating` INT NULL,
-  `review` VARCHAR(400) NULL,
+  `review` VARCHAR(4000) NULL,
   `attended` TINYINT NULL,
   `traveler_status` VARCHAR(35) NULL,
   `adventure_id` INT NOT NULL,
@@ -541,7 +541,7 @@ DROP TABLE IF EXISTS `adventure_host_review_of_traveler` ;
 CREATE TABLE IF NOT EXISTS `adventure_host_review_of_traveler` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `rating` DOUBLE NULL,
-  `review` VARCHAR(45) NULL,
+  `review` VARCHAR(1000) NULL,
   `user_profile_id` INT NOT NULL,
   `adventure_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -805,6 +805,26 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `adventure_img` (`adventure_id`, `image_id`) VALUES (1, 2);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `adventure_traveler_review_of_host`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `adventure_traveler_review_of_host` (`id`, `rating`, `review`, `attended`, `traveler_status`, `adventure_id`, `user_profile_id`, `approved`) VALUES (1, 5, 'This was the greatest adventure of my entire life. Seeing the Grand Canyon fundamentally changed me as a human being. Now food tastes better, the air smells better, colors seem more bright and vivid. I love life and all that is within it. God bless the Grand Canyon, and God bless Mr. Userface. 10/10 would do again.', 1, 'finished', 1, 6, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `adventure_host_review_of_traveler`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `caravandb`;
+INSERT INTO `adventure_host_review_of_traveler` (`id`, `rating`, `review`, `user_profile_id`, `adventure_id`) VALUES (1, 4, 'Mr. Jimbob was a great travelling companion. And who knew he would turn out to be the love of my life, as well. I love you, sweeheart.', 6, 1);
 
 COMMIT;
 

@@ -101,68 +101,68 @@ export class SearchResultsComponent implements OnInit {
       /*------------------
       Navigation
     --------------------*/
-      $('.mobile-menu').slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-      });
+    //   $('.mobile-menu').slicknav({
+    //     prependTo: '#mobile-menu-wrap',
+    //     allowParentLinks: true
+    //   });
 
-      $('.slicknav_nav ul ').prepend('<li class="header-right-warp"></li>');
-      $('.header-right').clone().prependTo('.slicknav_nav > ul > .header-right-warp');
+    //   $('.slicknav_nav ul ').prepend('<li class="header-right-warp"></li>');
+    //   $('.header-right').clone().prependTo('.slicknav_nav > ul > .header-right-warp');
 
-      /*----------------------
-          Testimonial Slider
-      -----------------------*/
-      $('.testimonial-item').owlCarousel({
-        loop: true,
-        margin: 0,
-        nav: true,
-        items: 1,
-        dots: false,
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-        smartSpeed: 1200,
-        autoplay: false,
-      });
+    //   /*----------------------
+    //       Testimonial Slider
+    //   -----------------------*/
+    //   $('.testimonial-item').owlCarousel({
+    //     loop: true,
+    //     margin: 0,
+    //     nav: true,
+    //     items: 1,
+    //     dots: false,
+    //     navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+    //     smartSpeed: 1200,
+    //     autoplay: false,
+    //   });
 
-      /*------------------
-          Magnific Popup
-      --------------------*/
-      $('.pop-up').magnificPopup({
-        type: 'image'
-      });
+    //   /*------------------
+    //       Magnific Popup
+    //   --------------------*/
+    //   $('.pop-up').magnificPopup({
+    //     type: 'image'
+    //   });
 
-      /*-------------------
-      Category Select
-    --------------------- */
-      // $('.ca-search').niceSelect();
-      $('.ca-search').niceSelect();
+    //   /*-------------------
+    //   Category Select
+    // --------------------- */
+    //   // $('.ca-search').niceSelect();
+    //   $('.ca-search').niceSelect();
 
-      /*-------------------
-      Local Select
-    --------------------- */
-      $('.lo-search').niceSelect();
+    //   /*-------------------
+    //   Local Select
+    // --------------------- */
+    //   $('.lo-search').niceSelect();
 
-      /*-------------------
-      Arrange Select
-    --------------------- */
-      $('.arrange-select select').niceSelect();
+    //   /*-------------------
+    //   Arrange Select
+    // --------------------- */
+    //   $('.arrange-select select').niceSelect();
 
-      /*-------------------
-      Radio Btn
-    --------------------- */
-      $('.filter-left .category-filter .category-option .co-item label').on('click', function () {
-        $('.filter-left .category-filter .category-option .co-item label').removeClass('active');
-        $(this).addClass('active');
-      });
+    //   /*-------------------
+    //   Radio Btn
+    // --------------------- */
+    //   $('.filter-left .category-filter .category-option .co-item label').on('click', function () {
+    //     $('.filter-left .category-filter .category-option .co-item label').removeClass('active');
+    //     $(this).addClass('active');
+    //   });
 
-      $('.filter-left .rating-filter .rating-option .ro-item label').on('click', function () {
-        $('.filter-left .rating-filter .rating-option .ro-item label').removeClass('active');
-        $(this).addClass('active');
-      });
+    //   $('.filter-left .rating-filter .rating-option .ro-item label').on('click', function () {
+    //     $('.filter-left .rating-filter .rating-option .ro-item label').removeClass('active');
+    //     $(this).addClass('active');
+    //   });
 
-      $('.filter-left .distance-filter .distance-option .do-item label').on('click', function () {
-        $('.filter-left .distance-filter .distance-option .do-item label').removeClass('active');
-        $(this).addClass('active');
-      });
+    //   $('.filter-left .distance-filter .distance-option .do-item label').on('click', function () {
+    //     $('.filter-left .distance-filter .distance-option .do-item label').removeClass('active');
+    //     $(this).addClass('active');
+    //   });
 
     })(jQuery);
 

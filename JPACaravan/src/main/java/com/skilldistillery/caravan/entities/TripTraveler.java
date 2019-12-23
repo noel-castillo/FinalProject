@@ -35,17 +35,17 @@ public class TripTraveler {
 
 	@OneToOne
 	@JoinColumn(name = "trip_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private Trip trip;
 
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private UserProfile user;
 
 	private boolean approved;
 
-	private TripTravelerStatus tripStatus;
+//	private TripTravelerStatus tripStatus;
 	
 	
 	
@@ -93,13 +93,7 @@ public class TripTraveler {
 		this.rating = rating;
 	}
 
-	public TripTravelerStatus getTripStatus() {
-		return tripStatus;
-	}
-
-	public void setTripStatus(TripTravelerStatus tripStatus) {
-		this.tripStatus = tripStatus;
-	}
+	
 
 	public String getReview() {
 		return review;
@@ -173,7 +167,6 @@ public class TripTraveler {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
-		result = prime * result + ((tripStatus == null) ? 0 : tripStatus.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
@@ -208,8 +201,6 @@ public class TripTraveler {
 			if (other.trip != null)
 				return false;
 		} else if (!trip.equals(other.trip))
-			return false;
-		if (tripStatus != other.tripStatus)
 			return false;
 		if (user == null) {
 			if (other.user != null)

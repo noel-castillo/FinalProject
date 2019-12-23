@@ -17,24 +17,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.caravan.entities.TripTraveler;
-import com.skilldistillery.caravan.services.TripTravelerService;
+import com.skilldistillery.caravan.entities.AdventureHost;
+import com.skilldistillery.caravan.entities.AdventureTraveler;
+import com.skilldistillery.caravan.services.AdventureHostService;
+import com.skilldistillery.caravan.services.AdventureTravelerService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({ "*", "http://localhost:4260" })
-public class TripTravelerController {
-
+@CrossOrigin({"*", "http://localhost:4260"})
+public class AdventureHostController {
+	
 	@Autowired
-	TripTravelerService svc;
+	AdventureHostService svc;
 
-	@GetMapping("tripTravelers")
-	public List<TripTraveler> allTripTravelers(Principal prin) {
+
+	@GetMapping("adventureHosts")
+	public List<AdventureHost> allAdventureTravelers(Principal prin) {
 		return svc.index();
 	}
-
-	@GetMapping("tripHostTravelers")
-	public List<TripTraveler> allTripsRequests(Principal prin, HttpServletResponse resp, HttpServletRequest req) {
+	
+	@GetMapping("myAdventureHosts")
+	public List<AdventureHost> allTripsRequests(Principal prin,HttpServletResponse resp, HttpServletRequest req) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
@@ -44,69 +47,60 @@ public class TripTravelerController {
 		} catch (Exception e) {
 			resp.setStatus(404);
 			return null;
-		}
+		}	
 	}
 	
-	@GetMapping("myTripTravelers")
-	public List<TripTraveler> myTripTravelers(Principal prin,HttpServletResponse resp, HttpServletRequest req) {
+	@GetMapping("adventureHosts/{atid}")
+	public AdventureHost getTripHost(@PathVariable Integer atid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());
 			resp.setStatus(201);
-			return svc.getMyTrips(prin.getName());
+			return svc.show(atid);
 		} catch (Exception e) {
 			resp.setStatus(404);
 			return null;
 		}	
 	}
-
-	@GetMapping("tripTravelers/{ttid}")
-	public TripTraveler getTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp, HttpServletRequest req,
-			Principal prin) {
+	
+	
+	@PostMapping("adventures/{aid}/adventureHosts")
+	public AdventureHost addTripHost(@PathVariable Integer aid, @RequestBody AdventureHost adventureHost, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
-			System.out.println(prin.toString());
+			svc.create(adventureHost, aid, prin);
+			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
+			url.append("/").append(adventureHost.getId());
 			resp.addHeader("Location", url.toString());
-			resp.setStatus(201);
-			return svc.show(ttid);
+			
 		} catch (Exception e) {
-			resp.setStatus(404);
-			return null;
-		}
-	}
-
-	@PostMapping("trips/{tid}/tripTravelers")
-	public TripTraveler addTripTraveler(@PathVariable Integer tid, @RequestBody TripTraveler tripTraveler,
-			HttpServletResponse resp, HttpServletRequest req, Principal prin) {
-		try {
-			resp.setStatus(201);
-			return svc.create(tripTraveler, tid, prin);
-		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			resp.setStatus(400);
-			return null;
+			e.printStackTrace();
 		}
+		return adventureHost;
 	}
-
-	@PutMapping("tripTravelers/{ttid}")
-	public TripTraveler update(@PathVariable Integer ttid, @RequestBody TripTraveler tripTraveler,
-			HttpServletResponse resp) {
+	
+	@PutMapping("adventureHosts/{atid}")
+	public AdventureHost update(@PathVariable Integer atid, @RequestBody AdventureHost adventureHost, HttpServletResponse resp) {
 		try {
-			resp.setStatus(201);
-			return svc.update(tripTraveler, ttid);
+			adventureHost = svc.update(adventureHost, atid);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(401);
-			return null;
 		}
+		return adventureHost;
 	}
-
-	@DeleteMapping("tripTravelers/{ttid}")
-	public void deleteTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp) {
+	
+	@DeleteMapping("adventureHosts/{atid}")
+	public void deleteTripTraveler(@PathVariable Integer atid, HttpServletResponse resp) {
 		try {
-			if (svc.destroy(ttid)) {
+			if (svc.destroy(atid)) {
 				resp.setStatus(204);
-			} else {
+			}
+			else {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {

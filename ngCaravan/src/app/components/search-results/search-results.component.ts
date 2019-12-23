@@ -21,7 +21,7 @@ export class SearchResultsComponent implements OnInit {
   trips: Trip[] = [];
   adventures: Adventure[] = [];
   types: string[] = ['trips', 'adventures'];
-  searchType: number;
+  searchNum: string;
   searchTrips = 'trips';
   searchAdventures = 'adventures';
 
@@ -33,11 +33,19 @@ export class SearchResultsComponent implements OnInit {
 
 
   search(form: NgForm) {
+    console.log(form);
     console.log(form.value.location);
     console.log(form.value.searchType);
     // if (form.value.searchType === 1 || this.searchType === 1) {
     if (true) {
-      this.tripSvc.indexNotHOsted().subscribe(
+      
+    console.log(form.value);
+    console.log('searchNum: ' + this.searchNum);
+
+
+    if (form.value.searchType === '1' || this.searchNum === '1') {
+      this.adventures = null;
+     this.tripSvc.indexNotHOsted().subscribe(
         data => {
           this.trips = data;
         },
@@ -46,10 +54,8 @@ export class SearchResultsComponent implements OnInit {
         }
       );
 
-    }
-
-    // if (form.value.searchType === 2 || this.searchType === 2) {
-    if (true) {
+    } else if (form.value.searchType === '2' || this.searchNum === '2') {
+      this.trips = null;
       this.adventureSvc.index().subscribe(
         data => {
           this.adventures = data;
@@ -65,15 +71,15 @@ export class SearchResultsComponent implements OnInit {
     this.trips = null;
     this.adventures = null;
     // tslint:disable-next-line: only-arrow-functions
-    (function($) {
+    (function ($) {
       // tslint:disable-next-line: only-arrow-functions
-      $(document).ready(function() {
+      $(document).ready(function () {
         console.log('Hello from jQuery!');
       });
     })(jQuery);
 
     // tslint:disable-next-line: only-arrow-functions
-    (function($) {
+    (function ($) {
 
       /*------------------
           Preloader
@@ -86,7 +92,7 @@ export class SearchResultsComponent implements OnInit {
       /*------------------
           Background Set
       --------------------*/
-      $('.set-bg').each(function() {
+      $('.set-bg').each(function () {
         // tslint:disable-next-line: prefer-const
         let bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
@@ -127,6 +133,7 @@ export class SearchResultsComponent implements OnInit {
       /*-------------------
       Category Select
     --------------------- */
+      // $('.ca-search').niceSelect();
       $('.ca-search').niceSelect();
 
       /*-------------------
@@ -142,17 +149,17 @@ export class SearchResultsComponent implements OnInit {
       /*-------------------
       Radio Btn
     --------------------- */
-      $('.filter-left .category-filter .category-option .co-item label').on('click', function() {
+      $('.filter-left .category-filter .category-option .co-item label').on('click', function () {
         $('.filter-left .category-filter .category-option .co-item label').removeClass('active');
         $(this).addClass('active');
       });
 
-      $('.filter-left .rating-filter .rating-option .ro-item label').on('click', function() {
+      $('.filter-left .rating-filter .rating-option .ro-item label').on('click', function () {
         $('.filter-left .rating-filter .rating-option .ro-item label').removeClass('active');
         $(this).addClass('active');
       });
 
-      $('.filter-left .distance-filter .distance-option .do-item label').on('click', function() {
+      $('.filter-left .distance-filter .distance-option .do-item label').on('click', function () {
         $('.filter-left .distance-filter .distance-option .do-item label').removeClass('active');
         $(this).addClass('active');
       });

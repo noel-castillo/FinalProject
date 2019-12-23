@@ -8,4 +8,5 @@ import com.skilldistillery.caravan.entities.TripTraveler;
 
 public interface TripTravelerRepository extends JpaRepository<TripTraveler, Integer> {
 	public List<TripTraveler> findByTrip_Host_User_Username(String username);
+	
 }

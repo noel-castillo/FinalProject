@@ -22,20 +22,19 @@ import com.skilldistillery.caravan.services.TripTravelerService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost:4260"})
+@CrossOrigin({ "*", "http://localhost:4260" })
 public class TripTravelerController {
-	
+
 	@Autowired
 	TripTravelerService svc;
-
 
 	@GetMapping("tripTravelers")
 	public List<TripTraveler> allTripTravelers(Principal prin) {
 		return svc.index();
 	}
-	
+
 	@GetMapping("tripHostTravelers")
-	public List<TripTraveler> allTripsRequests(Principal prin,HttpServletResponse resp, HttpServletRequest req) {
+	public List<TripTraveler> allTripsRequests(Principal prin, HttpServletResponse resp, HttpServletRequest req) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
@@ -45,7 +44,7 @@ public class TripTravelerController {
 		} catch (Exception e) {
 			resp.setStatus(404);
 			return null;
-		}	
+		}
 	}
 	
 	@GetMapping("myTripTravelers")
@@ -61,9 +60,10 @@ public class TripTravelerController {
 			return null;
 		}	
 	}
-	
+
 	@GetMapping("tripTravelers/{ttid}")
-	public TripTraveler getTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
+	public TripTraveler getTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp, HttpServletRequest req,
+			Principal prin) {
 		try {
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
@@ -73,46 +73,40 @@ public class TripTravelerController {
 		} catch (Exception e) {
 			resp.setStatus(404);
 			return null;
-		}	
-	}
-	
-	
-	@PostMapping("trips/{tid}/tripTravelers")
-	public TripTraveler addTripTraveler(@PathVariable Integer tid, @RequestBody TripTraveler tripTraveler, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
-		try {
-			svc.create(tripTraveler, tid, prin);
-			resp.setStatus(201);
-			StringBuffer url = req.getRequestURL();
-			url.append("/").append(tripTraveler.getId());
-			resp.addHeader("Location", url.toString());
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			resp.setStatus(400);
-			e.printStackTrace();
 		}
-		return tripTraveler;
 	}
-	
-	@PutMapping("tripTravelers/{ttid}")
-	public TripTraveler update(@PathVariable Integer ttid, @RequestBody TripTraveler tripTraveler, HttpServletResponse resp) {
+
+	@PostMapping("trips/{tid}/tripTravelers")
+	public TripTraveler addTripTraveler(@PathVariable Integer tid, @RequestBody TripTraveler tripTraveler,
+			HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
-			tripTraveler = svc.update(tripTraveler, ttid);
-			
+			resp.setStatus(201);
+			return svc.create(tripTraveler, tid, prin);
+		} catch (Exception e) {
+			resp.setStatus(400);
+			return null;
+		}
+	}
+
+	@PutMapping("tripTravelers/{ttid}")
+	public TripTraveler update(@PathVariable Integer ttid, @RequestBody TripTraveler tripTraveler,
+			HttpServletResponse resp) {
+		try {
+			resp.setStatus(201);
+			return svc.update(tripTraveler, ttid);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(401);
+			return null;
 		}
-		return tripTraveler;
 	}
-	
+
 	@DeleteMapping("tripTravelers/{ttid}")
 	public void deleteTripTraveler(@PathVariable Integer ttid, HttpServletResponse resp) {
 		try {
 			if (svc.destroy(ttid)) {
 				resp.setStatus(204);
-			}
-			else {
+			} else {
 				resp.setStatus(404);
 			}
 		} catch (Exception e) {

@@ -51,8 +51,8 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 
 		tripTraveler.setUser(userProfile);
 		tripTraveler.setTrip(trip);
-		ttRepo.saveAndFlush(tripTraveler);
-		return tripTraveler;
+		return ttRepo.saveAndFlush(tripTraveler);
+		
 	}
 
 	@Override

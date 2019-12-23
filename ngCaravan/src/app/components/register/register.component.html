@@ -4,22 +4,54 @@
     <div class="col-xl-9">
       <form>
         <div class="form-row">
-          <!-- <div class="col-md-4 mb-3">
-            <label for="email">Email address</label>
+          <div class="col-md-4 mb-3">
+            <label for="firstName">First Name:</label>
+            <br />
+            <input
+              type="text"
+              name="firstName"
+              class="form-control-md"
+              placeholder="First Name"
+              [(ngModel)]="newUserProfile.firstName"
+            />
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="lastName">Last Name:</label>
+            <br />
+            <input
+              type="text"
+              name="lastName"
+              class="form-control-md"
+              placeholder="Last Name"
+              [(ngModel)]="newUserProfile.lastName"
+            />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="email">Email:</label>
             <br />
             <input
               type="email"
               name="email"
               class="form-control-md"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              [(ngModel)]="newUser.username "
+              placeholder="Email"
+              [(ngModel)]="newUserProfile.email"
             />
-            <small id="emailHelp" style="color: black;" class="form-text"
-              >We'll never share your email with anyone else.</small
-            >
-          </div> -->
-
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="phone">Phone Number:</label>
+            <br />
+            <input
+              type="number"
+              name="phone"
+              class="form-control-md"
+              placeholder="Phone Number"
+              [(ngModel)]="newUserProfile.phone"
+            />
+          </div>
+        </div>
+        <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="username">Username</label>
             <br />
@@ -31,8 +63,6 @@
               [(ngModel)]="newUser.username"
             />
           </div>
-        </div>
-        <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="password">Password</label>
             <br />
@@ -47,11 +77,11 @@
         </div>
 
         <div class="form-row">
-          <div class="col-md-2 mb-3">
+          <div class="col-md-4 mb-3">
             <button
               type="button"
               (click)="create(newUser)"
-              class="btn btn-warning btn-lg"
+              class="btn btn-warning btn-md"
             >
               Register
             </button>
@@ -60,7 +90,7 @@
           <div class="col-md-4 mb-3">
             <button
               type="button"
-              class="btn btn-secondary btn-lg "
+              class="btn btn-secondary btn-md "
               [routerLink]="['/home']"
             >
               Cancel

@@ -1,3 +1,4 @@
+import { UserProfile } from './../../models/user-profile';
 import { UserProfileService } from './../../services/user-profile.service';
 import { NgForm } from '@angular/forms';
 import { Vehicle } from 'src/app/models/vehicle';
@@ -9,6 +10,7 @@ import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Address } from 'src/app/models/address';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +19,9 @@ import { Address } from 'src/app/models/address';
 })
 export class RegisterComponent implements OnInit {
   newUser = new User();
+  userInS = new User();
+
+  newUserProfile = new UserProfile();
 
   constructor(
     private auth: AuthService,
@@ -37,9 +42,20 @@ export class RegisterComponent implements OnInit {
       data => {
         this.auth.login(newUsr.username, newUsr.password).subscribe(
           dat => {
-            this.route.navigateByUrl('user-profiles');
+            this.usrProfSvc.create(this.newUserProfile).subscribe(
+              d => {
+
+                this.route.navigateByUrl('user-profiles');
+
+              },
+              err => {
+                console.log(err);
+              }
+            );
           },
-          err => {}
+          err => {
+            console.log(err);
+          }
         );
       },
       err => {

@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `seats_available` INT NULL,
   `cargo_capacity` DOUBLE NULL,
   `create_date` DATE NULL,
-  `enabled` TINYINT NULL,
+  `enabled` TINYINT NULL DEFAULT 1,
   `total_cost` DOUBLE NULL,
   `miles` DOUBLE NULL,
   `vehicle_id` INT NULL,

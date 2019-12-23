@@ -40,7 +40,7 @@ export class TripProfileComponent implements OnInit {
   ) {}
 
   addTrip(tid) {
-    this.tripTraveler.status = 'pending';
+    this.tripTraveler.travelerStatus = 'pending';
     this.tripTravelerSvc.createTripTraveler(this.tripTraveler, tid).subscribe(
       data => {
         console.log(data);

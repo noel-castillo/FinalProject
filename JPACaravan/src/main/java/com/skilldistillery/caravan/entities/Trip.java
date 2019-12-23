@@ -68,8 +68,9 @@ public class Trip {
 	@OneToMany(mappedBy = "trip")
 	private List<TripTraveler> tripTravelerReviewsOfHost;
 	
-
-	private List<TripHost> tripHostReviewsofTravelers;
+//	@JsonIgnore
+	@OneToMany(mappedBy = "trip")
+	private List<TripHost> tripHostReviewsOfTravelers;
 	
 //	C O N S T R U C T O R S
 
@@ -221,14 +222,14 @@ public class Trip {
 		this.tripTravelerReviewsOfHost = tripTravelerReviewsOfHost;
 	}
 
-	public List<TripHost> getTripHostReviewsofTravelers() {
-		return tripHostReviewsofTravelers;
+	public List<TripHost> getTripHostReviewsOfTravelers() {
+		return tripHostReviewsOfTravelers;
 	}
 
-	public void setTripHostReviewsofTravelers(List<TripHost> tripHostReviewsofTravelers) {
-		this.tripHostReviewsofTravelers = tripHostReviewsofTravelers;
+	public void setTripHostReviewsOfTravelers(List<TripHost> tripHostReviewsOfTravelers) {
+		this.tripHostReviewsOfTravelers = tripHostReviewsOfTravelers;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

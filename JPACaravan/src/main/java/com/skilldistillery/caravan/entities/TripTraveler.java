@@ -45,12 +45,6 @@ public class TripTraveler {
 	@Column(name = "traveler_status")
 	private String travelerStatus;
 	
-//	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "trip_id")
-	private Trip trip;
-	
-	
 //	C O N S T R U C T O R S
 
 	public TripTraveler() {

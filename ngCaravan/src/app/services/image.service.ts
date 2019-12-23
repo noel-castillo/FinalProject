@@ -21,6 +21,7 @@ export class ImageService {
 
   // M e t h o d s
 
+
   index() {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
@@ -37,6 +38,21 @@ export class ImageService {
           return throwError('error');
         })
       );
+  }
+  show(id: string) {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Image>(this.url + '/' + id, httpOptions).pipe(
+    catchError((err: any) => {
+      console.error(err);
+      return throwError('ImageService.show(): Error getting image by ID');
+    })
+    );
   }
 
   createImage(newImage: Image) {

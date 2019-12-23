@@ -35,9 +35,20 @@ export class ImageComponent implements OnInit {
 
   ngOnInit() {
 
-    // grabs the array of todos from the service & adds it to this component
-    // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
-    console.log(this.currentRoute.snapshot.paramMap.get('id'));
+    if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+      console.log('in oninit if statement');
+      return this.imageSvc
+        .show(this.currentRoute.snapshot.paramMap.get('id'))
+        .subscribe(
+          data => {
+            this.selected = data;
+          },
+          error => {
+            console.error(error);
+            this.router.navigateByUrl('not-found');
+          }
+        );
+    }
     this.imageSvc.index().subscribe(
       data => {
         this.images = data;

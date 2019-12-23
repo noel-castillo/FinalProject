@@ -37,7 +37,7 @@ export class SearchResultsComponent implements OnInit {
     console.log(form.value.searchType);
     // if (form.value.searchType === 1 || this.searchType === 1) {
     if (true) {
-      this.tripSvc.index().subscribe(
+      this.tripSvc.indexNotHOsted().subscribe(
         data => {
           this.trips = data;
         },

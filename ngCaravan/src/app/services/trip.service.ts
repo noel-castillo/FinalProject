@@ -37,6 +37,7 @@ export class TripService {
         })
       );
   }
+
   indexNotHOsted() {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
@@ -46,7 +47,7 @@ export class TripService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Trip[]>(this.baseUrl, httpOptions)
+    return this.http.get<Trip[]>(this.baseUrl + 'api/notHosted', httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

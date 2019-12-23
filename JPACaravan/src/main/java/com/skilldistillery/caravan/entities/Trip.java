@@ -74,6 +74,10 @@ public class Trip {
 	@OneToMany(mappedBy = "trip")
 	private List<TripHost> tripHostReviewsOfTravelers;
 	
+	@Column(name = "feature_image")
+	private String featureImage;
+	
+	
 //	C O N S T R U C T O R S
 
 	public Trip() {
@@ -230,6 +234,14 @@ public class Trip {
 
 	public void setTripHostReviewsOfTravelers(List<TripHost> tripHostReviewsOfTravelers) {
 		this.tripHostReviewsOfTravelers = tripHostReviewsOfTravelers;
+	}
+
+	public String getFeatureImage() {
+		return featureImage;
+	}
+
+	public void setFeatureImage(String featureImage) {
+		this.featureImage = featureImage;
 	}
 
 	@Override

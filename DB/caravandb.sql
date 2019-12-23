@@ -325,7 +325,7 @@ CREATE TABLE IF NOT EXISTS `trip_traveler_review_of_host` (
   `trip_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
   `approved` TINYINT NULL DEFAULT 0,
-  `trip_traveler_review_of_hostcol` VARCHAR(35) NULL,
+  `traveler_status` VARCHAR(35) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_traveler_trip1_idx` (`trip_id` ASC),
   INDEX `fk_trip_traveler_user_profile1_idx` (`user_profile_id` ASC),
@@ -516,6 +516,7 @@ CREATE TABLE IF NOT EXISTS `adventure_traveler_review_of_host` (
   `traveler_status` VARCHAR(35) NULL,
   `adventure_id` INT NOT NULL,
   `user_profile_id` INT NOT NULL,
+  `approved` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_adventure_traveler_review_of_host_adventure1_idx` (`adventure_id` ASC),
   INDEX `fk_adventure_traveler_review_of_host_user_profile1_idx` (`user_profile_id` ASC),
@@ -525,6 +526,26 @@ CREATE TABLE IF NOT EXISTS `adventure_traveler_review_of_host` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_adventure_traveler_review_of_host_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `adventure_host_review_of_traveler`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `adventure_host_review_of_traveler` ;
+
+CREATE TABLE IF NOT EXISTS `adventure_host_review_of_traveler` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `rating` DOUBLE NULL,
+  `review` VARCHAR(45) NULL,
+  `user_profile_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_adventure_host_review_of_traveler_user_profile1_idx` (`user_profile_id` ASC),
+  CONSTRAINT `fk_adventure_host_review_of_traveler_user_profile1`
     FOREIGN KEY (`user_profile_id`)
     REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
@@ -702,7 +723,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `trip_traveler_review_of_hostcol`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1, 0, NULL);
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (1, 5, 'fantastic', 10, 1, 10, 1, 1, 0, NULL);
 
 COMMIT;
 

@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `destination_address_id` INT NULL,
   `host_id` INT NULL,
   `title` VARCHAR(150) NULL,
-  `feature_image` VARCHAR(200) NULL DEFAULT 'https://i.imgur.com/Iy01VVJ.jpg',
+  `feature_image` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
   INDEX `fk_trip_address1_idx` (`depart_address_id` ASC),
@@ -226,6 +226,7 @@ CREATE TABLE IF NOT EXISTS `adventure` (
   `itinerary` VARCHAR(200) NULL,
   `address_id` INT NOT NULL,
   `host_id` INT NOT NULL,
+  `feature_image` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_adventure_address1_idx` (`address_id` ASC),
   INDEX `fk_adventure_user_profile1_idx` (`host_id` ASC),
@@ -443,15 +444,20 @@ DROP TABLE IF EXISTS `dm` ;
 
 CREATE TABLE IF NOT EXISTS `dm` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `sender_id` INT NULL,
-  `receiver_id` INT NULL,
-  `content` VARCHAR(45) NULL,
-  `date_posted` VARCHAR(45) NULL,
-  `user_profile_id` INT NOT NULL,
+  `date_posted` DATETIME NULL,
+  `my_id` INT NOT NULL,
+  `friend_id` INT NOT NULL,
+  `message` VARCHAR(1500) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_dm_user_profile1_idx` (`user_profile_id` ASC),
+  INDEX `fk_dm_user_profile1_idx` (`my_id` ASC),
+  INDEX `fk_dm_user_profile2_idx` (`friend_id` ASC),
   CONSTRAINT `fk_dm_user_profile1`
-    FOREIGN KEY (`user_profile_id`)
+    FOREIGN KEY (`my_id`)
+    REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_dm_user_profile2`
+    FOREIGN KEY (`friend_id`)
     REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -556,6 +562,34 @@ CREATE TABLE IF NOT EXISTS `adventure_host_review_of_traveler` (
   CONSTRAINT `fk_adventure_host_review_of_traveler_adventure1`
     FOREIGN KEY (`adventure_id`)
     REFERENCES `adventure` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `adventure_message`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `adventure_message` ;
+
+CREATE TABLE IF NOT EXISTS `adventure_message` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `date_posted` DATETIME NULL,
+  `content` VARCHAR(45) NULL,
+  `reply_to_id` VARCHAR(45) NULL,
+  `adventure_id` INT NOT NULL,
+  `user_profile_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_adventure_message_adventure1_idx` (`adventure_id` ASC),
+  INDEX `fk_adventure_message_user_profile1_idx` (`user_profile_id` ASC),
+  CONSTRAINT `fk_adventure_message_adventure1`
+    FOREIGN KEY (`adventure_id`)
+    REFERENCES `adventure` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adventure_message_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -691,7 +725,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `adventure` (`id`, `title`, `description`, `activity_level`, `includes`, `price`, `enabled`, `itinerary`, `address_id`, `host_id`) VALUES (1, 'Grand Canyon', 'Taking a week-long trip to the grand canyon with my pup Sally!', 'high', 'bed and breakfast', 250, 1, 'day one: see the canyon. day two: see more of the canyone. day three: see a little more canyone', 1, 1);
+INSERT INTO `adventure` (`id`, `title`, `description`, `activity_level`, `includes`, `price`, `enabled`, `itinerary`, `address_id`, `host_id`, `feature_image`) VALUES (1, 'Grand Canyon', 'Taking a week-long trip to the grand canyon with my pup Sally!', 'high', 'bed and breakfast', 250, 1, 'day one: see the canyon. day two: see more of the canyone. day three: see a little more canyone', 1, 1, NULL);
 
 COMMIT;
 
@@ -786,7 +820,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `dm` (`id`, `sender_id`, `receiver_id`, `content`, `date_posted`, `user_profile_id`) VALUES (1, 1, 2, 'Hey. You\'re a cool guy.', '2017-09-30', 1);
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (1, '2017-09-30', 1, 2, 'Howdy Thar!');
 
 COMMIT;
 

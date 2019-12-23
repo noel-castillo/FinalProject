@@ -12,6 +12,7 @@
 	<class>com.skilldistillery.caravan.entities.Address</class>
 	<class>com.skilldistillery.caravan.entities.Adventure</class>
 	<class>com.skilldistillery.caravan.entities.AdventureCalendar</class>
+	<class>com.skilldistillery.caravan.entities.AdventureHost</class>
 	<class>com.skilldistillery.caravan.entities.AdventureTraveler</class>
 	<class>com.skilldistillery.caravan.entities.Categories</class>
 	<class>com.skilldistillery.caravan.entities.Image</class>

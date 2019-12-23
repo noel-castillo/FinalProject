@@ -142,6 +142,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `destination_address_id` INT NULL,
   `host_id` INT NULL,
   `title` VARCHAR(150) NULL,
+  `feature_image` VARCHAR(200) NULL DEFAULT 'https://i.imgur.com/Iy01VVJ.jpg',
   PRIMARY KEY (`id`),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
   INDEX `fk_trip_address1_idx` (`depart_address_id` ASC),
@@ -654,11 +655,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1, 'Goin to Graceland');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual ', 2, 36, '2019-12-29', 1, 250, 750, 2, 3, 4, 3, 'Kalamazoo');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (3, 'I am going to the Titanic Museum in Branson, Missouri. Come along for the ride.', 3, 38, '2019-12-28', 1, 400, 800, 3, 5, 8, 4, 'Branson Titanic Museum');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (4, 'I\'m going to the awesome aquarium in Gatlinburg, TN', 2, 30, '2019-12-27', 1, 275, 300, 4, 6, 9, 5, 'Gatlinburg Aquarium');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`) VALUES (5, 'I plan to go this really sweet indoor water park in Pigeon Forge, TN', 2, 40, '2019-12-26', 1, 1200, 3000, 5, 7, 10, 6, 'Pigeon Forge Indoor Water Park');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (1, 'Goin to Graceland!', 4, 50, '2017-08-29', 1, 300, 600, 1, 1, 2, 1, 'Goin to Graceland', NULL);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual ', 2, 36, '2019-12-29', 1, 250, 750, 2, 3, 4, 3, 'Kalamazoo', NULL);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (3, 'I am going to the Titanic Museum in Branson, Missouri. Come along for the ride.', 3, 38, '2019-12-28', 1, 400, 800, 3, 5, 8, 4, 'Branson Titanic Museum', NULL);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (4, 'I\'m going to the awesome aquarium in Gatlinburg, TN', 2, 30, '2019-12-27', 1, 275, 300, 4, 6, 9, 5, 'Gatlinburg Aquarium', NULL);
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (5, 'I plan to go this really sweet indoor water park in Pigeon Forge, TN', 2, 40, '2019-12-26', 1, 1200, 3000, 5, 7, 10, 6, 'Pigeon Forge Indoor Water Park', NULL);
 
 COMMIT;
 

@@ -7,6 +7,7 @@ import { TripService } from 'src/app/services/trip.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdventureTravelerService } from 'src/app/services/adventure-traveler.service';
 import { AdventureTraveler } from 'src/app/models/adventure-traveler';
+import { AdventureHost } from 'src/app/models/adventure-host.model';
 
 declare var jQuery: any;
 
@@ -22,10 +23,13 @@ export class AdventureProfileComponent implements OnInit {
   adventure: Adventure;
   address = '';
   adventureTraveler: AdventureTraveler = new AdventureTraveler();
+  adventureHost: AdventureHost;
 
   // C O N S T R U C T O R
 
-  constructor(private adventureSvc: AdventureService, private adventureTravelerSvc: AdventureTravelerService, private currentRoute: ActivatedRoute,
+  constructor(private adventureSvc: AdventureService,
+              private adventureTravelerSvc: AdventureTravelerService,
+              private currentRoute: ActivatedRoute,
               private router: Router ) { }
 
   // M E T H O D S
@@ -57,6 +61,7 @@ export class AdventureProfileComponent implements OnInit {
         this.address += this.adventure.address.state + ' ';
         this.address += this.adventure.address.zip + ' ';
         this.address.replace(/ /g, '+');
+
 
       },
       err => {

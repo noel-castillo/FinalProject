@@ -65,19 +65,18 @@
               <h3>Host Reviews</h3>
               <div class="reviews-item">
                 <div class="rating">
-                  <i class="fa fa-star">3</i>
+                  <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                 </div>
                 <h5>“A Great Place”</h5>
-                <p>Donec eget efficitur ex. Donec eget dolor vitae eros feugiat tristique id vitae massa. Proin
-                  vulputate congue rutrum. Fusce lobortis a enim eget tempus. Class aptent taciti sociosqu ad litora
-                  torquent per conubia nostra, per inceptos himenaeos. </p>
+                <p>{{thisTripAdventureTravelers[0].rating}}</p>
+                <p>{{thisTripAdventureTravelers[0].review}}</p>
                 <div class="client-text">
-                  <h5>Michael Smith</h5>
-                  <span>March 03, 2019</span>
+                  <h5>{{thisTripAdventureTravelers[0].user.firstName}}, {{thisTripAdventureTravelers[0].user.lastName}}</h5>
+                  <span>DATE?</span>
                 </div>
               </div>
               <div class="reviews-item">

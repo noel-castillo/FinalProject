@@ -43,10 +43,14 @@ export class AdventureProfileComponent implements OnInit {
   }
 
   loadAdventure() {
+    console.log('IN beginning of load*********');
+    console.log('ID snapSHOT********* ' + this.currentRoute.snapshot.paramMap.get('id'));
     this.adventureSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
       data => {
+        console.log('***** IN Load Adventure1');
         this.adventure = data;
-        console.log(this.adventure.title);
+        // console.log('**TITLE ' + this.adventure.title);
+        console.log('***** IN Load Adventure');
         this.address = '';
         this.address += this.adventure.address.street + ', ';
         this.address += this.adventure.address.city + ', ';
@@ -59,6 +63,7 @@ export class AdventureProfileComponent implements OnInit {
         console.error('Adventure Profile Component: Unable to load adventure');
       }
     );
+    console.log('AT END OF LOAD ADVENTURE************');
   }
 
   // ngOnInit
@@ -159,7 +164,21 @@ export class AdventureProfileComponent implements OnInit {
 
     })(jQuery);
 
-    this.loadAdventure();
+    // this.loadAdventure();
+
+        // grabs the array of trips from the service & adds it to this component
+    // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
+    // console.log(this.currentRoute.snapshot.paramMap.get('id'));
+    this.adventureSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
+      data => {
+        this.adventure = data;
+        console.log('At end of Getting adventure********');
+        console.log('**AVENTURE TITLE ' + this.adventure.title);
+      },
+      err => {
+        console.error('ngOnInit error in Adventure Profile Component');
+      }
+    );
 
   }
 

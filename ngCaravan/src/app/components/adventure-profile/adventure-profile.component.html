@@ -10,11 +10,11 @@
       <div class="row">
         <div class="col-lg-7">
           <div class="about-intro">
-            <div class="rating">{{adventure.host.mileagePoints}}</div>
+            <div class="rating">Rating</div>
             <div class="intro-text">
-              <h2>{{adventure.title}}</h2>
-              <p>{{adventure.address.city}}, {{adventure.address.state}}</p>
-              <p>{{adventure.description}}</p>
+               <h2>{{adventure.title}}</h2>
+              <p>Location: {{adventure.address.city}}, {{adventure.address.state}}</p>
+              <p>Description: {{adventure.description}}</p>
               <div (click)="addAdventure(adventure.id)" class="closed">Confirm Join</div>
               <div class="open">Save</div>
             </div>
@@ -33,7 +33,7 @@
               <a href="#"><i class="fa fa-user-o"></i></a>
               <a href="#"><i class="fa fa-star-o"></i></a>
             </div>
-          </div>x
+          </div>
         </div>
       </div>
     </div>
@@ -44,21 +44,28 @@
         <div class="col-lg-8">
           <div class="about-left">
             <div class="about-desc">
-              <h4>About the Adventure</h4>
+              <h3>About the Adventure</h3>
               <p>Activity Level: {{adventure.activityLvl}}</p>
               <p>Includes: {{adventure.includes}}</p>
               <p>Price: ${{adventure.price}}</p>
               <p>{{adventure.itinerary}}</p>
+
+              <h3>About the Host</h3>
+              <p>Pic: {{adventure.host.profilePic.url}}</p>
+              <p>Name: {{adventure.host.firstName}}, {{adventure.host.lastName}}</p>
+              <p>Phone: {{adventure.host.phone}}</p>
+              <p>Email: ${{adventure.host.email}}</p>
+              <p>Bio: ${{adventure.host.bio}}</p>
             </div>
-            <div class="about-video">
+            <!-- <div class="about-video">
               <img src="" alt="">
               <a href="https://www.youtube.com/watch?v=_hoGpYyn4Bs" class="pop-up"><i class="fa fa-play"></i></a>
-            </div>
+            </div> -->
             <div class="client-reviews">
-              <h3>Reviews</h3>
+              <h3>Host Reviews</h3>
               <div class="reviews-item">
                 <div class="rating">
-                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star">3</i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
                   <i class="fa fa-star"></i>
@@ -96,11 +103,11 @@
         <div class="col-lg-4">
           <div class="about-right">
             <div class="contact-info">
-              <div class="map">
+              <!-- <div class="map">
                 <iframe src="http://maps.google.com/maps?q=${address}&z=15&output=embed" height="385" style="border:0;"
                   allowfullscreen=""></iframe>
                 <img src="" alt="">
-              </div>
+              </div> -->
               <div class="contact-text">
                 <h4>Contact Info</h4>
                 <span>{{adventure.host.firstName}} {{adventure.host.lastName}}</span>
@@ -116,4 +123,4 @@
     </div>
   </div>
 </section>
-<!-- About Secton End -->
+<!--  About Secton End -->

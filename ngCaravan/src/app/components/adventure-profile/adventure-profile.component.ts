@@ -26,6 +26,7 @@ export class AdventureProfileComponent implements OnInit {
   adventureTravelers: AdventureTraveler[];
   thisTripAdventureTravelers: AdventureTraveler[] = [];
   adventureHostReview: AdventureTraveler;
+  currentRate: number;
 
   // C O N S T R U C T O R
 
@@ -195,12 +196,18 @@ export class AdventureProfileComponent implements OnInit {
         this.address += this.adventure.address.zip + ' ';
         this.address.replace(/ /g, '+');
 
+
+
         this.adventureTravelerSvc.index().subscribe (
           data2 => {
             this.adventureTravelers = data2;
-            console.log('***SIZE ' + this.adventureTravelers[0].adventure);
+            this.currentRate = this.thisTripAdventureTravelers[0].rating;
+            console.log('***SET RATING***');
             this.adventureTravelers.forEach(element => {
               console.log('element***' + element.id);
+
+              this.currentRate = this.thisTripAdventureTravelers[0].rating;
+
               if (element.adventure.id === this.adventure.id) {
                 console.log('ELEMENT******' + element);
                 this.thisTripAdventureTravelers.push(element);

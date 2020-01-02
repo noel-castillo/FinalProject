@@ -34,6 +34,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdventureTravelerComponent } from './components/adventure-traveler/adventure-traveler.component';
 import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
 import { InboxComponent } from './components/inbox/inbox.component';
+import { FriendMessagesPipe } from './pipes/friend-messages.pipe';
 
 
 
@@ -68,7 +69,8 @@ import { InboxComponent } from './components/inbox/inbox.component';
     AdminComponent,
     AdventureTravelerComponent,
     BottomBarComponent,
-    InboxComponent
+    InboxComponent,
+    FriendMessagesPipe
 
 
 

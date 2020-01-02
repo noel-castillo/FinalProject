@@ -1,15 +1,13 @@
-<!-- Hero Section Begin -->
-<section data-setbg="https://i.imgur.com/DrxFDy5.jpg">
-  <div class="container" style="background-image: url('https://i.imgur.com/DrxFDy5.jpg')">
+<div id="explorebg">
+ <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div class="hero-text">
+        <div>
 
           <div class="col-lg-3 px-md">
           </div>
 
           <div class="col-lg-6 px-md text-center">
-            <img src="https://i.imgur.com/bZI0Zuk.png">
             <br>
             <p>your destination for all your destinations</p>
           </div>
@@ -24,17 +22,13 @@
                   <p style="color:black"><font size="8" face ="Verdana" ><strong>Explore</strong></font></p>
                   <h5></h5>
                   <p style="color:black"><font size="5" face ="Calibri" >Find relevant trips</font></p>
-                  <!-- <select name="searchType" id="searchType" class="ca-search" ngModel>
-                    <option value="1">Trips</option>
-                    <option value="2">Adventures</option>
-                  </select> -->
                 </div>
                 <div class="col-lg-6 px-md">
 
                   <br><br>
 
-                  <input type="text" name="location" placeholder="Your Current City" style="width: 350px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 10px" ngModel>
-                    <select class="custom-select" name="currState" style="width: 150px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0;">
+                  <input type="text" name="location" placeholder="Your Current City" style="width: 350px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 5px" ngModel>
+                    <select class="custom-select" name="currState" style="width: 150px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 5px">
                       <option selected="">State</option>
                       <option value="AL">AL</option>
                       <option value="AK">AK</option>
@@ -91,8 +85,8 @@
 
                   <br>
                   <label for="destination"></label>
-                  <input type="text" name="destination" placeholder="Your Destination City" style="width: 350px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 10px" ngModel>
-                  <select class="custom-select" name="destState" style="width: 150px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0;">
+                  <input type="text" name="destination" placeholder="Your Destination City" style="width: 350px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 5px" ngModel>
+                  <select class="custom-select" name="destState" style="width: 150px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 10px">
                     <option selected="">State</option>
                     <option value="AL">AL</option>
                     <option value="AK">AK</option>
@@ -160,10 +154,9 @@
       </div>
     </div>
   </div>
-</section>
-<!-- Hero Section End -->
 
-<!-- Trending Restaurant Section Begin -->
+
+<!--
 <section *ngIf="adventures" class="trending-restaurant spad">
   <div class="container">
     <div class="row">
@@ -178,13 +171,12 @@
       <div class="col-lg-6">
         <div *ngFor="let adventure of adventures" class="trend-item">
           <div class="trend-pic">
-            <!-- <img src="../../../assets/img/trending/trending-1.jpg" alt=""> -->
             <img [src]="adventure.host.profilePic.url" alt="">
             <div class="rating">{{adventure.host.mileagePoints}}</div>
           </div>
           <div class="trend-text">
             <h4>{{adventure.title}}</h4>
-            <span>{{adventure.address.city}}, {{adventure.address.state}} Hello!</span>
+            <span>{{adventure.address.city}}, {{adventure.address.state}}</span>
             <p>{{adventure.description}}.</p>
             <div [routerLink]="['/adventure-profile/' + adventure.id + '']" class="closed">View Details</div>
             <div class="open">Save</div>
@@ -194,7 +186,6 @@
       </div>
     </div>
   </div>
-</section>
 
 <section *ngIf="trips" class="trending-restaurant spad">
   <div class="container">
@@ -210,7 +201,6 @@
       <div class="col-lg-6">
         <div *ngFor="let trip of trips" class="trend-item">
           <div class="trend-pic">
-            <!-- <img src="../../../assets/img/trending/trending-1.jpg" alt=""> -->
             <img [src]="trip.host.profilePic.url" alt="">
             <div class="rating">{{trip.host.mileagePoints}}</div>
           </div>
@@ -227,279 +217,4 @@
       </div>
     </div>
   </div>
-</section>
-<!-- Trending Restaurant Section End -->
-
-<!-- Categories Section Begin
-<section class="categories-section spad">
-  <div class="container-fluid">
-    <div class="categories-left">
-      <div class="categories-item set-bg large-img" data-setbg="../../../assets/img/categories/cat-1.jpg">
-        <a href="../../../assets/img/categories/cat-1.jpg" class="img-hover pop-up"><img src="" alt=""></a>
-        <div class="categories-text">
-          <h4>Restaurants</h4>
-          <p>2373 Listings</p>
-          <a href="#">View All</a>
-        </div>
-      </div>
-    </div>
-    <div class="categories-right">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="categories-item set-bg" data-setbg="../../../assets/img/categories/cat-2.jpg">
-            <a href="../../../assets/img/categories/cat-2.jpg" class="img-hover pop-up"><img src="" alt=""></a>
-            <div class="categories-text">
-              <h4>Nightlife & Clubs</h4>
-              <p>2373 Listings</p>
-              <a href="#">View All</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="categories-item set-bg" data-setbg="img/categories/cat-3.jpg">
-            <a href="../../../assets/img/categories/cat-3.jpg" class="img-hover pop-up"><img src="" alt=""></a>
-            <div class="categories-text">
-              <h4>Spa & Resorts</h4>
-              <p>2373 Listings</p>
-              <a href="#">View All</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="categories-item set-bg" data-setbg="img/categories/cat-4.jpg">
-            <a href="../../../assets/img/categories/cat-4.jpg" class="img-hover pop-up"><img src="" alt=""></a>
-            <div class="categories-text">
-              <h4>Hotels</h4>
-              <p>2373 Listings</p>
-              <a href="#">View All</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="categories-item set-bg" data-setbg="../../../img/categories/cat-5.jpg">
-            <a href="../../../img/categories/cat-5.jpg" class="img-hover pop-up"><img src="" alt=""></a>
-            <div class="categories-text">
-              <h4>Clubs & Pubs</h4>
-              <p>2373 Listings</p>
-              <a href="#">View All</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Categories Section End -->
-
-<!-- Testimonial Section Begin -->
-<!-- <section class="testimonial-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-10 offset-lg-1">
-        <div class="testimonial-item owl-carousel">
-          <div class="single-testimonial-item">
-            <img src="" alt="">
-            <p>Fusce urna quam, euismod sit amet mollis quis. Fusce urna quam, euismod sit amet mollis
-              quis, vestibulum quis velit. Vestibulum malesuada aliquet libero viverra cursus. Aliquam
-              erat volutpat. Morbi id dictum quam, ut commodo lorem. In at nisi nec arcu porttitor
-              aliquet vitae at dui. Sed sollicitudin nulla non leo viverra.</p>
-            <h4>Michael Smith</h4>
-            <span>CEO Company</span>
-          </div>
-          <div class="single-testimonial-item">
-            <img src="" alt="">
-            <p>Fusce urna quam, euismod sit amet mollis quis. Fusce urna quam, euismod sit amet mollis
-              quis, vestibulum quis velit. Vestibulum malesuada aliquet libero viverra cursus. Aliquam
-              erat volutpat. Morbi id dictum quam, ut commodo lorem. In at nisi nec arcu porttitor
-              aliquet vitae at dui. Sed sollicitudin nulla non leo viverra.</p>
-            <h4>Michael Smith</h4>
-            <span>CEO Company</span>
-          </div>
-          <div class="single-testimonial-item">
-            <img src="" alt="">
-            <p>Fusce urna quam, euismod sit amet mollis quis. Fusce urna quam, euismod sit amet mollis
-              quis, vestibulum quis velit. Vestibulum malesuada aliquet libero viverra cursus. Aliquam
-              erat volutpat. Morbi id dictum quam, ut commodo lorem. In at nisi nec arcu porttitor
-              aliquet vitae at dui. Sed sollicitudin nulla non leo viverra.</p>
-            <h4>Michael Smith</h4>
-            <span>CEO Company</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container-fluid">
-    <div class="bg-img">
-      <img src="" alt="">
-    </div>
-  </div>
 </section> -->
-<!-- Testimonial Section End -->
-
-<!-- How It Works Section Begin -->
-<!-- <section class="work-section set-bg" data-setbg="../../../img/line-bg.jpg">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="section-title">
-          <h2>How it works</h2>
-          <p>Explore some of the best places in the world</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="single-work-item">
-          <div class="number">01.</div>
-          <div class="work-text">
-            <h4>Search the portal</h4>
-            <p>Fusce urna quam, euismod sit amet mollis quis.Aliquam erat volutpat. Morbi id dictum quam, ut.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="single-work-item">
-          <div class="number">02.</div>
-          <div class="work-text">
-            <h4>Choose the one 4u</h4>
-            <p>Euismod sit amet mollis quis. Ali-quam erat volutpat. Morbi id dictum quam, ut commodo lorem. </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="single-work-item">
-          <div class="number">03.</div>
-          <div class="work-text">
-            <h4>Book it!</h4>
-            <p>Euismod sit amet mollis quis. Ali-quam erat volutpat. Morbi id dictum quam, ut commodo lorem. </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- How It Works Section End -->
-
-<!-- App Section Begin -->
-<!-- <section class="app-section spad">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5">
-        <img src="" alt="">
-      </div>
-      <div class="col-lg-6 offset-lg-1">
-        <div class="app-text">
-          <div class="section-title">
-            <h2>Get the App now!</h2>
-            <p>Explore some of the best places in the world</p>
-          </div>
-          <p>Morbi id dictum quam, ut commodo lorem. Donec bibendum, enim ut luctus dictum, nisl turpis
-            scelerisque sem, in dapibus neque odio eu sapien. Morbi ac aliquet erat. Sed dapibus, augue
-            et malesuada maximus.</p>
-          <ul>
-            <li><img src="" alt="">Fusce urna quam, euismod sit amet mollis quis, vestibulum
-              quis veli</li>
-            <li><img src="" alt="">Vestibulum malesuada aliquet libero viverra cursus</li>
-            <li><img src="" alt="">Urna quam, euismod sit amet mollis quis, vestibulum quis veli
-            </li>
-          </ul>
-          <a href="#"><img src="" alt=""></a>
-          <a href="#"><img src="" alt=""></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-<!-- App Section End -->
-
-
-
-<!-- Footer Section Begin -->
-<!-- <footer class="footer-section spad">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <form action="#" class="newslatter-form">
-          <input type="text" placeholder="Your email address">
-          <button type="submit">Subscribe to our Newsletter</button>
-        </form>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-sm-6">
-        <div class="footer-widget">
-          <h4>Usefull Links</h4>
-          <ul>
-            <li>About us</li>
-            <li>Testimonials</li>
-            <li>How it works</li>
-            <li>Create an account</li>
-            <li>Our Services</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="footer-widget">
-          <h4>Categories</h4>
-          <ul>
-            <li>Hotels</li>
-            <li>Restaurant</li>
-            <li>Spa & resorts</li>
-            <li>Concert & Events</li>
-            <li>Bars & Pubs</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="footer-widget">
-          <h4>Usefull Links</h4>
-          <ul>
-            <li>About us</li>
-            <li>Testimonials</li>
-            <li>How it works</li>
-            <li>Create an account</li>
-            <li>Our Services</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-3 col-sm-6">
-        <div class="footer-widget">
-          <h4>From the Blog</h4>
-          <div class="single-blog">
-            <div class="blog-pic">
-              <img src="" alt="">
-            </div>
-            <div class="blog-text">
-              <h6>10 Best clubs in town</h6>
-              <span>March 27, 2019</span>
-            </div>
-          </div>
-          <div class="single-blog">
-            <div class="blog-pic">
-              <img src="" alt="">
-            </div>
-            <div class="blog-text">
-              <h6>10 Best clubs in town</h6>
-              <span>March 27, 2019</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row footer-bottom">
-      <div class="col-lg-5 order-2 order-lg-1">
-        <div class="copyright">
-        </div>
-      </div>
-      <div class="col-lg-7 text-center text-lg-right order-1 order-lg-2">
-        <div class="footer-menu">
-          <a href="#">Home</a>
-          <a href="#">Explore</a>
-          <a href="#">More Cities</a>
-          <a href="#">News</a>
-          <a href="#">Contact</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>  -->

@@ -34,34 +34,39 @@ export class SearchResultsComponent implements OnInit {
   search(form: NgForm) {
     console.log(form);
     console.log(form.value.location);
-    console.log(form.value.searchType);
+    console.log(form.value.destination);
+    // console.log(form.value.searchType);
     // if (form.value.searchType === 1 || this.searchType === 1) {
 
     console.log(form.value);
     console.log('searchNum: ' + this.searchNum);
 
-    if (form.value.searchType === '1' || this.searchNum === '1') {
-      this.adventures = null;
-      this.tripSvc.indexNotHOsted().subscribe(
-        data => {
-          this.trips = data;
-        },
-        err => {
-          console.error('Search-Results Component: Unable to load trips');
-        }
-      );
-    } else if (form.value.searchType === '2' || this.searchNum === '2') {
-      this.trips = null;
-      this.adventureSvc.index().subscribe(
-        data => {
-          this.adventures = data;
-        },
-        err => {
-          console.error('Search-Results Component: Unable to load adventures');
-        }
-      );
-    }
+
+
+    // if (form.value.searchType === '1' || this.searchNum === '1') {
+    //   this.adventures = null;
+    //   this.tripSvc.indexNotHOsted().subscribe(
+    //     data => {
+    //       this.trips = data;
+    //     },
+    //     err => {
+    //       console.error('Search-Results Component: Unable to load trips');
+    //     }
+    //   );
+    // } else if (form.value.searchType === '2' || this.searchNum === '2') {
+    //   this.trips = null;
+    //   this.adventureSvc.index().subscribe(
+    //     data => {
+    //       this.adventures = data;
+    //     },
+    //     err => {
+    //       console.error('Search-Results Component: Unable to load adventures');
+    //     }
+    //   );
+    // }
+
   }
+
   ngOnInit() {
     this.trips = null;
     this.adventures = null;

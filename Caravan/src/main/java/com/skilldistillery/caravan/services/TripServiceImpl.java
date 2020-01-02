@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.caravan.entities.Address;
 import com.skilldistillery.caravan.entities.Trip;
+import com.skilldistillery.caravan.entities.TripCalendar;
 import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.entities.UserProfile;
 import com.skilldistillery.caravan.entities.Vehicle;
 import com.skilldistillery.caravan.repositories.AddressRepository;
+import com.skilldistillery.caravan.repositories.TripCalendarRepository;
 import com.skilldistillery.caravan.repositories.TripRepository;
 import com.skilldistillery.caravan.repositories.UserProfileRepository;
 import com.skilldistillery.caravan.repositories.UserRepository;
@@ -36,22 +38,36 @@ public class TripServiceImpl implements TripService {
 
 	@Autowired
 	private VehicleRepository vRepo;
+	
+	@Autowired 
+	private TripCalendarRepository tcRepo;
+
 
 	@Override
 	public Trip create(Trip trip, Principal prin) {
 		User user = userRepo.findByUsername(prin.getName());
 		UserProfile userProfile = userProfileRepo.findByUser(user);
+	
 
 		Address address = trip.getDepartureAddress();
 		address = addrRepo.saveAndFlush(address);
 
 		Address address2 = trip.getDestinationAddress();
 		address2 = addrRepo.saveAndFlush(address2);
-
+		
+		TripCalendar tc = trip.getTripCalendar();
+		tc = tcRepo.saveAndFlush(tc);
+		
 		trip.setDepartureAddress(address);
 		trip.setDestinationAddress(address2);
 		trip.setHost(userProfile);
-
+		trip = tRepo.saveAndFlush(trip);
+		
+		tc.setTrip(trip);
+		tc = tcRepo.saveAndFlush(tc);
+		trip.setTripCalendar(tc);
+		
+		
 		return tRepo.saveAndFlush(trip);
 	}
 

@@ -33,12 +33,12 @@ public class TripController {
 		return svc.index();
 	}
 	
-	@GetMapping("notHosted")
+	@GetMapping("not-hosted")
 	public List<Trip> allTripsNotHosted(Principal prin) {
 		return svc.indexNotHosted(prin.getName());
 	}
 	
-	@GetMapping("Hosted")
+	@GetMapping("hosted")
 	public List<Trip> allTripsHosted(Principal prin) {
 		return svc.indexHosted(prin.getName());
 	}

@@ -1,3 +1,4 @@
+import { TripCalendar } from './../../models/trip-calendar';
 import { ImageService } from 'src/app/services/image.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -75,6 +76,10 @@ export class TripComponent implements OnInit {
   addTrip(form: NgForm) {
     const myNewTrip = new Trip();
 
+    const myNewCalendar = new TripCalendar();
+    myNewCalendar.startDate = form.value.startDate;
+    myNewCalendar.endDate = form.value.endDate;
+
     const myNewDestAddress = new Address();
     myNewDestAddress.street = form.value.destinationAddressStreet;
     myNewDestAddress.city = form.value.destinationAddressCity;
@@ -87,6 +92,7 @@ export class TripComponent implements OnInit {
     myNewDepartAddress.state = form.value.departureAddressState;
     myNewDepartAddress.zip = form.value.departureAddressZip;
 
+    myNewTrip.tripCalendar = myNewCalendar;
     myNewTrip.departureAddress = myNewDepartAddress;
     myNewTrip.destinationAddress = myNewDestAddress;
     myNewTrip.description = form.value.description;

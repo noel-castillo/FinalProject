@@ -1,5 +1,5 @@
 <!-- Hero Section Begin -->
-<section class="hero-section set-bg" data-setbg="../../../assets/img/hero-bg.jpg">
+<section class="hero-section set-bg" data-setbg="../../../assets/img/hero-bg.jpg" allowfullscreen="">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
@@ -48,7 +48,7 @@
           </div>
           <div class="trend-text">
             <h4>{{adventure.title}}</h4>
-            <span>{{adventure.address.city}}, {{adventure.address.state}}</span>
+            <span>{{adventure.address.city}}, {{adventure.address.state}} Hello!</span>
             <p>{{adventure.description}}.</p>
             <div [routerLink]="['/adventure-profile/' + adventure.id + '']" class="closed">View Details</div>
             <div class="open">Save</div>

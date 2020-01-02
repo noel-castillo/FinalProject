@@ -35,7 +35,7 @@ import { AdventureTravelerComponent } from './components/adventure-traveler/adve
 import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { FriendMessagesPipe } from './pipes/friend-messages.pipe';
-
+import {Ng2PageScrollModule} from 'ng2-page-scroll';
 
 
 
@@ -81,7 +81,8 @@ import { FriendMessagesPipe } from './pipes/friend-messages.pipe';
     HttpClientModule,
     NgbModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    Ng2PageScrollModule
   ],
   providers: [
     TripService,

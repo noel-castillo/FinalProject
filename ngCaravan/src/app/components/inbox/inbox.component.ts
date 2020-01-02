@@ -28,6 +28,8 @@ export class InboxComponent implements OnInit {
 
   me = null;
 
+  myReply: DirectMessage = new DirectMessage();
+
 // C O N S T R U C T O R
 
   constructor(
@@ -39,7 +41,23 @@ export class InboxComponent implements OnInit {
 
     // M E T H O D S
 
+    reply() {
+      this.dmSvc.createDirectMessage(this.myReply, this.selected.id).subscribe(
+        data => {
+          this.myReply = data;
+          this.loadFriendList();
+        },
+        err => {
+          console.error('Inbox Component: Unable to reply()');
+        }
+      );
+    }
+
   ngOnInit() {
+    this.loadFriendList();
+  }
+
+  loadFriendList() {
     this.uSvc.getUserInSession().subscribe(
       data => {
         this.me = data;
@@ -52,6 +70,7 @@ export class InboxComponent implements OnInit {
       data => {
         this.messages = data;
         this.friends = [];
+        this.friendsMap = new Map<number, UserProfile>();
         this.messages.forEach((message) => {
             if (!this.friendsMap.has(message.friendProfile.id)
             && message.friendProfile.user.id !== this.me.id) {

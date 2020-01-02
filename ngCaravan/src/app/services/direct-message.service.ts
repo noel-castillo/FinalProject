@@ -69,7 +69,7 @@ export class DirectMessageService {
      // tslint:disable-next-line: max-line-length
      return this.http
        .post<DirectMessage>(
-         this.baseUrl + '/' + fid,
+         this.url + '/' + fid,
          newDirectMessage,
          httpOptions
        )

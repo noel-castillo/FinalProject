@@ -382,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `trip_calendar` (
   `start_date` DATE NULL,
   `end_date` DATE NULL,
   `availability` VARCHAR(45) NULL,
-  `trip_id` INT NOT NULL,
+  `trip_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_trip_calendar_trip1_idx` (`trip_id` ASC),
   CONSTRAINT `fk_trip_calendar_trip1`
@@ -403,7 +403,7 @@ CREATE TABLE IF NOT EXISTS `adventure_calendar` (
   `start_date` DATE NULL,
   `end_date` DATE NULL,
   `availability` VARCHAR(45) NULL,
-  `adventure_id` INT NOT NULL,
+  `adventure_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_adventure_calendar_adventure1_idx` (`adventure_id` ASC),
   CONSTRAINT `fk_adventure_calendar_adventure1`
@@ -820,7 +820,15 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (1, '2017-09-30', 1, 2, 'Howdy Thar!');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (1, '2019-12-29', 3, 2, 'hey bb. wyd?');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (2, '2019-12-29', 2, 3, 'chillin bb');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (3, '2019-12-29', 3, 2, 'awesome. wanna hang l8r?');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (4, '2019-12-29', 2, 3, 'fo sho. can we watch the bachelorette?');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (5, '2019-12-29', 3, 2, 'ofc lol');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (6, '2019-12-29', 2, 3, 'perfect');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (7, '2019-12-29', 3, 2, 'hey did u get ur test results back');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (8, '2019-12-29', 3, 2, 'bb?');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (9, '2019-12-29', 3, 2, 'r u there?');
 
 COMMIT;
 

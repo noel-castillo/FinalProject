@@ -33,6 +33,7 @@ import { TripRequestPipe } from './pipes/trip-request.pipe';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdventureTravelerComponent } from './components/adventure-traveler/adventure-traveler.component';
 import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component';
+import { InboxComponent } from './components/inbox/inbox.component';
 
 
 
@@ -66,7 +67,8 @@ import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component
     TripRequestPipe,
     AdminComponent,
     AdventureTravelerComponent,
-    BottomBarComponent
+    BottomBarComponent,
+    InboxComponent
 
 
 

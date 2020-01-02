@@ -24,6 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "angular2": "^2.0.0-beta.0",
     "bootstrap": "^4.4.1",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
     "live-server": "^1.2.1",
     "main": "^1000.0.1",

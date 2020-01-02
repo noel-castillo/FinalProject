@@ -13,10 +13,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name="trip_message")
+@Table(name = "dm")
 public class DirectMessage {
 
 //	F I E L D S
@@ -26,25 +24,21 @@ public class DirectMessage {
 	private int id;
 
 	@OneToOne
-	@JoinColumn(name = "trip_id")
+	@JoinColumn(name = "my_id")
 //	@JsonIgnore
-	private Trip trip;
+	private UserProfile myProfile;
 
 	@OneToOne
-	@JoinColumn(name = "reply_to_id")
-	@JsonIgnore
-	private DirectMessage replyToId;
-
-	@OneToOne
-	@JoinColumn(name = "user_profile_id")
+	@JoinColumn(name = "friend_id")
 //	@JsonIgnore
-	private UserProfile userProfile;
+	private UserProfile friendProfile;
 
-	@Column(name="date_posted")
+	@Column(name = "message")
+	private String content;
+
+	@Column(name = "date_posted")
 	@CreationTimestamp
 	private Date datePosted;
-
-	private String content;
 
 //	C O N S T R U C T O R S
 
@@ -56,8 +50,8 @@ public class DirectMessage {
 
 	@Override
 	public String toString() {
-		return "MessageBoard [id=" + id + ", trip=" + trip + ", replyToId=" + replyToId + ", userProfile=" + userProfile
-				+ ", datePosted=" + datePosted + ", content=" + content + "]";
+		return "DirectMessage [id=" + id + ", myProfile=" + myProfile + ", friendProfile=" + friendProfile
+				+ ", content=" + content + ", datePosted=" + datePosted + "]";
 	}
 
 	public int getId() {
@@ -68,28 +62,20 @@ public class DirectMessage {
 		this.id = id;
 	}
 
-	public Trip getTrip() {
-		return trip;
+	public UserProfile getMyProfile() {
+		return myProfile;
 	}
 
-	public void setTrip(Trip trip) {
-		this.trip = trip;
+	public void setMyProfile(UserProfile myProfile) {
+		this.myProfile = myProfile;
 	}
 
-	public DirectMessage getReplyToId() {
-		return replyToId;
+	public UserProfile getFriendProfile() {
+		return friendProfile;
 	}
 
-	public void setReplyToId(DirectMessage replyToId) {
-		this.replyToId = replyToId;
-	}
-
-	public UserProfile getUserProfile() {
-		return userProfile;
-	}
-
-	public void setUserProfile(UserProfile userProfile) {
-		this.userProfile = userProfile;
+	public void setFriendProfile(UserProfile friendProfile) {
+		this.friendProfile = friendProfile;
 	}
 
 	public Date getDatePosted() {
@@ -114,10 +100,9 @@ public class DirectMessage {
 		int result = 1;
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
 		result = prime * result + ((datePosted == null) ? 0 : datePosted.hashCode());
+		result = prime * result + ((friendProfile == null) ? 0 : friendProfile.hashCode());
 		result = prime * result + id;
-		result = prime * result + ((replyToId == null) ? 0 : replyToId.hashCode());
-		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
-		result = prime * result + ((userProfile == null) ? 0 : userProfile.hashCode());
+		result = prime * result + ((myProfile == null) ? 0 : myProfile.hashCode());
 		return result;
 	}
 
@@ -140,22 +125,17 @@ public class DirectMessage {
 				return false;
 		} else if (!datePosted.equals(other.datePosted))
 			return false;
+		if (friendProfile == null) {
+			if (other.friendProfile != null)
+				return false;
+		} else if (!friendProfile.equals(other.friendProfile))
+			return false;
 		if (id != other.id)
 			return false;
-		if (replyToId == null) {
-			if (other.replyToId != null)
+		if (myProfile == null) {
+			if (other.myProfile != null)
 				return false;
-		} else if (!replyToId.equals(other.replyToId))
-			return false;
-		if (trip == null) {
-			if (other.trip != null)
-				return false;
-		} else if (!trip.equals(other.trip))
-			return false;
-		if (userProfile == null) {
-			if (other.userProfile != null)
-				return false;
-		} else if (!userProfile.equals(other.userProfile))
+		} else if (!myProfile.equals(other.myProfile))
 			return false;
 		return true;
 	}

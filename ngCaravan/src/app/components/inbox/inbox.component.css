@@ -1,6 +1,8 @@
 /* CSS used here will be applied after bootstrap.css */
 
 body{ margin-top:50px;}
+#navBox{ width: 100%; }
+#navItem{ width: 30%; }
 .nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
 .tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
 .tab-pane .list-group-item:last-child {border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}

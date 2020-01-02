@@ -15,6 +15,7 @@
 	<class>com.skilldistillery.caravan.entities.AdventureHost</class>
 	<class>com.skilldistillery.caravan.entities.AdventureTraveler</class>
 	<class>com.skilldistillery.caravan.entities.Categories</class>
+	<class>com.skilldistillery.caravan.entities.DirectMessage</class>
 	<class>com.skilldistillery.caravan.entities.Image</class>
 	<class>com.skilldistillery.caravan.entities.Trip</class>
 	<class>com.skilldistillery.caravan.entities.TripCalendar</class>

@@ -29,12 +29,10 @@ public class AdventureTraveler {
 
 	@OneToOne
 	@JoinColumn(name = "adventure_id")
-	@JsonIgnore
 	private Adventure adventure;
 
 	@OneToOne
 	@JoinColumn(name = "user_profile_id")
-	@JsonIgnore
 	private UserProfile user;
 
 	@Column(name = "traveler_status")

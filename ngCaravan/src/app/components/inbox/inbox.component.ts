@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DirectMessageService } from 'src/app/services/direct-message.service';
 import { User } from 'src/app/models/user';
+import { NgForm } from '@angular/forms';
+import { UserProfileService } from 'src/app/services/user-profile.service';
 
 @Component({
   selector: 'app-inbox',
@@ -30,12 +32,17 @@ export class InboxComponent implements OnInit {
 
   myReply: DirectMessage = new DirectMessage();
 
+  users: UserProfile[] = [];
+
+  fid = 0;
+
 // C O N S T R U C T O R
 
   constructor(
     private auth: AuthService,
     private dmSvc: DirectMessageService,
     private uSvc: UserService,
+    private upSvc: UserProfileService,
     private currentRoute: ActivatedRoute,
     private router: Router) { }
 
@@ -53,8 +60,39 @@ export class InboxComponent implements OnInit {
       );
     }
 
+    compose(form: NgForm) {
+
+      this.users.forEach((userProfile) => {
+        if (userProfile.user.username === form.value.friendUsername) {
+          this.fid = userProfile.id;
+        }
+      });
+      this.dmSvc.createDirectMessage(this.myReply, this.fid).subscribe(
+        data => {
+          this.loadFriendList();
+          this.myReply = new DirectMessage();
+        },
+        err => {
+          console.error('Inbox Component: Unable to reply()');
+        }
+      );
+
+    }
+
   ngOnInit() {
     this.loadFriendList();
+    this.loadUsers();
+  }
+
+  loadUsers() {
+    this.upSvc.index().subscribe(
+      data => {
+        this.users = data;
+      },
+      err => {
+        console.error('Inbox Component: Unable to load users in compose()');
+      }
+    );
   }
 
   loadFriendList() {

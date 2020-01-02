@@ -7,8 +7,23 @@
     <div class="col-sm-12 col-md-10">
       <!-- Nav tabs -->
       <ul id="navBox" class="nav nav-tabs">
-        <li id="navItem" class="btn btn-info" role="button"><i class="glyphicon glyphicon-edit"></i>
-          Compose&emsp;</li>
+        <li id="navItem" type="button" id="dropdownMenu1" data-toggle="dropdown"
+        class="btn btn-outline-info dropdown-toggle" role="button"><i class="glyphicon glyphicon-edit"></i>
+              Compose&emsp;
+            </li>
+            <ul class="dropdown-menu dropdown-menu-right mt-2">
+              <li class="px-3 py-2">
+                <form #composeForm="ngForm">
+                  <div class="form-group">
+                    <input name="friendUsername" placeholder="Enter Recipient's Username" class="form-control form-control-sm" type="text"
+                    ngModel required="required">
+                    <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
+                    [(ngModel)]="myReply.content" required="required">
+                    <button (click)="compose(composeForm)" type="submit" name="compose" class="btn btn-info btn-block">Send</button>
+                  </div>
+                </form>
+              </li>
+            </ul>
 
         <li id="navItem"><a href="#home" (click)="selected = null" data-toggle="tab"><i class="material-icons">
               all_inbox

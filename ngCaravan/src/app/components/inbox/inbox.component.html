@@ -21,13 +21,11 @@
             Promotions&emsp;</a></li>
       </ul>
       <!-- Tab panes -->
-      <div class="tab-content col-lg-6">
-        <div class="tab-pane fade in active" id="home">
-
+      <div class="col-lg-12">
           <div *ngIf="!selected">
             <div class="row" *ngFor="let friend of friends" (click)="selected = friend">
               <a pageScroll href="#replyTo">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                   <div class="trend-item">
                     <div class="trend-pic">
                       <img [src]="friend.profilePic.url" alt="">
@@ -77,18 +75,6 @@
             <br>
             <br>
           </div>
-        </div>
-        <!-- <div class="tab-pane fade in" id="profile">
-          <div class="list-group">
-            <div class="list-group-item">
-              <span class="text-center">This tab is empty.</span>
-            </div>
-          </div>
-        </div>
-        <div class="tab-pane fade in" id="messages">
-          ...</div>
-        <div class="tab-pane fade in" id="settings">
-          This tab is empty.</div> -->
       </div>
     </div>
   </div>

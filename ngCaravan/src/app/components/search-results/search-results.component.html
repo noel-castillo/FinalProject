@@ -1,25 +1,161 @@
 <!-- Hero Section Begin -->
-<section class="hero-section set-bg" data-setbg="../../../assets/img/hero-bg.jpg" allowfullscreen="">
-  <div class="container">
+<section data-setbg="https://i.imgur.com/DrxFDy5.jpg">
+  <div class="container" style="background-image: url('https://i.imgur.com/DrxFDy5.jpg')">
     <div class="row">
       <div class="col-lg-12">
         <div class="hero-text">
-          <img src="" alt="">
-          <h1>Explorer</h1>
-          <form #searchForm="ngForm" class="filter-search">
-            <div class='category-search'>
-              <h5>Search For</h5>
-              <select name="searchType" id="searchType" class="ca-search" ngModel>
-                <option value="1">Trips</option>
-                <option value="2">Adventures</option>
-              </select>
+
+          <div class="col-lg-3 px-md">
+          </div>
+
+          <div class="col-lg-6 px-md text-center">
+            <img src="https://i.imgur.com/bZI0Zuk.png">
+            <br>
+            <p>your destination for all your destinations</p>
+          </div>
+
+          <div class="col-lg-3 px-md">
+          </div>
+
+          <br>
+            <div style='background-color: rgba(255, 255, 255, 0.4); padding-top: 35px; padding-right: 35px; padding-bottom: 35px; padding-left: 35px;'>
+              <form #searchForm="ngForm">
+                <div class='col-lg-3 px-md'>
+                  <p style="color:black"><font size="8" face ="Verdana" ><strong>Explore</strong></font></p>
+                  <h5></h5>
+                  <p style="color:black"><font size="5" face ="Calibri" >Find relevant trips</font></p>
+                  <!-- <select name="searchType" id="searchType" class="ca-search" ngModel>
+                    <option value="1">Trips</option>
+                    <option value="2">Adventures</option>
+                  </select> -->
+                </div>
+                <div class="col-lg-6 px-md">
+
+                  <br><br>
+
+                  <input type="text" name="location" placeholder="Your Current City" style="width: 350px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 10px" ngModel>
+                    <select class="custom-select" name="currState" style="width: 150px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0;">
+                      <option selected="">State</option>
+                      <option value="AL">AL</option>
+                      <option value="AK">AK</option>
+                      <option value="AZ">AZ</option>
+                      <option value="AR">AR</option>
+                      <option value="CA">CA</option>
+                      <option value="CO">CO</option>
+                      <option value="CT">CT</option>
+                      <option value="DE">DE</option>
+                      <option value="DC">DC</option>
+                      <option value="FL">FL</option>
+                      <option value="GA">GA</option>
+                      <option value="HI">HI</option>
+                      <option value="ID">ID</option>
+                      <option value="IL">IL</option>
+                      <option value="IN">IN</option>
+                      <option value="IA">IA</option>
+                      <option value="KS">KS</option>
+                      <option value="KY">KY</option>
+                      <option value="LA">LA</option>
+                      <option value="ME">ME</option>
+                      <option value="MD">MD</option>
+                      <option value="MA">MA</option>
+                      <option value="MI">MI</option>
+                      <option value="MN">MN</option>
+                      <option value="MS">MS</option>
+                      <option value="MO">MO</option>
+                      <option value="MT">MT</option>
+                      <option value="NE">NE</option>
+                      <option value="NV">NV</option>
+                      <option value="NH">NH</option>
+                      <option value="NJ">NJ</option>
+                      <option value="NM">NM</option>
+                      <option value="NY">NY</option>
+                      <option value="NC">NC</option>
+                      <option value="ND">ND</option>
+                      <option value="OH">OH</option>
+                      <option value="OK">OK</option>
+                      <option value="OR">OR</option>
+                      <option value="PA">PA</option>
+                      <option value="RI">RI</option>
+                      <option value="SC">SC</option>
+                      <option value="SD">SD</option>
+                      <option value="TN">TN</option>
+                      <option value="TX">TX</option>
+                      <option value="UT">UT</option>
+                      <option value="VT">VT</option>
+                      <option value="VA">VA</option>
+                      <option value="WA">WA</option>
+                      <option value="WV">WV</option>
+                      <option value="WI">WI</option>
+                      <option value="WY">WY</option>
+                  </select>
+
+                  <br>
+                  <label for="destination"></label>
+                  <input type="text" name="destination" placeholder="Your Destination City" style="width: 350px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 10px" ngModel>
+                  <select class="custom-select" name="destState" style="width: 150px; height: 60px; background-color: #303030; color: #C0C0C0; border: 1px solid black; padding: 10px 10px; margin: 5px 0;">
+                    <option selected="">State</option>
+                    <option value="AL">AL</option>
+                    <option value="AK">AK</option>
+                    <option value="AZ">AZ</option>
+                    <option value="AR">AR</option>
+                    <option value="CA">CA</option>
+                    <option value="CO">CO</option>
+                    <option value="CT">CT</option>
+                    <option value="DE">DE</option>
+                    <option value="DC">DC</option>
+                    <option value="FL">FL</option>
+                    <option value="GA">GA</option>
+                    <option value="HI">HI</option>
+                    <option value="ID">ID</option>
+                    <option value="IL">IL</option>
+                    <option value="IN">IN</option>
+                    <option value="IA">IA</option>
+                    <option value="KS">KS</option>
+                    <option value="KY">KY</option>
+                    <option value="LA">LA</option>
+                    <option value="ME">ME</option>
+                    <option value="MD">MD</option>
+                    <option value="MA">MA</option>
+                    <option value="MI">MI</option>
+                    <option value="MN">MN</option>
+                    <option value="MS">MS</option>
+                    <option value="MO">MO</option>
+                    <option value="MT">MT</option>
+                    <option value="NE">NE</option>
+                    <option value="NV">NV</option>
+                    <option value="NH">NH</option>
+                    <option value="NJ">NJ</option>
+                    <option value="NM">NM</option>
+                    <option value="NY">NY</option>
+                    <option value="NC">NC</option>
+                    <option value="ND">ND</option>
+                    <option value="OH">OH</option>
+                    <option value="OK">OK</option>
+                    <option value="OR">OR</option>
+                    <option value="PA">PA</option>
+                    <option value="RI">RI</option>
+                    <option value="SC">SC</option>
+                    <option value="SD">SD</option>
+                    <option value="TN">TN</option>
+                    <option value="TX">TX</option>
+                    <option value="UT">UT</option>
+                    <option value="VT">VT</option>
+                    <option value="VA">VA</option>
+                    <option value="WA">WA</option>
+                    <option value="WV">WV</option>
+                    <option value="WI">WI</option>
+                    <option value="WY">WY</option>
+                  </select>
+                </div>
+
+                <div class="location-search col-lg-3 px-md">
+
+                  <button type="submit" (click)="search(searchForm)">Search Now</button>
+
+                </div>
+
+              </form>
             </div>
-            <div class="location-search newslatter-form">
-              <label for="location"></label>
-              <input type="text" name="location" placeholder="Your Location" ngModel>
-            </div>
-            <button type="submit" (click)="search(searchForm)">Search Now</button>
-          </form>
         </div>
       </div>
     </div>

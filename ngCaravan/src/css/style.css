@@ -223,9 +223,9 @@ ol {
 	background: #FF5581;
 	font-size: 14px;
 	font-weight: 600;
-	border: none;
-	padding: 25px 70px;
-	border-radius: 50px;
+	border: 2px solid black;
+	padding: 10px 20px;
+	border-radius: 25px;
 	letter-spacing: 1.5px;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -413,7 +413,7 @@ ol {
 }
 
 .filter-search {
-	padding: 25px 38px 38px;
+	padding: 10px 30px 30px;
 	position: relative;
 	z-index: 1;
 }

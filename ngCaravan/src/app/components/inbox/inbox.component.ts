@@ -45,23 +45,7 @@ export class InboxComponent implements OnInit {
       this.dmSvc.createDirectMessage(this.myReply, this.selected.id).subscribe(
         data => {
           this.myReply = data;
-          this.dmSvc.getMessages().subscribe(
-            // tslint:disable-next-line: no-shadowed-variable
-            data => {
-              this.messages = data;
-              this.friends = [];
-              this.messages.forEach((message) => {
-                  if (!this.friendsMap.has(message.friendProfile.id)
-                  && message.friendProfile.user.id !== this.me.id) {
-                    this.friendsMap.set(message.friendProfile.id, message.friendProfile);
-                    this.friends.push(message.friendProfile);
-                  }
-              });
-            },
-            err => {
-              console.error('Inbox Component: Unable to load messages by user');
-            }
-          );
+          this.loadFriendList();
         },
         err => {
           console.error('Inbox Component: Unable to reply()');
@@ -70,6 +54,10 @@ export class InboxComponent implements OnInit {
     }
 
   ngOnInit() {
+    this.loadFriendList();
+  }
+
+  loadFriendList() {
     this.uSvc.getUserInSession().subscribe(
       data => {
         this.me = data;
@@ -82,6 +70,7 @@ export class InboxComponent implements OnInit {
       data => {
         this.messages = data;
         this.friends = [];
+        this.friendsMap = new Map<number, UserProfile>();
         this.messages.forEach((message) => {
             if (!this.friendsMap.has(message.friendProfile.id)
             && message.friendProfile.user.id !== this.me.id) {

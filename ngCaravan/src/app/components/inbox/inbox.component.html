@@ -12,12 +12,12 @@
 
         <li id="navItem"><a href="#home" (click)="selected = null" data-toggle="tab"><i class="material-icons">
               all_inbox
-            </i><span class="badge pull-right">32</span>
+            </i><span class="badge pull-right"></span>
             Primary&emsp;</a></li>
 
         <li id="navItem"><a href="#messages" data-toggle="tab"><i class="material-icons">
               loyalty
-            </i><span class="badge pull-right">17</span>
+            </i><span class="badge pull-right"></span>
             Promotions&emsp;</a></li>
       </ul>
       <!-- Tab panes -->
@@ -48,9 +48,7 @@
                     <input type="checkbox">
                   </label>
                 </div>
-                <span class="name" style="min-width: 120px;
-                              display: inline-block;">{{message.myProfile.firstName}} {{message.myProfile.lastName}}:
-                </span>
+                <p><strong>{{message.myProfile.firstName}} {{message.myProfile.lastName}}:</strong></p>
                 <p>{{message.content}}</p>
                 <br>
                 <span class="badge">{{message.datePosted}}</span>
@@ -59,7 +57,7 @@
             <button class="btn btn-secondary" (click)="selected = null">Back</button>
             <button type="button" id="dropdownMenu1" data-toggle="dropdown"
               class="btn btn-outline-secondary dropdown-toggle">
-              Reply <span class="caret"></span>
+              Reply
             </button>
             <ul class="dropdown-menu dropdown-menu-right mt-2">
               <li class="px-3 py-2">

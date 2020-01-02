@@ -1,7 +1,7 @@
 import { Address } from './address';
-import { User } from './user';
-import { Vehicle } from './vehicle';
+import { TripCalendar } from './trip-calendar';
 import { UserProfile } from './user-profile';
+import { Vehicle } from './vehicle';
 
 export class Trip {
   id: number;
@@ -18,10 +18,11 @@ export class Trip {
   vehicle: Vehicle;
   title: string;
   featureImage: string;
+  tripCalendar: TripCalendar;
 
 
   // tslint:disable-next-line: max-line-length
-  constructor(host?: UserProfile, departureAddress?: Address, destinationAddress?: Address, description?: string, seatsAvailable?: number, cargoCapactiy?: number, createDate?: Date, enabled?: boolean, totalCost?: number, miles?: number, vehicle?: Vehicle, title?: string, featureImage?: string) {
+  constructor(host?: UserProfile, departureAddress?: Address, destinationAddress?: Address, description?: string, seatsAvailable?: number, cargoCapactiy?: number, createDate?: Date, enabled?: boolean, totalCost?: number, miles?: number, vehicle?: Vehicle, title?: string, featureImage?: string, tripCalendar?: TripCalendar) {
     this.host = host;
     this.departureAddress = departureAddress;
     this.destinationAddress = destinationAddress;
@@ -35,5 +36,6 @@ export class Trip {
     this.vehicle = vehicle;
     this.title = title;
     this.featureImage = featureImage;
+    this.tripCalendar = tripCalendar;
   }
 }

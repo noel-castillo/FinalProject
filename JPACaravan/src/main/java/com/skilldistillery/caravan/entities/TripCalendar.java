@@ -1,6 +1,6 @@
 package com.skilldistillery.caravan.entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,10 +28,10 @@ public class TripCalendar {
 	private Trip trip;
 	
 	@Column(name="start_date")
-	private Date startDate;
+	private LocalDate startDate;
 	
 	@Column(name="end_date")
-	private Date endDate;
+	private LocalDate endDate;
 	
 
 //	C O N S T R U C T O R S
@@ -63,19 +63,19 @@ public class TripCalendar {
 		this.trip = trip;
 	}
 
-	public Date getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
 

@@ -3,6 +3,8 @@ package com.skilldistillery.caravan.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.time.LocalDate;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -52,6 +54,6 @@ class TripCalendarTest {
 	@DisplayName("Test trip calendar and trip relationship Mapping")
 	void test2() {
 		assertNotNull(tripCalendar.getTrip());
-		assertEquals("2017-07-20 01:00:00.0", tripCalendar.getEndDate().toString());
+		assertEquals(LocalDate.parse("2017-07-20"), tripCalendar.getEndDate());
 	}
 }

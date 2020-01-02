@@ -28,6 +28,8 @@ export class InboxComponent implements OnInit {
 
   me = null;
 
+  myReply: DirectMessage = new DirectMessage();
+
 // C O N S T R U C T O R
 
   constructor(
@@ -38,6 +40,34 @@ export class InboxComponent implements OnInit {
     private router: Router) { }
 
     // M E T H O D S
+
+    reply() {
+      this.dmSvc.createDirectMessage(this.myReply, this.selected.id).subscribe(
+        data => {
+          this.myReply = data;
+          this.dmSvc.getMessages().subscribe(
+            // tslint:disable-next-line: no-shadowed-variable
+            data => {
+              this.messages = data;
+              this.friends = [];
+              this.messages.forEach((message) => {
+                  if (!this.friendsMap.has(message.friendProfile.id)
+                  && message.friendProfile.user.id !== this.me.id) {
+                    this.friendsMap.set(message.friendProfile.id, message.friendProfile);
+                    this.friends.push(message.friendProfile);
+                  }
+              });
+            },
+            err => {
+              console.error('Inbox Component: Unable to load messages by user');
+            }
+          );
+        },
+        err => {
+          console.error('Inbox Component: Unable to reply()');
+        }
+      );
+    }
 
   ngOnInit() {
     this.uSvc.getUserInSession().subscribe(

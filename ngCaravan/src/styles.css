@@ -7,7 +7,6 @@
 @import "css/nice-select.css";
 @import "css/owl.carousel.min.css";
 @import "css/slicknav.min.css";
-@import "css/style.css";
 @import "~font-awesome/css/font-awesome.css";
 
 /******************************************************************
@@ -64,6 +63,17 @@ h6 {
 	color: #111111;
 	font-weight: 400;
 	font-family: "Lato", sans-serif;
+}
+
+#explorebg {
+  /* The image used */
+  background-image: url("https://i.imgur.com/DrxFDy5.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1 {
@@ -125,6 +135,7 @@ a:focus {
   bottom: 0;
   width: 100%; height: 56px;
   background-color: lightgrey;
+  border-top: 2px solid darkgrey;
   overflow: hide;
 }
 

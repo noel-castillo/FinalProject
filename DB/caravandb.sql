@@ -626,12 +626,14 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `image` (`id`, `url`) VALUES (1, 'https://i.imgur.com/Iy01VVJ.jpg');
-INSERT INTO `image` (`id`, `url`) VALUES (2, 'https://imgur.com/2DmETHE');
-INSERT INTO `image` (`id`, `url`) VALUES (3, 'https://imgur.com/2DmETHE');
-INSERT INTO `image` (`id`, `url`) VALUES (4, 'https://imgur.com/2DmETHE');
-INSERT INTO `image` (`id`, `url`) VALUES (5, 'https://imgur.com/2DmETHE');
-INSERT INTO `image` (`id`, `url`) VALUES (6, 'https://imgur.com/2DmETHE');
-INSERT INTO `image` (`id`, `url`) VALUES (7, NULL);
+INSERT INTO `image` (`id`, `url`) VALUES (2, 'https://i.imgur.com/Itd3eOv.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (3, 'https://i.imgur.com/bMUu7B4.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (4, 'https://i.imgur.com/F4sjmjX.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (5, 'https://i.imgur.com/Nu5wzNg.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (6, 'https://i.imgur.com/vyHrClk.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (7, 'https://i.imgur.com/p8OnkzQ.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (8, 'https://i.imgur.com/BAlRD4j.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (9, 'https://i.imgur.com/mnKY0Wb.jpg');
 
 COMMIT;
 
@@ -660,12 +662,12 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 1, 1, 'userface@usermail.com', '555-555-9876', '2017-06-15', 1);
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (2, 'user', '2', 'i\'m user 2!', 300, 2, 2, 'user2@user2mail.com', '555-555-6789', '2019-04-30', 2);
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (3, 'shaun', 'mcshaun', 'Hi, my name is Shaun. I like to go on trips and stuff.', 250, 2, 2, 'shaun@shaunmail.com', '555-234-1239', '2019-12-18', 3);
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (4, 'johnson', 'mcjohnson', 'Hello, I am Johnson McJohnson! Let\'s go road tripping together :D', 14, 2, 5, 'johnson@johnson.com', '555-234-1238', '2019-12-19', 4);
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (5, 'frank', 'mcfrank', 'Hi. I\'m Frank, and boy do I like to go on road trips.', 1000, 2, 6, 'frank@frank.com', '555-234-1237', '2019-12-20', 5);
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (6, 'jimbob', 'mcjimbob', 'Howdy thar! Come a-travelin\' with me, Jimbob McJimbob', 750, 2, 7, 'jimbob@jimbob.com', '555-234-1236', '2019-12-21', 6);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (1, 'user', 'face', 'i\'m a user face', 25, 2, 1, 'userface@usermail.com', '555-555-9876', '2017-06-15', 1);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (2, 'user', '2', 'i\'m user 2!', 300, 3, 2, 'user2@user2mail.com', '555-555-6789', '2019-04-30', 2);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (3, 'shaun', 'mcshaun', 'Hi, my name is Shaun. I like to go on trips and stuff.', 250, 4, 2, 'shaun@shaunmail.com', '555-234-1239', '2019-12-18', 3);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (4, 'johnson', 'mcjohnson', 'Hello, I am Johnson McJohnson! Let\'s go road tripping together :D', 14, 5, 5, 'johnson@johnson.com', '555-234-1238', '2019-12-19', 4);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (5, 'frank', 'mcfrank', 'Hi. I\'m Frank, and boy do I like to go on road trips.', 1000, 6, 6, 'frank@frank.com', '555-234-1237', '2019-12-20', 5);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (6, 'jimbob', 'mcjimbob', 'Howdy thar! Come a-travelin\' with me, Jimbob McJimbob', 750, 7, 7, 'jimbob@jimbob.com', '555-234-1236', '2019-12-21', 6);
 
 COMMIT;
 
@@ -829,6 +831,14 @@ INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (
 INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (7, '2019-12-29', 3, 2, 'hey did u get ur test results back');
 INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (8, '2019-12-29', 3, 2, 'bb?');
 INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (9, '2019-12-29', 3, 2, 'r u there?');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (10, '2019-12-30', 5, 3, 'Hi. I\'m Frank. I\'m trying to go to Branson. I see you\'re going to the Titanic museum there. Can I hitch along?');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (11, '2019-12-30', 3, 5, 'Hey wassup homie. Sure thing. As long as you don\'t have b.o.! lol');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (12, '2019-12-30', 5, 3, 'Actually I kind of do have a body odor problem lol. but srsly. maybe I can just sit in the back and roll a window down');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (13, '2019-12-30', 3, 5, 'Oh dang. Sorry. hope i didn\'t offend. like how bad, on a scale of 1-10?');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (14, '2019-12-30', 5, 3, 'well, i guess it depends. i\'d say a 6.');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (15, '2019-12-30', 5, 3, 'maybe 7');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (16, '2019-12-30', 3, 5, 'let me think about it. i\'ll hit you back soon');
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (17, '2019-12-30', 5, 3, NULL);
 
 COMMIT;
 

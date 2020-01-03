@@ -1,5 +1,8 @@
 package com.skilldistillery.caravan.entities;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -12,8 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "user_profile")
@@ -66,6 +71,14 @@ public class UserProfile {
 	@OneToMany(mappedBy = "user")
 	@JsonIgnore
 	private List<TripTraveler> tripsJoined;
+
+	@OneToMany(mappedBy = "myProfile")
+	@JsonIgnoreProperties({ "myProfile", "friendProfile" })
+	private List<DirectMessage> inbox;
+
+	@OneToMany(mappedBy = "friendProfile")
+	@JsonIgnoreProperties({ "myProfile", "friendProfile" })
+	private List<DirectMessage> outbox;
 
 //	C O N S T R U C T O R S
 
@@ -179,7 +192,6 @@ public class UserProfile {
 		Vehicles = vehicles;
 	}
 
-	
 	public List<Trip> getHostedTrips() {
 		return hostedTrips;
 	}
@@ -196,6 +208,38 @@ public class UserProfile {
 		this.tripsJoined = tripsJoined;
 	}
 
+	public List<DirectMessage> getInbox() {
+		return inbox;
+	}
+
+	public void setInbox(List<DirectMessage> inbox) {
+		this.inbox = inbox;
+	}
+
+	public List<DirectMessage> getOutbox() {
+		return outbox;
+	}
+
+	public void setOutbox(List<DirectMessage> outbox) {
+		this.outbox = outbox;
+	}
+	
+	@Transient
+	public List<DirectMessage> getAllMessages() {
+		List<DirectMessage> messages = new ArrayList<>();
+		messages.addAll(this.getInbox());
+		messages.addAll(this.getOutbox());
+		Collections.sort(messages, new Comparator<DirectMessage>() {
+			  public int compare(DirectMessage o1, DirectMessage o2) {
+				  if (o1.getDatePosted() == null || o2.getDatePosted() == null) {
+				      return 0;
+				  }
+			      return o1.getDatePosted().compareTo(o2.getDatePosted());
+			  }
+			});
+		return messages;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -207,8 +251,10 @@ public class UserProfile {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((hostedTrips == null) ? 0 : hostedTrips.hashCode());
 		result = prime * result + id;
+		result = prime * result + ((inbox == null) ? 0 : inbox.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + mileagePoints;
+		result = prime * result + ((outbox == null) ? 0 : outbox.hashCode());
 		result = prime * result + ((phone == null) ? 0 : phone.hashCode());
 		result = prime * result + ((profilePic == null) ? 0 : profilePic.hashCode());
 		result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
@@ -258,12 +304,22 @@ public class UserProfile {
 			return false;
 		if (id != other.id)
 			return false;
+		if (inbox == null) {
+			if (other.inbox != null)
+				return false;
+		} else if (!inbox.equals(other.inbox))
+			return false;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
 		if (mileagePoints != other.mileagePoints)
+			return false;
+		if (outbox == null) {
+			if (other.outbox != null)
+				return false;
+		} else if (!outbox.equals(other.outbox))
 			return false;
 		if (phone == null) {
 			if (other.phone != null)

@@ -69,9 +69,13 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 			existing.setTravelerStatus(tripTraveler.getTravelerStatus());
 //			existing.setTrip(tripTraveler.getTrip());
 //			existing.setUser(tripTraveler.getUser());
+			
 
 			ttRepo.saveAndFlush(existing);
 		}
+		System.out.println("*********************************************");
+		System.out.println(tripTraveler.getTravelerStatus());
+		System.out.println(existing);
 		return existing;
 	}
 

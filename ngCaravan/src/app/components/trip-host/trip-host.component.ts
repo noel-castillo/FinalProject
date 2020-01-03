@@ -1,11 +1,15 @@
+import { TripTraveler } from './../../models/trip-traveler';
+import { User } from './../../models/user';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Trip } from 'src/app/models/trip';
 import { TripHost } from 'src/app/models/trip-host';
+import { UserProfile } from 'src/app/models/user-profile';
 import { AuthService } from 'src/app/services/auth.service';
 import { TripHostService } from 'src/app/services/trip-host.service';
-import { UserProfile } from 'src/app/models/user-profile';
 import { UserProfileService } from 'src/app/services/user-profile.service';
+import { TripService } from './../../services/trip.service';
 
 @Component({
   selector: 'app-trip-host',
@@ -16,6 +20,8 @@ export class TripHostComponent implements OnInit {
 
   reviews: TripHost[] = [];
   selectedReview: TripHost;
+  trips: Trip[] = [];
+  selectedTripPassenger: TripTraveler = null;
   new = false;
   editReview: TripHost = null;
   currentUser: UserProfile;
@@ -26,11 +32,13 @@ export class TripHostComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private auth: AuthService,
-    private userProSvc: UserProfileService
+    private userProSvc: UserProfileService,
+    private tripSvc: TripService
     ) { }
 
   ngOnInit() {
     this.loadReviews();
+    this.loadTrips();
 
     this.userProSvc.getUserInSessionProfile().subscribe(
       data => {
@@ -82,15 +90,38 @@ export class TripHostComponent implements OnInit {
       }
     );
   }
+  loadTrips() {
+    this.tripSvc.index().subscribe(
+      data => {
+        this.trips = data;
+        console.log(this.trips);
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
   createReview(createForm: NgForm) {
-    this.thSvc.create(createForm).subscribe(
+    console.log('in create Review');
+    console.log(this.selectedTripPassenger);
+    const newTripHostReview = {
+      rating: createForm.value.rating,
+      review: createForm.value.review,
+      trip: {
+        id: this.selectedTripPassenger.trip.id},
+      passenger: {
+        id : this.selectedTripPassenger.user.id}
+    };
+    console.log(newTripHostReview);
+    this.thSvc.create(newTripHostReview).subscribe(
       data => {
         this.loadReviews();
         this.selectedReview = null;
         this.new = false;
       },
       error => {
-        console.error('TripHostComponent.createAdventure(): Error creating new host review of passenger');
+        console.error('TripHostComponent.createReview(): Error creating new host review of passenger');
         console.error(error);
       }
     );

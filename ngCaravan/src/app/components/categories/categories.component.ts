@@ -91,7 +91,7 @@ export class CategoriesComponent implements OnInit {
     );
   }
 
-  setEditCategory(category: Categories) {
+  setEditCategory() {
     this.editCategory = Object.assign({}, this.selected);
   }
 

@@ -93,7 +93,7 @@ export class AdventureTravelerComponent implements OnInit {
    );
  }
 
- setEditAdventureTraveler(adventureTraveler: AdventureTraveler) {
+ setEditAdventureTraveler() {
    this.editAdventureTraveler = Object.assign({}, this.selected);
  }
 

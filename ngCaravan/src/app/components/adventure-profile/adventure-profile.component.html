@@ -15,6 +15,10 @@
                <h2>{{adventure.title}}</h2>
               <p>Location: {{adventure.address.city}}, {{adventure.address.state}}</p>
               <p>Description: {{adventure.description}}</p>
+              <p>Activity Level: {{adventure.activityLvl}}</p>
+              <p>Includes: {{adventure.includes}}</p>
+              <p>Price: ${{adventure.price}}</p>
+              <p>Ititnerary: {{adventure.itinerary}}</p>
               <div (click)="addAdventure(adventure.id)" class="closed">Confirm Join</div>
               <div class="open">Save</div>
             </div>
@@ -46,11 +50,11 @@
             <div class="about-desc">
 
 
-              <h3>About the Adventure</h3>
+              <!-- <h3>About the Adventure</h3>
               <p>Activity Level: {{adventure.activityLvl}}</p>
               <p>Includes: {{adventure.includes}}</p>
               <p>Price: ${{adventure.price}}</p>
-              <p>Ititnerary: {{adventure.itinerary}}</p>
+              <p>Ititnerary: {{adventure.itinerary}}</p> -->
 
               <h3>About the Host</h3>
 

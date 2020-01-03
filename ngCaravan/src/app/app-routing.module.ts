@@ -44,6 +44,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'search-results', component: SearchResultsComponent},
+  {path: '', component: SearchResultsComponent},
   {path: 'trip-profile/:id', component: TripProfileComponent}
 ];
 

@@ -57,7 +57,7 @@ public class UserProfile {
 	private User user;
 
 	@OneToMany(mappedBy = "userProfile")
-	@JsonIgnore
+//	@JsonIgnore
 	private List<Vehicle> Vehicles;
 
 	@OneToMany(mappedBy = "host")

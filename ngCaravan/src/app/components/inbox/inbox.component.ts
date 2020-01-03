@@ -107,11 +107,13 @@ export class InboxComponent implements OnInit {
     this.dmSvc.getMessages().subscribe(
       data => {
         this.messages = data;
+        console.log(data);
         this.friends = [];
         this.friendsMap = new Map<number, UserProfile>();
         this.messages.forEach((message) => {
             if (!this.friendsMap.has(message.friendProfile.id)
             && message.friendProfile.user.id !== this.me.id) {
+              // message.friendProfile.sorted = message.friendProfile.getAllMessages();
               this.friendsMap.set(message.friendProfile.id, message.friendProfile);
               this.friends.push(message.friendProfile);
             }

@@ -36,12 +36,8 @@ import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component
 import { InboxComponent } from './components/inbox/inbox.component';
 import { FriendMessagesPipe } from './pipes/friend-messages.pipe';
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
-<<<<<<< HEAD
 import {MatCardModule} from '@angular/material/card';
-=======
 import { LatestMessagePipe } from './pipes/latest-message.pipe';
-
->>>>>>> eb7a02c85113435649ba0c77053900446a176379
 
 
 

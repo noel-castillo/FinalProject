@@ -17,7 +17,7 @@ import { Trip } from 'src/app/models/trip';
 })
 export class UserProfileComponent implements OnInit {
   // F I E L D S
-  currentProfile = new UserProfile();
+  public currentProfile = new UserProfile();
 
   admin = false;
 
@@ -57,27 +57,6 @@ export class UserProfileComponent implements OnInit {
   // M E T H O D S
 
   ngOnInit() {
-    // this.auth.login('shaun', 'wombat1').subscribe(
-    //   data => {
-    //     console.log('Logged in');
-    //     // this.router.navigateByUrl('user-profiles');
-    //   },
-    //   err => {
-    //     console.error('Error logging in.');
-    //     console.error(err);
-    //   }
-    // );
-
-    // // grabs the array of todos from the service & adds it to this component
-    // // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
-    // console.log(this.currentRoute.snapshot.paramMap.get('id'));
-    // this.uSvc.index().subscribe(
-    //   data => {
-    //     this.userProfiles = data;
-    //     console.log('Size of UserProfile****' + this.userProfiles.length);
-    //   },
-    //   err => console.error('ngOnInit error in UserProfile Component')
-    // );
 
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
@@ -147,20 +126,22 @@ export class UserProfileComponent implements OnInit {
   }
 
   getUserProfileById(id: number): UserProfile {
-    for (let i = 0; i < this.userProfiles.length; i++) {
-      if (this.userProfiles[i].id === id) {
-        return this.userProfiles[i];
+    this.userProfiles.forEach(prof => {
+      if (prof.id === id) {
+        return prof;
       }
-    }
+    });
+
     return null;
   }
 
   getUserProfileByUser(user: User): UserProfile {
-    for (let i = 0; i < this.userProfiles.length; i++) {
-      if (this.userProfiles[i].user === user) {
-        return this.userProfiles[i];
+    this.userProfiles.forEach(prof => {
+      if (prof.user === user) {
+        return prof;
       }
-    }
+    });
+
     return null;
   }
 

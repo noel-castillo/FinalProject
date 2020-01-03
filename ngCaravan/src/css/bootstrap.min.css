@@ -3861,7 +3861,7 @@ input[type='submit'].btn-block {
   display: block;
 }
 .navbar {
-  position: relative;
+  position: fixed;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -3871,6 +3871,7 @@ input[type='submit'].btn-block {
   -ms-flex-pack: justify;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  width: 100%;
 }
 .navbar > .container,
 .navbar > .container-fluid {

@@ -1,22 +1,100 @@
+<div id="loginbg">
+<div class="container" >
+  <div class="row mx-sm-n5">
+    <div class="col-sm-4 px-sm">
+    </div>
+
+    <div class="col-sm-4 px-sm">
+    <p></p>
+    </div>
+
+    <div class="col-sm-4 px-sm">
+    </div>
+  </div>
+</div>
+<br>
+<br>
 <div class="container">
-  <form #userForm="ngForm" class="form-inline" >
+<div class="row mx-sm-n5">
+  <div class="col-sm-4 px-sm">
+  </div>
+
+  <div class="col-sm-4 px-sm">
+  <p></p>
+  </div>
+
+  <div class="col-sm-4 px-sm">
+  </div>
+</div>
+</div>
+<br>
+<div class="container">
+  <div class="row mx-sm-n5">
+    <div class="col-sm-4 px-sm">
+    </div>
+
+    <div class="col-sm-4 px-sm">
+    <p></p>
+    </div>
+
+    <div class="col-sm-4 px-sm">
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="container">
+<div class="row mx-sm-n5">
+  <div class="col-sm-4 px-sm">
+  </div>
+
+  <div class="col-sm-4 px-sm">
+  <p></p>
+  </div>
+
+  <div class="col-sm-4 px-sm">
+  </div>
+</div>
+</div>
+<br>
+
+<div class="container" style="text-align: center;">
+  <div
+    style="background-color: rgba(255, 255, 255, 0.5); padding-top: 15px; padding-right: 20px; padding-bottom: 1; padding-left: 20px; display: inline-block; margin: 20px;"
+  >
+    <div class="row mx-sm-n5">
+      <div class="col-sm">
+        <p style="color:black">
+          <font size="6" face="Verdana"><strong>Login</strong></font>
+        </p>
+        <h5></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="text-align: center;">
+<div style="display: inline-block;">
+  <form #userForm="ngForm">
     <label for="username" class="sm-2 mr-sm-2"></label>
     <input
       type="text"
-      class="form-control-sm sm-2 mr-sm-2"
       placeholder="Enter Username"
       name="username"
+      style="font-size: 150%; margin: 5px 0; width: 275px; height: 60px; background-color: #202020; color: #D0D0D0; border: 1px solid black; padding: 10px 10px; border-radius: 5px"
       ngModel
     />
     <label for="password" class="sm-2 mr-sm-2"></label>
     <input
       type="password"
-      class="form-control-sm sm-2 mr-sm-2"
       placeholder="Enter Password"
       name="password"
+      style="font-size: 150%; margin: 5px 0; width: 275px; height: 60px; background-color: #202020; color: #D0D0D0; border: 1px solid black; padding: 10px 10px; border-radius: 5px"
       ngModel
     />
     <div class="form-check mb-2 mr-sm-2"></div>
-    <button type="submit" (click)="login(userForm)" class="btn-sm btn-warning " >Submit</button>
+    <button id="btn1" type="submit" (click)="login(userForm)" >Submit</button>
   </form>
+</div>
+</div>
 </div>

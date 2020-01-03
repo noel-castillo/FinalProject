@@ -99,7 +99,7 @@ export class ImageComponent implements OnInit {
     );
   }
 
-  setEditImage(image: Image) {
+  setEditImage() {
     this.editImage = Object.assign({}, this.selected);
   }
 

@@ -81,16 +81,16 @@ export class TripMessageComponent implements OnInit {
     this.selected = null;
   }
 
-  addMessage(newMessag: TripMessage) {
-    if (newMessag.content != null) {
-      this.tmSvc.create(newMessag).subscribe(
-        aGoodThingHappened => {
-          console.log(aGoodThingHappened);
+  addMessage() {
+    if (this.newMessage.content != null) {
+      this.tmSvc.create(this.newMessage).subscribe(
+        data => {
+          console.log(data);
           this.newMessage = new TripMessage();
           this.reload();
         },
-        didntWork => {
-          console.error('Address Component addAddress() DID NOT WORK');
+        err => {
+          console.error('Trip Message Component addMessage() DID NOT WORK');
           this.reload();
         }
       );
@@ -99,7 +99,7 @@ export class TripMessageComponent implements OnInit {
     }
   }
 
-  setEditMessage(message: TripMessage) {
+  setEditMessage() {
     this.editMessage = Object.assign({}, this.selected);
   }
 

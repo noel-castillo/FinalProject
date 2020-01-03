@@ -83,7 +83,7 @@ export class AdventureCalendarComponent implements OnInit {
     );
   }
 
-  setEditAdventureCalendar(adventureCalendar: AdventureCalendar) {
+  setEditAdventureCalendar() {
     this.editAdventureCalendar = Object.assign({}, this.selected);
   }
 

@@ -25,6 +25,7 @@ export class AdventureProfileComponent implements OnInit {
   adventureTraveler: AdventureTraveler = new AdventureTraveler();
   adventureTravelers: AdventureTraveler[];
   thisTripAdventureTravelers: AdventureTraveler[] = [];
+  thisTripAdventureTravelerss: AdventureTraveler[] = [];
   adventureHostReview: AdventureTraveler;
   currentRate: number;
 
@@ -211,11 +212,11 @@ export class AdventureProfileComponent implements OnInit {
 
               // this.currentRate = this.thisTripAdventureTravelers[0].rating;
 
-              // if (element.adventure.id === this.adventure.id) {
-              //   console.log('ELEMENT******' + element.adventure.id);
-              //   this.thisTripAdventureTravelers.push(element);
-              //   console.log('ELEMENT ADDED******');
-              // }
+              if (element.adventure.id === this.adventure.id) {
+                console.log('ELEMENT******' + element.adventure.id);
+                this.thisTripAdventureTravelerss.push(element);
+                console.log('ELEMENT ADDED******');
+              }
 
               if (this.adventure.host.firstName === element.adventure.host.firstName) {
                 console.log('ELEMENT******' + element.adventure.id);

@@ -1,5 +1,6 @@
 <div id="loginbg">
-  <div class="container" >
+
+    <div class="container">
     <div class="row mx-sm-n5">
       <div class="col-sm-4 px-sm">
       </div>
@@ -11,154 +12,176 @@
       <div class="col-sm-4 px-sm">
       </div>
     </div>
-  </div>
-  <br>
-  <br>
-  <div class="container">
-  <div class="row mx-sm-n5">
-    <div class="col-sm-4 px-sm">
     </div>
+    <br>
 
-    <div class="col-sm-4 px-sm">
-    <p></p>
-    </div>
-
-    <div class="col-sm-4 px-sm">
-    </div>
-  </div>
-  </div>
-  <br>
-  <div class="container">
+<div class="container" style="text-align: center;">
+  <div
+    style="background-color: rgba(255, 255, 255, 0.5); padding-top: 20px; padding-right: 50px; padding-bottom: 20; padding-left: 50px; display: inline-block; margin: 20px;"
+  >
     <div class="row mx-sm-n5">
-      <div class="col-sm-4 px-sm">
-      </div>
-
-      <div class="col-sm-4 px-sm">
-      <p></p>
-      </div>
-
-      <div class="col-sm-4 px-sm">
+      <div class="col-sm">
+        <p style="color:black">
+          <font size="6" face="Verdana"><strong>&nbsp;Register&nbsp;</strong></font>
+        </p>
+        <h5></h5>
       </div>
     </div>
   </div>
-  <br>
-  <br>
-  <div class="container">
-  <div class="row mx-sm-n5">
-    <div class="col-sm-4 px-sm">
-    </div>
+</div>
 
-    <div class="col-sm-4 px-sm">
-    <p></p>
-    </div>
 
-    <div class="col-sm-4 px-sm">
-    </div>
-  </div>
-  </div>
-  <br>
-<div class="container">
-  <div class="row">
-    <div class="col order-last"></div>
-    <div class="col-xl-9">
-      <form>
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="firstName">First Name:</label>
+<div class="container" style="text-align: center;">
+  <div style="display: inline-block;">
+        <form>
+          <div class="row mx-sm-n5">
+            <div class="col-lg">
+
+              <label for="firstName"><font size="4" face="Verdana">First Name</font></label>
             <br />
             <input
               type="text"
               name="firstName"
-              class="form-control-md"
               placeholder="First Name"
+              style="font-size: 150%; margin: 5px 0; width: 275px; height: 45px;  border: 1px solid black; padding: 10px 10px; border-radius: 5px"
               [(ngModel)]="newUserProfile.firstName"
             />
+              <br>
+            </div>
           </div>
-          <div class="col-md-4 mb-3">
-            <label for="lastName">Last Name:</label>
-            <br />
-            <input
-              type="text"
-              name="lastName"
-              class="form-control-md"
-              placeholder="Last Name"
-              [(ngModel)]="newUserProfile.lastName"
-            />
+          <br>
+
+          <div class="row mx-sm-n5">
+            <div class="col-sm">
+              <label for="lastName"><font size="4" face="Verdana">Last Name</font></label>
+              <br />
+              <input
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                style="font-size: 150%; margin: 5px 0; width: 275px; height: 45px;  border: 1px solid black; padding: 10px 10px; border-radius: 5px"
+                [(ngModel)]="newUserProfile.lastName"
+              />
+              <br>
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="email">Email:</label>
-            <br />
-            <input
-              type="email"
-              name="email"
-              class="form-control-md"
-              placeholder="Email"
-              [(ngModel)]="newUserProfile.email"
-            />
+          <br>
+
+          <div class="row mx-sm-n5">
+            <div class="col-sm">
+              <label for="email"><font size="4" face="Verdana">Email</font></label>
+              <br />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                style="font-size: 150%; margin: 5px 0; width: 275px; height: 45px;  border: 1px solid black; padding: 10px 10px; border-radius: 5px"
+
+                [(ngModel)]="newUserProfile.email"
+              />
+              <br>
+            </div>
           </div>
-          <div class="col-md-4 mb-3">
-            <label for="phone">Phone Number:</label>
+          <br>
+
+          <div class="row mx-sm-n5">
+            <div class="col-sm">
+              <label for="phone"><font size="4" face="Verdana">Phone Number</font></label>
             <br />
             <input
               type="number"
               name="phone"
-              class="form-control-md"
               placeholder="Phone Number"
+              style="font-size: 150%; margin: 5px 0; width: 275px; height: 45px;  border: 1px solid black; padding: 10px 10px; border-radius: 5px"
+
               [(ngModel)]="newUserProfile.phone"
             />
+              <br>
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <label for="username">Username</label>
-            <br />
-            <input
-              type="text"
-              name="username"
-              class="form-control-md"
-              placeholder="Username"
-              [(ngModel)]="newUser.username"
-            />
-          </div>
-          <div class="col-md-4 mb-3">
-            <label for="password">Password</label>
-            <br />
-            <input
-              type="password"
-              name="password"
-              class="form-control-md"
-              placeholder="Password"
-              [(ngModel)]="newUser.password"
-            />
-          </div>
-        </div>
+          <br>
 
-        <div class="form-row">
-          <div class="col-md-4 mb-3">
-            <button
+
+          <div class="row mx-sm-n5">
+            <div class="col-sm">
+              <label for="username"><font size="4" face="Verdana">Username</font></label>
+              <br />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                style="font-size: 150%; margin: 5px 0; width: 275px; height: 45px;  border: 1px solid black; padding: 10px 10px; border-radius: 5px"
+
+                [(ngModel)]="newUser.username"
+              />
+
+              <br>
+            </div>
+          </div>
+          <br>
+
+          <div class="row mx-sm-n5">
+            <div class="col-sm">
+              <label for="password"><font size="4" face="Verdana">Password</font></label>
+              <br />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                style="font-size: 150%; margin: 5px 0; width: 275px; height: 45px;  border: 1px solid black; padding: 10px 10px; border-radius: 5px"
+
+                [(ngModel)]="newUser.password"
+              />
+
+              <br>
+            </div>
+          </div>
+          <br>
+
+          <div class="row mx-sm-n5">
+            <div class="col-lg">
+              <button
               type="button"
               (click)="create(newUser)"
               class="btn btn-warning btn-md"
+              id="btn2"
             >
               Register
             </button>
-          </div>
+            </div>
 
-          <div class="col-md-4 mb-3">
-            <button
-              type="button"
-              class="btn btn-secondary btn-md "
-              [routerLink]="['/home']"
-            >
-              Cancel
-            </button>
           </div>
+        <br>
+        </form>
+        <div class="container">
+          <div class="row mx-sm-n5">
+            <div class="col-sm-4 px-sm">
+            </div>
+
+            <div class="col-sm-4 px-sm">
+            <p></p>
+            </div>
+
+            <div class="col-sm-4 px-sm">
+            </div>
+          </div>
+          </div>
+          <br>
+          <div class="container">
+            <div class="row mx-sm-n5">
+              <div class="col-sm-4 px-sm">
+              </div>
+
+              <div class="col-sm-4 px-sm">
+              <p></p>
+              </div>
+
+              <div class="col-sm-4 px-sm">
+              </div>
+            </div>
+            </div>
+            <br>
         </div>
-      </form>
-    </div>
-    <div class="col order-first"></div>
-  </div>
-</div>
-</div>
+
+        </div>
+        </div>

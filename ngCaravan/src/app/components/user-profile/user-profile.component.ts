@@ -17,7 +17,7 @@ import { Trip } from 'src/app/models/trip';
 })
 export class UserProfileComponent implements OnInit {
   // F I E L D S
-  public currentProfile = new UserProfile();
+  currentProfile: UserProfile = new UserProfile();
 
   admin = false;
 
@@ -43,6 +43,18 @@ export class UserProfileComponent implements OnInit {
 
   tripTraveler = false;
 
+  seeVehicles = true;
+
+  seePersonalInformation = true;
+
+  seeBio = true;
+
+  seeNewTrip = true;
+
+  seeMyTrips = true;
+
+  seePendingRequests = true;
+
   // C O N S T R U C T O R
 
   constructor(
@@ -52,15 +64,37 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private tripTravSvc: TripTravelerService,
     private tripSvc: TripService
-  ) {}
+  ) { }
 
   // M E T H O D S
+
+
+  showHosting() {
+    this.seeNewTrip = true;
+
+    this.seeMyTrips = true;
+
+    this.seePendingRequests = true;
+
+  }
+
+  showAccountSettings() {
+    this.seeVehicles = true;
+
+    this.seePersonalInformation = true;
+
+    this.seeBio = true;
+
+  }
 
   ngOnInit() {
 
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
+        console.log(this.currentProfile);
+        console.log(this.currentProfile.profilePic);
+        console.log(this.currentProfile.profilePic.url);
       },
       err => {
         console.log(err);

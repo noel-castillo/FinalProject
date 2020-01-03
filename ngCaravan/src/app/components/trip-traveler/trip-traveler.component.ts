@@ -91,7 +91,7 @@ export class TripTravelerComponent implements OnInit {
     );
   }
 
-  setEditTripTraveler(tripTraveler: TripTraveler) {
+  setEditTripTraveler() {
     this.editTripTraveler = Object.assign({}, this.selected);
   }
 

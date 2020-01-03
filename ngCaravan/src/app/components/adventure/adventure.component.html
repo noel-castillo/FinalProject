@@ -59,7 +59,7 @@
     <input type="text" name="state" class="form-control" placeholder="State" [(ngModel)]="editAdventure.address.state"/>
     <input type="number" name="zip" class="form-control" placeholder="Zip Code" [(ngModel)]="editAdventure.address.zip"/>
     <button class="btn btn-primary" type="submit" value="New Adventure" (click)="updateAdventure()">Submit</button>
-    <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = false">Cancel</button>
+    <button class="btn btn-primary" type="submit" value="Cancel" (click)="editAdventure = null">Cancel</button>
     <button class="btn btn-danger" (click)="deleteAdventure()">Delete</button>
   </form>
 </div>

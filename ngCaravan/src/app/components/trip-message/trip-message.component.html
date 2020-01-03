@@ -30,7 +30,7 @@
 <form>
   <input type="text" name="content" placeholder="Content" [(ngModel)]="newMessage.content">
 
-  <button class="btn btn-warning" (click)="addMessage(newMessage)">Add Message</button>
+  <button class="btn btn-warning" (click)="addMessage()">Add Message</button>
 </form>
 
 <div *ngIf="selected && ! editMessage">
@@ -52,6 +52,6 @@
     <input type="content" name="content" [(ngModel)]="editMessage.content"><br>
 
     <button class="btn btn-warning" (click)="updateMessage(editMessage)">Save</button>
-    <button class="btn btn-warning" (click)="editAddress = null">Cancel</button>
+    <button class="btn btn-warning" (click)="editMessage = null">Cancel</button>
   </form>
 </div>

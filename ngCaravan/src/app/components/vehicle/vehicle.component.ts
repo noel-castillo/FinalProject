@@ -88,7 +88,7 @@ export class VehicleComponent implements OnInit {
     );
   }
 
-  setEditVehicle(vehicle: Vehicle) {
+  setEditVehicle() {
     this.editVehicle = Object.assign({}, this.selected);
   }
 

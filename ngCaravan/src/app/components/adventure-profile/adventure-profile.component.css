@@ -40,6 +40,15 @@ body {
 	/* font-smoothing: antialiased; */
 }
 
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
 h1,
 h2,
 h3,
@@ -1154,7 +1163,7 @@ ol {
 
 .map {
 	position: relative;
-	height: 657px;
+	height: 300px;
 }
 
 .map iframe {

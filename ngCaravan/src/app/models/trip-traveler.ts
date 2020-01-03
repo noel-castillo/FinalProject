@@ -35,6 +35,6 @@ export class TripTraveler {
     this.trip = trip;
     this.user = user;
     this.approved = approved;
-    this.travelerStatus = status;
+    this.travelerStatus = travelerStatus;
   }
 }

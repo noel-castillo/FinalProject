@@ -88,7 +88,7 @@ export class AddressComponent implements OnInit {
     );
   }
 
-  setEditAddress(address: Address) {
+  setEditAddress() {
     this.editAddress = Object.assign({}, this.selected);
   }
 

@@ -52,6 +52,7 @@ public class AdventureTravelerController {
 	@GetMapping("adventureTravelers/{atid}")
 	public AdventureTraveler getTripTraveler(@PathVariable Integer atid, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
+			System.out.println("**IN ADVENTURE TRAVELER");
 			System.out.println(prin.toString());
 			StringBuffer url = req.getRequestURL();
 			resp.addHeader("Location", url.toString());
@@ -68,6 +69,7 @@ public class AdventureTravelerController {
 	public AdventureTraveler addTripTraveler(@PathVariable Integer aid, @RequestBody AdventureTraveler adventureTraveler, HttpServletResponse resp, HttpServletRequest req, Principal prin) {
 		try {
 			svc.create(adventureTraveler, aid, prin);
+			System.out.println("**IN ADVENTUREtraveler CREATE****");
 			resp.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(adventureTraveler.getId());

@@ -59,11 +59,9 @@ export class TripHostService {
     );
   }
 
-  create(createForm: NgForm) {
-    const newTripHost = {
-      rating: createForm.value.rating,
-      review: createForm.value.review
-    }
+  create(review: any) {
+    console.log('in trip-host service create()');
+    console.log(review);
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -73,7 +71,7 @@ export class TripHostService {
       })
     };
 
-    return this.http.post<TripHost>(this.url, createForm, httpOptions)
+    return this.http.post<TripHost>(this.url, review, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

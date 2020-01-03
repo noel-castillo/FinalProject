@@ -78,6 +78,8 @@ public class DirectMessageServiceImpl implements DirectMessageService {
 
 	@Override
 	public List<DirectMessage> getMessages(String username) {
+		User user = userRepo.findByUsername(username);
+		UserProfile myProfile = userProfileRepo.findByUser(user);
 		List<DirectMessage> inbox = new ArrayList<>();
 		for(DirectMessage element : dmRepo.findAll()) {
 			if((element.getMyProfile().getUser().getUsername().equals(username)

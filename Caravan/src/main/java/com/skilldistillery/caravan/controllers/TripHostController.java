@@ -49,7 +49,7 @@ public class TripHostController {
 	}
 	
 	@PostMapping("hosts")
-	public TripHost addTripHostReview(@RequestBody TripHost review, 
+	public TripHost addTripHostReview(@RequestBody TripHost review,
 			HttpServletResponse resp, 
 			HttpServletRequest req) {
 		try {

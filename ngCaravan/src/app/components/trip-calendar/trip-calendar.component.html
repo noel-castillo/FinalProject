@@ -23,7 +23,7 @@
 <form>
   <input type="date" name="startDate" placeholder="Start Date" [(ngModel)]="newTripCalendar.startDate">
   <input type="date" name="endDate" placeholder="End Date" [(ngModel)]="newTripCalendar.endDate">
-  <button class="btn btn-warning" (click)="addTripCalendar(newTripCalendar)">Add Trip Calendar</button>
+  <button class="btn btn-warning" (click)="addTripCalendar()">Add Trip Calendar</button>
 </form>
 
 <div *ngIf="selected && ! editTripCalendar">

@@ -12,6 +12,9 @@
         <input type="date" name="endDate" ngModel placeholder="End Date"/><br>
 
         <hr>
+        <label for="title">Trip Title: </label>
+        <input type="text" name="title" ngModel placeholder="Trip Title"/><br>
+
         <label for="departureAddressStreet">Departure Address Street: </label>
         <input type="text" name="departureAddressStreet" ngModel placeholder="Departure address street"/><br>
 
@@ -95,6 +98,16 @@
   <div id="updateTripForm" *ngIf="editTrip">
     <p>Update Trip #{{editTrip.id}}</p>
     <form>
+      <hr>
+        <label for="startDate">Start Date: </label>
+        <input type="date" name="startDate" [(ngModel)]="editTrip.tripCalendar.startDate"/><br>
+
+        <label for="endDate">End Date: </label>
+        <input type="date" name="endDate" [(ngModel)]="editTrip.tripCalendar.endDate"/><br>
+
+        <hr>
+        <label for="title">Trip Title: </label>
+        <input type="text" name="title" [(ngModel)]="editTrip.title"/><br>
       <hr>
       <label for="updateDepartureAddressStreet">Departure Address Street: </label>
       <input type="text" name="updateDepartureAddressStreet" [(ngModel)]="editTrip.departureAddress.street"/><br>

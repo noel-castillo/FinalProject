@@ -66,7 +66,6 @@ public class Trip {
 	
 	private String title;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "trip")
 	private List<TripTraveler> tripTravelerReviewsOfHost;
 	

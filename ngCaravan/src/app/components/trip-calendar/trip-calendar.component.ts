@@ -89,7 +89,7 @@ export class TripCalendarComponent implements OnInit {
     );
   }
 
-  setEditTripCalendar(tripCalendar: TripCalendar) {
+  setEditTripCalendar() {
     this.editTripCalendar = Object.assign({}, this.selected);
   }
 

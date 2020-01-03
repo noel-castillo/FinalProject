@@ -77,6 +77,16 @@ public class TripServiceImpl implements TripService {
 		Address departureAddress = null;
 		Address destinationAddress = null;
 		Vehicle tripVehicle = null;
+		TripCalendar tc = null;
+		
+		Optional<TripCalendar> optTripCal = tcRepo.findById(trip.getTripCalendar().getId());
+		if (optTripCal.isPresent()) {
+			tc = optTripCal.get();
+			tc.setStartDate(trip.getTripCalendar().getStartDate());
+			tc.setEndDate(trip.getTripCalendar().getEndDate());
+			tc.setTrip(trip);
+			tcRepo.saveAndFlush(tc);
+		}
 
 		Optional<Address> optDepAddress = addrRepo.findById(trip.getDepartureAddress().getId());
 		if (optDepAddress.isPresent()) {
@@ -114,6 +124,7 @@ public class TripServiceImpl implements TripService {
 		Optional<Trip> opt = tRepo.findById(id);
 		if (opt.isPresent()) {
 			existing = opt.get();
+			existing.setTitle(trip.getTitle());
 			existing.setHost(trip.getHost());
 			existing.setVehicle(tripVehicle);
 			existing.setDepartureAddress(departureAddress);

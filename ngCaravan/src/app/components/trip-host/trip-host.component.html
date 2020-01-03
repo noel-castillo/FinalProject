@@ -1,9 +1,47 @@
+<div *ngIf="!selectedTripPassenger">
+  <table class="table table-striped table-hover">
+    <thead class="thead thead-dark">
+      <tr>
+        <th>
+         My Hosted Trips
+        </th>
+        <th>
+        Trip Title
+        </th>
+        <th>
+        Trip Host
+        </th>
+        <th>
+        Start Date
+        </th>
+        <th>
+        End Date
+        </th>
+
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let trip of trips">
+        <tr *ngIf="trip.host.id == currentUser.id">
+        <td>{{trip.id}}</td>
+        <td>{{trip.title}}</td>
+        <td>{{trip.host.firstName}} {{trip.host.lastName}}
+        </td>
+        <td>{{trip.tripCalendar.startDate}}</td>
+        <td>{{trip.tripCalendar.endDate}}</td>
+      </tr>
+        <tr *ngFor="let tripPassenger of trip.tripTravelerReviewsOfHost" (click)="selectedTripPassenger = tripPassenger"> Passengers:
+        <td>{{tripPassenger.user.firstName}} {{tripPassenger.user.lastName}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
   <div *ngIf="!selectedReview">
     <table class="table table-striped table-hover">
       <thead class="thead thead-dark">
         <tr>
           <th>
-           My Hosted Trips
+           My Reviewed Trips
           </th>
 
 
@@ -22,7 +60,6 @@
           <td>{{review.review}}</td>
         </div>
       </tr>
-      <button class="btn btn-success" (click)="new = true">Create Review</button>
       </tbody>
     </table>
   </div>
@@ -32,7 +69,14 @@
   {{selectedReview.id}}
   {{selectedReview.review}}
   <button class="btn btn-primary" (click)="selectedReview = null">Back</button>
-  <button class="btn btn-warning" (click)="editAdventure = selectedReview">Edit</button>
+  <button class="btn btn-warning" (click)="editReview = selectedReview">Edit</button>
+</div>
+<div *ngIf="selectedTripPassenger">
+  {{selectedTripPassenger.id}}
+
+  {{selectedTripPassenger.user.firstName}} {{selectedTripPassenger.user.lastName}}
+  <button class="btn btn-primary" (click)="selectedTripPassenger = null">Back</button>
+  <button class="btn btn-success" (click)="new = true">Create Review</button>
 </div>
 
 <div *ngIf="new">
@@ -44,8 +88,11 @@
   </form>
 </div>
 
+
+
+
 <div *ngIf="editReview">
-  <form #createForm="ngForm">
+  <form>
     <input type="number" name="rating" class="form-control" placeholder="Rating" [(ngModel)]="editReview.rating"/>
     <input type="text" name="review" class="form-control" placeholder="Review" [(ngModel)]="editReview.review"/>
     <button class="btn btn-primary" type="submit" value="Edit Review" (click)="updateReview()">Submit</button>

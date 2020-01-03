@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "trip_traveler_review_of_host")
 public class TripTraveler {
@@ -41,7 +43,7 @@ public class TripTraveler {
 	@Column(name = "traveler_status")
 	private String travelerStatus;
 
-//	@JsonIgnore
+	@JsonIgnoreProperties({"tripTravelerReviewsOfHost"})
 	@ManyToOne
 	@JoinColumn(name = "trip_id")
 	private Trip trip;

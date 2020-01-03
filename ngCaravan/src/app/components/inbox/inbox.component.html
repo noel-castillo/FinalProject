@@ -47,7 +47,7 @@
 
 
     <div *ngIf="selected">
-      <div class="list-group text-center" *ngFor="let message of messages  | friendMessages: selected: me">
+      <div class="list-group" *ngFor="let message of messages  | friendMessages: selected: me">
         <a href="#" class="list-group-item">
           <div class="checkbox">
             <label>

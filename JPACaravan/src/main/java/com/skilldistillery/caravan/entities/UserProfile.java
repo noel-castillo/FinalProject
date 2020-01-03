@@ -224,21 +224,21 @@ public class UserProfile {
 		this.outbox = outbox;
 	}
 	
-	@Transient
-	public List<DirectMessage> getAllMessages() {
-		List<DirectMessage> messages = new ArrayList<>();
-		messages.addAll(this.getInbox());
-		messages.addAll(this.getOutbox());
-		Collections.sort(messages, new Comparator<DirectMessage>() {
-			  public int compare(DirectMessage o1, DirectMessage o2) {
-				  if (o1.getDatePosted() == null || o2.getDatePosted() == null) {
-				      return 0;
-				  }
-			      return o1.getDatePosted().compareTo(o2.getDatePosted());
-			  }
-			});
-		return messages;
-	}
+//	@Transient
+//	public List<DirectMessage> getAllMessages() {
+//		List<DirectMessage> messages = new ArrayList<>();
+//		messages.addAll(this.getInbox());
+//		messages.addAll(this.getOutbox());
+//		Collections.sort(messages, new Comparator<DirectMessage>() {
+//			  public int compare(DirectMessage o1, DirectMessage o2) {
+//				  if (o1.getDatePosted() == null || o2.getDatePosted() == null) {
+//				      return 0;
+//				  }
+//			      return o1.getDatePosted().compareTo(o2.getDatePosted());
+//			  }
+//			});
+//		return messages;
+//	}
 
 	@Override
 	public int hashCode() {

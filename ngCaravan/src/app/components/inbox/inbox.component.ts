@@ -80,8 +80,8 @@ export class InboxComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.loadFriendList();
     this.loadUsers();
+    this.loadFriendList();
   }
 
   loadUsers() {
@@ -90,7 +90,7 @@ export class InboxComponent implements OnInit {
         this.users = data;
       },
       err => {
-        console.error('Inbox Component: Unable to load users in compose()');
+        console.error('Inbox Component: Unable to load users');
       }
     );
   }

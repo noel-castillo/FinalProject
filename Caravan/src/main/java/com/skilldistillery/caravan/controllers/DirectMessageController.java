@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.caravan.entities.DirectMessage;
-import com.skilldistillery.caravan.entities.TripTraveler;
 import com.skilldistillery.caravan.services.DirectMessageService;
 
 @RestController

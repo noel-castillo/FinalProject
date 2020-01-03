@@ -705,8 +705,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (1, 2, 5, 'Coolest Host ever.', 1);
-INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (2, 3, 5, 'Super cool host', 1);
+INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (1, 2, 5, 'Coolest passenger ever.', 1);
+INSERT INTO `trip_host_review_of_passenger` (`id`, `user_profile_id`, `rating`, `review`, `trip_id`) VALUES (2, 3, 5, 'Super cool passenger', 1);
 
 COMMIT;
 
@@ -838,7 +838,7 @@ INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (
 INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (14, '2019-12-30', 5, 3, 'well, i guess it depends. i\'d say a 6.');
 INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (15, '2019-12-30', 5, 3, 'maybe 7');
 INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (16, '2019-12-30', 3, 5, 'let me think about it. i\'ll hit you back soon');
-INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (17, '2019-12-30', 5, 3, NULL);
+INSERT INTO `dm` (`id`, `date_posted`, `my_id`, `friend_id`, `message`) VALUES (17, '2019-12-30', 5, 3, 'cool. np');
 
 COMMIT;
 

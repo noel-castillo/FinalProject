@@ -129,7 +129,12 @@ export class UserProfileComponent implements OnInit {
     );
     this.tripTravSvc.index().subscribe(
       data => {
-        this.hostTripRequest = data;
+        this.tripRequest = data;
+        this.tripRequest.forEach(req => {
+          if (req.travelerStatus === 'pending') {
+            this.hostTripRequest.push(req);
+          }
+        });
       },
       err => {
         console.log(err);
@@ -211,8 +216,8 @@ export class UserProfileComponent implements OnInit {
 
     this.tripTravSvc.updateTripTraveler(req).subscribe(
       data => {
+        this.reload();
         console.log('Success');
-        this.ngOnInit();
       },
       err => {
         console.log('Fail');
@@ -224,8 +229,8 @@ export class UserProfileComponent implements OnInit {
     console.log(req);
     this.tripTravSvc.updateTripTraveler(req).subscribe(
       data => {
+        this.reload();
         console.log('Success');
-        this.ngOnInit();
       },
       err => {
         console.log('Fail');

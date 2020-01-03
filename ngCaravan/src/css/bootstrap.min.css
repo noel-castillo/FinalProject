@@ -3861,7 +3861,7 @@ input[type='submit'].btn-block {
   display: block;
 }
 .navbar {
-  position: fixed;
+  position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -3907,8 +3907,8 @@ input[type='submit'].btn-block {
   list-style: none;
 }
 .navbar-nav .nav-link {
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 5;
+  padding-left: 5;
 }
 .navbar-nav .dropdown-menu {
   position: static;
@@ -9037,6 +9037,7 @@ a.text-dark:hover {
   }
   .navbar {
     display: none;
+    overflow: hidden;
   }
   .badge {
     border: 1px solid #000;

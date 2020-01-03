@@ -628,6 +628,12 @@ ol {
 	border-radius: 50%;
 }
 
+.trend-item .trend-picFriend img {
+	height: 85px;
+	width: 85px;
+	border-radius: 50%;
+}
+
 .trend-item .trend-pic .rating {
 	position: absolute;
 	right: 0;

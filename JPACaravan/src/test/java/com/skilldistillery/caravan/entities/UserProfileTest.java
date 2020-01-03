@@ -33,7 +33,7 @@ class UserProfileTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		userProfile = em.find(UserProfile.class, 1);
+		userProfile = em.find(UserProfile.class, 3);
 	}
 
 	@AfterEach
@@ -51,7 +51,25 @@ class UserProfileTest {
 	@Test
 	@DisplayName("Testing user Profile OTO address")
 	void test2() {
-		assertEquals("Faketown", userProfile.getAddress().getCity());
+		assertEquals("Memphis", userProfile.getAddress().getCity());
+	}
+	
+	@Test
+	@DisplayName("Testing User Profile and Inbox Relationship Mapping")
+	void test3() {
+		assertEquals(24, userProfile.getInbox().size());
+	}
+	
+	@Test
+	@DisplayName("Testing User Profile and Outbox Relationship Mapping")
+	void test4() {
+		assertEquals(8, userProfile.getOutbox().size());
+	}
+	
+	@Test
+	@DisplayName("Testing User Profile's Total Messages Mapping")
+	void test5() {
+		assertEquals(32, userProfile.getAllMessages().size());
 	}
 
 }

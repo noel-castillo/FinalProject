@@ -50,7 +50,7 @@ public class DirectMessage {
 
 	@Override
 	public String toString() {
-		return "DirectMessage [id=" + id + ", myProfile=" + myProfile + ", friendProfile=" + friendProfile
+		return "DirectMessage [id=" + id + ", myProfile=" + myProfile.getFirstName() + ", friendProfile=" + friendProfile.getFirstName()
 				+ ", content=" + content + ", datePosted=" + datePosted + "]";
 	}
 

@@ -1,94 +1,81 @@
-<div class="container">
-  <p style="color:black">
-    <font size="8" face="Verdana"><strong>Inbox</strong></font>
-  </p>
-  <hr>
-  <div class="row">
-    <div class="col-sm-12 col-md-10">
-      <!-- Nav tabs -->
-      <ul id="navBox" class="nav nav-tabs">
-        <li id="navItem" type="button" id="dropdownMenu1" data-toggle="dropdown"
-        class="btn btn-outline-info dropdown-toggle" role="button"><i class="glyphicon glyphicon-edit"></i>
-              Compose&emsp;
-            </li>
-            <ul class="dropdown-menu dropdown-menu-right mt-2">
-              <li class="px-3 py-2">
-                <form #composeForm="ngForm">
-                  <div class="form-group">
-                    <input name="friendUsername" placeholder="Enter Recipient's Username" class="form-control form-control-sm" type="text"
-                    ngModel required="required">
-                    <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
-                    [(ngModel)]="myReply.content" required="required">
-                    <button (click)="compose(composeForm)" type="submit" name="compose" class="btn btn-info btn-block">Send</button>
-                  </div>
-                </form>
-              </li>
-            </ul>
-
-        <li id="navItem"><a href="#home" (click)="selected = null" data-toggle="tab"><i class="material-icons">
-              all_inbox
-            </i><span class="badge pull-right"></span>
-            Primary&emsp;</a></li>
-
-        <li id="navItem"><a href="#messages" data-toggle="tab"><i class="material-icons">
-              loyalty
-            </i><span class="badge pull-right"></span>
-            Promotions&emsp;</a></li>
+  <div class="container text-right">
+      <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"
+        role="button"><i class="glyphicon glyphicon-edit"></i>
+        Compose&emsp;
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right mt-2">
+        <li class="px-3 py-2">
+          <form #composeForm="ngForm">
+            <div class="form-group">
+              <input name="friendUsername" placeholder="Enter Recipient's Username" class="form-control form-control-sm"
+                type="text" ngModel required="required">
+              <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
+                [(ngModel)]="myReply.content" required="required">
+              <button (click)="compose(composeForm)" type="submit" name="compose"
+                class="btn btn-info btn-block">Send</button>
+            </div>
+          </form>
+        </li>
       </ul>
-      <!-- Tab panes -->
-      <div class="col-lg-12">
-          <div *ngIf="!selected">
-            <div class="row" *ngFor="let friend of friends" (click)="selected = friend">
-              <a pageScroll href="#replyTo">
-                <div class="col-lg-12">
-                  <div class="trend-item">
-                    <div class="trend-pic">
-                      <img [src]="friend.profilePic.url" alt="">
-                      <div class="rating">{{friend.mileagePoints}}</div>
-                    </div>
-                    <div class="trend-text">
-                      <h4>{{friend.firstName}} {{friend.lastName}}</h4>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
+      <br>
+      <br>
+    </div>
 
-          <div *ngIf="selected">
-            <div class="list-group" *ngFor="let message of messages  | friendMessages: selected: me">
-              <a href="#" class="list-group-item">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox">
-                  </label>
-                </div>
-                <p><strong>{{message.myProfile.firstName}} {{message.myProfile.lastName}}:</strong></p>
-                <p>{{message.content}}</p>
-                <br>
-                <span class="badge">{{message.datePosted}}</span>
-              </a>
+  <div class="container">
+    <p style="color:black">
+      <font size="8" face="Verdana"><strong>Inbox</strong></font>
+    </p>
+  </div>
+
+  <div class="col-lg-12">
+    <div *ngIf="!selected">
+      <div class="row" *ngFor="let friend of friends" (click)="selected = friend">
+        <a pageScroll href="#replyTo">
+          <div class="trend-item row">
+            <div class="trend-picFriend">
+              <img [src]="friend.profilePic.url" alt="">
+              <!-- <div class="rating">{{friend.mileagePoints}}</div> -->
             </div>
-            <button class="btn btn-secondary" (click)="selected = null">Back</button>
-            <button type="button" id="dropdownMenu1" data-toggle="dropdown"
-              class="btn btn-outline-secondary dropdown-toggle">
-              Reply
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right mt-2">
-              <li class="px-3 py-2">
-                <form>
-                  <div class="form-group">
-                    <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
-                    [(ngModel)]="myReply.content" required="required">
-                    <button (click)="reply()" type="submit" name="reply" class="btn btn-info btn-block">Send</button>
-                  </div>
-                </form>
-              </li>
-            </ul>
-            <br>
-            <br>
+            <span class="trend-text">
+              <h4>&emsp;{{friend.firstName}} {{friend.lastName}}</h4>
+              <p *ngFor="let message of messages  | latestMessage: friend: me">&emsp;{{message.content}}</p>
+            </span>
           </div>
+        </a>
       </div>
     </div>
+
+
+    <div *ngIf="selected">
+      <div class="list-group text-center" *ngFor="let message of messages  | friendMessages: selected: me">
+        <a href="#" class="list-group-item">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox">
+            </label>
+          </div>
+          <p class="text-center"><strong>{{message.myProfile.firstName}} {{message.myProfile.lastName}}:</strong></p>
+          <p class="text-center">{{message.content}}</p>
+          <br>
+          <span class="badge">{{message.datePosted}}</span>
+        </a>
+      </div>
+      <button class="btn btn-secondary" (click)="selected = null">Back</button>
+      <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">
+        Reply
+      </button>
+      <ul class="dropdown-menu dropdown-menu-right mt-2">
+        <li class="px-3 py-2">
+          <form>
+            <div class="form-group">
+              <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
+                [(ngModel)]="myReply.content" required="required">
+              <button (click)="reply()" type="submit" name="reply" class="btn btn-info btn-block">Send</button>
+            </div>
+          </form>
+        </li>
+      </ul>
+      <br>
+      <br>
+    </div>
   </div>
-</div>

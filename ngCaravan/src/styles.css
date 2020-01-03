@@ -67,14 +67,21 @@ h6 {
 
 #explorebg {
   /* The image used */
-  background-image: url("https://i.imgur.com/DrxFDy5.jpg");
+  background-image: url("https://i.imgur.com/fatLFLw.jpg");
   /* Full height */
   height: 100%;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
+
+/* hr {
+    margin: 30px -20px 20px;
+    border: 1;
+    border-top: 1px solid #c9c7c7;
+} */
 
 h1 {
 	font-size: 70px;
@@ -101,7 +108,7 @@ h6 {
 }
 
 p {
-	font-size: 14px;
+	font-size: 25px;
 	color: #222222;
 	font-family: "Lato", sans-serif;
 	font-weight: 400;

@@ -27,13 +27,11 @@ public class DirectMessage {
 
 	@ManyToOne
 	@JoinColumn(name = "my_id")
-	@JsonManagedReference
 //	@JsonIgnore
 	private UserProfile myProfile;
 
 	@ManyToOne
 	@JoinColumn(name = "friend_id")
-	@JsonManagedReference
 //	@JsonIgnore
 	private UserProfile friendProfile;
 

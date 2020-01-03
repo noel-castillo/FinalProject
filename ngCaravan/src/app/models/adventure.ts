@@ -1,3 +1,5 @@
+import { TripCalendar } from './trip-calendar';
+import { AdventureCalendar } from './adventure-calendar';
 import { UserProfile } from './user-profile';
 import { Address } from './address';
 
@@ -13,7 +15,7 @@ export class Adventure {
   itinerary: string;
   address: Address;
   host: UserProfile;
-
+  adventureCalendar: AdventureCalendar;
 
   constructor(
   id?: number,
@@ -25,7 +27,8 @@ export class Adventure {
   enabled?: boolean,
   itinerary?: string,
   address?: Address,
-  host?: UserProfile
+  host?: UserProfile,
+  adventureCalendar?: AdventureCalendar
 
   ) {
   this.id = id,
@@ -38,7 +41,7 @@ export class Adventure {
   this.itinerary = itinerary,
   this.address = address,
   this.host = host;
-
+  this.adventureCalendar = adventureCalendar;
 
   }
 }

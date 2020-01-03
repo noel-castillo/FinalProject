@@ -1,9 +1,11 @@
+import { AdventureCalendar } from './../../models/adventure-calendar';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { Component, OnInit } from '@angular/core';
 import { Adventure } from 'src/app/models/adventure';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
+import { Address } from 'src/app/models/address';
 
 @Component({
   selector: 'app-adventure',
@@ -12,10 +14,14 @@ import { NgForm } from '@angular/forms';
 })
 export class AdventureComponent implements OnInit {
 
+  // F I E L D S
+
   adventures: Adventure[] = [];
   selectedAdventure: Adventure;
   new = false;
   editAdventure: Adventure = null;
+
+  // C O N S T R U C T O R
 
   constructor(
     private advSvc: AdventureService,
@@ -49,6 +55,42 @@ export class AdventureComponent implements OnInit {
       error => {
         console.error('AdventureComponent.index(): Error getting all portfolios');
         console.error(error);
+      }
+    );
+  }
+
+  addAdventure(form: NgForm) {
+    const myNewAdventure = new Adventure();
+
+    const myNewCalendar = new AdventureCalendar();
+    myNewCalendar.startDate = form.value.startDate;
+    myNewCalendar.endDate = form.value.endDate;
+
+    const myNewAddress = new Address();
+    myNewAddress.street = form.value.departureAddressStreet;
+    myNewAddress.city = form.value.departureAddressCity;
+    myNewAddress.state = form.value.departureAddressState;
+    myNewAddress.zip = form.value.departureAddressZip;
+
+    myNewAdventure.adventureCalendar = myNewCalendar;
+    myNewAdventure.title = form.value.title;
+    myNewAdventure.address = myNewAddress;
+    myNewAdventure.description = form.value.description;
+    myNewAdventure.activityLvl = form.value.activityLvl;
+    myNewAdventure.includes = form.value.inclued;
+    myNewAdventure.price = form.value.price;
+    myNewAdventure.itinerary = form.value.itinerary;
+    myNewAdventure.host = form.value.host;
+
+
+    console.log(myNewAdventure);
+    this.advSvc.create(form).subscribe(
+      data => {
+        console.log(data);
+        this.loadAdventures();
+      },
+      err => {
+        console.error(err);
       }
     );
   }

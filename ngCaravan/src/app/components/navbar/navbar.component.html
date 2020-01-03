@@ -1,5 +1,5 @@
 <nav id="topnav" class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" [routerLink]="['/home']">Caravan</a>
+  <p class="navbar-brand" style="font-size: 35px !important; color: black">Caravan</p>
   <button
     class="navbar-toggler"
     type="button"
@@ -13,26 +13,22 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]="isCollapsed">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" [routerLink]="['/home']"
-        >Home <span class="sr-only">(current)</span></a
-      >
       <!-- <a class="nav-item nav-link" [routerLink]="['/about']">About</a> -->
-      <a class="nav-item nav-link" [routerLink]="['/search-results']">Explore</a>
-      <a class="nav-item nav-link" [routerLink]="['/inbox']">Messages</a>
-      <a class="nav-item nav-link" [routerLink]="['/adventures']">Adventures</a>
-      <a class="nav-item nav-link" [routerLink]="['/trips']">Trips</a>
+      <a class="nav-item nav-link" [routerLink]="['/search-results']" style="font-size: 18px !important; color: black">Explore</a><br>
+      <a class="nav-item nav-link" [routerLink]="['/adventures']" style="font-size: 18px !important; color: black">Adventures</a>
       <!-- <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a> -->
       <div *ngIf="!checkIfLoggedIn()">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" [routerLink]="['/register']">Register</a>
-          <a class="nav-item nav-link" [routerLink]="['/login']">Login</a>
+          <a class="nav-item nav-link" [routerLink]="['/register']" style="font-size: 18px !important; color: black">Register</a>
+          <a class="nav-item nav-link" [routerLink]="['/login']" style="font-size: 18px !important; color: black">Login</a>
         </div>
       </div>
       <div *ngIf="checkIfLoggedIn()">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" [routerLink]="['/user-profiles']"
-            >Profile</a
-          >
+          <a class="nav-item nav-link" [routerLink]="['/user-profiles']" style="font-size: 18px !important; color: black">Profile</a>
+          <a class="nav-item nav-link" [routerLink]="['/trips']" style="font-size: 18px !important; color: black">My Trips</a>
+
+          <a class="nav-item nav-link" [routerLink]="['/inbox']" style="font-size: 18px !important; color: black">Inbox</a>
           <app-logout></app-logout>
         </div>
       </div>

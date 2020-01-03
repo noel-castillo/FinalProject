@@ -36,7 +36,7 @@ import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component
 import { InboxComponent } from './components/inbox/inbox.component';
 import { FriendMessagesPipe } from './pipes/friend-messages.pipe';
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
-
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -82,7 +82,9 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
     NgbModule,
     FormsModule,
     BrowserAnimationsModule,
-    Ng2PageScrollModule
+    Ng2PageScrollModule,
+    MatCardModule
+
   ],
   providers: [
     TripService,

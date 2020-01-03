@@ -1,5 +1,5 @@
 <div class="map">
-  <iframe src="http://maps.google.com/maps?q=${address}&z=15&output=embed" height="657" style="border:0;"
+  <iframe src="http://maps.google.com/maps?q=${address}&z=15&output=embed" height="300" style="border:0;"
     allowfullscreen=""></iframe>
 </div>
 
@@ -44,18 +44,37 @@
         <div class="col-lg-8">
           <div class="about-left">
             <div class="about-desc">
+
+
               <h3>About the Adventure</h3>
               <p>Activity Level: {{adventure.activityLvl}}</p>
               <p>Includes: {{adventure.includes}}</p>
               <p>Price: ${{adventure.price}}</p>
-              <p>{{adventure.itinerary}}</p>
+              <p>Ititnerary: {{adventure.itinerary}}</p>
 
               <h3>About the Host</h3>
-              <p>Pic: {{adventure.host.profilePic.url}}</p>
-              <p>Name: {{adventure.host.firstName}}, {{adventure.host.lastName}}</p>
-              <p>Phone: {{adventure.host.phone}}</p>
-              <p>Email: ${{adventure.host.email}}</p>
-              <p>Bio: ${{adventure.host.bio}}</p>
+
+                <mat-card class="example-card">
+                  <mat-card-header>
+                    <div mat-card-avatar class="example-header-image">
+                      <img src="{{adventure.host.profilePic.url}}">
+                    </div>
+
+                    <mat-card-title>{{adventure.host.firstName}} {{adventure.host.lastName}}</mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+
+                      <p>Name: {{adventure.host.firstName}}, {{adventure.host.lastName}}</p>
+                     <p>Phone: {{adventure.host.phone}}</p>
+                     <p>Email: ${{adventure.host.email}}</p>
+                      <p>Bio: ${{adventure.host.bio}}</p>
+
+                  </mat-card-content>
+
+
+
+
+            </mat-card>
             </div>
             <!-- <div class="about-video">
               <img src="" alt="">

@@ -20,7 +20,7 @@
 
 <form>
   <input type="text" name="name" placeholder="Name" [(ngModel)]="newCategory.name">
-  <button class="btn btn-warning" (click)="addCategory(newCategory)">Add Category</button>
+  <button class="btn btn-warning" (click)="addCategory()">Add Category</button>
 </form>
 
 <div *ngIf="selected && ! editCategory">

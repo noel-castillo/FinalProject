@@ -37,7 +37,7 @@
   <input type="text" name="capacity" placeholder="Capacity" [(ngModel)]="newVehicle.capacity">
   <input type="text" name="seatsAvailable" placeholder="Seats Available" [(ngModel)]="newVehicle.seatsAvailable">
   <input type="text" name="interiorDescription" placeholder="Interior Description" [(ngModel)]="newVehicle.interiorDescription">
-  <button class="btn btn-warning" (click)="addVehicle(newVehicle)">Add Vehicle</button>
+  <button class="btn btn-warning" (click)="addVehicle()">Add Vehicle</button>
 </form>
 
 <div *ngIf="selected && ! editVehicle">

@@ -30,7 +30,7 @@
   <input type="text" name="rating" placeholder="Rating" [(ngModel)]="newAdventureTraveler.rating">
   <input type="text" name="review" placeholder="Review" [(ngModel)]="newAdventureTraveler.review">
   <!-- <input type="text" name="attended" placeholder="Attended" [(ngModel)]="newTripTraveler.attended"> -->
-  <button class="btn btn-warning" (click)="addAdventureTraveler(newAdventureTraveler)">Add Adventure Traveler</button>
+  <button class="btn btn-warning" (click)="addAdventureTraveler()">Add Adventure Traveler</button>
 </form>
 
 <div *ngIf="selected && ! editAdventureTraveler">

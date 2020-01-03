@@ -20,7 +20,7 @@
 
 <form>
   <input type="text" name="url" placeholder="Image URL" [(ngModel)]="newImage.url">
-  <button class="btn btn-warning" (click)="addImage(newImage)">Add Image</button>
+  <button class="btn btn-warning" (click)="addImage()">Add Image</button>
 </form>
 
 <div *ngIf="selected && ! editImage">

@@ -36,7 +36,7 @@
   <input type="text" name="contributionPledge" placeholder="Contribution Pledge" [(ngModel)]="newTripTraveler.contributionPledge">
   <input type="text" name="contributionActual" placeholder="Contribution Actual" [(ngModel)]="newTripTraveler.contributionActual">
   <!-- <input type="text" name="attended" placeholder="Attended" [(ngModel)]="newTripTraveler.attended"> -->
-  <button class="btn btn-warning" (click)="addTripTraveler(newTripTraveler)">Add Trip Traveler</button>
+  <button class="btn btn-warning" (click)="addTripTraveler()">Add Trip Traveler</button>
 </form>
 
 <div *ngIf="selected && ! editTripTraveler">

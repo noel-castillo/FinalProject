@@ -36,6 +36,7 @@ import { BottomBarComponent } from './components/bottom-bar/bottom-bar.component
 import { InboxComponent } from './components/inbox/inbox.component';
 import { FriendMessagesPipe } from './pipes/friend-messages.pipe';
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
+import { LatestMessagePipe } from './pipes/latest-message.pipe';
 
 
 
@@ -70,7 +71,8 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
     AdventureTravelerComponent,
     BottomBarComponent,
     InboxComponent,
-    FriendMessagesPipe
+    FriendMessagesPipe,
+    LatestMessagePipe
 
 
 

@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
 
   trips: Trip[] = [];
 
-  hostedTrips: Trip[] = [];
+  myTrips: Trip[] = [];
 
   selected: UserProfile = null;
 
@@ -163,17 +163,12 @@ export class UserProfileComponent implements OnInit {
       }
     );
 
-    this.tripSvc.index().subscribe(
+    this.tripSvc.indexHosted().subscribe(
       data => {
-        this.trips = data;
-        this.trips.forEach(trip => {
-          if (trip.host.user.username === this.currentProfile.user.username) {
-            this.hostedTrips.push(trip);
-          }
-        });
+        this.myTrips = data;
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to load myTrips');
       }
     );
 

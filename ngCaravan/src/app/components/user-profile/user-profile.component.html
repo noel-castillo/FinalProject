@@ -232,6 +232,42 @@
                     </tbody>
                   </table>
 
+                  <div *ngIf="seeNewTrip && !seeMyTrips && seePendingRequests">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <th class="nav-item">
+                            <button type="button"><u>Title</u></button>
+                          </th>
+                          <th class="nav-item">
+                            <button type="button"><u>Departing</u></button>
+                          </th>
+                          <th class="nav-item">
+                            <button type="button"><u>Destination</u></button>
+                          </th>
+                        </tr>
+                        <tr *ngFor="let trip of myTrips">
+                          <td class="nav-item">
+                            <a [routerLink]="['/trips/' + trip.id + '']">{{trip.title}}</a>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button">{{trip.departureAddress.city}}, {{trip.departureAddress.state}}</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button">{{trip.destinationAddress.city}}, {{trip.destinationAddress.state}}</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button" type="button"  class="btn btn-outline-success">Edit</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button"  class="btn btn-outline-danger">Delete</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
+                  </div>
+
                   <div *ngIf="seeNewTrip && seeMyTrips && !seePendingRequests">
                     <table class="table table-hover table-striped">
                       <tbody>

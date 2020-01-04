@@ -1,5 +1,5 @@
 <nav id="topnav" class="navbar navbar-expand-lg navbar-light bg-light">
-  <p class="navbar-brand" style="font-size: 35px !important; color: black">Caravan &nbsp; &nbsp; &nbsp; &nbsp;</p>
+  <p class="navbar-brand" style="font-size: 35px !important; font-family: 'Nunito', sans-serif !important; color: black">Caravan </p>
   <button
     class="navbar-toggler"
     type="button"
@@ -13,14 +13,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup" [ngbCollapse]="isCollapsed">
     <div class="navbar-nav">
-      <!-- <a class="nav-item nav-link" [routerLink]="['/about']">About</a> -->
-      <a class="nav-item nav-link" [routerLink]="['/search-results']" style="font-size: 18px !important; color: black"> Explore </a><br>
-      <!-- <a class="nav-item nav-link" [routerLink]="['/contact']">Contact</a> -->
+      <a class="nav-item nav-link" href="search-results" style="font-size: 18px !important; color: black"> Explore </a><br>
       <div *ngIf="!checkIfLoggedIn()">
         <div class="navbar-nav">
           <a class="nav-item nav-link" [routerLink]="['/register']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Register </a>
           <a class="nav-item nav-link" [routerLink]="['/login']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Login </a>
-          <a class="nav-item nav-link" [routerLink]="['/adventures']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Adventures </a>
 
         </div>
       </div>
@@ -28,7 +25,6 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" [routerLink]="['/user-profiles']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Profile </a>
           <a class="nav-item nav-link" [routerLink]="['/trips']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; My Trips </a>
-          <a class="nav-item nav-link" [routerLink]="['/adventures']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; My Adventures </a>
 
           <a class="nav-item nav-link" [routerLink]="['/inbox']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Inbox </a>
           <app-logout></app-logout>

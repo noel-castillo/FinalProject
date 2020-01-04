@@ -52,7 +52,7 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 		tripTraveler.setUser(userProfile);
 		tripTraveler.setTrip(trip);
 		return ttRepo.saveAndFlush(tripTraveler);
-		
+
 	}
 
 	@Override
@@ -69,7 +69,6 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 			existing.setTravelerStatus(tripTraveler.getTravelerStatus());
 //			existing.setTrip(tripTraveler.getTrip());
 //			existing.setUser(tripTraveler.getUser());
-			
 
 			ttRepo.saveAndFlush(existing);
 		}
@@ -82,6 +81,22 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 	@Override
 	public List<TripTraveler> index() {
 		return ttRepo.findAll();
+	}
+
+	@Override
+	public List<TripTraveler> myTripRequests(Principal principal) {
+		List<TripTraveler> myTripRequests = new ArrayList<>();
+		User user = userRepo.findByUsername(principal.getName());
+		UserProfile userProfile = userProfileRepo.findByUser(user);
+
+		for (TripTraveler element : ttRepo.findAll()) {
+
+			if (element.getTrip().getHost().getId() == userProfile.getId()) {
+				myTripRequests.add(element);
+			}
+		}
+
+		return myTripRequests;
 	}
 
 	@Override

@@ -19,4 +19,6 @@ public interface TripTravelerService {
 	public List<TripTraveler> getRequests(String username);
 
 	public List<TripTraveler> getMyTrips(String name);
+	
+	public List<TripTraveler> myTripRequests(Principal principal);
 }

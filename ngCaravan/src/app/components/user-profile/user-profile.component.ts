@@ -48,7 +48,7 @@ export class UserProfileComponent implements OnInit {
 
   newImage: Image = new Image();
 
-  newBio = '';
+  newTrip: Trip = new Trip();
 
   hostTripRequest: TripTraveler[] = [];
 
@@ -166,17 +166,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveBioEdit() {
-    this.currentProfile.bio = this.newBio;
     this.updateUserProfile(this.currentProfile);
     this.seeEditBio = true;
   }
 
-  savePersonalInformation(form: NgForm) {
+  savePersonalInformation() {
 
-    this.currentProfile.address.street = form.value.street;
-    this.currentProfile.address.city = form.value.city;
-    this.currentProfile.address.state = form.value.state;
-    this.currentProfile.address.zip = form.value.zip;
     this.addrSvc.updateAddress(this.currentProfile.address).subscribe(
       data => {
         this.currentProfile.address = data;
@@ -185,11 +180,6 @@ export class UserProfileComponent implements OnInit {
         console.log('User Profile Component: Unable to updateAddress()');
       }
     );
-
-    this.currentProfile.firstName = form.value.firstName;
-    this.currentProfile.lastName = form.value.lastName;
-    this.currentProfile.email = form.value.email;
-    this.currentProfile.phone = form.value.phone;
     this.updateUserProfile(this.currentProfile);
     this.seeEditPersonalInformation = true;
   }

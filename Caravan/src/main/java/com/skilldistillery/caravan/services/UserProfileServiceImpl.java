@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.caravan.entities.User;
 import com.skilldistillery.caravan.entities.UserProfile;
+import com.skilldistillery.caravan.repositories.ImageRepository;
 import com.skilldistillery.caravan.repositories.UserProfileRepository;
 import com.skilldistillery.caravan.repositories.UserRepository;
 
@@ -18,6 +19,9 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Autowired
 	private UserRepository usrRepo;
+	
+	@Autowired
+	private ImageRepository iRepo;
 
 	@Override
 	public UserProfile create(UserProfile userProfile, String username) {
@@ -25,6 +29,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		System.out.println(user);
 		userProfile.setUser(user);
+		userProfile.setProfilePic(iRepo.findById(9).get());
 		
 		if (user != null) {
 			return uRepo.saveAndFlush(userProfile);

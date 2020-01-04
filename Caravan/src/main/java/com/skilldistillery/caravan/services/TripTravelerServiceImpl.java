@@ -98,6 +98,22 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 
 		return myTripRequests;
 	}
+	
+	@Override
+	public List<TripTraveler> myTrips(Principal principal) {
+		List<TripTraveler> myTrips = new ArrayList<>();
+		User user = userRepo.findByUsername(principal.getName());
+		UserProfile userProfile = userProfileRepo.findByUser(user);
+		
+		for (TripTraveler element : ttRepo.findAll()) {
+			
+			if (element.getUser().getId() == userProfile.getId()) {
+				myTrips.add(element);
+			}
+		}
+		
+		return myTrips;
+	}
 
 	@Override
 	public TripTraveler show(int id) {

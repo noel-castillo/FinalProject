@@ -37,6 +37,11 @@ public class TripTravelerController {
 	public List<TripTraveler> myTripRequests(Principal prin) {
 		return svc.myTripRequests(prin);
 	}
+	
+	@GetMapping("myTrips")
+	public List<TripTraveler> myTrips(Principal prin) {
+		return svc.myTrips(prin);
+	}
 
 	@GetMapping("tripHostTravelers")
 	public List<TripTraveler> allTripsRequests(Principal prin, HttpServletResponse resp, HttpServletRequest req) {

@@ -12,6 +12,8 @@ import { User } from 'src/app/models/user';
 import { TripTraveler } from 'src/app/models/trip-traveler';
 import { Trip } from 'src/app/models/trip';
 import { Image } from 'src/app/models/image';
+import { NgForm } from '@angular/forms';
+import { AddressService } from 'src/app/services/address.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -46,6 +48,8 @@ export class UserProfileComponent implements OnInit {
 
   newImage: Image = new Image();
 
+  newBio = '';
+
   hostTripRequest: TripTraveler[] = [];
 
   myTripRequests: TripTraveler[] = [];
@@ -66,6 +70,10 @@ export class UserProfileComponent implements OnInit {
 
   seePendingRequests = true;
 
+  seeEditBio = true;
+
+  seeEditPersonalInformation = true;
+
   // C O N S T R U C T O R
 
   constructor(
@@ -75,6 +83,7 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private tripTravSvc: TripTravelerService,
     private tripSvc: TripService,
+    private addrSvc: AddressService,
     private vSvc: VehicleService
   ) { }
 
@@ -148,14 +157,57 @@ export class UserProfileComponent implements OnInit {
     this.updateUserProfile(this.currentProfile);
   }
 
+  saveBioEdit() {
+    this.currentProfile.bio = this.newBio;
+    this.updateUserProfile(this.currentProfile);
+    this.seeEditBio = true;
+  }
+
+  savePersonalInformation(form: NgForm) {
+
+    this.currentProfile.address.street = form.value.street;
+    this.currentProfile.address.city = form.value.city;
+    this.currentProfile.address.state = form.value.state;
+    this.currentProfile.address.zip = form.value.zip;
+    this.addrSvc.updateAddress(this.currentProfile.address).subscribe(
+      data => {
+        this.currentProfile.address = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to updateAddress()');
+      }
+    );
+
+    this.currentProfile.firstName = form.value.firstName;
+    this.currentProfile.lastName = form.value.lastName;
+    this.currentProfile.email = form.value.email;
+    this.currentProfile.phone = form.value.phone;
+    this.updateUserProfile(this.currentProfile);
+    this.seeEditPersonalInformation = true;
+  }
+
   denyRequest(req: TripTraveler) {
     req.travelerStatus = 'Denied';
-    this.tripTravSvc.updateTripTraveler(req);
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to denyRequest()');
+      }
+    );
   }
 
   approveRequest(req: TripTraveler) {
     req.travelerStatus = 'Approved';
-    this.tripTravSvc.updateTripTraveler(req);
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to approveRequest()');
+      }
+    );
   }
 
   ngOnInit() {

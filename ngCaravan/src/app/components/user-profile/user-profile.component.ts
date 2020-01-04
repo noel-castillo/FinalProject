@@ -74,6 +74,8 @@ export class UserProfileComponent implements OnInit {
 
   seeEditPersonalInformation = true;
 
+  selectedTrip: Trip = null;
+
   // C O N S T R U C T O R
 
   constructor(
@@ -97,6 +99,8 @@ export class UserProfileComponent implements OnInit {
 
     this.seePendingRequests = true;
 
+    this.selectedTrip = null;
+
   }
 
   showAccountSettings() {
@@ -106,7 +110,11 @@ export class UserProfileComponent implements OnInit {
 
     this.seePersonalInformation = true;
 
+    this.seeEditPersonalInformation = true;
+
     this.seeBio = true;
+
+    this.seeEditBio = true;
 
   }
 

@@ -54,6 +54,8 @@ export class TripComponent implements OnInit {
     this.vehicleSvc.getVehiclesByUser().subscribe(
       data => {
         this.vehicles = data;
+        console.log('in trip init');
+        console.log(this.vehicles);
       },
       err => {
         console.error('Error getting vehicle list');
@@ -118,6 +120,7 @@ export class TripComponent implements OnInit {
   }
 
   updateTrip(trip: Trip) {
+    console.log('in trip.ts updateTrip()');
     console.log(trip);
     this.tripSvc.update(trip).subscribe(
       data => {

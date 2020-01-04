@@ -21,7 +21,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private UserRepository usrRepo;
 	
 	@Autowired
-	private ImageRepository imgRepo;
+	private ImageRepository iRepo;
 
 	@Override
 	public UserProfile create(UserProfile userProfile, String username) {
@@ -29,7 +29,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		System.out.println(user);
 		userProfile.setUser(user);
-		userProfile.setProfilePic(imgRepo.findById(10).get());
+		userProfile.setProfilePic(iRepo.findById(9).get());
 		
 		if (user != null) {
 			return uRepo.saveAndFlush(userProfile);

@@ -111,11 +111,19 @@ export class InboxComponent implements OnInit {
         this.friends = [];
         this.friendsMap = new Map<number, UserProfile>();
         this.messages.forEach((message) => {
-            if (!this.friendsMap.has(message.friendProfile.id)
-            && message.friendProfile.user.id !== this.me.id) {
+            if (!this.friendsMap.has(message.friendProfile.id)) {
               // message.friendProfile.sorted = message.friendProfile.getAllMessages();
+              if (message.friendProfile.id !== this.me.id) {
               this.friendsMap.set(message.friendProfile.id, message.friendProfile);
               this.friends.push(message.friendProfile);
+              }
+            }
+            if (!this.friendsMap.has(message.myProfile.id)) {
+              // message.friendProfile.sorted = message.friendProfile.getAllMessages();
+              if (message.myProfile.id !== this.me.id) {
+                this.friendsMap.set(message.myProfile.id, message.myProfile);
+                this.friends.push(message.myProfile);
+                }
             }
         });
       },

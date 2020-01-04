@@ -26,7 +26,9 @@ export class UserProfileComponent implements OnInit {
 
   trips: Trip[] = [];
 
-  myTrips: Trip[] = [];
+  myHostings: Trip[] = [];
+
+  myTrips: TripTraveler[] = [];
 
   selected: UserProfile = null;
 
@@ -54,11 +56,13 @@ export class UserProfileComponent implements OnInit {
 
   seePersonalInformation = true;
 
+  seeMyTrips = true;
+
   seeBio = true;
 
   seeNewTrip = true;
 
-  seeMyTrips = true;
+  seeMyHostings = true;
 
   seePendingRequests = true;
 
@@ -80,7 +84,7 @@ export class UserProfileComponent implements OnInit {
   showHosting() {
     this.seeNewTrip = true;
 
-    this.seeMyTrips = true;
+    this.seeMyHostings = true;
 
     this.seePendingRequests = true;
 
@@ -88,6 +92,8 @@ export class UserProfileComponent implements OnInit {
 
   showAccountSettings() {
     this.seeVehicles = true;
+
+    this.seeMyTrips = true;
 
     this.seePersonalInformation = true;
 
@@ -165,7 +171,7 @@ export class UserProfileComponent implements OnInit {
 
     this.tripSvc.indexHosted().subscribe(
       data => {
-        this.myTrips = data;
+        this.myHostings = data;
       },
       err => {
         console.log('User Profile Component: Unable to load myTrips');
@@ -177,14 +183,20 @@ export class UserProfileComponent implements OnInit {
         console.log('loading requests');
         this.myTripRequests = data;
         console.log(data);
-        // this.myTripRequests.forEach(req => {
-        // if (req.travelerStatus === 'pending') {
-        // this.hostTripRequest.push(req);
-        // }
-        // });
       },
       err => {
         console.log('User Profile Component: Unable to load myTripRequests');
+      }
+    );
+
+    this.tripTravSvc.myTrips().subscribe(
+      data => {
+        console.log('loading myTrips');
+        this.myTrips = data;
+        console.log(data);
+      },
+      err => {
+        console.log('User Profile Component: Unable to load myTrips');
       }
     );
   }

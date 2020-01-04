@@ -44,7 +44,7 @@
               <ul id="splitDisplayList" class="nav nav-tabs">
                 <li class="nav-item">
                   <a href="" data-target="#profile" data-toggle="tab" (click)="showAccountSettings()"
-                    class="nav-link active btn btn-outline-success">Account Settings</a>
+                    class="nav-link active btn btn-outline-success">Account Details</a>
                 </li>
                 <li class="nav-item">
                   <a href="" data-target="#hosting" data-toggle="tab" (click)="showHosting()"
@@ -55,13 +55,18 @@
                 <div class="tab-pane active" id="profile">
                   <div class="row">
                     <div class="col-md-12">
-                      <table *ngIf="seeVehicles && seePersonalInformation && seeBio"
+                      <table *ngIf="seeVehicles && seePersonalInformation && seeBio && seeMyTrips"
                         class="table table-hover table-striped">
                         <tbody>
                           <tr>
                             <td class="nav-item">
                               <button type="button" (click)="seePersonalInformation = false">Personal
                                 Information</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="nav-item">
+                              <button type="button" (click)="seeMyTrips = false">My Trips</button>
                             </td>
                           </tr>
                           <tr>
@@ -76,7 +81,7 @@
                           </tr>
                         </tbody>
                       </table>
-                      <div *ngIf="!seeVehicles && seePersonalInformation && seeBio">
+                      <div *ngIf="!seeVehicles && seePersonalInformation && seeBio && seeMyTrips">
                         <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
@@ -132,7 +137,43 @@
                         <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
                       </div>
 
-                      <div *ngIf="seeVehicles && !seePersonalInformation && seeBio">
+                      <div *ngIf="seeNewTrip && seeMyHostings && seePendingRequests && !seeMyTrips">
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <th class="nav-item">
+                                <button type="button"><u>Trip</u></button>
+                              </th>
+                              <th class="nav-item">
+                                <button type="button"><u>Departing</u></button>
+                              </th>
+                              <th class="nav-item">
+                                <button type="button"><u>Destination</u></button>
+                              </th>
+                              <th class="nav-item">
+                                <button type="button"><u>Status</u></button>
+                              </th>
+                            </tr>
+                            <tr *ngFor="let trip of myTrips">
+                              <td class="nav-item">
+                                <a [routerLink]="['/trips/' + trip.id + '']">{{trip.trip.title}}</a>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button">{{trip.trip.departureAddress.city}}, {{trip.trip.departureAddress.state}}</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button">{{trip.trip.destinationAddress.city}}, {{trip.trip.destinationAddress.state}}</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button">{{trip.travelerStatus}}</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                      </div>
+
+                      <div *ngIf="seeVehicles && !seePersonalInformation && seeBio && seeMyTrips">
                         <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
@@ -212,7 +253,7 @@
                 </div>
                 <div class="tab-pane" id="hosting">
 
-                  <table *ngIf="seeNewTrip && seeMyTrips && seePendingRequests" class="table table-hover table-striped">
+                  <table *ngIf="seeNewTrip && seeMyHostings && seePendingRequests" class="table table-hover table-striped">
                     <tbody>
                       <tr>
                         <td class="nav-item">
@@ -221,7 +262,7 @@
                       </tr>
                       <tr>
                         <td class="nav-item">
-                          <button type="button" (click)="seeMyTrips = false">My Trips</button>
+                          <button type="button" (click)="seeMyHostings = false">My Hostings</button>
                         </td>
                       </tr>
                       <tr>
@@ -232,7 +273,7 @@
                     </tbody>
                   </table>
 
-                  <div *ngIf="seeNewTrip && !seeMyTrips && seePendingRequests">
+                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests">
                     <table class="table table-hover table-striped">
                       <tbody>
                         <tr>
@@ -246,7 +287,7 @@
                             <button type="button"><u>Destination</u></button>
                           </th>
                         </tr>
-                        <tr *ngFor="let trip of myTrips">
+                        <tr *ngFor="let trip of myHostings">
                           <td class="nav-item">
                             <a [routerLink]="['/trips/' + trip.id + '']">{{trip.title}}</a>
                           </td>
@@ -268,7 +309,7 @@
                     <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
                   </div>
 
-                  <div *ngIf="seeNewTrip && seeMyTrips && !seePendingRequests">
+                  <div *ngIf="seeNewTrip && seeMyHostings && !seePendingRequests">
                     <table class="table table-hover table-striped">
                       <tbody>
                         <tr>
@@ -284,7 +325,7 @@
                         </tr>
                         <tr *ngFor="let req of myTripRequests">
                           <td class="nav-item">
-                            <button type="button">{{req.trip.title}}</button>
+                            <a [routerLink]="['/trips/' + req.trip.id + '']">{{req.trip.title}}</a>
                           </td>
                           <td class="nav-item">
                             <button type="button">{{req.user.firstName}} {{req.user.lastName}}</button>

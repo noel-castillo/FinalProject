@@ -19,8 +19,21 @@
         <!-- END SIDEBAR USER TITLE -->
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button type="button" class="btn btn-outline-success">Follow</button>
-          <button type="button" class="btn btn-outline-danger">Message</button>
+          <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-success dropdown-toggle"
+                        role="button">Change Profile Image</button>
+                        <ul class="dropdown-menu dropdown-menu-right mt-4">
+                          <li class="px-6 py-4">
+                            <form>
+                              <div class="form-group">
+                                <input name="url" placeholder="New Image URL" class="form-control form-control-md"
+                                  type="text" [(ngModel)]="newImage.url" required="required">
+                                <button (click)="updateProfileImage()" type="submit"
+                                  class="btn btn-warning btn-block">Submit</button>
+                              </div>
+                            </form>
+                          </li>
+                        </ul>
+          <button type="button" (click)="logout()" class="btn btn-outline-danger">Logout</button>
           <br>
         </div>
 
@@ -123,55 +136,73 @@
                         <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
-                              <th class="nav-item">
-                                <button type="button"><u>Make</u></button>
-                              </th>
-                              <th class="nav-item">
-                                <button type="button"><u>Model</u></button>
-                              </th>
-                              <th class="nav-item">
-                                <button type="button"><u>Year</u></button>
-                              </th>
+                              <td class="nav-item">
+                                Username:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.user.username}}
+                              </td>
                             </tr>
-                            <tr *ngFor="let vehicle of currentProfile.vehicles">
+                            <tr>
                               <td class="nav-item">
-                                <button type="button">{{vehicle.make}}</button>
+                                First Name:
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{vehicle.model}}</button>
+                                {{currentProfile.firstName}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Last Name:
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{vehicle.manufactureYear}}</button>
+                                {{currentProfile.lastName}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Email:
                               </td>
                               <td class="nav-item">
-                                <button type="button" type="button" class="btn btn-outline-success">Edit</button>
+                                {{currentProfile.email}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Phone:
                               </td>
                               <td class="nav-item">
-                                <button type="button" (click)="deleteVehicle(vehicle)" class="btn btn-outline-danger">Delete</button>
+                                {{currentProfile.phone}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Address:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.address.street}} {{currentProfile.address.city}}, {{currentProfile.address.state}} {{currentProfile.address.zip}}
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                        <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-warning dropdown-toggle"
-                        role="button">Add New Vehicle</button>
-                        <ul class="dropdown-menu dropdown-menu-right mt-4">
-                          <li class="px-6 py-4">
-                            <form>
-                              <div class="form-group">
-                                <input name="make" placeholder="Make" class="form-control form-control-md"
-                                  type="text" [(ngModel)]="newVehicle.make" required="required">
-                                <input name="model" placeholder="Model" class="form-control form-control-md" type="text"
-                                  [(ngModel)]="newVehicle.model" required="required">
-                                <input name="manufactureYear" placeholder="Year" class="form-control form-control-md" type="number"
-                                  [(ngModel)]="newVehicle.manufactureYear" required="required">
-                                <input name="interiorDescription" placeholder="Description" class="form-control form-control-md" type="text"
-                                  [(ngModel)]="newVehicle.interiorDescription" required="required">
-                                <button (click)="addNewVehicle()" type="submit"
-                                  class="btn btn-warning btn-block">Submit</button>
-                              </div>
-                            </form>
-                          </li>
-                        </ul>
+                        <button align="center" type="button" class="btn btn-outline-success"
+                        role="button">Edit</button>
+                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                      </div>
+
+                      <div *ngIf="seeVehicles && seePersonalInformation && !seeBio">
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <td class="nav-item">
+                                Bio: {{currentProfile.bio}}
+                              </td>
+                            </tr>
+                            <tr>
+                          </tbody>
+                        </table>
+                        <button align="center" type="button" class="btn btn-outline-success"
+                        role="button">Edit</button>
                         <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
                       </div>
                     </div>
@@ -200,6 +231,43 @@
                       </tr>
                     </tbody>
                   </table>
+
+                  <div *ngIf="seeNewTrip && seeMyTrips && !seePendingRequests">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <th class="nav-item">
+                            <button type="button"><u>Trip</u></button>
+                          </th>
+                          <th class="nav-item">
+                            <button type="button"><u>Passenger</u></button>
+                          </th>
+                          <th class="nav-item">
+                            <button type="button"><u>Status</u></button>
+                          </th>
+                        </tr>
+                        <tr *ngFor="let req of myTripRequests">
+                          <td class="nav-item">
+                            <button type="button">{{req.trip.title}}</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button">{{req.user.firstName}} {{req.user.lastName}}</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button">{{req.travelerStatus}}</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button" type="button" (click)="approveRequest(req)" class="btn btn-outline-success">Approve</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button" (click)="denyRequest(req)" class="btn btn-outline-danger">Deny</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
+                  </div>
+
                 </div>
                 <div class="tab-pane" id="vehicles">
                   <form role="form">

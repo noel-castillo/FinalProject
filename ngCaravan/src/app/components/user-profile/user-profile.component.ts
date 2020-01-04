@@ -11,6 +11,7 @@ import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
 import { TripTraveler } from 'src/app/models/trip-traveler';
 import { Trip } from 'src/app/models/trip';
+import { Image } from 'src/app/models/image';
 
 @Component({
   selector: 'app-user-profile',
@@ -41,9 +42,11 @@ export class UserProfileComponent implements OnInit {
 
   newVehicle: Vehicle = new Vehicle();
 
+  newImage: Image = new Image();
+
   hostTripRequest: TripTraveler[] = [];
 
-  tripRequest: TripTraveler[] = [];
+  myTripRequests: TripTraveler[] = [];
 
   tripTraveler = false;
 
@@ -129,6 +132,26 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  logout() {
+    this.auth.logout();
+    this.router.navigateByUrl('login');
+  }
+
+  updateProfileImage() {
+    this.currentProfile.profilePic.url = this.newImage.url;
+    this.updateUserProfile(this.currentProfile);
+  }
+
+  denyRequest(req: TripTraveler) {
+    req.travelerStatus = 'Denied';
+    this.tripTravSvc.updateTripTraveler(req);
+  }
+
+  approveRequest(req: TripTraveler) {
+    req.travelerStatus = 'Approved';
+    this.tripTravSvc.updateTripTraveler(req);
+  }
+
   ngOnInit() {
 
     this.uSvc.getUserInSessionProfile().subscribe(
@@ -154,17 +177,19 @@ export class UserProfileComponent implements OnInit {
       }
     );
 
-    this.tripTravSvc.index().subscribe(
+    this.tripTravSvc.myTripRequests().subscribe(
       data => {
-        this.tripRequest = data;
-        this.tripRequest.forEach(req => {
-          if (req.travelerStatus === 'pending') {
-            this.hostTripRequest.push(req);
-          }
-        });
+        console.log('loading requests');
+        this.myTripRequests = data;
+        console.log(data);
+        // this.myTripRequests.forEach(req => {
+        // if (req.travelerStatus === 'pending') {
+        // this.hostTripRequest.push(req);
+        // }
+        // });
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to load myTripRequests');
       }
     );
   }
@@ -179,14 +204,14 @@ export class UserProfileComponent implements OnInit {
         console.error('UserProfile Component reload() DID NOT WORK');
       }
     );
-    this.tripTravSvc.index().subscribe(
+    this.tripTravSvc.myTripRequests().subscribe(
       data => {
-        this.tripRequest = data;
-        this.tripRequest.forEach(req => {
-          if (req.travelerStatus === 'pending') {
-            this.hostTripRequest.push(req);
-          }
-        });
+        this.myTripRequests = data;
+        // this.myTripRequests.forEach(req => {
+        //   if (req.travelerStatus === 'pending') {
+        //     this.hostTripRequest.push(req);
+        //   }
+        // });
       },
       err => {
         console.log(err);

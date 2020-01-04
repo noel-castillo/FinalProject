@@ -1,3 +1,5 @@
+import { VehicleService } from './../../services/vehicle.service';
+import { Vehicle } from './../../models/vehicle';
 import { TripService } from 'src/app/services/trip.service';
 import { TripTravelerService } from './../../services/trip-traveler.service';
 import { UserProfile } from './../../models/user-profile';
@@ -37,6 +39,8 @@ export class UserProfileComponent implements OnInit {
 
   newUser: User = new User();
 
+  newVehicle: Vehicle = new Vehicle();
+
   hostTripRequest: TripTraveler[] = [];
 
   tripRequest: TripTraveler[] = [];
@@ -63,7 +67,8 @@ export class UserProfileComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private tripTravSvc: TripTravelerService,
-    private tripSvc: TripService
+    private tripSvc: TripService,
+    private vSvc: VehicleService
   ) { }
 
   // M E T H O D S
@@ -87,14 +92,48 @@ export class UserProfileComponent implements OnInit {
 
   }
 
+  addNewVehicle() {
+
+    this.vSvc.create(this.newVehicle).subscribe(
+      data => {
+        console.log('Vehicle has been created!');
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
+    this.uSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.currentProfile = data;
+        this.currentProfile.vehicles.push(this.newVehicle);
+        this.newVehicle = new Vehicle();
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  deleteVehicle(vehicle: Vehicle) {
+
+    this.vSvc.delete(vehicle.id).subscribe(
+      data => {
+        console.log('Vehicle has been deleted!');
+        const index = this.currentProfile.vehicles.indexOf(vehicle);
+        console.log(this.currentProfile.vehicles.splice(index, 1));
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   ngOnInit() {
 
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
-        console.log(this.currentProfile);
-        console.log(this.currentProfile.profilePic);
-        console.log(this.currentProfile.profilePic.url);
       },
       err => {
         console.log(err);

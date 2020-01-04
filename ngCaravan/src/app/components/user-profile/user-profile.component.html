@@ -19,8 +19,8 @@
         <!-- END SIDEBAR USER TITLE -->
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button type="button" class="btn btn-success btn-sm">Follow</button>
-          <button type="button" class="btn btn-danger btn-sm">Message</button>
+          <button type="button" class="btn btn-outline-success">Follow</button>
+          <button type="button" class="btn btn-outline-danger">Message</button>
           <br>
         </div>
 
@@ -30,36 +30,94 @@
               <br>
               <ul id="splitDisplayList" class="nav nav-tabs">
                 <li class="nav-item">
-                  <a href="" data-target="#profile" data-toggle="tab" (click)="showAccountSettings()" class="nav-link active">Account Settings</a>
+                  <a href="" data-target="#profile" data-toggle="tab" (click)="showAccountSettings()"
+                    class="nav-link active btn btn-outline-success">Account Settings</a>
                 </li>
                 <li class="nav-item">
-                  <a href="" data-target="#hosting" data-toggle="tab" (click)="showHosting()" class="nav-link">Hosting</a>
+                  <a href="" data-target="#hosting" data-toggle="tab" (click)="showHosting()"
+                    class="nav-link btn btn-outline-success">Hosting</a>
                 </li>
               </ul>
               <div class="tab-content py-4">
                 <div class="tab-pane active" id="profile">
                   <div class="row">
                     <div class="col-md-6">
-                        <table *ngIf="seeVehicles && seePersonalInformation && seeBio" class="table table-hover table-striped">
+                      <table *ngIf="seeVehicles && seePersonalInformation && seeBio"
+                        class="table table-hover table-striped">
+                        <tbody>
+                          <tr>
+                            <td class="nav-item">
+                              <button type="button" (click)="seePersonalInformation = false">Personal
+                                Information</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="nav-item">
+                              <button type="button" (click)="seeVehicles = false">My Vehicles</button>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="nav-item">
+                              <button type="button" (click)="seeBio = false">My Bio</button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div *ngIf="!seeVehicles && seePersonalInformation && seeBio">
+                        <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
-                              <td class="nav-item">
-                                <button type="button" (click)="seePersonalInformation = false">Personal
-                                  Information</button>
-                              </td>
+                              <th class="nav-item">
+                                <button type="button"><u>Make</u></button>
+                              </th>
+                              <th class="nav-item">
+                                <button type="button"><u>Model</u></button>
+                              </th>
+                              <th class="nav-item">
+                                <button type="button"><u>Year</u></button>
+                              </th>
                             </tr>
-                            <tr>
+                            <tr *ngFor="let vehicle of currentProfile.vehicles">
                               <td class="nav-item">
-                                <button type="button" (click)="seeVehicles = false">My Vehicles</button>
+                                <button type="button">{{vehicle.make}}</button>
                               </td>
-                            </tr>
-                            <tr>
                               <td class="nav-item">
-                                <button type="button" (click)="seeBio = false">My Bio</button>
+                                <button type="button">{{vehicle.model}}</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button">{{vehicle.manufactureYear}}</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button" type="button" class="btn btn-outline-success">Edit</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button" (click)="deleteVehicle(vehicle)" class="btn btn-outline-danger">Delete</button>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                        <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-warning dropdown-toggle"
+                        role="button">Add New Vehicle</button>
+                        <ul class="dropdown-menu dropdown-menu-right mt-2">
+                          <li class="px-3 py-2">
+                            <form>
+                              <div class="form-group">
+                                <input name="make" placeholder="Make" class="form-control form-control-md"
+                                  type="text" [(ngModel)]="newVehicle.make" required="required">
+                                <input name="model" placeholder="Model" class="form-control form-control-md" type="text"
+                                  [(ngModel)]="newVehicle.model" required="required">
+                                <input name="manufactureYear" placeholder="Year" class="form-control form-control-md" type="number"
+                                  [(ngModel)]="newVehicle.manufactureYear" required="required">
+                                <input name="interiorDescription" placeholder="Description" class="form-control form-control-md" type="text"
+                                  [(ngModel)]="newVehicle.interiorDescription" required="required">
+                                <button (click)="addNewVehicle()" type="submit"
+                                  class="btn btn-warning btn-block">Submit</button>
+                              </div>
+                            </form>
+                          </li>
+                        </ul>
+                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                      </div>
                     </div>
 
                   </div>
@@ -192,7 +250,7 @@
           </div>
         </div>
 
-           <!-- <div class="col-md-6">
+        <!-- <div class="col-md-6">
               <h6>Recent badges</h6>
               <a href="#" class="badge badge-dark badge-pill">html5</a>
               <a href="#" class="badge badge-dark badge-pill">react</a>
@@ -215,7 +273,7 @@
                 ><i class="fa fa-eye"></i> 245 Views</span
               >
             </div> -->
-                    <!-- <div class="col-md-12">
+        <!-- <div class="col-md-12">
               <h5 class="mt-2">
                 <span class="fa fa-clock-o ion-clock float-right"></span> Recent
                 Activity

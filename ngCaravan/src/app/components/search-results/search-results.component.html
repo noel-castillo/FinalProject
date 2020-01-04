@@ -1,5 +1,5 @@
 <div id="explorebg">
-  <div>
+  <div *ngIf="! trips">
     <div class="container">
       <div class="row mx-sm-n5">
         <div class="col-sm-4 px-sm">
@@ -62,16 +62,18 @@
             <form #searchForm="ngForm" style="display: inline-block;">
             <input
               type="text"
-              name="location"
+              name="currCity"
               placeholder="Your Current City"
               style="font-size: 150%; margin: 5px 0; width: 275px; height: 60px; background-color: #202020; color: #D0D0D0; border: 1px solid black; padding: 10px 10px; border-radius: 5px"
               ngModel
             />
+
+            <!-- <input type="text" name="currState" maxlength="2" placeholder="Current State" style="font-size: 150%; margin: 5px 0; width: 150px; height: 60px; background-color: #202020; color: #D0D0D0; border: 1px solid black; padding: 10px 10px; border-radius: 5px" ngModel> -->
             <select
-              class="custom-select"
               name="currState"
               style="font-size: 150%; width: 150px; height: 60px; background-color: #202020; color: #787878; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 5px"
-            >
+              ngModel
+              >
               <option selected="">Current State</option>
               <option value="AL">AL</option>
               <option value="AK">AK</option>
@@ -129,19 +131,20 @@
             <br />
             <hr>
 
-            <label for="destination"></label>
             <input
               type="text"
-              name="destination"
+              name="destCity"
               placeholder="Your Destination City"
               style="font-size: 150%; width: 275px; height: 60px; background-color: #202020; color: #D0D0D0; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 5px"
               ngModel
             />
+            <!-- <input type="text" name="destState" maxlength="2" placeholder="Destination State" style="font-size: 150%; margin: 5px 0; width: 150px; height: 60px; background-color: #202020; color: #D0D0D0; border: 1px solid black; padding: 10px 10px; border-radius: 5px" ngModel> -->
+
             <select
-              class="custom-select"
               name="destState"
               style="font-size: 150%; display: inline-block; width: 150px; height: 60px; background-color: #202020; color: #787878; border: 1px solid black; padding: 10px 10px; margin: 5px 0; border-radius: 5px"
-            >
+              ngModel
+              >
               <option selected="">Destination State</option>
               <option value="AL">AL</option>
               <option value="AK">AK</option>
@@ -197,7 +200,6 @@
             </select>
 <br>
 <br>
-<br>
               <button id="btn1" type="submit" (click)="search(searchForm)">
                 Search Now
               </button>
@@ -236,37 +238,6 @@
 </div>
 </div>
 
-  <!--
-<section *ngIf="adventures" class="trending-restaurant spad">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="section-title">
-          <h2>Top trending for your location</h2>
-          <p>Explore some of the best adventures in the world</p>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <div *ngFor="let adventure of adventures" class="trend-item">
-          <div class="trend-pic">
-            <img [src]="adventure.host.profilePic.url" alt="">
-            <div class="rating">{{adventure.host.mileagePoints}}</div>
-          </div>
-          <div class="trend-text">
-            <h4>{{adventure.title}}</h4>
-            <span>{{adventure.address.city}}, {{adventure.address.state}}</span>
-            <p>{{adventure.description}}.</p>
-            <div [routerLink]="['/adventure-profile/' + adventure.id + '']" class="closed">View Details</div>
-            <div class="open">Save</div>
-          </div>
-          <div class="tic-text">Adventures</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
 <section *ngIf="trips" class="trending-restaurant spad">
   <div class="container">
     <div class="row">
@@ -297,6 +268,39 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
+
+  <!--
+<section *ngIf="adventures" class="trending-restaurant spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title">
+          <h2>Top trending for your location</h2>
+          <p>Explore some of the best adventures in the world</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div *ngFor="let adventure of adventures" class="trend-item">
+          <div class="trend-pic">
+            <img [src]="adventure.host.profilePic.url" alt="">
+            <div class="rating">{{adventure.host.mileagePoints}}</div>
+          </div>
+          <div class="trend-text">
+            <h4>{{adventure.title}}</h4>
+            <span>{{adventure.address.city}}, {{adventure.address.state}}</span>
+            <p>{{adventure.description}}.</p>
+            <div [routerLink]="['/adventure-profile/' + adventure.id + '']" class="closed">View Details</div>
+            <div class="open">Save</div>
+          </div>
+          <div class="tic-text">Adventures</div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
 
 </div>

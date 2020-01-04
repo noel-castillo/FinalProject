@@ -77,7 +77,6 @@
 
 
 
-
             </mat-card>
             </div>
             <!-- <div class="about-video">
@@ -91,23 +90,56 @@
             <div class="client-reviews" >
               <h3>Host Reviews</h3>
               <ng-container *ngFor="let advenTraveler of thisTripAdventureTravelers">
-              <div *ngIf="advenTraveler.review" class="reviews-item">
-                <p>Rating: {{advenTraveler.rating}}</p>
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                <div *ngIf="advenTraveler.review" class="reviews-item">
+                  <p>Rating: {{advenTraveler.rating}}</p>
+
+                    <div *ngIf="advenTraveler.rating === 1">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                    </div>
+
+                    <div *ngIf="advenTraveler.rating === 2">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                    </div>
+
+                    <div *ngIf="advenTraveler.rating === 3">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                      <span class="fa fa-star"></span>
+                    </div>
+
+                    <div *ngIf="advenTraveler.rating === 4">
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span>
+                    </div>
+
+                    <div *ngIf="advenTraveler.rating === 5">
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                    </div>
+
+                    <h5>“A Great Place”</h5>
+                  <p>{{thisTripAdventureTravelers[0].review}}</p>
+                  <div class="client-text">
+                    <h5>{{thisTripAdventureTravelers[0].user.firstName}}, {{thisTripAdventureTravelers[0].user.lastName}}</h5>
+                    <span>DATE????? IDK</span>
+                  </div>
                 </div>
-                <!-- <ngb-rating max=5 [(rate)]="currentRate"></ngb-rating> -->
-                <h5>“A Great Place”</h5>
-                <p>{{thisTripAdventureTravelers[0].review}}</p>
-                <div class="client-text">
-                  <h5>{{thisTripAdventureTravelers[0].user.firstName}}, {{thisTripAdventureTravelers[0].user.lastName}}</h5>
-                  <span>DATE????? IDK</span>
-                </div>
-              </div>
             </ng-container>
 
 

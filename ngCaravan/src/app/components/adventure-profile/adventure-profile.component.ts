@@ -215,6 +215,8 @@ export class AdventureProfileComponent implements OnInit {
               }
             });
             console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
+            console.log(this.thisTripAdventureTravelers[0].rating);
+
           },
           err => {
             console.error(err);

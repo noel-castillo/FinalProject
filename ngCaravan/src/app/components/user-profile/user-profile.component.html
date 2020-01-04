@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row profile">
-    <div class="col-md-3">
+    <div class="col-md-12">
       <div class="profile-sidebar">
         <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
@@ -38,10 +38,10 @@
                     class="nav-link btn btn-outline-success">Hosting</a>
                 </li>
               </ul>
-              <div class="tab-content py-4">
+              <div class="tab-content py-12">
                 <div class="tab-pane active" id="profile">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                       <table *ngIf="seeVehicles && seePersonalInformation && seeBio"
                         class="table table-hover table-striped">
                         <tbody>
@@ -98,8 +98,64 @@
                         </table>
                         <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-warning dropdown-toggle"
                         role="button">Add New Vehicle</button>
-                        <ul class="dropdown-menu dropdown-menu-right mt-2">
-                          <li class="px-3 py-2">
+                        <ul class="dropdown-menu dropdown-menu-right mt-4">
+                          <li class="px-6 py-4">
+                            <form>
+                              <div class="form-group">
+                                <input name="make" placeholder="Make" class="form-control form-control-md"
+                                  type="text" [(ngModel)]="newVehicle.make" required="required">
+                                <input name="model" placeholder="Model" class="form-control form-control-md" type="text"
+                                  [(ngModel)]="newVehicle.model" required="required">
+                                <input name="manufactureYear" placeholder="Year" class="form-control form-control-md" type="number"
+                                  [(ngModel)]="newVehicle.manufactureYear" required="required">
+                                <input name="interiorDescription" placeholder="Description" class="form-control form-control-md" type="text"
+                                  [(ngModel)]="newVehicle.interiorDescription" required="required">
+                                <button (click)="addNewVehicle()" type="submit"
+                                  class="btn btn-warning btn-block">Submit</button>
+                              </div>
+                            </form>
+                          </li>
+                        </ul>
+                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                      </div>
+
+                      <div *ngIf="seeVehicles && !seePersonalInformation && seeBio">
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <th class="nav-item">
+                                <button type="button"><u>Make</u></button>
+                              </th>
+                              <th class="nav-item">
+                                <button type="button"><u>Model</u></button>
+                              </th>
+                              <th class="nav-item">
+                                <button type="button"><u>Year</u></button>
+                              </th>
+                            </tr>
+                            <tr *ngFor="let vehicle of currentProfile.vehicles">
+                              <td class="nav-item">
+                                <button type="button">{{vehicle.make}}</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button">{{vehicle.model}}</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button">{{vehicle.manufactureYear}}</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button" type="button" class="btn btn-outline-success">Edit</button>
+                              </td>
+                              <td class="nav-item">
+                                <button type="button" (click)="deleteVehicle(vehicle)" class="btn btn-outline-danger">Delete</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-warning dropdown-toggle"
+                        role="button">Add New Vehicle</button>
+                        <ul class="dropdown-menu dropdown-menu-right mt-4">
+                          <li class="px-6 py-4">
                             <form>
                               <div class="form-group">
                                 <input name="make" placeholder="Make" class="form-control form-control-md"

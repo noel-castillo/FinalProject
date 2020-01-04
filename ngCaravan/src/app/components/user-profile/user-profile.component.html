@@ -1,41 +1,198 @@
 <div class="container">
-  <div class="row my-2">
-    <div class="col-lg-8 order-lg-2">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a
-            href=""
-            data-target="#profile"
-            data-toggle="tab"
-            class="nav-link active"
-            >Profile</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="" data-target="#messages" data-toggle="tab" class="nav-link"
-            >Messages</a
-          >
-        </li>
-        <li class="nav-item">
-          <a href="" data-target="#edit" data-toggle="tab" class="nav-link"
-            >Edit</a
-          >
-        </li>
-      </ul>
-      <div class="tab-content py-4">
-        <div class="tab-pane active" id="profile">
-          <div class="row">
-            <div class="col-md-6">
-              <h6>About</h6>
-              <p>
-                Web Designer, UI/UX Engineer
-              </p>
-              <h6>Hobbies</h6>
-              <p>
-                Indie music, skiing and hiking. I love the great outdoors.
-              </p>
+  <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <img [src]="currentProfile.profilePic.url" class="img-responsive" alt="">
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            {{currentProfile.firstName}} {{currentProfile.lastName}}
+          </div>
+          <div class="profile-usertitle-job">
+            Mileage Points: {{currentProfile.mileagePoints}} pts
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR BUTTONS -->
+        <div class="profile-userbuttons">
+          <button type="button" class="btn btn-success btn-sm">Follow</button>
+          <button type="button" class="btn btn-danger btn-sm">Message</button>
+          <br>
+        </div>
+
+        <div class="container">
+          <div class="row my-12">
+            <div class="col-lg-12 order-lg-12">
+              <br>
+              <ul id="splitDisplayList" class="nav nav-tabs">
+                <li class="nav-item">
+                  <a href="" data-target="#profile" data-toggle="tab" (click)="showAccountSettings()" class="nav-link active">Account Settings</a>
+                </li>
+                <li class="nav-item">
+                  <a href="" data-target="#hosting" data-toggle="tab" (click)="showHosting()" class="nav-link">Hosting</a>
+                </li>
+              </ul>
+              <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                  <div class="row">
+                    <div class="col-md-6">
+                        <table *ngIf="seeVehicles && seePersonalInformation && seeBio" class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <td class="nav-item">
+                                <button type="button" (click)="seePersonalInformation = false">Personal
+                                  Information</button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                <button type="button" (click)="seeVehicles = false">My Vehicles</button>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                <button type="button" (click)="seeBio = false">My Bio</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+
+                  </div>
+                  <!--/row-->
+                </div>
+                <div class="tab-pane" id="hosting">
+
+                  <table *ngIf="seeNewTrip && seeMyTrips && seePendingRequests" class="table table-hover table-striped">
+                    <tbody>
+                      <tr>
+                        <td class="nav-item">
+                          <button type="button" (click)="seeNewTrip = false">Host New Trip</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nav-item">
+                          <button type="button" (click)="seeMyTrips = false">My Trips</button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nav-item">
+                          <button type="button" (click)="seePendingRequests = false">Pending Requests</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="tab-pane" id="vehicles">
+                  <form role="form">
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="text" value="Jane" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="text" value="Bishop" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="email" value="email@gmail.com" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Company</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="text" value="" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Website</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="url" value="" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="text" value="" placeholder="Street" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label"></label>
+                      <div class="col-lg-6">
+                        <input class="form-control" type="text" value="" placeholder="City" />
+                      </div>
+                      <div class="col-lg-3">
+                        <input class="form-control" type="text" value="" placeholder="State" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
+                      <div class="col-lg-9">
+                        <select id="user_time_zone" class="form-control" size="0">
+                          <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                          <option value="Alaska">(GMT-09:00) Alaska</option>
+                          <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)
+                          </option>
+                          <option value="Arizona">(GMT-07:00) Arizona</option>
+                          <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)
+                          </option>
+                          <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time
+                            (US &amp;
+                            Canada)</option>
+                          <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)
+                          </option>
+                          <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Username</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="text" value="janeuser" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="password" value="11111122333" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                      <div class="col-lg-9">
+                        <input class="form-control" type="password" value="11111122333" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-lg-3 col-form-label form-control-label"></label>
+                      <div class="col-lg-9">
+                        <div class="row">
+                          <div class="col-2">
+                            <input type="reset" class="btn btn-secondary" value="Cancel" />
+                          </div>
+                          <div class="col-2">
+                            <input type="button" class="btn btn-primary" value="Save Changes" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-            <!-- <div class="col-md-6">
+          </div>
+        </div>
+
+           <!-- <div class="col-md-6">
               <h6>Recent badges</h6>
               <a href="#" class="badge badge-dark badge-pill">html5</a>
               <a href="#" class="badge badge-dark badge-pill">react</a>
@@ -58,7 +215,7 @@
                 ><i class="fa fa-eye"></i> 245 Views</span
               >
             </div> -->
-            <div class="col-md-12">
+                    <!-- <div class="col-md-12">
               <h5 class="mt-2">
                 <span class="fa fa-clock-o ion-clock float-right"></span> Recent
                 Activity
@@ -97,223 +254,4 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-          </div>
-          <!--/row-->
-        </div>
-        <div class="tab-pane" id="messages">
-
-          <table class="table table-hover table-striped">
-            <tbody>
-              <tr>
-                <td>
-                  <span class="float-right font-weight-bold">3 hrs ago</span>
-                  Here is your a link to the latest summary report from the..
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="float-right font-weight-bold">Yesterday</span>
-                  There has been a request on your account since that was..
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="float-right font-weight-bold">9/10</span>
-                  Porttitor vitae ultrices quis, dapibus id dolor. Morbi
-                  venenatis lacinia rhoncus.
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="float-right font-weight-bold">9/4</span>
-                  Vestibulum tincidunt ullamcorper eros eget luctus.
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="float-right font-weight-bold">9/4</span>
-                  Maxamillion ais the fix for tibulum tincidunt ullamcorper
-                  eros.
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="tab-pane" id="edit">
-          <form role="form">
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >First name</label
-              >
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="Jane" />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Last name</label
-              >
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="Bishop" />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Email</label
-              >
-              <div class="col-lg-9">
-                <input
-                  class="form-control"
-                  type="email"
-                  value="email@gmail.com"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Company</label
-              >
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="" />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Website</label
-              >
-              <div class="col-lg-9">
-                <input class="form-control" type="url" value="" />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Address</label
-              >
-              <div class="col-lg-9">
-                <input
-                  class="form-control"
-                  type="text"
-                  value=""
-                  placeholder="Street"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"></label>
-              <div class="col-lg-6">
-                <input
-                  class="form-control"
-                  type="text"
-                  value=""
-                  placeholder="City"
-                />
-              </div>
-              <div class="col-lg-3">
-                <input
-                  class="form-control"
-                  type="text"
-                  value=""
-                  placeholder="State"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Time Zone</label
-              >
-              <div class="col-lg-9">
-                <select id="user_time_zone" class="form-control" size="0">
-                  <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                  <option value="Alaska">(GMT-09:00) Alaska</option>
-                  <option value="Pacific Time (US &amp; Canada)"
-                    >(GMT-08:00) Pacific Time (US &amp; Canada)</option
-                  >
-                  <option value="Arizona">(GMT-07:00) Arizona</option>
-                  <option value="Mountain Time (US &amp; Canada)"
-                    >(GMT-07:00) Mountain Time (US &amp; Canada)</option
-                  >
-                  <option
-                    value="Central Time (US &amp; Canada)"
-                    selected="selected"
-                    >(GMT-06:00) Central Time (US &amp; Canada)</option
-                  >
-                  <option value="Eastern Time (US &amp; Canada)"
-                    >(GMT-05:00) Eastern Time (US &amp; Canada)</option
-                  >
-                  <option value="Indiana (East)"
-                    >(GMT-05:00) Indiana (East)</option
-                  >
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Username</label
-              >
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="janeuser" />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Password</label
-              >
-              <div class="col-lg-9">
-                <input
-                  class="form-control"
-                  type="password"
-                  value="11111122333"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"
-                >Confirm password</label
-              >
-              <div class="col-lg-9">
-                <input
-                  class="form-control"
-                  type="password"
-                  value="11111122333"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"></label>
-              <div class="col-lg-9">
-                <div class="row">
-                  <div class="col-2">
-                    <input
-                      type="reset"
-                      class="btn btn-secondary"
-                      value="Cancel"
-                    />
-                  </div>
-                  <div class="col-2">
-                    <input
-                      type="button"
-                      class="btn btn-primary"
-                      value="Save Changes"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-4 order-lg-1 text-center">
-
-      <img
-        src="{{currentProfile.profilePic.url}}"
-        class="mx-auto img-fluid img-circle d-block"
-        alt="avatar"
-      />
-
-      <h3 class="mt-2">{{currentProfile.firstName}} {{currentProfile.lastName}}</h3>
-
-    </div>
-  </div>
-</div>
+            </div> -->

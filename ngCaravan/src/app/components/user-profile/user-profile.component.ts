@@ -14,6 +14,7 @@ import { Trip } from 'src/app/models/trip';
 import { Image } from 'src/app/models/image';
 import { NgForm } from '@angular/forms';
 import { AddressService } from 'src/app/services/address.service';
+import { TripCalendar } from 'src/app/models/trip-calendar';
 
 @Component({
   selector: 'app-user-profile',
@@ -49,6 +50,8 @@ export class UserProfileComponent implements OnInit {
   newImage: Image = new Image();
 
   newTrip: Trip = new Trip();
+
+  newTripCalendar: TripCalendar = new TripCalendar();
 
   hostTripRequest: TripTraveler[] = [];
 
@@ -101,6 +104,10 @@ export class UserProfileComponent implements OnInit {
 
     this.selectedTrip = null;
 
+    this.newTrip.departureAddress = this.newAddress;
+    this.newTrip.destinationAddress = this.newAddress;
+    this.newTrip.tripCalendar = this.newTripCalendar;
+
   }
 
   showAccountSettings() {
@@ -139,6 +146,25 @@ export class UserProfileComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  createTrip() {
+
+    this.tripSvc.create(this.newTrip).subscribe(
+      data => {
+        this.myHostings.push(data);
+        this.newTrip.departureAddress = this.newAddress;
+        this.newTrip.destinationAddress = this.newAddress;
+        this.newTrip.tripCalendar = this.newTripCalendar;
+        this.seeNewTrip = true;
+        this.seeMyHostings = false;
+      },
+      err => {
+        console.log(err);
+      }
+
+    );
+
   }
 
   deleteVehicle(vehicle: Vehicle) {

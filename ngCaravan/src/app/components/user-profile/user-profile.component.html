@@ -148,7 +148,7 @@
                       <!-- END MY VEHICLES -->
 
                       <!-- START MY TRIPS -->
-                      <div *ngIf="seeNewTrip && seeMyHostings && seePendingRequests && !seeMyTrips">
+                      <div *ngIf="seeVehicles && seePersonalInformation && seeBio && !seeMyTrips">
                         <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
@@ -171,11 +171,11 @@
                               </td>
                               <td class="nav-item">
                                 {{trip.trip.departureAddress.city}},
-                                  {{trip.trip.departureAddress.state}}
+                                {{trip.trip.departureAddress.state}}
                               </td>
                               <td class="nav-item">
                                 {{trip.trip.destinationAddress.city}},
-                                  {{trip.trip.destinationAddress.state}}
+                                {{trip.trip.destinationAddress.state}}
                               </td>
                               <td class="nav-item">
                                 {{trip.travelerStatus}}
@@ -251,7 +251,7 @@
                       </div>
                       <div
                         *ngIf="seeVehicles && !seePersonalInformation && seeBio && seeMyTrips && !seeEditPersonalInformation">
-                        <form #editPersonalsForm = "ngForm">
+                        <form #editPersonalsForm="ngForm">
                           <table class="table table-hover table-striped">
                             <tbody>
                               <tr>
@@ -267,7 +267,8 @@
                                   First Name:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="firstName" ngModel value="{{currentProfile.firstName}}" placeholder="{{currentProfile.firstName}}" />
+                                  <input class="form-control" type="text" name="firstName" ngModel
+                                    value="{{currentProfile.firstName}}" placeholder="{{currentProfile.firstName}}" />
                                 </td>
                               </tr>
                               <tr>
@@ -275,7 +276,8 @@
                                   Last Name:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="lastName" ngModel value="{{currentProfile.lastName}}" placeholder="{{currentProfile.lastName}}" />
+                                  <input class="form-control" type="text" name="lastName" ngModel
+                                    value="{{currentProfile.lastName}}" placeholder="{{currentProfile.lastName}}" />
                                 </td>
                               </tr>
                               <tr>
@@ -283,7 +285,8 @@
                                   Email:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="email" ngModel value="{{currentProfile.email}}" placeholder="{{currentProfile.email}}" />
+                                  <input class="form-control" type="text" name="email" ngModel
+                                    value="{{currentProfile.email}}" placeholder="{{currentProfile.email}}" />
                                 </td>
                               </tr>
                               <tr>
@@ -291,7 +294,8 @@
                                   Phone:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="phone" ngModel value="{{currentProfile.email}}" placeholder="{{currentProfile.phone}}" />
+                                  <input class="form-control" type="text" name="phone" ngModel
+                                    value="{{currentProfile.email}}" placeholder="{{currentProfile.phone}}" />
                                 </td>
                               </tr>
                               <tr>
@@ -299,7 +303,9 @@
                                   Street:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="street" ngModel value="{{currentProfile.address.street}}" placeholder="{{currentProfile.address.street}}" />
+                                  <input class="form-control" type="text" name="street" ngModel
+                                    value="{{currentProfile.address.street}}"
+                                    placeholder="{{currentProfile.address.street}}" />
                                 </td>
                               </tr>
                               <tr>
@@ -307,7 +313,9 @@
                                   City:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="city" ngModel value="{{currentProfile.address.city}}" placeholder="{{currentProfile.address.city}}" />
+                                  <input class="form-control" type="text" name="city" ngModel
+                                    value="{{currentProfile.address.city}}"
+                                    placeholder="{{currentProfile.address.city}}" />
                                 </td>
                               </tr>
                               <tr>
@@ -315,7 +323,9 @@
                                   State:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="state" ngModel value="{{currentProfile.address.state}}" placeholder="{{currentProfile.address.state}}" />
+                                  <input class="form-control" type="text" name="state" ngModel
+                                    value="{{currentProfile.address.state}}"
+                                    placeholder="{{currentProfile.address.state}}" />
                                 </td>
                               </tr>
                               <tr>
@@ -323,16 +333,18 @@
                                   Zip Code:
                                 </td>
                                 <td class="nav-item">
-                                  <input class="form-control" type="text" name="zip" ngModel value="{{currentProfile.address.zip}}"  placeholder="{{currentProfile.address.zip}}" />
+                                  <input class="form-control" type="text" name="zip" ngModel
+                                    value="{{currentProfile.address.zip}}"
+                                    placeholder="{{currentProfile.address.zip}}" />
                                 </td>
                               </tr>
                             </tbody>
                           </table>
                           <button align="center" type="submit" (click)="savePersonalInformation(editPersonalsForm)"
                             class="btn btn-outline-success" role="button">Save</button>
-                            <button align="center" type="button" (click)="seeEditPersonalInformation = true"
+                          <button align="center" type="button" (click)="seeEditPersonalInformation = true"
                             class="btn btn-light">Back</button>
-                          </form>
+                        </form>
                       </div>
                       <!-- END PERSONAL INFORMATION -->
 
@@ -406,7 +418,8 @@
                     </tbody>
                   </table>
 
-                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests">
+                  <!-- START MY HOSTINGS -->
+                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests && !selectedTrip">
                     <table class="table table-hover table-striped">
                       <tbody>
                         <tr>
@@ -431,7 +444,8 @@
                             {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}}
                           </td>
                           <td class="nav-item">
-                            <button type="button" type="button" class="btn btn-outline-success">Edit</button>
+                            <button type="button" type="button" (click)="selectedTrip = trip"
+                              class="btn btn-outline-success">View Details</button>
                           </td>
                           <td class="nav-item">
                             <button type="button" class="btn btn-outline-danger">Delete</button>
@@ -442,47 +456,131 @@
                     <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
                   </div>
 
-                  <div *ngIf="seeNewTrip && seeMyHostings && !seePendingRequests">
+                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests && selectedTrip">
                     <table class="table table-hover table-striped">
                       <tbody>
                         <tr>
-                          <th class="nav-item">
-                            <u>Trip</u>
-                          </th>
-                          <th class="nav-item">
-                            <u>Passenger</u>
-                          </th>
-                          <th class="nav-item">
-                            <u>Status</u>
-                          </th>
+                          <td class="nav-item">
+                            Title:
+                          </td>
+                          <td class="nav-item">
+                            <a [routerLink]="['/trips/' + selectedTrip.id + '']"> {{selectedTrip.title}}</a>
+                          </td>
                         </tr>
-                        <tr *ngFor="let req of myTripRequests">
+                        <tr>
                           <td class="nav-item">
-                            <a [routerLink]="['/trips/' + req.trip.id + '']">{{req.trip.title}}</a>
+                            Departing:
                           </td>
                           <td class="nav-item">
-                            {{req.user.firstName}} {{req.user.lastName}}
+                            {{selectedTrip.departureAddress.street}} {{selectedTrip.departureAddress.city}}, {{selectedTrip.departureAddress.state}} {{selectedTrip.departureAddress.zip}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Destination:
                           </td>
                           <td class="nav-item">
-                            {{req.travelerStatus}}
+                            {{selectedTrip.destinationAddress.street}} {{selectedTrip.destinationAddress.city}}, {{selectedTrip.destinationAddress.state}} {{selectedTrip.destinationAddress.zip}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Seats Available:
                           </td>
                           <td class="nav-item">
-                            <button type="button" type="button" (click)="approveRequest(req)"
-                              class="btn btn-outline-success">Approve</button>
+                            {{selectedTrip.seatsAvailable}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Cost Per Passenger:
                           </td>
                           <td class="nav-item">
-                            <button type="button" (click)="denyRequest(req)"
-                              class="btn btn-outline-danger">Deny</button>
+                            {{selectedTrip.totalCost}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Dates:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.tripCalendar.startDate}} - {{selectedTrip.tripCalendar.endDate}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Trip Vehicle:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.vehicle.make}} {{selectedTrip.vehicle.model}} {{selectedTrip.vehicle.manufactureYear}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Cargo Capacity:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.cargoCapacity}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Description:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.description}}
                           </td>
                         </tr>
                       </tbody>
                     </table>
-                    <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
-                  </div>
-
+                    <button type="button" type="button"
+                    class="btn btn-outline-success">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                    <button align="center" type="button" (click)="selectedTrip = null" class="btn btn-light">Back</button>
                 </div>
-                <!-- END HOSTING DETAILS -->
-                <!-- <div class="tab-pane" id="vehicles">
+                <!-- END MY HOSTINGS -->
+
+                <!-- START MY PENDING REQUESTS -->
+                <div *ngIf="seeNewTrip && seeMyHostings && !seePendingRequests">
+                  <table class="table table-hover table-striped">
+                    <tbody>
+                      <tr>
+                        <th class="nav-item">
+                          <u>Trip</u>
+                        </th>
+                        <th class="nav-item">
+                          <u>Passenger</u>
+                        </th>
+                        <th class="nav-item">
+                          <u>Status</u>
+                        </th>
+                      </tr>
+                      <tr *ngFor="let req of myTripRequests">
+                        <td class="nav-item">
+                          <a [routerLink]="['/trips/' + req.trip.id + '']">{{req.trip.title}}</a>
+                        </td>
+                        <td class="nav-item">
+                          {{req.user.firstName}} {{req.user.lastName}}
+                        </td>
+                        <td class="nav-item">
+                          {{req.travelerStatus}}
+                        </td>
+                        <td class="nav-item">
+                          <button type="button" type="button" (click)="approveRequest(req)"
+                            class="btn btn-outline-success">Approve</button>
+                        </td>
+                        <td class="nav-item">
+                          <button type="button" (click)="denyRequest(req)" class="btn btn-outline-danger">Deny</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
+                </div>
+
+              </div>
+              <!-- END HOSTING DETAILS -->
+              <!-- <div class="tab-pane" id="vehicles">
                   <form role="form">
                     <div class="form-group row">
                       <label class="col-lg-3 col-form-label form-control-label">First name</label>
@@ -587,7 +685,7 @@
           </div>
         </div> -->
 
-                <!-- <div class="col-md-6">
+              <!-- <div class="col-md-6">
               <h6>Recent badges</h6>
               <a href="#" class="badge badge-dark badge-pill">html5</a>
               <a href="#" class="badge badge-dark badge-pill">react</a>
@@ -610,7 +708,7 @@
                 ><i class="fa fa-eye"></i> 245 Views</span
               >
             </div> -->
-                <!-- <div class="col-md-12">
+              <!-- <div class="col-md-12">
               <h5 class="mt-2">
                 <span class="fa fa-clock-o ion-clock float-right"></span> Recent
                 Activity

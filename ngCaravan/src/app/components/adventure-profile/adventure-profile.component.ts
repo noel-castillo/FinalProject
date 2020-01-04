@@ -25,6 +25,7 @@ export class AdventureProfileComponent implements OnInit {
   adventureTraveler: AdventureTraveler = new AdventureTraveler();
   adventureTravelers: AdventureTraveler[];
   thisTripAdventureTravelers: AdventureTraveler[] = [];
+  thisTripAdventureTravelerss: AdventureTraveler[] = [];
   adventureHostReview: AdventureTraveler;
   currentRate: number;
 
@@ -189,6 +190,7 @@ export class AdventureProfileComponent implements OnInit {
         this.adventure = data;
         console.log('At end of Getting adventure********');
         console.log('**AVENTURE TITLE ' + this.adventure.title);
+        console.log('**AVENTURE HOST ' + this.adventure.host);
         this.address = '';
         this.address += this.adventure.address.street + ', ';
         this.address += this.adventure.address.city + ', ';
@@ -205,16 +207,24 @@ export class AdventureProfileComponent implements OnInit {
             console.log('***SET RATING***');
             this.adventureTravelers.forEach(element => {
               console.log('element***' + element.id);
+              console.log('elementAdventureID***' + element.adventure.id);
+              console.log('THIS.adventure.id***' + this.adventure.id);
 
               // this.currentRate = this.thisTripAdventureTravelers[0].rating;
 
               if (element.adventure.id === this.adventure.id) {
                 console.log('ELEMENT******' + element.adventure.id);
+                this.thisTripAdventureTravelerss.push(element);
+                console.log('ELEMENT ADDED******');
+              }
+
+              if (this.adventure.host.firstName === element.adventure.host.firstName) {
+                console.log('ELEMENT******' + element.adventure.id);
                 this.thisTripAdventureTravelers.push(element);
                 console.log('ELEMENT ADDED******');
               }
             });
-            console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
+            // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
           },
           err => {
             console.error(err);

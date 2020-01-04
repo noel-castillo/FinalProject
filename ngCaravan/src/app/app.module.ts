@@ -38,6 +38,7 @@ import { FriendMessagesPipe } from './pipes/friend-messages.pipe';
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
 import {MatCardModule} from '@angular/material/card';
 import { LatestMessagePipe } from './pipes/latest-message.pipe';
+import { MapPipe } from './pipes/map.pipe';
 
 
 
@@ -72,7 +73,8 @@ import { LatestMessagePipe } from './pipes/latest-message.pipe';
     BottomBarComponent,
     InboxComponent,
     FriendMessagesPipe,
-    LatestMessagePipe
+    LatestMessagePipe,
+    MapPipe
 
 
 

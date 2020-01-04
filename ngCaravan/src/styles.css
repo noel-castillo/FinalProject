@@ -49,8 +49,8 @@ body {
 	height: 100%;
 	font-family: "Lato", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	/* font-smoothing: antialiased; */
-	background: none;
+	font-smoothing: antialiased;
+
 }
 
 h1,

@@ -46,6 +46,8 @@ export class UserProfileComponent implements OnInit {
 
   newImage: Image = new Image();
 
+  newBio = '';
+
   hostTripRequest: TripTraveler[] = [];
 
   myTripRequests: TripTraveler[] = [];
@@ -65,6 +67,8 @@ export class UserProfileComponent implements OnInit {
   seeMyHostings = true;
 
   seePendingRequests = true;
+
+  seeEditBio = true;
 
   // C O N S T R U C T O R
 
@@ -148,14 +152,34 @@ export class UserProfileComponent implements OnInit {
     this.updateUserProfile(this.currentProfile);
   }
 
+  saveBioEdit() {
+    this.currentProfile.bio = this.newBio;
+    this.updateUserProfile(this.currentProfile);
+    this.seeEditBio = true;
+  }
+
   denyRequest(req: TripTraveler) {
     req.travelerStatus = 'Denied';
-    this.tripTravSvc.updateTripTraveler(req);
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to denyRequest()');
+      }
+    );
   }
 
   approveRequest(req: TripTraveler) {
     req.travelerStatus = 'Approved';
-    this.tripTravSvc.updateTripTraveler(req);
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to approveRequest()');
+      }
+    );
   }
 
   ngOnInit() {

@@ -19,20 +19,19 @@
         <!-- END SIDEBAR USER TITLE -->
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-success dropdown-toggle"
-                        role="button">Change Profile Image</button>
-                        <ul class="dropdown-menu dropdown-menu-right mt-4">
-                          <li class="px-6 py-4">
-                            <form>
-                              <div class="form-group">
-                                <input name="url" placeholder="New Image URL" class="form-control form-control-md"
-                                  type="text" [(ngModel)]="newImage.url" required="required">
-                                <button (click)="updateProfileImage()" type="submit"
-                                  class="btn btn-warning btn-block">Submit</button>
-                              </div>
-                            </form>
-                          </li>
-                        </ul>
+          <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+            class="btn btn-outline-success dropdown-toggle" role="button">Change Profile Image</button>
+          <ul class="dropdown-menu dropdown-menu-right mt-4">
+            <li class="px-6 py-4">
+              <form>
+                <div class="form-group">
+                  <input name="url" placeholder="New Image URL" class="form-control form-control-md" type="text"
+                    [(ngModel)]="newImage.url" required="required">
+                  <button (click)="updateProfileImage()" type="submit" class="btn btn-warning btn-block">Submit</button>
+                </div>
+              </form>
+            </li>
+          </ul>
           <button type="button" (click)="logout()" class="btn btn-outline-danger">Logout</button>
           <br>
         </div>
@@ -109,24 +108,26 @@
                                 <button type="button" type="button" class="btn btn-outline-success">Edit</button>
                               </td>
                               <td class="nav-item">
-                                <button type="button" (click)="deleteVehicle(vehicle)" class="btn btn-outline-danger">Delete</button>
+                                <button type="button" (click)="deleteVehicle(vehicle)"
+                                  class="btn btn-outline-danger">Delete</button>
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                        <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-warning dropdown-toggle"
-                        role="button">Add New Vehicle</button>
+                        <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                          class="btn btn-outline-warning dropdown-toggle" role="button">Add New Vehicle</button>
                         <ul class="dropdown-menu dropdown-menu-right mt-4">
                           <li class="px-6 py-4">
                             <form>
                               <div class="form-group">
-                                <input name="make" placeholder="Make" class="form-control form-control-md"
-                                  type="text" [(ngModel)]="newVehicle.make" required="required">
+                                <input name="make" placeholder="Make" class="form-control form-control-md" type="text"
+                                  [(ngModel)]="newVehicle.make" required="required">
                                 <input name="model" placeholder="Model" class="form-control form-control-md" type="text"
                                   [(ngModel)]="newVehicle.model" required="required">
-                                <input name="manufactureYear" placeholder="Year" class="form-control form-control-md" type="number"
-                                  [(ngModel)]="newVehicle.manufactureYear" required="required">
-                                <input name="interiorDescription" placeholder="Description" class="form-control form-control-md" type="text"
+                                <input name="manufactureYear" placeholder="Year" class="form-control form-control-md"
+                                  type="number" [(ngModel)]="newVehicle.manufactureYear" required="required">
+                                <input name="interiorDescription" placeholder="Description"
+                                  class="form-control form-control-md" type="text"
                                   [(ngModel)]="newVehicle.interiorDescription" required="required">
                                 <button (click)="addNewVehicle()" type="submit"
                                   class="btn btn-warning btn-block">Submit</button>
@@ -134,7 +135,8 @@
                             </form>
                           </li>
                         </ul>
-                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
                       </div>
 
                       <div *ngIf="seeNewTrip && seeMyHostings && seePendingRequests && !seeMyTrips">
@@ -159,10 +161,12 @@
                                 <a [routerLink]="['/trips/' + trip.id + '']">{{trip.trip.title}}</a>
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{trip.trip.departureAddress.city}}, {{trip.trip.departureAddress.state}}</button>
+                                <button type="button">{{trip.trip.departureAddress.city}},
+                                  {{trip.trip.departureAddress.state}}</button>
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{trip.trip.destinationAddress.city}}, {{trip.trip.destinationAddress.state}}</button>
+                                <button type="button">{{trip.trip.destinationAddress.city}},
+                                  {{trip.trip.destinationAddress.state}}</button>
                               </td>
                               <td class="nav-item">
                                 <button type="button">{{trip.travelerStatus}}</button>
@@ -170,7 +174,8 @@
                             </tr>
                           </tbody>
                         </table>
-                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
                       </div>
 
                       <div *ngIf="seeVehicles && !seePersonalInformation && seeBio && seeMyTrips">
@@ -221,17 +226,18 @@
                                 Address:
                               </td>
                               <td class="nav-item">
-                                {{currentProfile.address.street}} {{currentProfile.address.city}}, {{currentProfile.address.state}} {{currentProfile.address.zip}}
+                                {{currentProfile.address.street}} {{currentProfile.address.city}},
+                                {{currentProfile.address.state}} {{currentProfile.address.zip}}
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                        <button align="center" type="button" class="btn btn-outline-success"
-                        role="button">Edit</button>
-                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                        <button align="center" type="button" class="btn btn-outline-success" role="button">Edit</button>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
                       </div>
 
-                      <div *ngIf="seeVehicles && seePersonalInformation && !seeBio">
+                      <div *ngIf="seeVehicles && seePersonalInformation && !seeBio && seeMyTrips && seeEditBio">
                         <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
@@ -242,9 +248,31 @@
                             <tr>
                           </tbody>
                         </table>
-                        <button align="center" type="button" class="btn btn-outline-success"
-                        role="button">Edit</button>
-                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                        <button align="center" type="button" (click)="seeEditBio = false"
+                          class="btn btn-outline-success" role="button">Edit</button>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
+                      </div>
+
+                      <div *ngIf="seeVehicles && seePersonalInformation && !seeBio  && seeMyTrips && !seeEditBio">
+                        <form>
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <td class="nav-item">
+                                <input name="newBio" placeholder="{{currentProfile.bio}}"
+                                  class="form-control form-control-lg" type="text" [(ngModel)]="newBio"
+                                  required="required">
+                              </td>
+                            </tr>
+                            <tr>
+                          </tbody>
+                        </table>
+                        <button align="center" type="submit" (click)="saveBioEdit()" class="btn btn-outline-success"
+                          role="button">Save</button>
+                        </form>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
                       </div>
                     </div>
 
@@ -253,7 +281,8 @@
                 </div>
                 <div class="tab-pane" id="hosting">
 
-                  <table *ngIf="seeNewTrip && seeMyHostings && seePendingRequests" class="table table-hover table-striped">
+                  <table *ngIf="seeNewTrip && seeMyHostings && seePendingRequests"
+                    class="table table-hover table-striped">
                     <tbody>
                       <tr>
                         <td class="nav-item">
@@ -292,16 +321,18 @@
                             <a [routerLink]="['/trips/' + trip.id + '']">{{trip.title}}</a>
                           </td>
                           <td class="nav-item">
-                            <button type="button">{{trip.departureAddress.city}}, {{trip.departureAddress.state}}</button>
+                            <button type="button">{{trip.departureAddress.city}},
+                              {{trip.departureAddress.state}}</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button">{{trip.destinationAddress.city}}, {{trip.destinationAddress.state}}</button>
+                            <button type="button">{{trip.destinationAddress.city}},
+                              {{trip.destinationAddress.state}}</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button" type="button"  class="btn btn-outline-success">Edit</button>
+                            <button type="button" type="button" class="btn btn-outline-success">Edit</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button"  class="btn btn-outline-danger">Delete</button>
+                            <button type="button" class="btn btn-outline-danger">Delete</button>
                           </td>
                         </tr>
                       </tbody>
@@ -334,10 +365,12 @@
                             <button type="button">{{req.travelerStatus}}</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button" type="button" (click)="approveRequest(req)" class="btn btn-outline-success">Approve</button>
+                            <button type="button" type="button" (click)="approveRequest(req)"
+                              class="btn btn-outline-success">Approve</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button" (click)="denyRequest(req)" class="btn btn-outline-danger">Deny</button>
+                            <button type="button" (click)="denyRequest(req)"
+                              class="btn btn-outline-danger">Deny</button>
                           </td>
                         </tr>
                       </tbody>

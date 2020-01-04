@@ -170,15 +170,15 @@
                                 <a [routerLink]="['/trips/' + trip.id + '']">{{trip.trip.title}}</a>
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{trip.trip.departureAddress.city}},
-                                  {{trip.trip.departureAddress.state}}</button>
+                                {{trip.trip.departureAddress.city}},
+                                  {{trip.trip.departureAddress.state}}
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{trip.trip.destinationAddress.city}},
-                                  {{trip.trip.destinationAddress.state}}</button>
+                                {{trip.trip.destinationAddress.city}},
+                                  {{trip.trip.destinationAddress.state}}
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{trip.travelerStatus}}</button>
+                                {{trip.travelerStatus}}
                               </td>
                             </tr>
                           </tbody>

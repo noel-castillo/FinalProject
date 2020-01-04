@@ -67,7 +67,7 @@ h6 {
 
 #explorebg {
   /* The image used */
-  background-image: url("https://i.imgur.com/fatLFLw.jpg");
+  background-image: url("https://i.imgur.com/5M9N5nZ.jpg");
   /* Full height */
   height: 100%;
   /* Center and scale the image nicely */
@@ -79,7 +79,7 @@ h6 {
 
 #loginbg {
   /* The image used */
-  background-image: url("https://i.imgur.com/fatLFLw.jpg");
+  background-image: url("https://i.imgur.com/5M9N5nZ.jpg");
   /* Full height */
   height: 100%;
   /* Center and scale the image nicely */
@@ -88,6 +88,21 @@ h6 {
   background-size: cover;
   background-attachment: fixed;
 }
+
+#registerbg {
+  /* The image used */
+  background-image: url("https://i.imgur.com/5M9N5nZ.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+
 /* hr {
     margin: 30px -20px 20px;
     border: 1;

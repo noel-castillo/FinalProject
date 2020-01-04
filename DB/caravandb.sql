@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   `last_name` VARCHAR(45) NULL,
   `bio` VARCHAR(300) NULL,
   `mileage_points` INT NULL,
-  `profile_pic_id` INT NULL,
+  `profile_pic_id` INT NULL DEFAULT 10,
   `address_id` INT NULL,
   `email` VARCHAR(45) NULL,
   `phone` VARCHAR(45) NULL,
@@ -634,6 +634,7 @@ INSERT INTO `image` (`id`, `url`) VALUES (6, 'https://i.imgur.com/vyHrClk.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (7, 'https://i.imgur.com/p8OnkzQ.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (8, 'https://i.imgur.com/BAlRD4j.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (9, 'https://i.imgur.com/mnKY0Wb.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (10, 'https://i.imgur.com/Gcs2dQc.png');
 
 COMMIT;
 

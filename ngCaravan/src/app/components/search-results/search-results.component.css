@@ -1,0 +1,12 @@
+#btn1 {
+  background-color: #E45597;
+  border: 1px solid #696969;
+  color: #F0F0F0;
+  padding: 12px 25px;
+  margin: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}

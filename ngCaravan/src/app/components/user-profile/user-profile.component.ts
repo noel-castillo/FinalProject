@@ -11,6 +11,9 @@ import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
 import { TripTraveler } from 'src/app/models/trip-traveler';
 import { Trip } from 'src/app/models/trip';
+import { Image } from 'src/app/models/image';
+import { NgForm } from '@angular/forms';
+import { AddressService } from 'src/app/services/address.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,7 +28,9 @@ export class UserProfileComponent implements OnInit {
 
   trips: Trip[] = [];
 
-  hostedTrips: Trip[] = [];
+  myHostings: Trip[] = [];
+
+  myTrips: TripTraveler[] = [];
 
   selected: UserProfile = null;
 
@@ -41,9 +46,13 @@ export class UserProfileComponent implements OnInit {
 
   newVehicle: Vehicle = new Vehicle();
 
+  newImage: Image = new Image();
+
+  newBio = '';
+
   hostTripRequest: TripTraveler[] = [];
 
-  tripRequest: TripTraveler[] = [];
+  myTripRequests: TripTraveler[] = [];
 
   tripTraveler = false;
 
@@ -51,13 +60,21 @@ export class UserProfileComponent implements OnInit {
 
   seePersonalInformation = true;
 
+  seeMyTrips = true;
+
   seeBio = true;
 
   seeNewTrip = true;
 
-  seeMyTrips = true;
+  seeMyHostings = true;
 
   seePendingRequests = true;
+
+  seeEditBio = true;
+
+  seeEditPersonalInformation = true;
+
+  selectedTrip: Trip = null;
 
   // C O N S T R U C T O R
 
@@ -68,6 +85,7 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private tripTravSvc: TripTravelerService,
     private tripSvc: TripService,
+    private addrSvc: AddressService,
     private vSvc: VehicleService
   ) { }
 
@@ -77,18 +95,26 @@ export class UserProfileComponent implements OnInit {
   showHosting() {
     this.seeNewTrip = true;
 
-    this.seeMyTrips = true;
+    this.seeMyHostings = true;
 
     this.seePendingRequests = true;
+
+    this.selectedTrip = null;
 
   }
 
   showAccountSettings() {
     this.seeVehicles = true;
 
+    this.seeMyTrips = true;
+
     this.seePersonalInformation = true;
 
+    this.seeEditPersonalInformation = true;
+
     this.seeBio = true;
+
+    this.seeEditBio = true;
 
   }
 
@@ -129,6 +155,69 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  logout() {
+    this.auth.logout();
+    this.router.navigateByUrl('login');
+  }
+
+  updateProfileImage() {
+    this.currentProfile.profilePic.url = this.newImage.url;
+    this.updateUserProfile(this.currentProfile);
+  }
+
+  saveBioEdit() {
+    this.currentProfile.bio = this.newBio;
+    this.updateUserProfile(this.currentProfile);
+    this.seeEditBio = true;
+  }
+
+  savePersonalInformation(form: NgForm) {
+
+    this.currentProfile.address.street = form.value.street;
+    this.currentProfile.address.city = form.value.city;
+    this.currentProfile.address.state = form.value.state;
+    this.currentProfile.address.zip = form.value.zip;
+    this.addrSvc.updateAddress(this.currentProfile.address).subscribe(
+      data => {
+        this.currentProfile.address = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to updateAddress()');
+      }
+    );
+
+    this.currentProfile.firstName = form.value.firstName;
+    this.currentProfile.lastName = form.value.lastName;
+    this.currentProfile.email = form.value.email;
+    this.currentProfile.phone = form.value.phone;
+    this.updateUserProfile(this.currentProfile);
+    this.seeEditPersonalInformation = true;
+  }
+
+  denyRequest(req: TripTraveler) {
+    req.travelerStatus = 'Denied';
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to denyRequest()');
+      }
+    );
+  }
+
+  approveRequest(req: TripTraveler) {
+    req.travelerStatus = 'Approved';
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to approveRequest()');
+      }
+    );
+  }
+
   ngOnInit() {
 
     this.uSvc.getUserInSessionProfile().subscribe(
@@ -140,31 +229,34 @@ export class UserProfileComponent implements OnInit {
       }
     );
 
-    this.tripSvc.index().subscribe(
+    this.tripSvc.indexHosted().subscribe(
       data => {
-        this.trips = data;
-        this.trips.forEach(trip => {
-          if (trip.host.user.username === this.currentProfile.user.username) {
-            this.hostedTrips.push(trip);
-          }
-        });
+        this.myHostings = data;
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to load myTrips');
       }
     );
 
-    this.tripTravSvc.index().subscribe(
+    this.tripTravSvc.myTripRequests().subscribe(
       data => {
-        this.tripRequest = data;
-        this.tripRequest.forEach(req => {
-          if (req.travelerStatus === 'pending') {
-            this.hostTripRequest.push(req);
-          }
-        });
+        console.log('loading requests');
+        this.myTripRequests = data;
+        console.log(data);
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to load myTripRequests');
+      }
+    );
+
+    this.tripTravSvc.myTrips().subscribe(
+      data => {
+        console.log('loading myTrips');
+        this.myTrips = data;
+        console.log(data);
+      },
+      err => {
+        console.log('User Profile Component: Unable to load myTrips');
       }
     );
   }
@@ -179,14 +271,14 @@ export class UserProfileComponent implements OnInit {
         console.error('UserProfile Component reload() DID NOT WORK');
       }
     );
-    this.tripTravSvc.index().subscribe(
+    this.tripTravSvc.myTripRequests().subscribe(
       data => {
-        this.tripRequest = data;
-        this.tripRequest.forEach(req => {
-          if (req.travelerStatus === 'pending') {
-            this.hostTripRequest.push(req);
-          }
-        });
+        this.myTripRequests = data;
+        // this.myTripRequests.forEach(req => {
+        //   if (req.travelerStatus === 'pending') {
+        //     this.hostTripRequest.push(req);
+        //   }
+        // });
       },
       err => {
         console.log(err);

@@ -1,3 +1,4 @@
+import { MapService } from './../../services/map.service';
 import { TripTraveler } from 'src/app/models/trip-traveler';
 import { TripHost } from 'src/app/models/trip-host';
 import { UserProfile } from './../../models/user-profile';
@@ -22,6 +23,8 @@ declare var jQuery: any;
 export class TripProfileComponent implements OnInit {
   // F i e l d s
 
+  builtUrl;
+
   tripHost: UserProfile;
 
   trip: Trip;
@@ -36,8 +39,27 @@ export class TripProfileComponent implements OnInit {
     private tripTravelerSvc: TripTravelerService,
     private vehicleSvc: VehicleService,
     private currentRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private mapSvc: MapService
   ) {}
+
+  getMap() {
+    this.mapSvc.getRoute(this.trip).subscribe(
+      data => {
+        console.log('**^^GETTING MAP**^^');
+        console.log(data);
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
+  getRouteUrl() {
+    this.builtUrl = this.mapSvc.buildRouteUrl(this.trip);
+    console.log('BUILT URL******' + this.builtUrl);
+    return this.builtUrl;
+  }
 
   addTrip(tid) {
     this.tripTraveler.travelerStatus = 'pending';
@@ -172,6 +194,7 @@ export class TripProfileComponent implements OnInit {
     this.tripSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
       data => {
         this.trip = data;
+        this.getRouteUrl();
       },
       err => {
         console.error('ngOnInit error in Trip Profile Component');

@@ -257,10 +257,10 @@
                             <button type="button">{{req.travelerStatus}}</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button" type="button" class="btn btn-outline-success">Approve</button>
+                            <button type="button" type="button" (click)="approveRequest(req)" class="btn btn-outline-success">Approve</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button" class="btn btn-outline-danger">Deny</button>
+                            <button type="button" (click)="denyRequest(req)" class="btn btn-outline-danger">Deny</button>
                           </td>
                         </tr>
                       </tbody>

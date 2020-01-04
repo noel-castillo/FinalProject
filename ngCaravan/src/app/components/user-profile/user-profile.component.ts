@@ -142,6 +142,16 @@ export class UserProfileComponent implements OnInit {
     this.updateUserProfile(this.currentProfile);
   }
 
+  denyRequest(req: TripTraveler) {
+    req.travelerStatus = 'Denied';
+    this.tripTravSvc.updateTripTraveler(req);
+  }
+
+  approveRequest(req: TripTraveler) {
+    req.travelerStatus = 'Approved';
+    this.tripTravSvc.updateTripTraveler(req);
+  }
+
   ngOnInit() {
 
     this.uSvc.getUserInSessionProfile().subscribe(

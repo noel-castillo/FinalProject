@@ -64,23 +64,23 @@
                         <tbody>
                           <tr>
                             <td class="nav-item">
-                              <button type="button" (click)="seePersonalInformation = false">Personal
-                                Information</button>
+                              <a (click)="seePersonalInformation = false">Personal
+                                Information</a>
                             </td>
                           </tr>
                           <tr>
                             <td class="nav-item">
-                              <button type="button" (click)="seeMyTrips = false">My Trips</button>
+                              <a (click)="seeMyTrips = false">My Trips</a>
                             </td>
                           </tr>
                           <tr>
                             <td class="nav-item">
-                              <button type="button" (click)="seeVehicles = false">My Vehicles</button>
+                              <a (click)="seeVehicles = false">My Vehicles</a>
                             </td>
                           </tr>
                           <tr>
                             <td class="nav-item">
-                              <button type="button" (click)="seeBio = false">My Bio</button>
+                              <a (click)="seeBio = false">My Bio</a>
                             </td>
                           </tr>
                         </tbody>
@@ -92,24 +92,24 @@
                           <tbody>
                             <tr>
                               <th class="nav-item">
-                                <button type="button"><u>Make</u></button>
+                                <u>Make</u>
                               </th>
                               <th class="nav-item">
-                                <button type="button"><u>Model</u></button>
+                                <u>Model</u>
                               </th>
                               <th class="nav-item">
-                                <button type="button"><u>Year</u></button>
+                                <u>Year</u>
                               </th>
                             </tr>
                             <tr *ngFor="let vehicle of currentProfile.vehicles">
                               <td class="nav-item">
-                                <button type="button">{{vehicle.make}}</button>
+                                {{vehicle.make}}
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{vehicle.model}}</button>
+                                {{vehicle.model}}
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{vehicle.manufactureYear}}</button>
+                                {{vehicle.manufactureYear}}
                               </td>
                               <td class="nav-item">
                                 <button type="button" type="button" class="btn btn-outline-success">Edit</button>
@@ -153,16 +153,16 @@
                           <tbody>
                             <tr>
                               <th class="nav-item">
-                                <button type="button"><u>Trip</u></button>
+                                <u>Trip</u>
                               </th>
                               <th class="nav-item">
-                                <button type="button"><u>Departing</u></button>
+                                <u>Departing</u>
                               </th>
                               <th class="nav-item">
-                                <button type="button"><u>Destination</u></button>
+                                <u>Destination</u>
                               </th>
                               <th class="nav-item">
-                                <button type="button"><u>Status</u></button>
+                                <u>Status</u>
                               </th>
                             </tr>
                             <tr *ngFor="let trip of myTrips">
@@ -390,17 +390,17 @@
                     <tbody>
                       <tr>
                         <td class="nav-item">
-                          <button type="button" (click)="seeNewTrip = false">Host New Trip</button>
+                          <a (click)="seeNewTrip = false">Host New Trip</a>
                         </td>
                       </tr>
                       <tr>
                         <td class="nav-item">
-                          <button type="button" (click)="seeMyHostings = false">My Hostings</button>
+                          <a (click)="seeMyHostings = false">My Hostings</a>
                         </td>
                       </tr>
                       <tr>
                         <td class="nav-item">
-                          <button type="button" (click)="seePendingRequests = false">Pending Requests</button>
+                          <a (click)="seePendingRequests = false">Pending Requests</a>
                         </td>
                       </tr>
                     </tbody>
@@ -411,13 +411,13 @@
                       <tbody>
                         <tr>
                           <th class="nav-item">
-                            <button type="button"><u>Title</u></button>
+                            <u>Title</u>
                           </th>
                           <th class="nav-item">
-                            <button type="button"><u>Departing</u></button>
+                            <u>Departing</u>
                           </th>
                           <th class="nav-item">
-                            <button type="button"><u>Destination</u></button>
+                            <u>Destination</u>
                           </th>
                         </tr>
                         <tr *ngFor="let trip of myHostings">
@@ -425,12 +425,10 @@
                             <a [routerLink]="['/trips/' + trip.id + '']">{{trip.title}}</a>
                           </td>
                           <td class="nav-item">
-                            <button type="button">{{trip.departureAddress.city}},
-                              {{trip.departureAddress.state}}</button>
+                            {{trip.departureAddress.city}}, {{trip.departureAddress.state}}
                           </td>
                           <td class="nav-item">
-                            <button type="button">{{trip.destinationAddress.city}},
-                              {{trip.destinationAddress.state}}</button>
+                            {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}}
                           </td>
                           <td class="nav-item">
                             <button type="button" type="button" class="btn btn-outline-success">Edit</button>
@@ -449,13 +447,13 @@
                       <tbody>
                         <tr>
                           <th class="nav-item">
-                            <button type="button"><u>Trip</u></button>
+                            <u>Trip</u>
                           </th>
                           <th class="nav-item">
-                            <button type="button"><u>Passenger</u></button>
+                            <u>Passenger</u>
                           </th>
                           <th class="nav-item">
-                            <button type="button"><u>Status</u></button>
+                            <u>Status</u>
                           </th>
                         </tr>
                         <tr *ngFor="let req of myTripRequests">
@@ -463,10 +461,10 @@
                             <a [routerLink]="['/trips/' + req.trip.id + '']">{{req.trip.title}}</a>
                           </td>
                           <td class="nav-item">
-                            <button type="button">{{req.user.firstName}} {{req.user.lastName}}</button>
+                            {{req.user.firstName}} {{req.user.lastName}}
                           </td>
                           <td class="nav-item">
-                            <button type="button">{{req.travelerStatus}}</button>
+                            {{req.travelerStatus}}
                           </td>
                           <td class="nav-item">
                             <button type="button" type="button" (click)="approveRequest(req)"

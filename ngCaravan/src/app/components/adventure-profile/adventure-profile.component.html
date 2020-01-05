@@ -154,7 +154,7 @@
               <h3>Host Reviews</h3>
               <ng-container *ngFor="let advenTraveler of thisTripAdventureTravelers">
                 <div *ngIf="advenTraveler.review" class="reviews-item">
-                  <p>Rating: {{advenTraveler.rating}}</p>
+                  <p>Rating: {{advenTraveler.rating}}/5</p>
 
                     <div *ngIf="advenTraveler.rating === 1">
                       <span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>

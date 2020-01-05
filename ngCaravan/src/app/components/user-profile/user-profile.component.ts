@@ -43,6 +43,8 @@ export class UserProfileComponent implements OnInit {
 
   editVehicle: Vehicle = null;
 
+  editHosting: Trip = null;
+
   newAddress: Address = new Address();
 
   newUser: User = new User();

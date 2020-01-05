@@ -82,7 +82,7 @@
                       </table>
 
                       <!-- START MY VEHICLES -->
-                      <div *ngIf="!seeVehicles && seePersonalInformation && seeMyTrips">
+                      <div *ngIf="!seeVehicles && seePersonalInformation && seeMyTrips && !editVehicle">
                         <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
@@ -107,10 +107,10 @@
                                 {{vehicle.manufactureYear}}
                               </td>
                               <td class="nav-item">
-                                <button type="button" type="button" class="btn btn-outline-success">Edit</button>
+                                <button type="button" type="button" (click)="editVehicle = vehicle" class="btn btn-outline-success">Edit</button>
                               </td>
                               <td class="nav-item">
-                                <button type="button" (click)="deleteVehicle(vehicle)"
+                                <button type="button" (click)="disableVehicle(vehicle)"
                                   class="btn btn-outline-danger">Delete</button>
                               </td>
                             </tr>
@@ -141,7 +141,80 @@
                           class="btn btn-light">Back</button>
                       </div>
                       <!-- END MY VEHICLES -->
+                      <!-- START EDIT VEHICLE -->
 
+                      <div
+                      *ngIf="!seeVehicles && seePersonalInformation && seeMyTrips && editVehicle">
+                      <form>
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <td class="nav-item">
+                                Make:
+                              </td>
+                              <td class="nav-item">
+                              <input type="text" name="make" class="form-control form-control-lg"
+                              required="required" type="text" [(ngModel)]="editVehicle.make">
+                            </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Model:
+                              </td>
+                              <td class="nav-item">
+                                <input type="text" name="model" class="form-control form-control-lg"
+                                  required="required" type="text" [(ngModel)]="editVehicle.model">
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Manufacture Year:
+                              </td>
+                              <td class="nav-item">
+                                <input type="text" name="manufactureYear" class="form-control form-control-lg"
+                                  required="required" type="text" [(ngModel)]="editVehicle.manufactureYear">
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Capacity:
+                              </td>
+                              <td class="nav-item">
+                                <input type="number" name="manufacutreYear" class="form-control form-control-lg"
+                                  required="required" type="text" [(ngModel)]="editVehicle.capacity">
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Seats Available:
+                              </td>
+                              <td class="nav-item">
+                                <input type="text" name="seatsAvailable" class="form-control form-control-lg"
+                                  required="required" type="number" [(ngModel)]="editVehicle.seatsAvailable">
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Interior Description:
+                              </td>
+                              <td class="nav-item">
+                                <input type="text" name="interiorDescription" class="form-control form-control-lg"
+                                  required="required" type="text" [(ngModel)]="editVehicle.interiorDescription">
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button align="center" type="submit" (click)="saveVehicle()"
+                          class="btn btn-outline-success" role="button">Save</button>
+                        <button align="center" type="button" (click)="editVehicle = null"
+                          class="btn btn-light">Cancel</button>
+                      </form>
+                      <br>
+                      <br>
+                      <br>
+                    </div>
+
+                      <!--  END EDIT VEHICLE -->
                       <!-- START MY TRIPS -->
                       <div *ngIf="seeVehicles && seePersonalInformation && !seeMyTrips">
                         <table class="table table-hover table-striped">
@@ -631,7 +704,96 @@
                     <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
                   </div>
 
-                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests && selectedTrip">
+                  <!-- START HOSTING DETAILS -->
+                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests && selectedTrip && !editHosting">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <td class="nav-item">
+                            Title:
+                          </td>
+                          <td class="nav-item">
+                            <a [routerLink]="['/trips/' + selectedTrip.id + '']"> {{selectedTrip.title}}</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Departing:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.departureAddress.street}} {{selectedTrip.departureAddress.city}},
+                            {{selectedTrip.departureAddress.state}} {{selectedTrip.departureAddress.zip}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Destination:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.destinationAddress.street}} {{selectedTrip.destinationAddress.city}},
+                            {{selectedTrip.destinationAddress.state}} {{selectedTrip.destinationAddress.zip}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Seats Available:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.seatsAvailable}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Cost Per Passenger:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.totalCost}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Dates:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.tripCalendar.startDate}} - {{selectedTrip.tripCalendar.endDate}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Trip Vehicle:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.vehicle.make}} {{selectedTrip.vehicle.model}}
+                            {{selectedTrip.vehicle.manufactureYear}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Cargo Capacity:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.cargoCapacity}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Description:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.description}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button type="button" type="button" (click)="editHosting = selectedTrip" class="btn btn-outline-success">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                    <button align="center" type="button" (click)="selectedTrip = null"
+                      class="btn btn-light">Back</button>
+                  </div>
+                  <!-- END HOSTING DETAILS -->
+
+                  <!-- START EDIT HOSTING -->
+                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests && selectedTrip && editHosting">
                     <table class="table table-hover table-striped">
                       <tbody>
                         <tr>
@@ -716,6 +878,7 @@
                     <button align="center" type="button" (click)="selectedTrip = null"
                       class="btn btn-light">Back</button>
                   </div>
+                  <!-- END EDIT HOSTING -->
                   <!-- END MY HOSTINGS -->
 
                   <!-- START MY PENDING REQUESTS -->

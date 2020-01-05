@@ -1,4 +1,3 @@
-import { UserService } from './../../services/user.service';
 import { VehicleService } from './../../services/vehicle.service';
 import { Vehicle } from './../../models/vehicle';
 import { TripService } from 'src/app/services/trip.service';
@@ -42,6 +41,10 @@ export class UserProfileComponent implements OnInit {
 
   editUserProfile: UserProfile = null;
 
+  editVehicle: Vehicle = null;
+
+  editHosting: Trip = null;
+
   newAddress: Address = new Address();
 
   newUser: User = new User();
@@ -76,8 +79,6 @@ export class UserProfileComponent implements OnInit {
 
   selectedTrip: Trip = null;
 
-
-
   // C O N S T R U C T O R
 
   constructor(
@@ -89,9 +90,10 @@ export class UserProfileComponent implements OnInit {
     private tripSvc: TripService,
     private addrSvc: AddressService,
     private vSvc: VehicleService
-  ) {}
+  ) { }
 
   // M E T H O D S
+
 
   showHosting() {
     this.seeNewTrip = true;
@@ -102,9 +104,10 @@ export class UserProfileComponent implements OnInit {
 
     this.selectedTrip = null;
 
-    this.newTrip.departureAddress = this.newAddress;
-    this.newTrip.destinationAddress = this.newAddress;
+    this.newTrip.departureAddress = new Address();
+    this.newTrip.destinationAddress = new Address();
     this.newTrip.tripCalendar = this.newTripCalendar;
+
   }
 
   showAccountSettings() {
@@ -118,6 +121,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   addNewVehicle() {
+
     this.vSvc.create(this.newVehicle).subscribe(
       data => {
         console.log('Vehicle has been created!');
@@ -140,6 +144,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   createTrip() {
+
     this.tripSvc.create(this.newTrip).subscribe(
       data => {
         this.myHostings.push(data);
@@ -152,18 +157,19 @@ export class UserProfileComponent implements OnInit {
       err => {
         console.log(err);
       }
+
     );
+
   }
 
-  deleteVehicle(vehicle: Vehicle) {
-    this.vSvc.delete(vehicle.id).subscribe(
+  disableVehicle(vehicle: Vehicle) {
+    vehicle.enabled = false;
+    this.vSvc.updateVehicle(vehicle).subscribe(
       data => {
-        console.log('Vehicle has been deleted!');
-        const index = this.currentProfile.vehicles.indexOf(vehicle);
-        console.log(this.currentProfile.vehicles.splice(index, 1));
+        console.log('User Profile Component: Able to disableVehicle()');
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to disableVehicle()');
       }
     );
   }
@@ -177,7 +183,19 @@ export class UserProfileComponent implements OnInit {
     this.currentProfile.profilePic.url = this.newImage.url;
     this.updateUserProfile(this.currentProfile);
   }
+
+  saveVehicle() {
+    this.vSvc.updateVehicle(this.editVehicle).subscribe(
+      data => {
+        this.editVehicle = null;
+      },
+      err => {
+        console.log('User Profile Component: Unable to saveVehicle()');
+      }
+    );
+  }
   savePersonalInformation() {
+
     this.addrSvc.updateAddress(this.currentProfile.address).subscribe(
       data => {
         this.currentProfile.address = data;
@@ -215,14 +233,10 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
-        if (this.currentProfile.user.role === 'admin') {
-          this.router.navigateByUrl('admin');
-        } else {
-          this.router.navigateByUrl('user-profiles');
-        }
       },
       err => {
         console.log(err);

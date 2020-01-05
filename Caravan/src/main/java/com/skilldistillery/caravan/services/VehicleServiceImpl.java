@@ -81,6 +81,7 @@ public class VehicleServiceImpl implements VehicleService {
 			oldVehicle.setSeatsAvailable(vehicle.getSeatsAvailable());
 			oldVehicle.setInteriorDescription(vehicle.getInteriorDescription());
 			oldVehicle.setUserProfile(vehicle.getUserProfile());
+			oldVehicle.setEnabled(vehicle.isEnabled());
 
 			return vehicleRepo.saveAndFlush(oldVehicle);
 		}

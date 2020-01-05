@@ -30,6 +30,8 @@ export class TripProfileComponent implements OnInit {
   trip: Trip;
   address = '';
   tripTraveler: TripTraveler = new TripTraveler();
+  iframeURL = '';
+
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length

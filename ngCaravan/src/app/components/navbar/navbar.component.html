@@ -20,18 +20,15 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" [routerLink]="['/register']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Register </a>
           <a class="nav-item nav-link" [routerLink]="['/login']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Login </a>
-          <a class="nav-item nav-link" [routerLink]="['/adventures']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Adventures </a>
-
         </div>
       </div>
       <div *ngIf="checkIfLoggedIn()">
         <div class="navbar-nav">
           <a class="nav-item nav-link" [routerLink]="['/user-profiles']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; My Profile </a>
-          <a class="nav-item nav-link" [routerLink]="['/trips']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; My Trips </a>
-          <a class="nav-item nav-link" [routerLink]="['/adventures']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; My Adventures </a>
-
           <a class="nav-item nav-link" [routerLink]="['/inbox']" style="font-size: 18px !important; color: black">&nbsp; &nbsp; &nbsp; &nbsp; Inbox </a>
           <app-logout></app-logout>
+          <p style="float:right;"><strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            Welcome, {{userProf.firstName}}! </strong></p>
         </div>
       </div>
     </div>

@@ -43,6 +43,7 @@ export class UserProfileService {
       })
     );
   }
+
   getUserInSessionProfile() {
     const credentials = this.authService.getCredentials();
     const httpOptions = {

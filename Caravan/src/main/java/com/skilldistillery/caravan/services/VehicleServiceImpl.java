@@ -61,6 +61,7 @@ public class VehicleServiceImpl implements VehicleService {
 		
 		if (vehicle != null) {
 			vehicle.setUserProfile(userProfile);
+			vehicle.setEnabled(true);
 			return vehicleRepo.saveAndFlush(vehicle);
 		} else {
 

@@ -41,7 +41,17 @@ public class TripServiceImpl implements TripService {
 	
 	@Autowired 
 	private TripCalendarRepository tcRepo;
+	
+	@Override
+	public List<Trip> index() {
+		return tRepo.findAll();
+	}
 
+	@Override
+	public List<Trip> indexHosted(String username) {
+		
+		return tRepo.findByHost_User_Username(username);
+	}
 
 	@Override
 	public Trip create(Trip trip, Principal prin) {
@@ -61,6 +71,7 @@ public class TripServiceImpl implements TripService {
 		trip.setDepartureAddress(address);
 		trip.setDestinationAddress(address2);
 		trip.setHost(userProfile);
+		trip.setEnabled(true);
 		trip = tRepo.saveAndFlush(trip);
 		
 		tc.setTrip(trip);
@@ -175,17 +186,6 @@ public class TripServiceImpl implements TripService {
 			deleted = true;
 		}
 		return deleted;
-	}
-
-	@Override
-	public List<Trip> index() {
-		return tRepo.findAll();
-	}
-
-	@Override
-	public List<Trip> indexHosted(String username) {
-		
-		return tRepo.findByHost_User_Username(username);
 	}
 
 }

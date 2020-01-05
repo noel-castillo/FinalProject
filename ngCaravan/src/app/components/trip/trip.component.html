@@ -1,7 +1,9 @@
+
 <h1>TRIP</h1>
-<a  (click)="new=!new">Make New Trip</a>
+<a  (click)="new=true">Make New Trip</a>
+
   <div *ngIf="new">
-    <div id="createNewTrip" *ngIf=" ! editTrip">
+    <div id="createNewTrip" *ngIf="!editTrip">
       <form #createNewTripForm="ngForm">
 
         <hr>

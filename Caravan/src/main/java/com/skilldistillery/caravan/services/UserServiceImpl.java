@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User create(User user) {
 		if (user != null) {
-			
+			user.setEnabled(true);
 			return aSvc.register(user);
 		} else {
 
@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
 
 			oldUser.setEnabled(user.isEnabled());
 			oldUser.setPassword(user.getPassword());
-			oldUser.setRole(user.getUsername());
+			oldUser.setRole(user.getRole());
+			
 
 			return uRepo.saveAndFlush(oldUser);
 		}

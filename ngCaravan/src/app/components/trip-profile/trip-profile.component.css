@@ -28,3 +28,9 @@ li {
   font-size: 20px;
   padding-left: 30px;
 }
+
+.photo {
+  border-radius: 50%;
+  height: 10%;
+  width: 10%;
+}

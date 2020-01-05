@@ -20,22 +20,14 @@
                                 <p>Description: {{trip.description}}</p>
                                 <p>Total Cost: ${{trip.totalCost}}</p>
                                 <p>Vehicle: {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
-                                <div (click)="addTrip(trip.id); alert()" class="closed">Join</div>
+                                <div *ngIf="joined" class="closed">{{joined.travelerStatus}}</div>
+                                <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="closed">Join</div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 offset-lg-1">
                         <div class="intro-share">
                             <div class="share-btn">
-                                <a href="#" class="share">Share</a>
-                                <a href="#">Submit a Review</a>
-                            </div>
-                            <div class="share-icon">
-                                <a href="#"><i class="fa fa-map-marker"></i></a>
-                                <a href="#"><i class="fa fa-book"></i></a>
-                                <a href="#"><i class="fa fa-hand-o-right"></i></a>
-                                <a href="#"><i class="fa fa-user-o"></i></a>
-                                <a href="#"><i class="fa fa-star-o"></i></a>
                             </div>
                         </div>
                     </div>
@@ -61,7 +53,7 @@
                                 <ng-container *ngFor="let advenTravelerr of thisTripTravelers">
                                 <div *ngIf="advenTravelerr" class="reviews-item">
                                   <ul>
-                                    <li>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</li>
+                                    <li> <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</li>
                                   </ul>
                                   <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
                                 </div>

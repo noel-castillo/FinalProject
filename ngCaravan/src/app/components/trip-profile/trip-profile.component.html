@@ -18,10 +18,9 @@
                                 <p>Departure Location: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
                                 <p>Destination Location: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
                                 <p>Description: {{trip.description}}</p>
-                                <p>Total Cost: {{trip.totalCost}}</p>
+                                <p>Total Cost: ${{trip.totalCost}}</p>
                                 <p>Vehicle: {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
                                 <div (click)="addTrip(trip.id)" class="closed">Join</div>
-                                <div class="open">Save</div>
                             </div>
                         </div>
                     </div>
@@ -80,8 +79,8 @@
 
                                       <p>Name: {{trip.host.firstName}}, {{trip.host.lastName}}</p>
                                      <p>Phone: {{trip.host.phone}}</p>
-                                     <p>Email: ${{trip.host.email}}</p>
-                                      <p>Bio: ${{trip.host.bio}}</p>
+                                     <p>Email: {{trip.host.email}}</p>
+                                      <p>Bio: {{trip.host.bio}}</p>
 
                                   </mat-card-content>
 
@@ -96,13 +95,30 @@
                                   <ng-container *ngFor="let advenTraveler of thisTripTravelers">
                                   <div *ngIf="advenTraveler.review" class="reviews-item">
                                     <p>Rating: {{advenTraveler.rating}}</p>
-                                    <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+
+                                    <div *ngIf="advenTraveler.rating === 1">
+                                      <span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
+
                                     </div>
+
+                                    <div *ngIf="advenTraveler.rating === 2">
+                                      <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
+
+                                    </div>
+
+                                    <div *ngIf="advenTraveler.rating === 3">
+                                      <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
+
+                                    </div>
+
+                                    <div *ngIf="advenTraveler.rating === 4">
+                                      <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span>
+                                    </div>
+
+                                    <div *ngIf="advenTraveler.rating === 5">
+                                      <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span>
+                                    </div>
+
                                     <p>{{advenTraveler.review}}</p>
                                     <div class="client-text">
                                         <h5>{{advenTraveler.user.firstName}}, {{advenTraveler.user.lastName}}</h5>

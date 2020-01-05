@@ -23,8 +23,6 @@ export class NavbarComponent implements OnInit {
     this.usrProfSvc.getUserInSessionProfile().subscribe(
       data => {
         this.userProf = data;
-        console.log(this.userProf);
-        console.log(data);
       },
       error => {
         console.error(error);

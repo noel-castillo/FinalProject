@@ -1,8 +1,8 @@
 import { UserProfile } from 'src/app/models/user-profile';
+import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from 'src/app/services/user-profile.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -33,6 +33,7 @@ export class NavbarComponent implements OnInit {
       }
     );
   }
+
   checkIfLoggedIn() {
     return this.auth.checkLogin();
   }

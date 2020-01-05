@@ -224,7 +224,6 @@ export class AdventureProfileComponent implements OnInit {
                 console.log('ELEMENT ADDED******');
               }
             });
-            // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
           },
           err => {
             console.error(err);

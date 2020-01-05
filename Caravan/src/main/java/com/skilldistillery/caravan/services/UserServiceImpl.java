@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User update(User user, String username, int id) {
-		User oldUser = uRepo.findByUsernameAndId(username, id);
+		User oldUser = uRepo.findById(id).get();
 
 		if (oldUser != null) {
 

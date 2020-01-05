@@ -1149,9 +1149,11 @@ ol {
 }
 
 .copyright {
+  margin: 0 auto 40px;
+  width: 100%;
+  text-align: center;
 	color: #414141;
 	font-size: 14px;
-	margin-bottom: 10px;
 }
 
 .copyright a {

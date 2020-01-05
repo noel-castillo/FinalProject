@@ -30,8 +30,12 @@ export class TripProfileComponent implements OnInit {
   trip: Trip;
   address = '';
   tripTraveler: TripTraveler = new TripTraveler();
+<<<<<<< HEAD
   tripTravelers: TripTraveler[] = [];
   thisTripTravelers: TripTraveler[] = [];
+=======
+  iframeURL = '';
+>>>>>>> 26fea3c1b93d9f3eb64d7c8cef544ff469e0b7b0
 
 
   // C o n s t r u c t o r

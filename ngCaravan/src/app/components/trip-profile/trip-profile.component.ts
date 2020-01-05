@@ -47,6 +47,10 @@ export class TripProfileComponent implements OnInit {
     private mapSvc: MapService
   ) {}
 
+  alert() {
+    window.alert('Your join request has been sent!');
+  }
+
   getMap() {
     this.mapSvc.getRoute(this.trip).subscribe(
       data => {

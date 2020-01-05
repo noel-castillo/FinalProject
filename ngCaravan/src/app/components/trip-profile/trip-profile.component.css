@@ -22,3 +22,9 @@
   font-size: 35px;
   color: black;
 }
+
+li {
+  list-style-position: inside;
+  font-size: 20px;
+  padding-left: 30px;
+}

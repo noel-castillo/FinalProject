@@ -1,3 +1,4 @@
+import { AdminComponent } from './components/admin/admin.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
@@ -23,6 +24,7 @@ import { InboxComponent } from './components/inbox/inbox.component';
 
 const routes: Routes = [
   {path: 'addresses', component: AddressComponent},
+  {path: 'admin', component: AdminComponent},
   {path: 'bottom-bar', component: BottomBarComponent},
   {path: 'adventures', component: AdventureComponent},
   {path: 'adventures/:id', component: AdventureComponent},

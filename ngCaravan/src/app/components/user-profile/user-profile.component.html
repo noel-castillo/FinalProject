@@ -97,6 +97,7 @@
                               </th>
                             </tr>
                             <tr *ngFor="let vehicle of currentProfile.vehicles">
+                              <ng-container *ngIf="vehicle.enabled">
                               <td class="nav-item">
                                 {{vehicle.make}}
                               </td>
@@ -109,10 +110,7 @@
                               <td class="nav-item">
                                 <button type="button" type="button" (click)="editVehicle = vehicle" class="btn btn-outline-success">Edit</button>
                               </td>
-                              <td class="nav-item">
-                                <button type="button" (click)="disableVehicle(vehicle)"
-                                  class="btn btn-outline-danger">Delete</button>
-                              </td>
+                            </ng-container>
                             </tr>
                           </tbody>
                         </table>
@@ -206,6 +204,8 @@
                         </table>
                         <button align="center" type="submit" (click)="saveVehicle()"
                           class="btn btn-outline-success" role="button">Save</button>
+                            <button type="button" (click)="disableVehicle(editVehicle)"
+                              class="btn btn-outline-danger">Delete</button>
                         <button align="center" type="button" (click)="editVehicle = null"
                           class="btn btn-light">Cancel</button>
                       </form>

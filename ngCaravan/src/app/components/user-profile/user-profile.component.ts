@@ -167,6 +167,7 @@ export class UserProfileComponent implements OnInit {
     this.vSvc.updateVehicle(vehicle).subscribe(
       data => {
         console.log('User Profile Component: Able to disableVehicle()');
+        this.editVehicle = null;
       },
       err => {
         console.log('User Profile Component: Unable to disableVehicle()');

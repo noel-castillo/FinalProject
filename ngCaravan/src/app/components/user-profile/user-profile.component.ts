@@ -102,8 +102,8 @@ export class UserProfileComponent implements OnInit {
 
     this.selectedTrip = null;
 
-    this.newTrip.departureAddress = this.newAddress;
-    this.newTrip.destinationAddress = this.newAddress;
+    this.newTrip.departureAddress = new Address();
+    this.newTrip.destinationAddress = new Address();
     this.newTrip.tripCalendar = this.newTripCalendar;
 
   }

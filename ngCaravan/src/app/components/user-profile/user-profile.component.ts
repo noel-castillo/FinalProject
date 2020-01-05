@@ -14,6 +14,7 @@ import { Trip } from 'src/app/models/trip';
 import { Image } from 'src/app/models/image';
 import { NgForm } from '@angular/forms';
 import { AddressService } from 'src/app/services/address.service';
+import { TripCalendar } from 'src/app/models/trip-calendar';
 
 @Component({
   selector: 'app-user-profile',
@@ -40,6 +41,8 @@ export class UserProfileComponent implements OnInit {
 
   editUserProfile: UserProfile = null;
 
+  editVehicle: Vehicle = null;
+
   newAddress: Address = new Address();
 
   newUser: User = new User();
@@ -49,6 +52,8 @@ export class UserProfileComponent implements OnInit {
   newImage: Image = new Image();
 
   newTrip: Trip = new Trip();
+
+  newTripCalendar: TripCalendar = new TripCalendar();
 
   hostTripRequest: TripTraveler[] = [];
 
@@ -62,15 +67,11 @@ export class UserProfileComponent implements OnInit {
 
   seeMyTrips = true;
 
-  seeBio = true;
-
   seeNewTrip = true;
 
   seeMyHostings = true;
 
   seePendingRequests = true;
-
-  seeEditBio = true;
 
   seeEditPersonalInformation = true;
 
@@ -101,6 +102,10 @@ export class UserProfileComponent implements OnInit {
 
     this.selectedTrip = null;
 
+    this.newTrip.departureAddress = this.newAddress;
+    this.newTrip.destinationAddress = this.newAddress;
+    this.newTrip.tripCalendar = this.newTripCalendar;
+
   }
 
   showAccountSettings() {
@@ -111,11 +116,6 @@ export class UserProfileComponent implements OnInit {
     this.seePersonalInformation = true;
 
     this.seeEditPersonalInformation = true;
-
-    this.seeBio = true;
-
-    this.seeEditBio = true;
-
   }
 
   addNewVehicle() {
@@ -141,16 +141,33 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  deleteVehicle(vehicle: Vehicle) {
+  createTrip() {
 
-    this.vSvc.delete(vehicle.id).subscribe(
+    this.tripSvc.create(this.newTrip).subscribe(
       data => {
-        console.log('Vehicle has been deleted!');
-        const index = this.currentProfile.vehicles.indexOf(vehicle);
-        console.log(this.currentProfile.vehicles.splice(index, 1));
+        this.myHostings.push(data);
+        this.newTrip.departureAddress = this.newAddress;
+        this.newTrip.destinationAddress = this.newAddress;
+        this.newTrip.tripCalendar = this.newTripCalendar;
+        this.seeNewTrip = true;
+        this.seeMyHostings = false;
       },
       err => {
         console.log(err);
+      }
+
+    );
+
+  }
+
+  disableVehicle(vehicle: Vehicle) {
+    vehicle.enabled = false;
+    this.vSvc.updateVehicle(vehicle).subscribe(
+      data => {
+        console.log('User Profile Component: Able to disableVehicle()');
+      },
+      err => {
+        console.log('User Profile Component: Unable to disableVehicle()');
       }
     );
   }
@@ -165,11 +182,16 @@ export class UserProfileComponent implements OnInit {
     this.updateUserProfile(this.currentProfile);
   }
 
-  saveBioEdit() {
-    this.updateUserProfile(this.currentProfile);
-    this.seeEditBio = true;
+  saveVehicle() {
+    this.vSvc.updateVehicle(this.editVehicle).subscribe(
+      data => {
+        this.editVehicle = null;
+      },
+      err => {
+        console.log('User Profile Component: Unable to saveVehicle()');
+      }
+    );
   }
-
   savePersonalInformation() {
 
     this.addrSvc.updateAddress(this.currentProfile.address).subscribe(

@@ -21,7 +21,7 @@ export class TripService {
   // M e t h o d s
 
   index() {
-    const credentials = this.authService.getCredentials();
+    const credentials = this.authService.generateBasicAuthCredentials('shaun', 'wombat1');
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,

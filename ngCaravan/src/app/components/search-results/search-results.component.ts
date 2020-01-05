@@ -21,6 +21,7 @@ export class SearchResultsComponent implements OnInit {
   searchNum: string;
   searchTrips = 'trips';
   searchAdventures = 'adventures';
+  searchResult = false;
 
   // C o n s t r u c t o r
 
@@ -32,6 +33,7 @@ export class SearchResultsComponent implements OnInit {
   // M E T H O D S
 
   ngOnInit() {
+    this.searchResult = false;
     this.trips = null;
     this.adventures = null;
     this.tripSvc.index().subscribe(

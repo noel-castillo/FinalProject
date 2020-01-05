@@ -3,14 +3,14 @@ export class User {
   username: string;
   password: string;
   role: string;
-  enabled: true;
+  enabled: boolean;
 
   constructor(
     id?: number,
     username?: string,
     password?: string,
     role?: string,
-    enabled?: true
+    enabled?: boolean
   ) {
     this.id = id;
     this.username = username;

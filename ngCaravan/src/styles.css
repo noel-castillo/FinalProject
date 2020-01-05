@@ -49,8 +49,8 @@ body {
 	height: 100%;
 	font-family: "Lato", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	/* font-smoothing: antialiased; */
-	background: none;
+	font-smoothing: antialiased;
+
 }
 
 h1,
@@ -69,7 +69,7 @@ h6 {
   /* The image used */
   background-image: url("https://i.imgur.com/5M9N5nZ.jpg");
   /* Full height */
-  height: 100%;
+  min-height: 100%;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
@@ -81,7 +81,7 @@ h6 {
   /* The image used */
   background-image: url("https://i.imgur.com/5M9N5nZ.jpg");
   /* Full height */
-  height: 100%;
+  min-height: 100%;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
@@ -93,7 +93,7 @@ h6 {
   /* The image used */
   background-image: url("https://i.imgur.com/5M9N5nZ.jpg");
   /* Full height */
-  height: 100%;
+  min-height: 100%;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;

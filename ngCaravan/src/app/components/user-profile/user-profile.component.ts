@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { VehicleService } from './../../services/vehicle.service';
 import { Vehicle } from './../../models/vehicle';
 import { TripService } from 'src/app/services/trip.service';
@@ -11,6 +12,10 @@ import { Address } from 'src/app/models/address';
 import { User } from 'src/app/models/user';
 import { TripTraveler } from 'src/app/models/trip-traveler';
 import { Trip } from 'src/app/models/trip';
+import { Image } from 'src/app/models/image';
+import { NgForm } from '@angular/forms';
+import { AddressService } from 'src/app/services/address.service';
+import { TripCalendar } from 'src/app/models/trip-calendar';
 
 @Component({
   selector: 'app-user-profile',
@@ -25,7 +30,9 @@ export class UserProfileComponent implements OnInit {
 
   trips: Trip[] = [];
 
-  hostedTrips: Trip[] = [];
+  myHostings: Trip[] = [];
+
+  myTrips: TripTraveler[] = [];
 
   selected: UserProfile = null;
 
@@ -41,9 +48,15 @@ export class UserProfileComponent implements OnInit {
 
   newVehicle: Vehicle = new Vehicle();
 
+  newImage: Image = new Image();
+
+  newTrip: Trip = new Trip();
+
+  newTripCalendar: TripCalendar = new TripCalendar();
+
   hostTripRequest: TripTraveler[] = [];
 
-  tripRequest: TripTraveler[] = [];
+  myTripRequests: TripTraveler[] = [];
 
   tripTraveler = false;
 
@@ -51,13 +64,19 @@ export class UserProfileComponent implements OnInit {
 
   seePersonalInformation = true;
 
-  seeBio = true;
+  seeMyTrips = true;
 
   seeNewTrip = true;
 
-  seeMyTrips = true;
+  seeMyHostings = true;
 
   seePendingRequests = true;
+
+  seeEditPersonalInformation = true;
+
+  selectedTrip: Trip = null;
+
+
 
   // C O N S T R U C T O R
 
@@ -68,32 +87,37 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private tripTravSvc: TripTravelerService,
     private tripSvc: TripService,
+    private addrSvc: AddressService,
     private vSvc: VehicleService
-  ) { }
+  ) {}
 
   // M E T H O D S
-
 
   showHosting() {
     this.seeNewTrip = true;
 
-    this.seeMyTrips = true;
+    this.seeMyHostings = true;
 
     this.seePendingRequests = true;
 
+    this.selectedTrip = null;
+
+    this.newTrip.departureAddress = this.newAddress;
+    this.newTrip.destinationAddress = this.newAddress;
+    this.newTrip.tripCalendar = this.newTripCalendar;
   }
 
   showAccountSettings() {
     this.seeVehicles = true;
 
+    this.seeMyTrips = true;
+
     this.seePersonalInformation = true;
 
-    this.seeBio = true;
-
+    this.seeEditPersonalInformation = true;
   }
 
   addNewVehicle() {
-
     this.vSvc.create(this.newVehicle).subscribe(
       data => {
         console.log('Vehicle has been created!');
@@ -115,8 +139,23 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  deleteVehicle(vehicle: Vehicle) {
+  createTrip() {
+    this.tripSvc.create(this.newTrip).subscribe(
+      data => {
+        this.myHostings.push(data);
+        this.newTrip.departureAddress = this.newAddress;
+        this.newTrip.destinationAddress = this.newAddress;
+        this.newTrip.tripCalendar = this.newTripCalendar;
+        this.seeNewTrip = true;
+        this.seeMyHostings = false;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
 
+  deleteVehicle(vehicle: Vehicle) {
     this.vSvc.delete(vehicle.id).subscribe(
       data => {
         console.log('Vehicle has been deleted!');
@@ -129,42 +168,95 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
+  logout() {
+    this.auth.logout();
+    this.router.navigateByUrl('login');
+  }
 
+  updateProfileImage() {
+    this.currentProfile.profilePic.url = this.newImage.url;
+    this.updateUserProfile(this.currentProfile);
+  }
+  savePersonalInformation() {
+    this.addrSvc.updateAddress(this.currentProfile.address).subscribe(
+      data => {
+        this.currentProfile.address = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to updateAddress()');
+      }
+    );
+    this.updateUserProfile(this.currentProfile);
+    this.seeEditPersonalInformation = true;
+  }
+
+  denyRequest(req: TripTraveler) {
+    req.travelerStatus = 'Denied';
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to denyRequest()');
+      }
+    );
+  }
+
+  approveRequest(req: TripTraveler) {
+    req.travelerStatus = 'Approved';
+    this.tripTravSvc.updateTripTraveler(req).subscribe(
+      data => {
+        req = data;
+      },
+      err => {
+        console.log('User Profile Component: Unable to approveRequest()');
+      }
+    );
+  }
+
+  ngOnInit() {
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
+        if (this.currentProfile.user.role === 'admin') {
+          this.router.navigateByUrl('admin');
+        } else {
+          this.router.navigateByUrl('user-profiles');
+        }
       },
       err => {
         console.log(err);
       }
     );
 
-    this.tripSvc.index().subscribe(
+    this.tripSvc.indexHosted().subscribe(
       data => {
-        this.trips = data;
-        this.trips.forEach(trip => {
-          if (trip.host.user.username === this.currentProfile.user.username) {
-            this.hostedTrips.push(trip);
-          }
-        });
+        this.myHostings = data;
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to load myTrips');
       }
     );
 
-    this.tripTravSvc.index().subscribe(
+    this.tripTravSvc.myTripRequests().subscribe(
       data => {
-        this.tripRequest = data;
-        this.tripRequest.forEach(req => {
-          if (req.travelerStatus === 'pending') {
-            this.hostTripRequest.push(req);
-          }
-        });
+        console.log('loading requests');
+        this.myTripRequests = data;
+        console.log(data);
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to load myTripRequests');
+      }
+    );
+
+    this.tripTravSvc.myTrips().subscribe(
+      data => {
+        console.log('loading myTrips');
+        this.myTrips = data;
+        console.log(data);
+      },
+      err => {
+        console.log('User Profile Component: Unable to load myTrips');
       }
     );
   }
@@ -179,14 +271,14 @@ export class UserProfileComponent implements OnInit {
         console.error('UserProfile Component reload() DID NOT WORK');
       }
     );
-    this.tripTravSvc.index().subscribe(
+    this.tripTravSvc.myTripRequests().subscribe(
       data => {
-        this.tripRequest = data;
-        this.tripRequest.forEach(req => {
-          if (req.travelerStatus === 'pending') {
-            this.hostTripRequest.push(req);
-          }
-        });
+        this.myTripRequests = data;
+        // this.myTripRequests.forEach(req => {
+        //   if (req.travelerStatus === 'pending') {
+        //     this.hostTripRequest.push(req);
+        //   }
+        // });
       },
       err => {
         console.log(err);

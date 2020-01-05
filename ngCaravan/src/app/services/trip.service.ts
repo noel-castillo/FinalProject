@@ -21,7 +21,7 @@ export class TripService {
   // M e t h o d s
 
   index() {
-    const credentials = this.authService.getCredentials();
+    const credentials = this.authService.generateBasicAuthCredentials('shaun', 'wombat1');
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
@@ -38,7 +38,7 @@ export class TripService {
       );
   }
 
-  indexNotHOsted() {
+  indexNotHosted() {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -51,7 +51,25 @@ export class TripService {
       .pipe(
         catchError((err: any) => {
           console.log(err);
-          return throwError('Trip Service index() ERROR');
+          return throwError('Trip Service indexNotHosted() unable to load');
+        })
+      );
+  }
+
+  indexHosted() {
+    const credentials = this.authService.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${credentials}`,
+        'Content-Type':  'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Trip[]>(this.baseUrl + 'api/hosted', httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('Trip Service indexHosted() unable to load.');
         })
       );
   }

@@ -1,3 +1,54 @@
+<div class="container" >
+  <div class="row mx-sm-n5">
+    <div class="col-sm-4 px-sm">
+    </div>
+    <div class="col-sm-4 px-sm">
+    <p></p>
+    </div>
+    <div class="col-sm-4 px-sm">
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="container">
+<div class="row mx-sm-n5">
+  <div class="col-sm-4 px-sm">
+  </div>
+  <div class="col-sm-4 px-sm">
+  <p></p>
+  </div>
+  <div class="col-sm-4 px-sm">
+  </div>
+</div>
+</div>
+<br>
+<div class="container">
+  <div class="row mx-sm-n5">
+    <div class="col-sm-4 px-sm">
+    </div>
+    <div class="col-sm-4 px-sm">
+    <p></p>
+    </div>
+    <div class="col-sm-4 px-sm">
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="container">
+<div class="row mx-sm-n5">
+  <div class="col-sm-4 px-sm">
+  </div>
+  <div class="col-sm-4 px-sm">
+  <p></p>
+  </div>
+  <div class="col-sm-4 px-sm">
+  </div>
+</div>
+</div>
+<br>
+
 <div class="map">
   <iframe src="http://maps.google.com/maps?q=${address}&z=15&output=embed" height="300" style="border:0;"
     allowfullscreen=""></iframe>
@@ -56,6 +107,16 @@
               <p>Price: ${{adventure.price}}</p>
               <p>Ititnerary: {{adventure.itinerary}}</p> -->
 
+
+            <div class="client-reviews" >
+              <h3>People Traveling on this Adventure</h3>
+              <ng-container *ngFor="let advenTravelerr of thisTripAdventureTravelerss">
+              <div *ngIf="advenTravelerr" class="reviews-item">
+
+                <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5>
+              </div>
+            </ng-container>
+
               <h3>About the Host</h3>
 
                 <mat-card class="example-card">
@@ -88,6 +149,8 @@
 
 
 
+            </div>
+
             <div class="client-reviews" >
               <h3>Host Reviews</h3>
               <ng-container *ngFor="let advenTraveler of thisTripAdventureTravelers">
@@ -102,9 +165,9 @@
                 </div>
                 <!-- <ngb-rating max=5 [(rate)]="currentRate"></ngb-rating> -->
                 <h5>“A Great Place”</h5>
-                <p>{{thisTripAdventureTravelers[0].review}}</p>
+                <p>{{advenTraveler.review}}</p>
                 <div class="client-text">
-                  <h5>{{thisTripAdventureTravelers[0].user.firstName}}, {{thisTripAdventureTravelers[0].user.lastName}}</h5>
+                  <h5>{{advenTraveler.user.firstName}}, {{advenTraveler.user.lastName}}</h5>
                   <span>DATE????? IDK</span>
                 </div>
               </div>

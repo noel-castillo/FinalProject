@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row profile">
-    <div class="col-md-3">
+    <div class="col-md-12">
       <div class="profile-sidebar">
         <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
           <img [src]="currentProfile.profilePic.url" class="img-responsive" alt="">
         </div>
         <!-- END SIDEBAR USERPIC -->
-        <!-- SIDEBAR USER TITLE -->
+        <!-- SIDEBAR USER DETAILS -->
         <div class="profile-usertitle">
           <div class="profile-usertitle-name">
             {{currentProfile.firstName}} {{currentProfile.lastName}}
@@ -16,14 +16,28 @@
             Mileage Points: {{currentProfile.mileagePoints}} pts
           </div>
         </div>
-        <!-- END SIDEBAR USER TITLE -->
+        <!-- END SIDEBAR USER DETAILS -->
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button type="button" class="btn btn-outline-success">Follow</button>
-          <button type="button" class="btn btn-outline-danger">Message</button>
+          <button type="button" id="dropdownMenu1" data-toggle="dropdown"
+            class="btn btn-outline-success dropdown-toggle" role="button">Change Profile Image</button>
+          <ul class="dropdown-menu dropdown-menu-right mt-4">
+            <li class="px-6 py-4">
+              <form>
+                <div class="form-group">
+                  <input name="url" placeholder="New Image URL" class="form-control form-control-md" type="text"
+                    [(ngModel)]="newImage.url" required="required">
+                  <button (click)="updateProfileImage()" type="submit" class="btn btn-warning btn-block">Submit</button>
+                </div>
+              </form>
+            </li>
+          </ul>
+          <button type="button" (click)="logout()" class="btn btn-outline-danger">Logout</button>
           <br>
         </div>
+        <!-- END SIDEBAR BUTTONS -->
 
+        <!-- START TABLE TABS -->
         <div class="container">
           <div class="row my-12">
             <div class="col-lg-12 order-lg-12">
@@ -31,84 +45,91 @@
               <ul id="splitDisplayList" class="nav nav-tabs">
                 <li class="nav-item">
                   <a href="" data-target="#profile" data-toggle="tab" (click)="showAccountSettings()"
-                    class="nav-link active btn btn-outline-success">Account Settings</a>
+                    class="nav-link active btn btn-outline-success">Account Details</a>
                 </li>
                 <li class="nav-item">
                   <a href="" data-target="#hosting" data-toggle="tab" (click)="showHosting()"
                     class="nav-link btn btn-outline-success">Hosting</a>
                 </li>
               </ul>
-              <div class="tab-content py-4">
+              <!-- END TABLES TABS -->
+
+              <!-- START ACCOUNT DETAILS SECTION -->
+              <div class="tab-content py-12">
                 <div class="tab-pane active" id="profile">
                   <div class="row">
-                    <div class="col-md-6">
-                      <table *ngIf="seeVehicles && seePersonalInformation && seeBio"
+                    <div class="col-md-12">
+                      <table *ngIf="seeVehicles && seePersonalInformation && seeMyTrips"
                         class="table table-hover table-striped">
                         <tbody>
                           <tr>
                             <td class="nav-item">
-                              <button type="button" (click)="seePersonalInformation = false">Personal
-                                Information</button>
+                              <a (click)="seePersonalInformation = false">Personal
+                                Info</a>
                             </td>
                           </tr>
                           <tr>
                             <td class="nav-item">
-                              <button type="button" (click)="seeVehicles = false">My Vehicles</button>
+                              <a (click)="seeMyTrips = false">Trips Joined</a>
                             </td>
                           </tr>
                           <tr>
                             <td class="nav-item">
-                              <button type="button" (click)="seeBio = false">My Bio</button>
+                              <a (click)="seeVehicles = false">My Vehicles</a>
                             </td>
                           </tr>
                         </tbody>
                       </table>
-                      <div *ngIf="!seeVehicles && seePersonalInformation && seeBio">
+
+                      <!-- START MY VEHICLES -->
+                      <div *ngIf="!seeVehicles && seePersonalInformation && seeMyTrips">
                         <table class="table table-hover table-striped">
                           <tbody>
                             <tr>
                               <th class="nav-item">
-                                <button type="button"><u>Make</u></button>
+                                <u>Make</u>
                               </th>
                               <th class="nav-item">
-                                <button type="button"><u>Model</u></button>
+                                <u>Model</u>
                               </th>
                               <th class="nav-item">
-                                <button type="button"><u>Year</u></button>
+                                <u>Year</u>
                               </th>
                             </tr>
                             <tr *ngFor="let vehicle of currentProfile.vehicles">
                               <td class="nav-item">
-                                <button type="button">{{vehicle.make}}</button>
+                                {{vehicle.make}}
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{vehicle.model}}</button>
+                                {{vehicle.model}}
                               </td>
                               <td class="nav-item">
-                                <button type="button">{{vehicle.manufactureYear}}</button>
+                                {{vehicle.manufactureYear}}
                               </td>
                               <td class="nav-item">
                                 <button type="button" type="button" class="btn btn-outline-success">Edit</button>
                               </td>
                               <td class="nav-item">
-                                <button type="button" (click)="deleteVehicle(vehicle)" class="btn btn-outline-danger">Delete</button>
+                                <button type="button" (click)="deleteVehicle(vehicle)"
+                                  class="btn btn-outline-danger">Delete</button>
                               </td>
                             </tr>
                           </tbody>
                         </table>
-                        <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-warning dropdown-toggle"
-                        role="button">Add New Vehicle</button>
-                        <ul class="dropdown-menu dropdown-menu-right mt-2">
-                          <li class="px-3 py-2">
+                        <button align="center" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                          class="btn btn-outline-warning dropdown-toggle" role="button">Add New Vehicle</button>
+                        <ul class="dropdown-menu dropdown-menu-right mt-4">
+                          <li class="px-6 py-4">
                             <form>
                               <div class="form-group">
-                                <input name="make" placeholder="Make" class="form-control form-control-md"
-                                  type="text" [(ngModel)]="newVehicle.make" required="required">
+                                <input name="make" placeholder="Make" class="form-control form-control-md" type="text"
+                                  [(ngModel)]="newVehicle.make" required="required">
                                 <input name="model" placeholder="Model" class="form-control form-control-md" type="text"
                                   [(ngModel)]="newVehicle.model" required="required">
-                                <input name="manufactureYear" placeholder="Year" class="form-control form-control-md" type="number"
-                                  [(ngModel)]="newVehicle.manufactureYear" required="required">
-                                <input name="interiorDescription" placeholder="Description" class="form-control form-control-md" type="text"
+                                <input name="manufactureYear" placeholder="Year" class="form-control form-control-md"
+                                  type="number" [(ngModel)]="newVehicle.manufactureYear" required="required">
+                                <input name="interiorDescription" placeholder="Description"
+                                  class="form-control form-control-md" type="text"
                                   [(ngModel)]="newVehicle.interiorDescription" required="required">
                                 <button (click)="addNewVehicle()" type="submit"
                                   class="btn btn-warning btn-block">Submit</button>
@@ -116,141 +137,630 @@
                             </form>
                           </li>
                         </ul>
-                        <button align="center" type="button" (click)="showAccountSettings()" class="btn btn-light">Back</button>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
                       </div>
-                    </div>
+                      <!-- END MY VEHICLES -->
 
+                      <!-- START MY TRIPS -->
+                      <div *ngIf="seeVehicles && seePersonalInformation && !seeMyTrips">
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <th class="nav-item">
+                                <u>Trip</u>
+                              </th>
+                              <th class="nav-item">
+                                <u>Departing</u>
+                              </th>
+                              <th class="nav-item">
+                                <u>Destination</u>
+                              </th>
+                              <th class="nav-item">
+                                <u>Status</u>
+                              </th>
+                            </tr>
+                            <tr *ngFor="let trip of myTrips">
+                              <td class="nav-item">
+                                <a [routerLink]="['/trips/' + trip.id + '']">{{trip.trip.title}}</a>
+                              </td>
+                              <td class="nav-item">
+                                {{trip.trip.departureAddress.city}},
+                                {{trip.trip.departureAddress.state}}
+                              </td>
+                              <td class="nav-item">
+                                {{trip.trip.destinationAddress.city}},
+                                {{trip.trip.destinationAddress.state}}
+                              </td>
+                              <td class="nav-item">
+                                {{trip.travelerStatus}}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
+                      </div>
+                      <!-- END MY TRIPS -->
+
+                      <!-- START DISPLAYING PERSONAL INFORMATION -->
+                      <div
+                        *ngIf="seeVehicles && !seePersonalInformation && seeMyTrips && seeEditPersonalInformation">
+                        <table class="table table-hover table-striped">
+                          <tbody>
+                            <tr>
+                              <td class="nav-item">
+                                Username:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.user.username}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                First Name:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.firstName}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Last Name:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.lastName}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Email:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.email}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Bio:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.bio}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Phone:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.phone}}
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="nav-item">
+                                Address:
+                              </td>
+                              <td class="nav-item">
+                                {{currentProfile.address.street}} {{currentProfile.address.city}},
+                                {{currentProfile.address.state}} {{currentProfile.address.zip}}
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <button align="center" type="button" (click)="seeEditPersonalInformation = false"
+                          class="btn btn-outline-success" role="button">Edit</button>
+                        <button align="center" type="button" (click)="showAccountSettings()"
+                          class="btn btn-light">Back</button>
+                      </div>
+                      <!-- END DISPLAYING PERSONAL INFORMATION -->
+
+                      <!-- START EDIT PERSONAL INFORMATION -->
+                      <div
+                        *ngIf="seeVehicles && !seePersonalInformation && seeMyTrips && !seeEditPersonalInformation">
+                        <form>
+                          <table class="table table-hover table-striped">
+                            <tbody>
+                              <tr>
+                                <td class="nav-item">
+                                  Username:
+                                </td>
+                                <td class="nav-item">
+                                  {{currentProfile.user.username}}
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  First Name:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="firstName" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.firstName">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Last Name:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="lastName" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.lastName">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Email:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="email" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.email">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Bio:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="bio" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.bio">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Phone:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="phone" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.phone">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Street:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="street" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.address.street">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  City:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="city" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.address.city">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  State:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="state" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="currentProfile.address.state">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Zip Code:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="zip" class="form-control form-control-lg" required="required"
+                                    type="text" [(ngModel)]="currentProfile.address.zip">
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <button align="center" type="submit" (click)="savePersonalInformation()"
+                            class="btn btn-outline-success" role="button">Save</button>
+                          <button align="center" type="button" (click)="seeEditPersonalInformation = true"
+                            class="btn btn-light">Back</button>
+                        </form>
+                        <br>
+                        <br>
+                        <br>
+                      </div>
+                      <!-- END EDIT PERSONAL INFORMATION -->
+
+                    </div>
+                    <br>
+                    <br>
+                    <br>
                   </div>
                   <!--/row-->
                 </div>
+                <!-- END ACCOUNT DETAILS SECTION -->
+
+                <!-- START HOSTING SECTION -->
                 <div class="tab-pane" id="hosting">
 
-                  <table *ngIf="seeNewTrip && seeMyTrips && seePendingRequests" class="table table-hover table-striped">
+                  <table *ngIf="seeNewTrip && seeMyHostings && seePendingRequests"
+                    class="table table-hover table-striped">
                     <tbody>
                       <tr>
                         <td class="nav-item">
-                          <button type="button" (click)="seeNewTrip = false">Host New Trip</button>
+                          <a (click)="seeNewTrip = false">Host New Trip</a>
                         </td>
                       </tr>
                       <tr>
                         <td class="nav-item">
-                          <button type="button" (click)="seeMyTrips = false">My Trips</button>
+                          <a (click)="seeMyHostings = false">My Hostings</a>
                         </td>
                       </tr>
                       <tr>
                         <td class="nav-item">
-                          <button type="button" (click)="seePendingRequests = false">Pending Requests</button>
+                          <a (click)="seePendingRequests = false">Pending Requests</a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
-                </div>
-                <div class="tab-pane" id="vehicles">
-                  <form role="form">
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="text" value="Jane" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="text" value="Bishop" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="email" value="email@gmail.com" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Company</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="text" value="" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Website</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="url" value="" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="text" value="" placeholder="Street" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label"></label>
-                      <div class="col-lg-6">
-                        <input class="form-control" type="text" value="" placeholder="City" />
-                      </div>
-                      <div class="col-lg-3">
-                        <input class="form-control" type="text" value="" placeholder="State" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
-                      <div class="col-lg-9">
-                        <select id="user_time_zone" class="form-control" size="0">
-                          <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                          <option value="Alaska">(GMT-09:00) Alaska</option>
-                          <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)
-                          </option>
-                          <option value="Arizona">(GMT-07:00) Arizona</option>
-                          <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)
-                          </option>
-                          <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time
-                            (US &amp;
-                            Canada)</option>
-                          <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)
-                          </option>
-                          <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="text" value="janeuser" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="password" value="11111122333" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                      <div class="col-lg-9">
-                        <input class="form-control" type="password" value="11111122333" />
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label class="col-lg-3 col-form-label form-control-label"></label>
-                      <div class="col-lg-9">
-                        <div class="row">
-                          <div class="col-2">
-                            <input type="reset" class="btn btn-secondary" value="Cancel" />
-                          </div>
-                          <div class="col-2">
-                            <input type="button" class="btn btn-primary" value="Save Changes" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- <div class="col-md-6">
+                  <!-- START NEW TRIP FORM -->
+                  <div *ngIf="!seeNewTrip && seeMyHostings && seePendingRequests">
+                    <form>
+                          <table class="table table-hover table-striped">
+                            <tbody>
+                              <tr>
+                                <td class="nav-item">
+                                  Title:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="title" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.title">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Description:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="description" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.description">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Seats Available:
+                                </td>
+                                <td class="nav-item">
+                                  <input name="description" class="form-control form-control-lg" required="required"
+                                    type="number" [(ngModel)]="newTrip.seatsAvailable">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Cargo Capacity:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="cargoCapacity" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.cargoCapacity">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Cost per Passenger:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="totalCost" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.totalCost">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Trip Image URL:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="featureImage" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.featureImage">
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <th class="nav-item">
+                                  Departure Address
+                                </th>
+                                <th class="nav-item">
+                                </th>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Street:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="departStreet" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.departureAddress.street">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  City:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="departCity" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.departureAddress.city">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  State:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="departState" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.departureAddress.state">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Zip Code:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="departZip" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.departureAddress.zip">
+                                </td>
+                              </tr>
+                              <tr>
+                              <tr>
+                                <th class="nav-item">
+                                  Destination Address
+                                </th>
+                                <th class="nav-item">
+                                </th>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Street:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="destStreet" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.destinationAddress.street">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  City:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="destCity" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.destinationAddress.city">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  State:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="destState" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.destinationAddress.state">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Zip Code:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="text" name="destZip" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.destinationAddress.zip">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Start Date:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="date" name="startDate" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.tripCalendar.startDate">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  End Date:
+                                </td>
+                                <td class="nav-item">
+                                  <input type="date" name="endDate" class="form-control form-control-lg"
+                                    required="required" [(ngModel)]="newTrip.tripCalendar.endDate">
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="nav-item">
+                                  Select a Vehicle:
+                                </td>
+                                <td class="nav-item">
+
+                                </td>
+                              </tr>
+                              <tr *ngFor="let vehicle of currentProfile.vehicles">
+                                <td class="nav-item">
+                                  {{vehicle.make}} {{vehicle.model}} {{vehicle.manufactureYear}}
+                                </td>
+                                <td class="nav-item">
+                                  <button type="button" type="button" (click)="newTrip.vehicle = vehicle"
+                                    class="btn btn-outline-success">Select</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <button align="center" type="submit" (click)="createTrip()" class="btn btn-outline-success"
+                            role="button">Create</button>
+                          <button align="center" type="button" (click)="seeNewTrip = true"
+                            class="btn btn-light">Back</button>
+                        <br>
+                        <br>
+                        <br>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                  </div>
+                  <!-- END NEW TRIP FORM -->
+
+                  <!-- START MY HOSTINGS -->
+                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests && !selectedTrip">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <th class="nav-item">
+                            <u>Title</u>
+                          </th>
+                          <th class="nav-item">
+                            <u>Departing</u>
+                          </th>
+                          <th class="nav-item">
+                            <u>Destination</u>
+                          </th>
+                        </tr>
+                        <tr *ngFor="let trip of myHostings">
+                          <td class="nav-item">
+                            <a [routerLink]="['/trips/' + trip.id + '']">{{trip.title}}</a>
+                          </td>
+                          <td class="nav-item">
+                            {{trip.departureAddress.city}}, {{trip.departureAddress.state}}
+                          </td>
+                          <td class="nav-item">
+                            {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}}
+                          </td>
+                          <td class="nav-item">
+                            <button type="button" type="button" (click)="selectedTrip = trip"
+                              class="btn btn-outline-success">View Details</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
+                  </div>
+
+                  <div *ngIf="seeNewTrip && !seeMyHostings && seePendingRequests && selectedTrip">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <td class="nav-item">
+                            Title:
+                          </td>
+                          <td class="nav-item">
+                            <a [routerLink]="['/trips/' + selectedTrip.id + '']"> {{selectedTrip.title}}</a>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Departing:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.departureAddress.street}} {{selectedTrip.departureAddress.city}},
+                            {{selectedTrip.departureAddress.state}} {{selectedTrip.departureAddress.zip}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Destination:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.destinationAddress.street}} {{selectedTrip.destinationAddress.city}},
+                            {{selectedTrip.destinationAddress.state}} {{selectedTrip.destinationAddress.zip}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Seats Available:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.seatsAvailable}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Cost Per Passenger:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.totalCost}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Dates:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.tripCalendar.startDate}} - {{selectedTrip.tripCalendar.endDate}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Trip Vehicle:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.vehicle.make}} {{selectedTrip.vehicle.model}}
+                            {{selectedTrip.vehicle.manufactureYear}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Cargo Capacity:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.cargoCapacity}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="nav-item">
+                            Description:
+                          </td>
+                          <td class="nav-item">
+                            {{selectedTrip.description}}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button type="button" type="button" class="btn btn-outline-success">Edit</button>
+                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                    <button align="center" type="button" (click)="selectedTrip = null"
+                      class="btn btn-light">Back</button>
+                  </div>
+                  <!-- END MY HOSTINGS -->
+
+                  <!-- START MY PENDING REQUESTS -->
+                  <div *ngIf="seeNewTrip && seeMyHostings && !seePendingRequests">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                        <tr>
+                          <th class="nav-item">
+                            <u>Trip</u>
+                          </th>
+                          <th class="nav-item">
+                            <u>Passenger</u>
+                          </th>
+                          <th class="nav-item">
+                            <u>Status</u>
+                          </th>
+                        </tr>
+                        <tr *ngFor="let req of myTripRequests">
+                          <td class="nav-item">
+                            <a [routerLink]="['/trips/' + req.trip.id + '']">{{req.trip.title}}</a>
+                          </td>
+                          <td class="nav-item">
+                            {{req.user.firstName}} {{req.user.lastName}}
+                          </td>
+                          <td class="nav-item">
+                            {{req.travelerStatus}}
+                          </td>
+                          <td class="nav-item">
+                            <button type="button" type="button" (click)="approveRequest(req)"
+                              class="btn btn-outline-success">Approve</button>
+                          </td>
+                          <td class="nav-item">
+                            <button type="button" (click)="denyRequest(req)"
+                              class="btn btn-outline-danger">Deny</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
+                  </div>
+
+                </div>
+                <!-- END HOSTING DETAILS -->
+
+                <!-- <div class="col-md-6">
               <h6>Recent badges</h6>
               <a href="#" class="badge badge-dark badge-pill">html5</a>
               <a href="#" class="badge badge-dark badge-pill">react</a>
@@ -273,7 +783,7 @@
                 ><i class="fa fa-eye"></i> 245 Views</span
               >
             </div> -->
-        <!-- <div class="col-md-12">
+                <!-- <div class="col-md-12">
               <h5 class="mt-2">
                 <span class="fa fa-clock-o ion-clock float-right"></span> Recent
                 Activity

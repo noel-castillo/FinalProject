@@ -31,7 +31,7 @@ public class UserController {
 
 
 	@GetMapping("users")
-	public List<User> index(Principal prin) {
+	public List<User> index() {
 		return svc.index();
 	}
 

@@ -41,6 +41,8 @@ export class UserProfileComponent implements OnInit {
 
   editUserProfile: UserProfile = null;
 
+  editVehicle: Vehicle = null;
+
   newAddress: Address = new Address();
 
   newUser: User = new User();
@@ -72,8 +74,6 @@ export class UserProfileComponent implements OnInit {
   seePendingRequests = true;
 
   seeEditPersonalInformation = true;
-
-  seeEditVehicle = true;
 
   selectedTrip: Trip = null;
 
@@ -160,16 +160,14 @@ export class UserProfileComponent implements OnInit {
 
   }
 
-  deleteVehicle(vehicle: Vehicle) {
-
-    this.vSvc.delete(vehicle.id).subscribe(
+  disableVehicle(vehicle: Vehicle) {
+    vehicle.enabled = false;
+    this.vSvc.updateVehicle(vehicle).subscribe(
       data => {
-        console.log('Vehicle has been deleted!');
-        const index = this.currentProfile.vehicles.indexOf(vehicle);
-        console.log(this.currentProfile.vehicles.splice(index, 1));
+        console.log('User Profile Component: Able to disableVehicle()');
       },
       err => {
-        console.log(err);
+        console.log('User Profile Component: Unable to disableVehicle()');
       }
     );
   }
@@ -182,6 +180,17 @@ export class UserProfileComponent implements OnInit {
   updateProfileImage() {
     this.currentProfile.profilePic.url = this.newImage.url;
     this.updateUserProfile(this.currentProfile);
+  }
+
+  saveVehicle() {
+    this.vSvc.updateVehicle(this.editVehicle).subscribe(
+      data => {
+        this.editVehicle = null;
+      },
+      err => {
+        console.log('User Profile Component: Unable to saveVehicle()');
+      }
+    );
   }
   savePersonalInformation() {
 

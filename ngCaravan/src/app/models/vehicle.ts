@@ -11,11 +11,12 @@ export class Vehicle {
   seatsAvailable: number;
   interiorDescription: string;
   userProfile: UserProfile;
+  enabled: boolean;
 
 
   // C O N S T R U C T O R
   constructor(id?: number, make?: string, model?: string, manufactureYear?: number, capacity?: number,
-              seatsAvailable?: number, interiorDescription?: string, userProfile?: UserProfile) {
+              seatsAvailable?: number, interiorDescription?: string, userProfile?: UserProfile, enabled?: boolean) {
     this.id = id;
     this.make = make;
     this.model = model;
@@ -24,6 +25,7 @@ export class Vehicle {
     this.seatsAvailable = seatsAvailable;
     this.interiorDescription = interiorDescription;
     this.userProfile = userProfile;
+    this.enabled = enabled;
   }
 
 }

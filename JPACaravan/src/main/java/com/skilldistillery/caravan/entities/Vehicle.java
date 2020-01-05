@@ -38,6 +38,8 @@ public class Vehicle {
 	@JoinColumn(name="user_profile_id")
 	@JsonIgnore
 	private UserProfile userProfile;
+	
+	private boolean enabled;
 
 
 //	C O N S T R U C T O R S
@@ -135,6 +137,15 @@ public class Vehicle {
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
+	
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 
 	@Override
@@ -142,6 +153,7 @@ public class Vehicle {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + capacity;
+		result = prime * result + (enabled ? 1231 : 1237);
 		result = prime * result + id;
 		result = prime * result + ((interiorDescription == null) ? 0 : interiorDescription.hashCode());
 		result = prime * result + ((make == null) ? 0 : make.hashCode());
@@ -163,6 +175,8 @@ public class Vehicle {
 			return false;
 		Vehicle other = (Vehicle) obj;
 		if (capacity != other.capacity)
+			return false;
+		if (enabled != other.enabled)
 			return false;
 		if (id != other.id)
 			return false;

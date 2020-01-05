@@ -71,6 +71,8 @@ export class UserProfileComponent implements OnInit {
 
   seeNewTrip = true;
 
+  seeNewVehicle = true;
+
   seeMyHostings = true;
 
   seePendingRequests = true;
@@ -125,6 +127,9 @@ export class UserProfileComponent implements OnInit {
     this.vSvc.create(this.newVehicle).subscribe(
       data => {
         console.log('Vehicle has been created!');
+        this.newVehicle = new Vehicle();
+        this.seeNewVehicle = true;
+        this.currentProfile.vehicles.push(this.newVehicle);
       },
       err => {
         console.log(err);
@@ -134,8 +139,6 @@ export class UserProfileComponent implements OnInit {
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
-        this.currentProfile.vehicles.push(this.newVehicle);
-        this.newVehicle = new Vehicle();
       },
       err => {
         console.log(err);
@@ -192,6 +195,18 @@ export class UserProfileComponent implements OnInit {
       },
       err => {
         console.log('User Profile Component: Unable to saveVehicle()');
+      }
+    );
+  }
+
+  saveEditHosting() {
+    this.tripSvc.update(this.editHosting).subscribe(
+      data => {
+        this.editHosting = null;
+        this.selectedTrip = null;
+      },
+      err => {
+        console.log('User Profile Component: Unable to saveEditHosting()');
       }
     );
   }

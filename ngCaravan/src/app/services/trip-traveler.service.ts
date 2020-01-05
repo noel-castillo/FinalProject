@@ -20,6 +20,7 @@ export class TripTravelerService {
   // M e t h o d s
 
   index() {
+    console.log('** IN TRIP TRAV SERVICE**');
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({

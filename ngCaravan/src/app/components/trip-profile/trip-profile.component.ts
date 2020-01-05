@@ -1,3 +1,4 @@
+import { UserProfileService } from 'src/app/services/user-profile.service';
 import { MapService } from './../../services/map.service';
 import { TripTraveler } from 'src/app/models/trip-traveler';
 import { TripHost } from 'src/app/models/trip-host';
@@ -30,7 +31,13 @@ export class TripProfileComponent implements OnInit {
   trip: Trip;
   address = '';
   tripTraveler: TripTraveler = new TripTraveler();
+  tripTravelers: TripTraveler[] = [];
+  thisTripTravelers: TripTraveler[] = [];
   iframeURL = '';
+
+  currentProfile: UserProfile = null;
+
+  joined: TripTraveler = null;
 
 
   // C o n s t r u c t o r
@@ -42,8 +49,13 @@ export class TripProfileComponent implements OnInit {
     private vehicleSvc: VehicleService,
     private currentRoute: ActivatedRoute,
     private router: Router,
-    private mapSvc: MapService
+    private mapSvc: MapService,
+    private userPsvc: UserProfileService
   ) {}
+
+  alert() {
+    window.alert('Your join request has been sent!');
+  }
 
   getMap() {
     this.mapSvc.getRoute(this.trip).subscribe(
@@ -59,8 +71,47 @@ export class TripProfileComponent implements OnInit {
 
   getRouteUrl() {
     this.builtUrl = this.mapSvc.buildRouteUrl(this.trip);
-    console.log('BUILT URL******' + this.builtUrl);
+    console.log('BUILT URL^^******' + this.builtUrl);
     return this.builtUrl;
+  }
+
+  getTripTravelers() {
+    console.log('******GETTING TRIP TRAVELERS****');
+    this.tripTravelerSvc.index().subscribe (
+      data2 => {
+        this.tripTravelers = data2;
+        // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+        console.log('***SET RATING***');
+        this.tripTravelers.forEach(element => {
+          console.log('element***' + element.id);
+          console.log('elementAdventureID***' + element.trip.id);
+          console.log('THIS.adventure.id***' + this.trip.id);
+
+          // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+
+          if (element.trip.id === this.trip.id) {
+            console.log('ELEMENT******' + element.trip.id);
+            this.thisTripTravelers.push(element);
+            console.log('***REVIEWWW**' + this.thisTripTravelers[0].review);
+            console.log('ELEMENT ADDED******');
+            if (element.user.id === this.currentProfile.id) {
+              this.joined = element;
+        }
+          }
+
+
+          // if (this.trip.host.firstName === element.trip.host.firstName) {
+          //   console.log('ELEMENT******' + element.trip.id);
+          //   this.thisTripTravelers.push(element);
+          //   console.log('ELEMENT ADDED******');
+          // }
+        });
+        // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
+      },
+      err => {
+        console.error('***ERROR GETTING TRIP TRAVELERS' + err);
+      }
+    );
   }
 
   addTrip(tid) {
@@ -193,10 +244,54 @@ export class TripProfileComponent implements OnInit {
     // grabs the array of trips from the service & adds it to this component
     // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
     // console.log(this.currentRoute.snapshot.paramMap.get('id'));
+
+    this.userPsvc.getUserInSessionProfile().subscribe (
+      data => {
+        this.currentProfile = data;
+      },
+      err => {
+      console.log('Trip Profile Comp unable to load current Profile' + err);
+      }
+    );
+
     this.tripSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
       data => {
         this.trip = data;
+        this.getTripTravelers();
         this.getRouteUrl();
+
+
+        // this.tripTravelerSvc.index().subscribe (
+        //   data2 => {
+        //     this.tripTravelers = data2;
+        //     // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+        //     console.log('***SET RATING***');
+        //     this.tripTravelers.forEach(element => {
+        //       console.log('element***' + element.id);
+        //       console.log('elementAdventureID***' + element.trip.id);
+        //       console.log('THIS.adventure.id***' + this.trip.id);
+
+        //       // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+
+        //       if (element.trip.id === this.trip.id) {
+        //         console.log('ELEMENT******' + element.trip.id);
+        //         this.thisTripTravelers.push(element);
+        //         console.log('ELEMENT ADDED******');
+        //       }
+
+        //       if (this.trip.host.firstName === element.trip.host.firstName) {
+        //         console.log('ELEMENT******' + element.trip.id);
+        //         this.thisTripTravelers.push(element);
+        //         console.log('ELEMENT ADDED******');
+        //       }
+        //     });
+        //     // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
+        //   },
+        //   err => {
+        //     console.error('***ERROR GETTING TRIP TRAVELERS' + err);
+        //   }
+        // );
+
       },
       err => {
         console.error('ngOnInit error in Trip Profile Component');

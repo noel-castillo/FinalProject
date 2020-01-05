@@ -65,15 +65,11 @@ export class UserProfileComponent implements OnInit {
 
   seeMyTrips = true;
 
-  seeBio = true;
-
   seeNewTrip = true;
 
   seeMyHostings = true;
 
   seePendingRequests = true;
-
-  seeEditBio = true;
 
   seeEditPersonalInformation = true;
 
@@ -118,11 +114,6 @@ export class UserProfileComponent implements OnInit {
     this.seePersonalInformation = true;
 
     this.seeEditPersonalInformation = true;
-
-    this.seeBio = true;
-
-    this.seeEditBio = true;
-
   }
 
   addNewVehicle() {
@@ -190,12 +181,6 @@ export class UserProfileComponent implements OnInit {
     this.currentProfile.profilePic.url = this.newImage.url;
     this.updateUserProfile(this.currentProfile);
   }
-
-  saveBioEdit() {
-    this.updateUserProfile(this.currentProfile);
-    this.seeEditBio = true;
-  }
-
   savePersonalInformation() {
 
     this.addrSvc.updateAddress(this.currentProfile.address).subscribe(

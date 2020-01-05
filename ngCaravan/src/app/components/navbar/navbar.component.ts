@@ -1,8 +1,11 @@
 import { UserProfile } from 'src/app/models/user-profile';
+<<<<<<< HEAD
+=======
+import { Router } from '@angular/router';
+>>>>>>> 07b49e2e60c8cd89ecbb1f18a15da52dfc2cb002
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from 'src/app/services/user-profile.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -32,7 +35,12 @@ export class NavbarComponent implements OnInit {
         this.router.navigateByUrl('not-found');
       }
     );
+<<<<<<< HEAD
   }
+=======
+   }
+
+>>>>>>> 07b49e2e60c8cd89ecbb1f18a15da52dfc2cb002
   checkIfLoggedIn() {
     return this.auth.checkLogin();
   }

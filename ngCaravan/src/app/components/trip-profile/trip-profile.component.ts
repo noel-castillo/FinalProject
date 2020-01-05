@@ -30,6 +30,9 @@ export class TripProfileComponent implements OnInit {
   trip: Trip;
   address = '';
   tripTraveler: TripTraveler = new TripTraveler();
+  tripTravelers: TripTraveler[] = [];
+  thisTripTravelers: TripTraveler[] = [];
+
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
@@ -57,8 +60,43 @@ export class TripProfileComponent implements OnInit {
 
   getRouteUrl() {
     this.builtUrl = this.mapSvc.buildRouteUrl(this.trip);
-    console.log('BUILT URL******' + this.builtUrl);
+    console.log('BUILT URL^^******' + this.builtUrl);
     return this.builtUrl;
+  }
+
+  getTripTravelers() {
+    console.log('******GETTING TRIP TRAVELERS****');
+    this.tripTravelerSvc.index().subscribe (
+      data2 => {
+        this.tripTravelers = data2;
+        // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+        console.log('***SET RATING***');
+        this.tripTravelers.forEach(element => {
+          console.log('element***' + element.id);
+          console.log('elementAdventureID***' + element.trip.id);
+          console.log('THIS.adventure.id***' + this.trip.id);
+
+          // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+
+          if (element.trip.id === this.trip.id) {
+            console.log('ELEMENT******' + element.trip.id);
+            this.thisTripTravelers.push(element);
+            console.log('***REVIEWWW**' + this.thisTripTravelers[0].review);
+            console.log('ELEMENT ADDED******');
+          }
+
+          // if (this.trip.host.firstName === element.trip.host.firstName) {
+          //   console.log('ELEMENT******' + element.trip.id);
+          //   this.thisTripTravelers.push(element);
+          //   console.log('ELEMENT ADDED******');
+          // }
+        });
+        // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
+      },
+      err => {
+        console.error('***ERROR GETTING TRIP TRAVELERS' + err);
+      }
+    );
   }
 
   addTrip(tid) {
@@ -194,7 +232,41 @@ export class TripProfileComponent implements OnInit {
     this.tripSvc.show(this.currentRoute.snapshot.paramMap.get('id')).subscribe(
       data => {
         this.trip = data;
+        this.getTripTravelers();
         this.getRouteUrl();
+
+
+        // this.tripTravelerSvc.index().subscribe (
+        //   data2 => {
+        //     this.tripTravelers = data2;
+        //     // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+        //     console.log('***SET RATING***');
+        //     this.tripTravelers.forEach(element => {
+        //       console.log('element***' + element.id);
+        //       console.log('elementAdventureID***' + element.trip.id);
+        //       console.log('THIS.adventure.id***' + this.trip.id);
+
+        //       // this.currentRate = this.thisTripAdventureTravelers[0].rating;
+
+        //       if (element.trip.id === this.trip.id) {
+        //         console.log('ELEMENT******' + element.trip.id);
+        //         this.thisTripTravelers.push(element);
+        //         console.log('ELEMENT ADDED******');
+        //       }
+
+        //       if (this.trip.host.firstName === element.trip.host.firstName) {
+        //         console.log('ELEMENT******' + element.trip.id);
+        //         this.thisTripTravelers.push(element);
+        //         console.log('ELEMENT ADDED******');
+        //       }
+        //     });
+        //     // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
+        //   },
+        //   err => {
+        //     console.error('***ERROR GETTING TRIP TRAVELERS' + err);
+        //   }
+        // );
+
       },
       err => {
         console.error('ngOnInit error in Trip Profile Component');

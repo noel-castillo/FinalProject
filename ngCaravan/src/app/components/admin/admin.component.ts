@@ -147,6 +147,29 @@ export class AdminComponent implements OnInit {
     );
   }
 
+  setEnabled(user: User): boolean {
+    return user.enabled;
+  }
+
+  enableDisableUser(user: User) {
+    user.enabled = !user.enabled;
+
+    this.usrSvc.update(user, user.id).subscribe(
+      dat => {
+        this.usrSvc.index().subscribe(
+          data => {
+            this.allUsers = data;
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
   createTrip() {
     this.tripSvc.create(this.newTrip).subscribe(
       data => {

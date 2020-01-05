@@ -99,7 +99,7 @@
                     data-toggle="tab"
                     (click)="showAdmin()"
                     class="nav-link btn btn-outline-success"
-                    >Amin Tools</a
+                    >Admin Tools</a
                   >
                 </li>
               </ul>
@@ -1158,6 +1158,7 @@
                     </button>
                   </div>
                 </div>
+                <!-- Admin Capabilities -->
                 <div class="tab-pane" id="admin">
                   <table
                     *ngIf="seeAdmin"
@@ -1193,25 +1194,21 @@
                             {{ user.role }}
                           </td>
                           <td class="nav-item">
-                            {{ user.enabled }}
-                          </td>
-                          <td class="nav-item">
-                            <button
+
+                              <button *ngIf="setEnabled(user)"
                               type="button"
-                              type="button"
-                              class="btn btn-outline-success"
+                              (click)="enableDisableUser(user)"
+                              class="btn btn-success"
                             >
-                              Edit
-                            </button>
-                          </td>
-                          <td class="nav-item">
-                            <button
+                      Enabled
+                    </button>
+                              <button *ngIf="!setEnabled(user)"
                               type="button"
-                              (click)="deleteVehicle(vehicle)"
-                              class="btn btn-outline-danger"
+                              (click)="enableDisableUser(user)"
+                              class="btn btn-danger"
                             >
-                              Delete
-                            </button>
+                      Disabled
+                    </button>
                           </td>
                         </tr>
                       </tbody>

@@ -39,6 +39,7 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
 import {MatCardModule} from '@angular/material/card';
 import { LatestMessagePipe } from './pipes/latest-message.pipe';
 import { MapPipe } from './pipes/map.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -74,7 +75,8 @@ import { MapPipe } from './pipes/map.pipe';
     InboxComponent,
     FriendMessagesPipe,
     LatestMessagePipe,
-    MapPipe
+    MapPipe,
+    FooterComponent
 
 
 

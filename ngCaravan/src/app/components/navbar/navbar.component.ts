@@ -17,12 +17,11 @@ export class NavbarComponent implements OnInit {
     private auth: AuthService,
     private usrProfSvc: UserProfileService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.usrProfSvc.getUserInSessionProfile().subscribe(
       data => {
-
         this.userProf = data;
         console.log(this.userProf);
         console.log(data);
@@ -33,7 +32,6 @@ export class NavbarComponent implements OnInit {
       }
     );
   }
-
 
   checkIfLoggedIn() {
     return this.auth.checkLogin();

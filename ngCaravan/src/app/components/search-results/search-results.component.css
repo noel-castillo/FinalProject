@@ -36,7 +36,48 @@ select {
   margin-top: 20%;
 
 }
+.card-body {
+  min-height: 150px;
+}
+@media (min-width: 34em) {
+  .card-columns {
+      -webkit-column-count: 2;
+      -moz-column-count: 2;
+      column-count: 2;
+      margin: 0 1em;
 
+  }
+}
+
+@media (min-width: 48em) {
+  .card-columns {
+      -webkit-column-count: 3;
+      -moz-column-count: 3;
+      column-count: 3;
+      margin: 0 1em;
+
+  }
+}
+
+/* @media (min-width: 62em) {
+  .card-columns {
+      -webkit-column-count: 4;
+      -moz-column-count: 4;
+      column-count: 4;
+       margin: 0 2em;
+
+  }
+}
+
+@media (min-width: 75em) {
+  .card-columns {
+      -webkit-column-count: 5;
+      -moz-column-count: 5;
+      column-count: 5;
+       margin: 0 2em;
+
+  }
+} */
 @media screen and (max-width: 450px) {
   .btn {
     display: block;
@@ -48,10 +89,10 @@ select {
 }
 
 body{
-  background-image: url('https://i.imgur.com/5M9N5nZ.jpg') !important;
+  background-image: url('https://i.imgur.com/Iy01VVJ.jpg') !important;
   /* Full height */
   width: 100% !important;
-  height: 100% !important;
+  min-height: 100% !important;
 
   /* Center and scale the image nicely */
   background-position: top;

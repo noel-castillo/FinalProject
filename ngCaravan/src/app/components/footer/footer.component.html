@@ -13,12 +13,12 @@
         <div class="footer-widget">
           <h4>Caravan</h4>
           <ul>
-            <li>Explore</li>
-            <li *ngIf="checkIfLoggedIn()">Profile</li>
-            <li *ngIf="checkIfLoggedIn()">Inbox</li>
-            <li *ngIf="checkIfLoggedIn()">My Trips</li>
-            <li *ngIf="!checkIfLoggedIn()">Login</li>
-            <li *ngIf="!checkIfLoggedIn()">Register</li>
+            <li><a [routerLink]="['/search-results']">Explore</a></li>
+            <li *ngIf="checkIfLoggedIn()"><a [routerLink]="['/user-profiles']">Profile</a></li>
+            <li *ngIf="checkIfLoggedIn()"><a [routerLink]="['/inbox']">Inbox</a></li>
+            <li *ngIf="checkIfLoggedIn()"><a [routerLink]="['/user-profiles']">My Trips</a></li>
+            <li *ngIf="!checkIfLoggedIn()"><a [routerLink]="['/login']">Login</a></li>
+            <li *ngIf="!checkIfLoggedIn()"><a [routerLink]="['/register']">Register</a></li>
           </ul>
         </div>
       </div>

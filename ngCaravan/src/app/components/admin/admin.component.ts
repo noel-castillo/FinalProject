@@ -75,6 +75,8 @@ export class AdminComponent implements OnInit {
 
   seeMyHostings = true;
 
+  seeNewVehicle = true;
+
   seePendingRequests = true;
 
   seeEditPersonalInformation = true;
@@ -84,6 +86,10 @@ export class AdminComponent implements OnInit {
   allUsers: User[];
 
   allTrips: Trip[];
+
+  editVehicle: Vehicle = null;
+
+  editHosting: Trip = null;
 
   // C O N S T R U C T O R
 
@@ -480,6 +486,39 @@ export class AdminComponent implements OnInit {
           'UserProfile Component updateUserProfile(userPro) DID NOT WORK'
         );
         this.reload();
+      }
+    );
+  }
+  saveEditHosting() {
+    this.tripSvc.update(this.editHosting).subscribe(
+      data => {
+        this.editHosting = null;
+        this.selectedTrip = null;
+      },
+      err => {
+        console.log('User Profile Component: Unable to saveEditHosting()');
+      }
+    );
+  }
+  saveVehicle() {
+    this.vSvc.updateVehicle(this.editVehicle).subscribe(
+      data => {
+        this.editVehicle = null;
+      },
+      err => {
+        console.log('User Profile Component: Unable to saveVehicle()');
+      }
+    );
+  }
+  disableVehicle(vehicle: Vehicle) {
+    vehicle.enabled = false;
+    this.vSvc.updateVehicle(vehicle).subscribe(
+      data => {
+        console.log('User Profile Component: Able to disableVehicle()');
+        this.editVehicle = null;
+      },
+      err => {
+        console.log('User Profile Component: Unable to disableVehicle()');
       }
     );
   }

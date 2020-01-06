@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
       data => {
         this.auth.login(newUsr.username, newUsr.password).subscribe(
           dat => {
+
             this.usrProfSvc.create(this.newUserProfile).subscribe(
               d => {
 

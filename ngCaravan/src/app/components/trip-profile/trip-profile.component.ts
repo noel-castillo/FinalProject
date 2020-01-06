@@ -55,7 +55,28 @@ export class TripProfileComponent implements OnInit {
 
   alert() {
     window.alert('Your join request has been sent!');
-    window.location.reload();
+    // window.location.reload();
+    this.reloadTripTravelers();
+  }
+
+  reloadTripTravelers() {
+    this.tripTravelerSvc.index().subscribe (
+      data2 => {
+        this.tripTravelers = data2;
+        this.tripTravelers.forEach(element => {
+
+          if (element.trip.id === this.trip.id) {
+            this.thisTripTravelers.push(element);
+            if (element.user.id === this.currentProfile.id) {
+              this.joined = element;
+        }
+          }
+        });
+      },
+      err => {
+        console.error('***ERROR GETTING TRIP TRAVELERS' + err);
+      }
+    );
   }
 
   getMap() {
@@ -70,7 +91,20 @@ export class TripProfileComponent implements OnInit {
     );
   }
 
+  getMapDetails() {
+    this.mapSvc.getRouteDetails(this.trip).subscribe(
+      data => {
+        console.log('**^^GETTING MAP Details**^^');
+        console.log(data);
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
   getRouteUrl() {
+    // this.getMapDetails();
     this.builtUrl = this.mapSvc.buildRouteUrl(this.trip);
     console.log('BUILT URL^^******' + this.builtUrl);
     return this.builtUrl;

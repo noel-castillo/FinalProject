@@ -151,6 +151,61 @@ export class AdminComponent implements OnInit {
     return user.enabled;
   }
 
+  isAdmin(user: User): boolean {
+    if (user.role === 'admin') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isStandard(user: User): boolean {
+    if (user.role === 'standard' || user.role === null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  changeRole(user: User) {
+    if (user.role === 'admin') {
+      user.role = 'standard';
+
+      this.usrSvc.update(user, user.id).subscribe(
+        dat => {
+          this.usrSvc.index().subscribe(
+            data => {
+              this.allUsers = data;
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    } else {
+      user.role = 'admin';
+
+      this.usrSvc.update(user, user.id).subscribe(
+        dat => {
+          this.usrSvc.index().subscribe(
+            data => {
+              this.allUsers = data;
+            },
+            err => {
+              console.log(err);
+            }
+          );
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+  }
+
   enableDisableUser(user: User) {
     user.enabled = !user.enabled;
 

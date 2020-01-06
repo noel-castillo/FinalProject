@@ -52,11 +52,14 @@ export class InboxComponent implements OnInit {
       this.dmSvc.createDirectMessage(this.myReply, this.selected.id).subscribe(
         data => {
           this.myReply = data;
-          this.loadFriendList();
           this.myReply.content = '';
+          this.ngOnInit();
         },
         err => {
           console.error('Inbox Component: Unable to reply()');
+        },
+        () => {
+          this.myReply = new DirectMessage();
         }
       );
 

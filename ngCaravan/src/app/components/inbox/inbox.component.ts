@@ -1,7 +1,13 @@
 import { UserService } from './../../services/user.service';
 import { UserProfile } from './../../models/user-profile';
 import { DirectMessage } from './../../models/direct-message';
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewChecked
+} from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DirectMessageService } from 'src/app/services/direct-message.service';
@@ -14,7 +20,7 @@ import { UserProfileService } from 'src/app/services/user-profile.service';
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.css']
 })
-export class InboxComponent implements OnInit, AfterViewChecked{
+export class InboxComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollBottom', null) private scrollBottom: ElementRef;
 
   // F I E L D S

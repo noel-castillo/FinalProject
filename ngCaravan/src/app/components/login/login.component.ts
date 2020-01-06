@@ -1,3 +1,4 @@
+import { NavbarComponent } from './../navbar/navbar.component';
 import { UserService } from './../../services/user.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -35,13 +36,12 @@ export class LoginComponent implements OnInit {
           err => {
             console.log('in login, get user session');
             console.log(err);
-
           }
-          );
-        },
-        err => {
-          console.log('in login');
-          console.log(err);
+        );
+      },
+      err => {
+        console.log('in login');
+        console.log(err);
       }
     );
   }

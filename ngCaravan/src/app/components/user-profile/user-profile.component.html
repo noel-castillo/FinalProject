@@ -295,7 +295,7 @@
                             </tr>
                             <tr *ngFor="let trip of myTrips">
                               <td class="nav-item">
-                                <a [routerLink]="['/trips/' + trip.id + '']">{{trip.trip.title}}</a>
+                                <a [routerLink]="['/trips/' + trip.trip.id + '']">{{trip.trip.title}}  </a>
                               </td>
                               <td class="nav-item">
                                 {{trip.trip.departureAddress.city}},

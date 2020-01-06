@@ -55,6 +55,7 @@ export class TripProfileComponent implements OnInit {
 
   alert() {
     window.alert('Your join request has been sent!');
+    window.location.reload();
   }
 
   getMap() {
@@ -259,6 +260,7 @@ export class TripProfileComponent implements OnInit {
         this.trip = data;
         this.getTripTravelers();
         this.getRouteUrl();
+        window.scrollTo(0, 1);
 
 
         // this.tripTravelerSvc.index().subscribe (

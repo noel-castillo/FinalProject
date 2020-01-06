@@ -17,6 +17,8 @@ export class UserProfileService {
 
   userProfiles: UserProfile[] = [];
 
+
+
   // C O N S T R U C T O R
 
   constructor(
@@ -48,8 +50,8 @@ export class UserProfileService {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -63,6 +65,7 @@ export class UserProfileService {
         })
       );
   }
+
 
   getProfileFromUsername(usrname: string) {
     const credentials = this.authService.getCredentials();

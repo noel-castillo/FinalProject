@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   isCollapsed = true;
   userProf: UserProfile;
 
+
   constructor(
     private auth: AuthService,
     private usrProfSvc: UserProfileService,
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
     this.usrProfSvc.getUserInSessionProfile().subscribe(
       data => {
         this.userProf = data;
+
       },
       error => {
         console.error(error);
@@ -30,6 +32,7 @@ export class NavbarComponent implements OnInit {
       }
     );
   }
+
 
   checkIfLoggedIn() {
     return this.auth.checkLogin();

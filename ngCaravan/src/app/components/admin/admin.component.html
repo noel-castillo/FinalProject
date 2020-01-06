@@ -7,7 +7,6 @@
           <img
             [src]="currentProfile.profilePic.url"
             class="img-responsive"
-            alt=""
           />
         </div>
         <!-- END SIDEBAR USERPIC -->
@@ -279,7 +278,7 @@
                             </tr>
                             <tr *ngFor="let trip of myTrips">
                               <td class="nav-item">
-                                <a [routerLink]="['/trips/' + trip.id + '']">{{
+                                <a [routerLink]="['/trips/' + trip.trip.id + '']">{{
                                   trip.trip.title
                                 }}</a>
                               </td>
@@ -1167,33 +1166,51 @@
                     <tbody>
                       <tr>
                         <td class="nav-item">
-                          <a (click)="seeUsers = false">Users</a>
+                          <a (click)="seeUsers = !seeUsers">Users</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nav-item">
+                          <a (click)="seeTrips = !seeTrips">Trips</a>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                   <div *ngIf="!seeUsers">
-                    <table class="table table-hover table-striped">
+                    <table class="table table-bordered">
                       <tbody>
                         <tr>
-                          <th class="nav-item">
+                          <th scope="col" class="nav-item text-center">
                             <u>Username</u>
                           </th>
-                          <th class="nav-item">
+                          <th  scope="col" class="nav-item text-center">
                             <u>Role</u>
                           </th>
-                          <th class="nav-item">
+                          <th  scope="col" class="nav-item text-center ">
                             <u>Status</u>
                           </th>
                         </tr>
                         <tr *ngFor="let user of allUsers">
-                          <td class="nav-item">
+                          <td scope="row" class="nav-item text-center username">
                             {{ user.username }}
                           </td>
-                          <td class="nav-item">
-                            {{ user.role }}
+                          <td scope="row"  class="nav-item text-center">
+                            <button *ngIf="isAdmin(user)"
+                            type="button"
+                            (click)="changeRole(user)"
+                            class="btn btn-warning"
+                          >
+                    Admin
+                  </button>
+                            <button *ngIf="isStandard(user)"
+                            type="button"
+                            (click)="changeRole(user)"
+                            class="btn btn-primary"
+                          >
+                    Standard
+                  </button>
                           </td>
-                          <td class="nav-item">
+                          <td  scope="row" class="nav-item text-center">
 
                               <button *ngIf="setEnabled(user)"
                               type="button"
@@ -1205,6 +1222,49 @@
                               <button *ngIf="!setEnabled(user)"
                               type="button"
                               (click)="enableDisableUser(user)"
+                              class="btn btn-danger"
+                            >
+                      Disabled
+                    </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="!seeTrips">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <th scope="col" class="nav-item text-center">
+                            <u>Title</u>
+                          </th>
+                          <th  scope="col" class="nav-item text-center">
+                            <u>Host</u>
+                          </th>
+                          <th  scope="col" class="nav-item text-center ">
+                            <u>Status</u>
+                          </th>
+                        </tr>
+                        <tr *ngFor="let trip of allTrips">
+                          <td scope="row" class="nav-item text-center username">
+                            {{ trip.title }}
+                          </td>
+                          <td scope="row"  class="nav-item text-center username">
+                            {{ trip.host.user.username}}
+
+                          </td>
+                          <td  scope="row" class="nav-item text-center">
+
+                              <button *ngIf="setEnabledTrip(trip)"
+                              type="button"
+                              (click)="enableDisableTrip(trip)"
+                              class="btn btn-success"
+                            >
+                      Enabled
+                    </button>
+                              <button *ngIf="!setEnabledTrip(trip)"
+                              type="button"
+                              (click)="enableDisableTrip(trip)"
                               class="btn btn-danger"
                             >
                       Disabled

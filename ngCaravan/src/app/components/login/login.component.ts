@@ -1,9 +1,9 @@
-import { UserService } from './../../services/user.service';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { AuthService } from './../../services/auth.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -35,13 +35,12 @@ export class LoginComponent implements OnInit {
           err => {
             console.log('in login, get user session');
             console.log(err);
-
           }
-          );
-        },
-        err => {
-          console.log('in login');
-          console.log(err);
+        );
+      },
+      err => {
+        console.log('in login');
+        console.log(err);
       }
     );
   }

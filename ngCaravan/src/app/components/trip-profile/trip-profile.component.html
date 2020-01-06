@@ -1,5 +1,6 @@
 
     <!-- Google Map Route -->
+
     <div class="map-responsive">
     <iframe [src]="getRouteUrl() | map"></iframe>
     </div>
@@ -12,22 +13,25 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="about-intro">
-                            <div class="rating">Rating</div>
+                            <div class="rating"></div>
                             <div class="intro-text">
                                 <h2>{{trip.title}}</h2>
-                                <p>Departure Location: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
-                                <p>Destination Location: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
-                                <p>Description: {{trip.description}}</p>
-                                <p>Total Cost: ${{trip.totalCost}}</p>
-                                <p>Vehicle: {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
+
+                                <p><strong>Departure Location:</strong> {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
+                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
+                                <p><strong>Description:</strong> {{trip.description}}</p>
+                                <p><strong>Total Cost:</strong> ${{trip.totalCost}}</p>
+                                <p><strong>Vehicle:</strong> {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
                                 <div *ngIf="joined" class="closed">{{joined.travelerStatus}}</div>
                                 <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="closed">Join</div>
+                                <!-- <div *ngIf="joined.travelerStatus === null" class="closed">Your Trip</div> -->
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 offset-lg-1">
                         <div class="intro-share">
                             <div class="share-btn">
+                              <p> <img src="{{trip.featureImage}}" class="featureImage"></p>
                             </div>
                         </div>
                     </div>
@@ -53,18 +57,26 @@
                                 <ng-container *ngFor="let advenTravelerr of thisTripTravelers">
                                 <div *ngIf="advenTravelerr" class="reviews-item">
                                   <ul>
-                                    <li> <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</li>
+                                    <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} </li>
                                   </ul>
                                   <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
                                 </div>
+
                               </ng-container>
+
+                              <div *ngIf="thisTripTravelers.length === 0" class="reviews-item">
+                                <ul>
+                                  <h4><em>Be the first to sign up for this trip!</em></h4>
+                                </ul>
+                                <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
+                              </div>
 
                                 <h3>About the Host</h3>
 
                                 <mat-card class="example-card">
                                   <mat-card-header>
                                     <div mat-card-avatar class="example-header-image">
-                                      <img src="{{trip.host.profilePic.url}}">
+                                      <img src="{{trip.host.profilePic.url}}" class="photo2">
                                     </div>
 
                                     <mat-card-title>{{trip.host.firstName}} {{trip.host.lastName}}</mat-card-title>
@@ -85,9 +97,14 @@
 
                             <br><br>
                                 <div class="client-reviews">
+
                                   <h3>Host Reviews</h3>
+
                                   <ng-container *ngFor="let advenTraveler of thisTripTravelers">
+
+
                                   <div *ngIf="advenTraveler.review" class="reviews-item">
+
                                     <div *ngIf="advenTraveler.rating === 1">
                                       <span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
 
@@ -116,9 +133,16 @@
                                         <h5>{{advenTraveler.user.firstName}}, {{advenTraveler.user.lastName}}</h5>
                                         <!-- <span>March 03, 2019</span> -->
                                     </div>
+
+
+
                                 </div>
                                 </ng-container>
+
+
+
                             </div>
+
                         </div>
                     </div>
                 </div>

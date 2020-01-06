@@ -278,7 +278,7 @@
                             </tr>
                             <tr *ngFor="let trip of myTrips">
                               <td class="nav-item">
-                                <a [routerLink]="['/trips/' + trip.id + '']">{{
+                                <a [routerLink]="['/trips/' + trip.trip.id + '']">{{
                                   trip.trip.title
                                 }}</a>
                               </td>

@@ -55,6 +55,7 @@ export class TripProfileComponent implements OnInit {
 
   alert() {
     window.alert('Your join request has been sent!');
+    window.location.reload();
   }
 
   getMap() {

@@ -19,18 +19,20 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	@Autowired
 	private UserRepository usrRepo;
-	
+
 	@Autowired
 	private ImageRepository iRepo;
 
 	@Override
 	public UserProfile create(UserProfile userProfile, String username) {
 		User user = usrRepo.findByUsername(username);
-		
+
 		System.out.println(user);
 		userProfile.setUser(user);
 		userProfile.setProfilePic(iRepo.findById(9).get());
+
 		
+
 		if (user != null) {
 			return uRepo.saveAndFlush(userProfile);
 		} else {
@@ -69,20 +71,17 @@ public class UserProfileServiceImpl implements UserProfileService {
 	@Override
 	public List<UserProfile> index(String username) {
 
-		// FIXME
-		if (username == "") {
-
-		}
+		
 
 		return uRepo.findAll();
 	}
 
 	@Override
 	public UserProfile show(String username) {
-		
+
 		User user = usrRepo.findByUsername(username);
 		UserProfile userProfile = uRepo.findByUser(user);
-		
+
 		if (userProfile != null) {
 			return userProfile;
 		}
@@ -95,6 +94,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 		UserProfile user = uRepo.findById(id).get();
 
 		if (user != null) {
+			
+			
 			return user;
 		}
 		return null;
@@ -104,25 +105,26 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public boolean destroy(int id) {
 
 		UserProfile uProfile = uRepo.findById(id).get();
-		
+
 		if (uProfile != null) {
 			uRepo.delete(uProfile);
 			return true;
 		}
-		
+
 		return false;
 	}
 
 	@Override
 	public UserProfile showByUsername(String username) {
 		UserProfile usrProf = uRepo.findByUser_Username(username);
-		
-		if(usrProf != null) {
+
+		if (usrProf != null) {
+			
+			
 			return usrProf;
-			
-		}
-		else {
-			
+
+		} else {
+
 			return null;
 		}
 	}

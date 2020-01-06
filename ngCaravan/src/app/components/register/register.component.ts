@@ -51,11 +51,13 @@ export class RegisterComponent implements OnInit {
               },
               err => {
                 console.log(err);
+                this.route.navigateByUrl('notfound');
               }
             );
           },
           err => {
             console.log(err);
+            this.route.navigateByUrl('notfound');
           }
         );
       },

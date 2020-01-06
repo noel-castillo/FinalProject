@@ -16,13 +16,13 @@
         </h6>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" (click)="seeUsers = !seeUsers">
+            <a class="nav-link" (click)="seeUsers = !seeUsers; seeTrips = true">
               <i class="fas fa-cogs"></i>
               User
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="seeTrips = !seeTrips">
+            <a class="nav-link" (click)="seeTrips = !seeTrips; seeUsers = true">
               <span data-feather="shopping-cart"></span>
               Trips
             </a>

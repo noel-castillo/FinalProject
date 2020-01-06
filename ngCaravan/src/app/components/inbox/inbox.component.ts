@@ -1,7 +1,13 @@
 import { UserService } from './../../services/user.service';
 import { UserProfile } from './../../models/user-profile';
 import { DirectMessage } from './../../models/direct-message';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewChecked
+} from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DirectMessageService } from 'src/app/services/direct-message.service';
@@ -14,7 +20,8 @@ import { UserProfileService } from 'src/app/services/user-profile.service';
   templateUrl: './inbox.component.html',
   styleUrls: ['./inbox.component.css']
 })
-export class InboxComponent implements OnInit {
+export class InboxComponent implements OnInit, AfterViewChecked {
+  @ViewChild('scrollBottom', null) private scrollBottom: ElementRef;
 
   // F I E L D S
 
@@ -36,7 +43,7 @@ export class InboxComponent implements OnInit {
 
   fid = 0;
 
-// C O N S T R U C T O R
+  // C O N S T R U C T O R
 
   constructor(
     private auth: AuthService,
@@ -44,49 +51,57 @@ export class InboxComponent implements OnInit {
     private uSvc: UserService,
     private upSvc: UserProfileService,
     private currentRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router
+  ) {}
 
-    // M E T H O D S
+  // M E T H O D S
 
-    reply() {
-      this.dmSvc.createDirectMessage(this.myReply, this.selected.id).subscribe(
-        data => {
-          this.myReply = data;
-          this.myReply.content = '';
-          this.ngOnInit();
-        },
-        err => {
-          console.error('Inbox Component: Unable to reply()');
-        },
-        () => {
-          this.myReply = new DirectMessage();
-        }
-      );
+  reply() {
+    this.dmSvc.createDirectMessage(this.myReply, this.selected.id).subscribe(
+      data => {
+        this.myReply = data;
+        this.myReply.content = '';
+        this.ngOnInit();
+      },
+      err => {
+        console.error('Inbox Component: Unable to reply()');
+      },
+      () => {
+        this.myReply = new DirectMessage();
+      }
+    );
+  }
 
-    }
-
-    compose(form: NgForm) {
-
-      this.users.forEach((userProfile) => {
-        if (userProfile.user.username === form.value.friendUsername) {
-          this.fid = userProfile.id;
-        }
-      });
-      this.dmSvc.createDirectMessage(this.myReply, this.fid).subscribe(
-        data => {
-          this.loadFriendList();
-          this.myReply = new DirectMessage();
-        },
-        err => {
-          console.error('Inbox Component: Unable to reply()');
-        }
-      );
-
-    }
+  compose(form: NgForm) {
+    this.users.forEach(userProfile => {
+      if (userProfile.user.username === form.value.friendUsername) {
+        this.fid = userProfile.id;
+      }
+    });
+    this.dmSvc.createDirectMessage(this.myReply, this.fid).subscribe(
+      data => {
+        this.loadFriendList();
+        this.myReply = new DirectMessage();
+      },
+      err => {
+        console.error('Inbox Component: Unable to reply()');
+      }
+    );
+  }
 
   ngOnInit() {
     this.loadUsers();
     this.loadFriendList();
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+  scrollToBottom(): void {
+    try {
+      this.scrollBottom.nativeElement.scrollTop = this.scrollBottom.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 
   loadUsers() {
@@ -115,21 +130,24 @@ export class InboxComponent implements OnInit {
         console.log(data);
         this.friends = [];
         this.friendsMap = new Map<number, UserProfile>();
-        this.messages.forEach((message) => {
-            if (!this.friendsMap.has(message.friendProfile.id)) {
-              // message.friendProfile.sorted = message.friendProfile.getAllMessages();
-              if (message.friendProfile.id !== this.me.id) {
-              this.friendsMap.set(message.friendProfile.id, message.friendProfile);
+        this.messages.forEach(message => {
+          if (!this.friendsMap.has(message.friendProfile.id)) {
+            // message.friendProfile.sorted = message.friendProfile.getAllMessages();
+            if (message.friendProfile.id !== this.me.id) {
+              this.friendsMap.set(
+                message.friendProfile.id,
+                message.friendProfile
+              );
               this.friends.push(message.friendProfile);
-              }
             }
-            if (!this.friendsMap.has(message.myProfile.id)) {
-              // message.friendProfile.sorted = message.friendProfile.getAllMessages();
-              if (message.myProfile.id !== this.me.id) {
-                this.friendsMap.set(message.myProfile.id, message.myProfile);
-                this.friends.push(message.myProfile);
-                }
+          }
+          if (!this.friendsMap.has(message.myProfile.id)) {
+            // message.friendProfile.sorted = message.friendProfile.getAllMessages();
+            if (message.myProfile.id !== this.me.id) {
+              this.friendsMap.set(message.myProfile.id, message.myProfile);
+              this.friends.push(message.myProfile);
             }
+          }
         });
       },
       err => {
@@ -137,5 +155,4 @@ export class InboxComponent implements OnInit {
       }
     );
   }
-
 }

@@ -77,8 +77,7 @@ import { CapitalizeePipe } from './pipes/capitalizee.pipe';
     FriendMessagesPipe,
     LatestMessagePipe,
     MapPipe,
-    FooterComponent,
-    CapitalizeePipe
+    FooterComponent
 
 
 

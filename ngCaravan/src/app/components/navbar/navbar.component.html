@@ -47,7 +47,6 @@
       </div>
       <div *ngIf="checkIfLoggedIn()">
         <div class="navbar-nav">
-
           <a
             class="nav-item nav-link"
             [routerLink]="['/user-profiles']"
@@ -61,7 +60,7 @@
             >&nbsp; &nbsp; &nbsp; &nbsp; Inbox
           </a>
           <app-logout></app-logout>
-          <p class="welcome">Welcome, {{ first }}!</p>
+          <p class="welcome">Welcome, {{userProf.firstName|titlecase}}!</p>
         </div>
       </div>
     </div>

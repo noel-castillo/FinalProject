@@ -1,3 +1,4 @@
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { LoginComponent } from './components/login/login.component';
@@ -32,6 +33,7 @@ const routes: Routes = [
   {path: 'adventure-profile/:id', component: AdventureProfileComponent},
   {path: 'adventure-travelers', component: AdventureTravelerComponent},
   {path: 'categories', component: CategoriesComponent},
+  {path: 'nav', component: NavbarComponent},
   {path: 'images', component: ImageComponent},
   {path: 'inbox', component: InboxComponent},
   {path: 'trips', component: TripComponent},

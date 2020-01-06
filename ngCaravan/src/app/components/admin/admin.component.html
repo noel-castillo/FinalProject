@@ -1166,7 +1166,12 @@
                     <tbody>
                       <tr>
                         <td class="nav-item">
-                          <a (click)="seeUsers = false">Users</a>
+                          <a (click)="seeUsers = !seeUsers">Users</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="nav-item">
+                          <a (click)="seeTrips = !seeTrips">Trips</a>
                         </td>
                       </tr>
                     </tbody>
@@ -1217,6 +1222,49 @@
                               <button *ngIf="!setEnabled(user)"
                               type="button"
                               (click)="enableDisableUser(user)"
+                              class="btn btn-danger"
+                            >
+                      Disabled
+                    </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="!seeTrips">
+                    <table class="table table-bordered">
+                      <tbody>
+                        <tr>
+                          <th scope="col" class="nav-item text-center">
+                            <u>Title</u>
+                          </th>
+                          <th  scope="col" class="nav-item text-center">
+                            <u>Host</u>
+                          </th>
+                          <th  scope="col" class="nav-item text-center ">
+                            <u>Status</u>
+                          </th>
+                        </tr>
+                        <tr *ngFor="let trip of allTrips">
+                          <td scope="row" class="nav-item text-center username">
+                            {{ trip.title }}
+                          </td>
+                          <td scope="row"  class="nav-item text-center username">
+                            {{ trip.host.user.username}}
+
+                          </td>
+                          <td  scope="row" class="nav-item text-center">
+
+                              <button *ngIf="setEnabledTrip(trip)"
+                              type="button"
+                              (click)="enableDisableTrip(trip)"
+                              class="btn btn-success"
+                            >
+                      Enabled
+                    </button>
+                              <button *ngIf="!setEnabledTrip(trip)"
+                              type="button"
+                              (click)="enableDisableTrip(trip)"
                               class="btn btn-danger"
                             >
                       Disabled

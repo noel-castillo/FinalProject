@@ -71,6 +71,8 @@ export class AdminComponent implements OnInit {
 
   seeUsers = true;
 
+  seeTrips = true;
+
   seeMyHostings = true;
 
   seePendingRequests = true;
@@ -80,6 +82,8 @@ export class AdminComponent implements OnInit {
   selectedTrip: Trip = null;
 
   allUsers: User[];
+
+  allTrips: Trip[];
 
   // C O N S T R U C T O R
 
@@ -151,6 +155,10 @@ export class AdminComponent implements OnInit {
     return user.enabled;
   }
 
+  setEnabledTrip(trip: Trip): boolean {
+    return trip.enabled;
+  }
+
   isAdmin(user: User): boolean {
     if (user.role === 'admin') {
       return true;
@@ -214,6 +222,26 @@ export class AdminComponent implements OnInit {
         this.usrSvc.index().subscribe(
           data => {
             this.allUsers = data;
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  enableDisableTrip(trip: Trip) {
+    trip.enabled = !trip.enabled;
+
+    this.tripSvc.update(trip).subscribe(
+      dat => {
+        this.tripSvc.index().subscribe(
+          data => {
+            this.allTrips = data;
           },
           err => {
             console.log(err);
@@ -301,6 +329,15 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.tripSvc.index().subscribe(
+      data => {
+        this.allTrips = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
+
     this.usrSvc.index().subscribe(
       data => {
         this.allUsers = data;

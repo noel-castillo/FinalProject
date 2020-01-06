@@ -35,13 +35,12 @@ export class LoginComponent implements OnInit {
           err => {
             console.log('in login, get user session');
             console.log(err);
-
           }
-          );
-        },
-        err => {
-          console.log('in login');
-          console.log(err);
+        );
+      },
+      err => {
+        console.log('in login');
+        console.log(err);
       }
     );
   }

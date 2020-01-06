@@ -92,10 +92,9 @@ export class UserProfileComponent implements OnInit {
     private tripSvc: TripService,
     private addrSvc: AddressService,
     private vSvc: VehicleService
-  ) { }
+  ) {}
 
   // M E T H O D S
-
 
   showHosting() {
     this.seeNewTrip = true;
@@ -109,7 +108,6 @@ export class UserProfileComponent implements OnInit {
     this.newTrip.departureAddress = new Address();
     this.newTrip.destinationAddress = new Address();
     this.newTrip.tripCalendar = this.newTripCalendar;
-
   }
 
   showAccountSettings() {
@@ -123,7 +121,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   addNewVehicle() {
-
     this.vSvc.create(this.newVehicle).subscribe(
       data => {
         console.log('Vehicle has been created!');
@@ -147,7 +144,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   createTrip() {
-
     this.tripSvc.create(this.newTrip).subscribe(
       data => {
         this.myHostings.push(data);
@@ -160,9 +156,7 @@ export class UserProfileComponent implements OnInit {
       err => {
         console.log(err);
       }
-
     );
-
   }
 
   disableVehicle(vehicle: Vehicle) {
@@ -211,7 +205,6 @@ export class UserProfileComponent implements OnInit {
     );
   }
   savePersonalInformation() {
-
     this.addrSvc.updateAddress(this.currentProfile.address).subscribe(
       data => {
         this.currentProfile.address = data;
@@ -249,10 +242,15 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.uSvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
+        if (this.currentProfile.user.role === 'admin') {
+          this.router.navigateByUrl('admin');
+
+        } else {
+          this.router.navigateByUrl('user-profiles');
+        }
       },
       err => {
         console.log(err);

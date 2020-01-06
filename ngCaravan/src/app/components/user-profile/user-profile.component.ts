@@ -65,7 +65,7 @@ export class UserProfileComponent implements OnInit {
 
   seeVehicles = true;
 
-  seePersonalInformation = true;
+  seePersonalInformation = false;
 
   seeMyTrips = true;
 

@@ -1,86 +1,82 @@
-<div class="container">
-  <div class="row profile">
-    <div class="col-md-12">
-      <div class="profile-sidebar">
-        <!-- SIDEBAR USERPIC -->
-        <div class="profile-userpic">
-          <img [src]="currentProfile.profilePic.url" class="img-responsive" alt="">
-        </div>
-        <!-- END SIDEBAR USERPIC -->
-        <!-- SIDEBAR USER DETAILS -->
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name">
-            {{currentProfile.firstName}} {{currentProfile.lastName}}
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <img [src]="currentProfile.profilePic.url" class="avatar" alt="">
+        <h5 class="nav-link">
+          {{currentProfile.firstName}} {{currentProfile.lastName}}</h5>
+        <h5 class="nav-link">
+          Mileage Points: {{currentProfile.mileagePoints}} pts</h5>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Account Details</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" (click)="showAccountSettings(); seePersonalInformation = false">
+              <i class="fas fa-cogs"></i>
+              Personal Information
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="showAccountSettings(); seeMyTrips = false">
+              <span data-feather="shopping-cart"></span>
+              Trips Joined
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="showAccountSettings(); seeVehicles = false">
+              <span data-feather="users"></span>
+              My Vehicles
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Hosting Details</span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" (click)="showHosting(); seeNewTrip = false">
+              <span data-feather="file-text"></span>
+              Host New Trip
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="showHosting(); seeMyHostings = false">
+              <span data-feather="file-text"></span>
+              My Hostings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="showHosting(); seePendingRequests = false">
+              <span data-feather="file-text"></span>
+              Pending Requests
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
           </div>
-          <div class="profile-usertitle-job">
-            Mileage Points: {{currentProfile.mileagePoints}} pts
-          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar"></span>
+            This week
+          </button>
         </div>
-        <!-- END SIDEBAR USER DETAILS -->
-        <!-- SIDEBAR BUTTONS -->
-        <div class="profile-userbuttons">
-          <button type="button" id="dropdownMenu1" data-toggle="dropdown"
-            class="btn btn-outline-success dropdown-toggle" role="button">Change Profile Image</button>
-          <ul class="dropdown-menu dropdown-menu-right mt-4">
-            <li class="px-6 py-4">
-              <form>
-                <div class="form-group">
-                  <input name="url" placeholder="New Image URL" class="form-control form-control-md" type="text"
-                    [(ngModel)]="newImage.url" required="required">
-                  <button (click)="updateProfileImage()" type="submit" class="btn btn-warning btn-block">Submit</button>
-                </div>
-              </form>
-            </li>
-          </ul>
-          <button type="button" (click)="logout()" class="btn btn-outline-danger">Logout</button>
-          <br>
-        </div>
-        <!-- END SIDEBAR BUTTONS -->
-
-        <!-- START TABLE TABS -->
-        <div class="container">
-          <div class="row my-12">
-            <div class="col-lg-12 order-lg-12">
-              <br>
-              <ul id="splitDisplayList" class="nav nav-tabs">
-                <li class="nav-item">
-                  <a href="" data-target="#profile" data-toggle="tab" (click)="showAccountSettings()"
-                    class="nav-link active btn btn-outline-success">Account Details</a>
-                </li>
-                <li class="nav-item">
-                  <a href="" data-target="#hosting" data-toggle="tab" (click)="showHosting()"
-                    class="nav-link btn btn-outline-success">Hosting</a>
-                </li>
-              </ul>
-              <!-- END TABLES TABS -->
-
-              <!-- START ACCOUNT DETAILS SECTION -->
-              <div class="tab-content py-12">
-                <div class="tab-pane active" id="profile">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <table *ngIf="seeVehicles && seePersonalInformation && seeMyTrips"
-                        class="table table-hover table-striped">
-                        <tbody>
-                          <tr>
-                            <td class="nav-item">
-                              <a (click)="seePersonalInformation = false">Personal
-                                Info</a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="nav-item">
-                              <a (click)="seeMyTrips = false">Trips Joined</a>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="nav-item">
-                              <a (click)="seeVehicles = false">My Vehicles</a>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-
+      </div>
                       <!-- START MY VEHICLES -->
                       <div
                         *ngIf="!seeVehicles && seePersonalInformation && seeMyTrips && !editVehicle && seeNewVehicle">
@@ -492,39 +488,9 @@
                         <br>
                       </div>
                       <!-- END EDIT PERSONAL INFORMATION -->
-
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                  </div>
-                  <!--/row-->
-                </div>
                 <!-- END ACCOUNT DETAILS SECTION -->
 
                 <!-- START HOSTING SECTION -->
-                <div class="tab-pane" id="hosting">
-
-                  <table *ngIf="seeNewTrip && seeMyHostings && seePendingRequests"
-                    class="table table-hover table-striped">
-                    <tbody>
-                      <tr>
-                        <td class="nav-item">
-                          <a (click)="seeNewTrip = false">Host New Trip</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="nav-item">
-                          <a (click)="seeMyHostings = false">My Hostings</a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="nav-item">
-                          <a (click)="seePendingRequests = false">Pending Requests</a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
 
                   <!-- START NEW TRIP FORM -->
                   <div *ngIf="!seeNewTrip && seeMyHostings && seePendingRequests">
@@ -710,17 +676,13 @@
                           </tr>
                         </tbody>
                       </table>
-                      <button align="center" type="submit" (click)="createTrip()" class="btn btn-outline-success"
+                      <button type="submit" (click)="createTrip()" class="btn btn-outline-success"
                         role="button">Create</button>
-                      <button align="center" type="button" (click)="seeNewTrip = true"
+                      <button type="button" (click)="seeNewTrip = true"
                         class="btn btn-light">Back</button>
-                      <br>
-                      <br>
-                      <br>
+
                     </form>
-                    <br>
-                    <br>
-                    <br>
+
                   </div>
                   <!-- END NEW TRIP FORM -->
 
@@ -759,7 +721,7 @@
                         </tr>
                       </tbody>
                     </table>
-                    <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
+                    <button type="button" (click)="showHosting()" class="btn btn-light">Back</button>
                   </div>
 
                   <!-- START HOSTING DETAILS -->
@@ -846,7 +808,7 @@
                     <button type="button" type="button" (click)="editHosting = selectedTrip"
                       class="btn btn-outline-success">Edit</button>
                     <button type="button" class="btn btn-outline-danger">Delete</button>
-                    <button align="center" type="button" (click)="selectedTrip = null"
+                    <button type="button" (click)="selectedTrip = null"
                       class="btn btn-light">Back</button>
                   </div>
                   <!-- END HOSTING DETAILS -->
@@ -1039,7 +1001,7 @@
                         class="btn btn-outline-success">Save</button>
                     </form>
                     <button type="button" class="btn btn-outline-danger">Delete</button>
-                    <button align="center" type="button" (click)="selectedTrip = null"
+                    <button type="button" (click)="selectedTrip = null"
                       class="btn btn-light">Back</button>
                   </div>
                   <!-- END EDIT HOSTING -->
@@ -1081,72 +1043,10 @@
                         </tr>
                       </tbody>
                     </table>
-                    <button align="center" type="button" (click)="showHosting()" class="btn btn-light">Back</button>
+                    <button type="button" (click)="showHosting()" class="btn btn-light">Back</button>
                   </div>
 
-                </div>
                 <!-- END HOSTING DETAILS -->
-
-                <!-- <div class="col-md-6">
-              <h6>Recent badges</h6>
-              <a href="#" class="badge badge-dark badge-pill">html5</a>
-              <a href="#" class="badge badge-dark badge-pill">react</a>
-              <a href="#" class="badge badge-dark badge-pill">codeply</a>
-              <a href="#" class="badge badge-dark badge-pill">angularjs</a>
-              <a href="#" class="badge badge-dark badge-pill">css3</a>
-              <a href="#" class="badge badge-dark badge-pill">jquery</a>
-              <a href="#" class="badge badge-dark badge-pill">bootstrap</a>
-              <a href="#" class="badge badge-dark badge-pill"
-                >responsive-design</a
-              >
-              <hr />
-              <span class="badge badge-primary"
-                ><i class="fa fa-user"></i> 900 Followers</span
-              >
-              <span class="badge badge-success"
-                ><i class="fa fa-cog"></i> 43 Forks</span
-              >
-              <span class="badge badge-danger"
-                ><i class="fa fa-eye"></i> 245 Views</span
-              >
-            </div> -->
-                <!-- <div class="col-md-12">
-              <h5 class="mt-2">
-                <span class="fa fa-clock-o ion-clock float-right"></span> Recent
-                Activity
-              </h5>
-              <table class="table table-sm table-hover table-striped">
-                <tbody>
-                  <tr>
-                    <td>
-                      <strong>Abby</strong> joined ACME Project Team in
-                      <strong>`Collaboration`</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Gary</strong> deleted My Board1 in
-                      <strong>`Discussions`</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Kensington</strong> deleted MyBoard3 in
-                      <strong>`Discussions`</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>John</strong> deleted My Board1 in
-                      <strong>`Discussions`</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>Skell</strong> deleted his post Look at Why this
-                      is.. in <strong>`Discussions`</strong>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div> -->
+    </main>
+  </div>
+</div>

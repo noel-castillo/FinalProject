@@ -55,7 +55,13 @@ export class TripProfileComponent implements OnInit {
 
   alert() {
     window.alert('Your join request has been sent!');
-    window.location.reload();
+    // window.location.reload();
+    // this.reloadTripTravelers(this.currentProfile);
+    this.getTripTravelers();
+  }
+
+  reloadTripTravelers(tripTrav: TripTraveler) {
+      this.thisTripTravelers.push(tripTrav);
   }
 
   getMap() {
@@ -70,7 +76,20 @@ export class TripProfileComponent implements OnInit {
     );
   }
 
+  getMapDetails() {
+    this.mapSvc.getRouteDetails(this.trip).subscribe(
+      data => {
+        console.log('**^^GETTING MAP Details**^^');
+        console.log(data);
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
   getRouteUrl() {
+    // this.getMapDetails();
     this.builtUrl = this.mapSvc.buildRouteUrl(this.trip);
     console.log('BUILT URL^^******' + this.builtUrl);
     return this.builtUrl;
@@ -121,6 +140,8 @@ export class TripProfileComponent implements OnInit {
       data => {
         console.log(data);
         this.tripTraveler = data;
+        this.thisTripTravelers.push(data);
+        this.joined = data;
       },
       err => {
         console.error(err);
@@ -261,38 +282,6 @@ export class TripProfileComponent implements OnInit {
         this.getTripTravelers();
         this.getRouteUrl();
         window.scrollTo(0, 1);
-
-
-        // this.tripTravelerSvc.index().subscribe (
-        //   data2 => {
-        //     this.tripTravelers = data2;
-        //     // this.currentRate = this.thisTripAdventureTravelers[0].rating;
-        //     console.log('***SET RATING***');
-        //     this.tripTravelers.forEach(element => {
-        //       console.log('element***' + element.id);
-        //       console.log('elementAdventureID***' + element.trip.id);
-        //       console.log('THIS.adventure.id***' + this.trip.id);
-
-        //       // this.currentRate = this.thisTripAdventureTravelers[0].rating;
-
-        //       if (element.trip.id === this.trip.id) {
-        //         console.log('ELEMENT******' + element.trip.id);
-        //         this.thisTripTravelers.push(element);
-        //         console.log('ELEMENT ADDED******');
-        //       }
-
-        //       if (this.trip.host.firstName === element.trip.host.firstName) {
-        //         console.log('ELEMENT******' + element.trip.id);
-        //         this.thisTripTravelers.push(element);
-        //         console.log('ELEMENT ADDED******');
-        //       }
-        //     });
-        //     // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
-        //   },
-        //   err => {
-        //     console.error('***ERROR GETTING TRIP TRAVELERS' + err);
-        //   }
-        // );
 
       },
       err => {

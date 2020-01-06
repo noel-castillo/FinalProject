@@ -259,6 +259,7 @@ export class TripProfileComponent implements OnInit {
         this.trip = data;
         this.getTripTravelers();
         this.getRouteUrl();
+        window.scrollTo(0, 1);
 
 
         // this.tripTravelerSvc.index().subscribe (

@@ -66,7 +66,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user_profile` ;
 
 CREATE TABLE IF NOT EXISTS `user_profile` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `bio` VARCHAR(300) NULL,
@@ -622,6 +622,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (8, 
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (9, 'tiffany', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (10, 'heather', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
 INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (11, 'johnnyu', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
+INSERT INTO `user` (`id`, `username`, `password`, `role`, `enabled`) VALUES (12, 'francise', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', NULL, 1);
 
 COMMIT;
 
@@ -646,6 +647,7 @@ INSERT INTO `image` (`id`, `url`) VALUES (12, 'https://i.imgur.com/dyYXsV7.jpg')
 INSERT INTO `image` (`id`, `url`) VALUES (13, 'https://i.imgur.com/SOyJZvJ.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (14, 'https://i.imgur.com/e4sGTr9.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (15, 'https://i.imgur.com/HeKw7Gx.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (16, 'https://i.imgur.com/MwXmSCr.jpg');
 
 COMMIT;
 
@@ -665,12 +667,20 @@ INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `long
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (8, '3235 76 Country Blvd & Hwy 165', 'Branson', 'MO', 65616, '36.64', '-93.28');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (9, '88 River Road', 'Gatlinburg', 'TN', 37738, '35.71', '-83.51');
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (10, '915 Westgate Resorts Rd', 'Gatlinburg', 'TN', 37738, '35.71', '-83.51');
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (11, '7857 Texhoma Ave', 'Seattle', 'WA', 37738, NULL, NULL);
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (12, '7857 Texhoma Ave', 'Fort Collins', 'CO', 37738, NULL, NULL);
-INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (13, '7857 Texhoma Ave', 'Grand Junction', 'CO', 37738, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (11, '797 Tacoma Ave', 'Seattle', 'WA', 98105, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (12, '7857 Texhoma Ave', 'Fort Collins', 'CO', 80523, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (13, '7857 Texhoma Ave', 'Grand Junction', 'CO', 81501, NULL, NULL);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (14, '7857 Texhoma Ave', 'Kansas City', 'MO', 37738, NULL, NULL);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (15, '7857 Texhoma Ave', 'Denver', 'CO', 80118, NULL, NULL);
 INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (16, '2150 S Franklin St', 'Denver', 'CO', 80111, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (24, '250 W Eagle Lane', 'Boulder', 'CO', 82222, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (17, '1476 Beach Way', 'Miami', 'FL', 33129, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (18, '2546 Palm Blvd', 'Miami', 'FL', 33125, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (19, '1300 Leaf Street', 'Seattle', 'WA', 98105, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (20, '256 Buffalo Lane', 'Colorado Springs', 'CO', 80911, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (21, '876 John Smith Ave', 'Provo', 'UT', 84601, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (22, '922 Navajo Lane', 'Pueblo', 'CO', 81001, NULL, NULL);
+INSERT INTO `address` (`id`, `street`, `city`, `state`, `zip`, `latitude`, `longitude`) VALUES (23, '1200 Broomstick St', 'Wichita', 'KS', 67052, NULL, NULL);
 
 COMMIT;
 
@@ -690,7 +700,8 @@ INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_poi
 INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (8, 'Geneveve', 'Shelby', 'Hi. I\'m Geneveve. I\'m a trustafarian, and I love to go to festies! So I take a lot of road trips, especially in the summer. Let\'s connect!', 276, 12, 12, 'geneveves@genevevemail.com', '555-234-1234', '2019-12-20', 8);
 INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (9, 'Tiffany', 'Peterson', 'Hey everybody. My name is Tiffany. I travel a lot for work. We should ride together :)', 5000, 13, 13, 'tiffanyp@tiffmail.com', '555-234-1233', '2019-12-12', 9);
 INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (10, 'Heather', 'Thomas', 'It\'s Heather, y\'all! Let\'s go on some adventures!! :D', 900, 14, 14, 'taylorb@taytaymail.com', '555-234-1232', '2019-12-15', 10);
-INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (11, 'Johnny', 'Utah', 'Hey guys. My name\'s Johnny. I love travelling and adventures more than most. Can\'t wait to go on some journeys with you all!', 450, 15, 15, 'johnnyu@johnnymail.com', '555-234-1231', '2019-12-13', 11);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (11, 'Francis', 'Emanon', 'Hey everybody. It\'s Francis. Let\'s road trip together!', 450, 16, 16, 'francise@francismail.com', '555-234-1230', '2019-12-14', 12);
+INSERT INTO `user_profile` (`id`, `first_name`, `last_name`, `bio`, `mileage_points`, `profile_pic_id`, `address_id`, `email`, `phone`, `registration_date`, `user_id`) VALUES (12, 'Johnny', 'Utah', 'Hey guys. My name\'s Johnny. I love travelling and adventures more than most. Can\'t wait to go on some journeys with you all!', 450, 15, 15, 'johnnyu@johnnymail.com', '555-234-1231', '2019-12-13', 11);
 
 COMMIT;
 
@@ -704,7 +715,12 @@ INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `s
 INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (2, 'Honda', 'Accord', 1993, 38, 4, 'kinda old looking', 3, 1);
 INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (3, 'GMC', 'Yukon', 2012, 37, 5, 'Very nice and clean.', 4, 1);
 INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (4, 'Chevrolet', 'Tahoe', 2010, 30, 4, 'Lots of room to stretch out.', 5, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (5, 'Ford', 'Mustag', 1999, 25, 1, 'Sporty, so not a lot of room inside.', 6, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (5, 'Ford', 'Mustang', 1999, 25, 1, 'Sporty, so not a lot of room inside.', 6, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (6, 'Subaru', 'Forrester', 2007, 80, 3, 'My Forrester is pretty roomy. I like to keep it clean, too.', 7, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (7, 'Subaru', 'Legacy', 2013, 50, 2, 'I\'m a bit of a neat freak. Please help me keep my car clean :)', 8, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (8, 'Ford', 'Explorer', 2003, 45, 4, 'Got a lot of room in here. I\'m not a slob, but I\'m not a clean freak either.', 9, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (9, 'Toyota', 'Camry', 2009, 41, 2, 'Clean interior. Pretty comfy too.', 10, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (10, 'Ford', 'Escape', 2010, 80, 3, 'There a few stains here and there. Otherwise clean. Non smoker.', 11, 1);
 
 COMMIT;
 
@@ -719,6 +735,16 @@ INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `c
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (3, 'I am going to the Titanic Museum in Branson, Missouri. Come along for the ride.', 3, 38, '2019-12-28', 1, '400', 800, 3, 5, 8, 4, 'Branson Titanic Museum', 'https://i.imgur.com/Iy01VVJ.jpg');
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (4, 'I\'m going to Gatlinburg. It\'s super sweet. You should come to!', 2, 30, '2019-12-27', 1, '275', 300, 4, 6, 9, 5, 'Gatlinburg Aquarium', 'https://i.imgur.com/Iy01VVJ.jpg');
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (5, 'I plan to go this really sweet indoor water park in Pigeon Forge, TN', 2, 40, '2019-12-26', 1, '1200', 3000, 5, 7, 10, 6, 'Pigeon Forge Indoor Water Park', 'https://i.imgur.com/Iy01VVJ.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (6, 'I\'m driving to Miami for a family reunion. It\'s a super long drive, but I hate flying! So come along for the trip, help chip in with costs, and if you like, we can take shifts driving. Should be a fun trip!', 3, 100, '2020-01-05', 1, '1000', 3300, 1, 12, 17, 7, 'Miami for Family Reunion', 'https://i.imgur.com/UI1whtk.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (7, 'Hey guys. I\'m driving from my home in Fort Collins, CO all the way to Miami to for a business conference. Give me a shout if you want to tag along.', 2, 30, '2020-01-06', 1, '800', 2500, 2, 12, 17, 8, 'Going to Miami for business', 'https://i.imgur.com/Ig3ZoEa.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (8, 'Going to Miami for vacation!! Super excited. Happy to share the ride with you!', 2, 40, '2020-01-05', 1, '600', 2500, 3, 21, 18, 9, 'Miami Vacation', 'https://i.imgur.com/rjPiKB3.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (9, 'My folks live in Miami, so I\'m driving down there to spend some time with them. Feel free to join my trip :)', 3, 50, '2020-01-05', 1, '700', 2500, 4, 21, 17, 10, 'Miami Trip', 'https://i.imgur.com/rXD3ark.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (10, 'It\'s vacation time, baby! Miami, here I come! Come along for the ride if you like.', 3, 50, '2020-01-05', 1, '850', 2500, 5, 13, 18, 2, 'Vacation in Miami', 'https://i.imgur.com/JRdt40A.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (11, 'Going back home to Miami. Let me know if you\'d like to join the trip!', 3, 45, '2020-01-05', 1, '550', 2500, 6, 13, 17, 3, 'Back home to FL', 'https://i.imgur.com/71gq4HR.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (12, 'I\'m going on Vacay in Miami for a couple of weeks. I leave on the 15th.', 2, 34, '2020-01-05', 1, '475', 2250, 7, 15, 18, 4, 'Miami Vacay', 'https://i.imgur.com/VeumenV.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (13, 'I\'m moving to Miami and will be driving down there with a trailer of my stuff. Plz contact me if you want to join.', 4, 45, '2020-01-05', 1, '450', 2250, 8, 15, 17, 5, 'FL trip', 'https://i.imgur.com/JbyRVQM.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (14, 'Going to Miami to see some family. Would love some travel companions for the long drive.', 3, 45, '2020-01-05', 1, '700', 2250, 9, 16, 18, 6, 'Trip to Miami', 'https://i.imgur.com/U1Jv87I.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (15, 'Driving down to Miami for a much needed vacation. Message me for more info!', 2, 50, '2020-01-05', 1, '625', 2500, 10, 13, 17, 9, 'Miami Vacation', 'https://i.imgur.com/XbwpA5r.jpg');
 
 COMMIT;
 
@@ -791,9 +817,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (1, 5, 'I joined up with this trip in Missouri. Larry was a great host. Dropped me off where I needed. Great guy. Hope to do it again.', 50, 1, 50, 1, 2, 1, NULL);
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (2, 5, 'Graceland was so cool! Thanks, Larry! What a great trip :)', 35, 1, 35, 1, 3, 1, NULL);
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (3, 4, 'I got car sick (sorry, Larry!), but otherwise was a good trip. I really liked seeing Elvis\' sequiny jump suits. Super cool.', 20, 1, 20, 2, 5, 1, NULL);
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (1, 5, 'I joined up with this trip in Missouri. Larry was a great host. Dropped me off where I needed. Great guy. Hope to do it again.', 50, 1, 50, 1, 2, 1, 'Approved');
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (2, 5, 'Graceland was so cool! Thanks, Larry! What a great trip :)', 35, 1, 35, 1, 3, 1, 'Approved');
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (3, 4, 'I got car sick (sorry, Larry!), but otherwise was a good trip. I really liked seeing Elvis\' sequiny jump suits. Super cool.', 20, 1, 20, 2, 5, 1, 'Approved');
 
 COMMIT;
 

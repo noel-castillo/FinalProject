@@ -60,7 +60,15 @@
                                   </ul>
                                   <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
                                 </div>
+
                               </ng-container>
+
+                              <div *ngIf="thisTripTravelers.length === 0" class="reviews-item">
+                                <ul>
+                                  <h4><em>Be the first to sign up for this trip!</em></h4>
+                                </ul>
+                                <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
+                              </div>
 
                                 <h3>About the Host</h3>
 
@@ -88,9 +96,14 @@
 
                             <br><br>
                                 <div class="client-reviews">
+
                                   <h3>Host Reviews</h3>
+
                                   <ng-container *ngFor="let advenTraveler of thisTripTravelers">
+
+
                                   <div *ngIf="advenTraveler.review" class="reviews-item">
+
                                     <div *ngIf="advenTraveler.rating === 1">
                                       <span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
 
@@ -119,9 +132,16 @@
                                         <h5>{{advenTraveler.user.firstName}}, {{advenTraveler.user.lastName}}</h5>
                                         <!-- <span>March 03, 2019</span> -->
                                     </div>
+
+
+
                                 </div>
                                 </ng-container>
+
+
+
                             </div>
+
                         </div>
                     </div>
                 </div>

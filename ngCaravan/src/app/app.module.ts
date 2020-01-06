@@ -40,6 +40,7 @@ import { TripRequestPipe } from './pipes/trip-request.pipe';
 import { AdventureService } from './services/adventure.service';
 import { TripCalendarService } from './services/trip-calendar.service';
 import { TripService } from './services/trip.service';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 
 
@@ -76,7 +77,8 @@ import { TripService } from './services/trip.service';
     FriendMessagesPipe,
     LatestMessagePipe,
     MapPipe,
-    FooterComponent
+    FooterComponent,
+    NotfoundComponent
 
 
 

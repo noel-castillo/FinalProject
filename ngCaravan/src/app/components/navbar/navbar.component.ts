@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
       },
       error => {
         console.error(error);
-        this.router.navigateByUrl('not-found');
+        this.router.navigateByUrl('notfound');
       }
     );
   }

@@ -296,38 +296,6 @@ export class TripProfileComponent implements OnInit {
         this.getRouteUrl();
         window.scrollTo(0, 1);
 
-
-        // this.tripTravelerSvc.index().subscribe (
-        //   data2 => {
-        //     this.tripTravelers = data2;
-        //     // this.currentRate = this.thisTripAdventureTravelers[0].rating;
-        //     console.log('***SET RATING***');
-        //     this.tripTravelers.forEach(element => {
-        //       console.log('element***' + element.id);
-        //       console.log('elementAdventureID***' + element.trip.id);
-        //       console.log('THIS.adventure.id***' + this.trip.id);
-
-        //       // this.currentRate = this.thisTripAdventureTravelers[0].rating;
-
-        //       if (element.trip.id === this.trip.id) {
-        //         console.log('ELEMENT******' + element.trip.id);
-        //         this.thisTripTravelers.push(element);
-        //         console.log('ELEMENT ADDED******');
-        //       }
-
-        //       if (this.trip.host.firstName === element.trip.host.firstName) {
-        //         console.log('ELEMENT******' + element.trip.id);
-        //         this.thisTripTravelers.push(element);
-        //         console.log('ELEMENT ADDED******');
-        //       }
-        //     });
-        //     // console.log('***^^^^Adventure Traveler**^^ stuff ' + this.thisTripAdventureTravelers[0].review);
-        //   },
-        //   err => {
-        //     console.error('***ERROR GETTING TRIP TRAVELERS' + err);
-        //   }
-        // );
-
       },
       err => {
         console.error('ngOnInit error in Trip Profile Component');

@@ -34,7 +34,7 @@
             <div class="inbox_chat">
 
 
-              <div *ngFor="let friend of friends" [ngClass]="selected ? 'chat_list active_chat' : 'chat_list'" (click)="selected = friend">
+              <div *ngFor="let friend of friends" [ngClass]="friend === selected ? 'chat_list active_chat' : 'chat_list'" (click)="selected = friend">
                 <div class="chat_people">
                   <div class="chat_img">  <img [src]="friend.profilePic.url" alt=""></div>
                   <div class="chat_ib">

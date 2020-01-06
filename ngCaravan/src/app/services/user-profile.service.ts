@@ -50,8 +50,8 @@ export class UserProfileService {
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
         Authorization: `Basic ${credentials}`,
+        'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
       })
     };

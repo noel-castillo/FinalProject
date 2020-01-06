@@ -5,12 +5,13 @@ import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TripMessageService {
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/';
 
   messages: TripMessage[] = [];

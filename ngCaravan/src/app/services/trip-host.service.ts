@@ -6,6 +6,7 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { TripHost } from '../models/trip-host';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class TripHostService {
 
   // F I E L D S
 
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/hosts';
 
   hosts: TripHost[] = [];

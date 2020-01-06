@@ -4,13 +4,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   // private baseUrl = environment.baseUrl;
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/';
 
   constructor(private http: HttpClient, private authSvc: AuthService) {}

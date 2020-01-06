@@ -4,6 +4,7 @@ import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Image } from '../models/image';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ import { AuthService } from './auth.service';
 export class ImageService {
 
   // F i e l d s
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/images';
 
   // C o n s t r u c t o r

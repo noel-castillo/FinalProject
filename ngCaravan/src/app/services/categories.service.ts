@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CategoriesService {
 
   // F I E L D S
 
-  baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/categories';
 
   categories: Categories[] = [];

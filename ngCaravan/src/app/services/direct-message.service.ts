@@ -5,6 +5,7 @@ import { TripTraveler } from '../models/trip-traveler';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { DirectMessage } from '../models/direct-message';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ import { DirectMessage } from '../models/direct-message';
 export class DirectMessageService {
 
    // F i e l d s
-   private baseUrl = 'http://localhost:8090/';
+   private baseUrl = environment.baseUrl;
    private url = this.baseUrl + 'api/directMessages';
 
    // C o n s t r u c t o r

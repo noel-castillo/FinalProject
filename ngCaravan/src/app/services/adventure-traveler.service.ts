@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { AdventureTraveler } from '../models/adventure-traveler';
 import { TripTraveler } from '../models/trip-traveler';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ import { TripTraveler } from '../models/trip-traveler';
 export class AdventureTravelerService {
 
    // F i e l d s
-   private baseUrl = 'http://localhost:8090/';
+   private baseUrl = environment.baseUrl;
    private url = this.baseUrl + 'api/adventureTravelers';
 
    // C o n s t r u c t o r

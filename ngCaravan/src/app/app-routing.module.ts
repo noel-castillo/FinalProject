@@ -24,6 +24,7 @@ import { AdventureTravelerComponent } from './components/adventure-traveler/adve
 import { InboxComponent } from './components/inbox/inbox.component';
 
 const routes: Routes = [
+  {path: '', pathMatch: 'full', redirectTo: 'search-results'},
   {path: 'addresses', component: AddressComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'bottom-bar', component: BottomBarComponent},
@@ -48,12 +49,11 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'search-results', component: SearchResultsComponent},
-  {path: '', component: SearchResultsComponent},
   {path: 'trip-profile/:id', component: TripProfileComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

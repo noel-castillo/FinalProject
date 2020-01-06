@@ -6,15 +6,17 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AdventureHostService {
 
   // F I E L D S
 
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/adventureHosts';
 
   adventureHosts: AdventureHost[] = [];
@@ -65,7 +67,7 @@ export class AdventureHostService {
     const newTripHost = {
       rating: createForm.value.rating,
       review: createForm.value.review
-    }
+    };
     const credentials = this.authService.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({

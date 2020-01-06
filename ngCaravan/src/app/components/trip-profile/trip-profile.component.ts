@@ -56,27 +56,12 @@ export class TripProfileComponent implements OnInit {
   alert() {
     window.alert('Your join request has been sent!');
     // window.location.reload();
-    this.reloadTripTravelers();
+    // this.reloadTripTravelers(this.currentProfile);
+    this.getTripTravelers();
   }
 
-  reloadTripTravelers() {
-    this.tripTravelerSvc.index().subscribe (
-      data2 => {
-        this.tripTravelers = data2;
-        this.tripTravelers.forEach(element => {
-
-          if (element.trip.id === this.trip.id) {
-            this.thisTripTravelers.push(element);
-            if (element.user.id === this.currentProfile.id) {
-              this.joined = element;
-        }
-          }
-        });
-      },
-      err => {
-        console.error('***ERROR GETTING TRIP TRAVELERS' + err);
-      }
-    );
+  reloadTripTravelers(tripTrav: TripTraveler) {
+      this.thisTripTravelers.push(tripTrav);
   }
 
   getMap() {

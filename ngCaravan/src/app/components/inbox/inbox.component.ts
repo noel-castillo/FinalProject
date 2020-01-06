@@ -53,11 +53,13 @@ export class InboxComponent implements OnInit {
         data => {
           this.myReply = data;
           this.loadFriendList();
+          this.myReply.content = '';
         },
         err => {
           console.error('Inbox Component: Unable to reply()');
         }
       );
+
     }
 
     compose(form: NgForm) {

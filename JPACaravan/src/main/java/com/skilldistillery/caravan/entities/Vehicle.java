@@ -40,6 +40,8 @@ public class Vehicle {
 	private UserProfile userProfile;
 	
 	private boolean enabled;
+	
+	private String imageURL;
 
 
 //	C O N S T R U C T O R S
@@ -145,6 +147,16 @@ public class Vehicle {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 

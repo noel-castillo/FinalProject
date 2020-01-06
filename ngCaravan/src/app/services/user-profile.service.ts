@@ -17,6 +17,8 @@ export class UserProfileService {
 
   userProfiles: UserProfile[] = [];
 
+
+
   // C O N S T R U C T O R
 
   constructor(
@@ -63,6 +65,7 @@ export class UserProfileService {
         })
       );
   }
+
 
   getProfileFromUsername(usrname: string) {
     const credentials = this.authService.getCredentials();

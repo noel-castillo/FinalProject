@@ -2,3 +2,10 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+
+.welcome {
+  padding-left: 400px;
+  font-weight: bolder;
+  font-family: 'Nunito', sans-serif;
+  font-size: 30px !important;
+}

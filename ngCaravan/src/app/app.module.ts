@@ -40,6 +40,7 @@ import {MatCardModule} from '@angular/material/card';
 import { LatestMessagePipe } from './pipes/latest-message.pipe';
 import { MapPipe } from './pipes/map.pipe';
 import { FooterComponent } from './components/footer/footer.component';
+import { CapitalizeePipe } from './pipes/capitalizee.pipe';
 
 
 
@@ -76,7 +77,8 @@ import { FooterComponent } from './components/footer/footer.component';
     FriendMessagesPipe,
     LatestMessagePipe,
     MapPipe,
-    FooterComponent
+    FooterComponent,
+    CapitalizeePipe
 
 
 

@@ -159,8 +159,7 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  isStandard(user: User): boolean{
-
+  isStandard(user: User): boolean {
     if (user.role === 'standard' || user.role === null) {
       return true;
     } else {

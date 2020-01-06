@@ -33,6 +33,7 @@ export class TripProfileComponent implements OnInit {
   tripTraveler: TripTraveler = new TripTraveler();
   tripTravelers: TripTraveler[] = [];
   thisTripTravelers: TripTraveler[] = [];
+  thisTripReviews: TripTraveler[] = [];
   iframeURL = '';
 
   currentProfile: UserProfile = null;
@@ -112,6 +113,9 @@ export class TripProfileComponent implements OnInit {
           if (element.trip.id === this.trip.id) {
             console.log('ELEMENT******' + element.trip.id);
             this.thisTripTravelers.push(element);
+            if (element.review !== null) {
+                this.thisTripReviews.push(element);
+            }
             console.log('***REVIEWWW**' + this.thisTripTravelers[0].review);
             console.log('ELEMENT ADDED******');
             if (element.user.id === this.currentProfile.id) {

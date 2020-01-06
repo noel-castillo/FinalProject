@@ -105,7 +105,13 @@
 
                                   <h3>Host Reviews</h3>
 
-                                  <ng-container *ngFor="let advenTraveler of thisTripTravelers">
+                                  <div *ngIf="thisTripReviews.length === 0" class="reviews-item">
+                                    <ul>
+                                      <h4><em>No reviews for this host..</em></h4>
+                                    </ul>
+                                  </div>
+
+                                  <ng-container *ngFor="let advenTraveler of thisTripReviews">
 
 
                                   <div *ngIf="advenTraveler.review" class="reviews-item">

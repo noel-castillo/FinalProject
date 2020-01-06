@@ -11,3 +11,26 @@
   width:100%;
   position:absolute;
 }
+
+#star1 {
+  font-size: 35px;
+  color: #ffd700;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#star2 {
+  font-size: 35px;
+  color: black;
+}
+
+li {
+  list-style-position: inside;
+  font-size: 20px;
+  padding-left: 30px;
+}
+
+.photo {
+  border-radius: 50%;
+  height: 10%;
+  width: 10%;
+}

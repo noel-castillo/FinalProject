@@ -44,14 +44,13 @@
 /*----------------------------------------*/
 
 
-html,
-body {
-	height: 100%;
-	font-family: "Lato", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
 
 }
+
 
 h1,
 h2,
@@ -1040,10 +1039,6 @@ ol {
 	height: auto;
 }
 
-/*---------------------
-  Footer
------------------------*/
-
 .footer-section {
 	background: #1d1d1d;
 	padding-top: 120px;
@@ -1185,7 +1180,6 @@ ol {
 .footer-menu a:hover {
 	color: #FF5581;
 }
-
 /* ---------------------------------- Other Pages Styles -------------------------------*/
 
 /*---------------------
@@ -2646,8 +2640,3 @@ ol {
 	}
 }
 
-
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

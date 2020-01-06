@@ -1,9 +1,8 @@
 <body>
-
 <div class="container">
-  <h1>Caravan</h1>
 
   <div class="search " *ngIf="!searchResult" style="text-align: center;">
+    <h1>Caravan</h1>
 
     <form
     class="form-inline align-items-center"
@@ -146,7 +145,6 @@
     </button>
   </form>
 </div>
-</div >
 <div class="card-columns result" *ngIf="searchResult">
   <div *ngFor="let trip of trips" class="card">
     <img src="{{trip.featureImage}}" class="card-img-top" alt="...">
@@ -156,5 +154,6 @@
       <button [routerLink]="['/trips/' + trip.id + '']">More Details</button>
     </div>
   </div>
+</div >
 </div>
 </body>

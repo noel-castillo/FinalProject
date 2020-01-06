@@ -172,13 +172,13 @@ a:focus {
   overflow: hide;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (min-width: 768px) and (max-width: 991px){
   #topnav {
     display: none;
   }
 }
 
-@media screen and (min-width: 451px) {
+@media screen and (min-width: 767px) {
   #bottom-bar {
     display: none;
   }

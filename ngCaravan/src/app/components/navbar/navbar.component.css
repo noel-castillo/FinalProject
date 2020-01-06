@@ -1,11 +1,22 @@
-.navbar{
+.navbar {
   padding: 0 !important;
   margin: 0 !important;
 }
 
 .welcome {
-  padding-left: 400px;
+  position: absolute;
+  right: 0;
+  margin-right: 25px;
   font-weight: bolder;
   font-family: 'Nunito', sans-serif;
   font-size: 30px !important;
+
+
+}
+
+.logoo {
+  font-size: 35px !important;
+  font-family: 'Nunito', sans-serif !important;
+  color: black;
+  cursor: pointer;
 }

@@ -40,7 +40,7 @@
                   <div class="chat_ib">
                     <h5>{{friend.firstName}} {{friend.lastName}}</h5>
                     <p *ngFor="let message of messages  | latestMessage: friend: me">&emsp;{{message.content}}<br>
-                      <span class="chat_date">{{message.datePosted}}</span></p>
+                      <span class="chat_date">{{message.datePosted|date:'short'}}</span></p>
 
                   </div>
                 </div>
@@ -60,7 +60,7 @@
                 <div class="received_msg">
                   <div class="received_withd_msg">
                     <p>{{message.content}}</p>
-                    <span class="time_date">{{message.datePosted}}</span></div>
+                    <span class="time_date">{{message.datePosted|date:'short'}}</span></div>
                 </div>
               </div>
 
@@ -68,7 +68,7 @@
                   <div #scrollBottom class="outgoing_msg">
                     <div class="sent_msg">
                     <p>{{message.content}}</p>
-                    <span class="time_date">{{message.datePosted}}</span></div>
+                    <span class="time_date">{{message.datePosted|date:'short'}}</span></div>
                 </div>
               </div>
             </div>

@@ -247,6 +247,7 @@ export class UserProfileComponent implements OnInit {
         this.currentProfile = data;
         if (this.currentProfile.user.role === 'admin') {
           this.router.navigateByUrl('admin');
+
         } else {
           this.router.navigateByUrl('user-profiles');
         }

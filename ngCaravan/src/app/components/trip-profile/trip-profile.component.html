@@ -22,6 +22,7 @@
                                 <p>Vehicle: {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
                                 <div *ngIf="joined" class="closed">{{joined.travelerStatus}}</div>
                                 <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="closed">Join</div>
+                                <!-- <div *ngIf="joined.travelerStatus === null" class="closed">Your Trip</div> -->
                             </div>
                         </div>
                     </div>

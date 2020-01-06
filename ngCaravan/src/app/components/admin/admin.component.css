@@ -9,7 +9,7 @@ Licensed under MIT
 }
 
 body {
-  background: #F1F3FA;
+  background: #f1f3fa;
 }
 
 /* Profile container */
@@ -116,4 +116,8 @@ body {
   padding: 20px;
   background: #fff;
   min-height: 460px;
+}
+.username {
+  font-size: 15px;
+  font-weight: bolder;
 }

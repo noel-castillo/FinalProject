@@ -1,10 +1,9 @@
-import { NavbarComponent } from './../navbar/navbar.component';
-import { UserService } from './../../services/user.service';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from './../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
+import { AuthService } from './../../services/auth.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-login',

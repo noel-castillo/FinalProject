@@ -1,12 +1,14 @@
 <nav id="topnav" class="navbar navbar-expand-lg navbar-light bg-light">
-  <p
-    class="navbar-brand"
-    style="font-size: 35px !important; font-family: 'Nunito', sans-serif !important; color: black"
-  >
-    Caravan
-  </p>
+
+
+   <p
+   class="navbar-brand logoo "
+   (click)="goToSearch()"
+   >
+   Caravan
+ </p>
   <button
-    class="navbar-toggler"
+    class="navbar-toggler "
     type="button"
     data-target="#navbarNavAltMarkup"
     aria-controls="navbarNavAltMarkup"
@@ -60,7 +62,7 @@
             >&nbsp; &nbsp; &nbsp; &nbsp; Inbox
           </a>
           <app-logout></app-logout>
-          <p class="welcome">Welcome, {{userProf.firstName|titlecase}}!</p>
+            <a class="welcome">Welcome, {{userProf.firstName|titlecase}}!</a>
         </div>
       </div>
     </div>

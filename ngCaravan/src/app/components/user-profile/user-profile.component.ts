@@ -65,7 +65,7 @@ export class UserProfileComponent implements OnInit {
 
   seeVehicles = true;
 
-  seePersonalInformation = true;
+  seePersonalInformation = false;
 
   seeMyTrips = true;
 
@@ -107,13 +107,37 @@ export class UserProfileComponent implements OnInit {
 
     this.newTrip.departureAddress = new Address();
     this.newTrip.destinationAddress = new Address();
-    this.newTrip.tripCalendar = this.newTripCalendar;
+    this.newTrip.tripCalendar = new TripCalendar();
+  }
+
+  hideHosting() {
+    this.seeNewTrip = false;
+
+    this.seeMyHostings = false;
+
+    this.seePendingRequests = false;
+
+    this.selectedTrip = null;
+
+    this.newTrip.departureAddress = new Address();
+    this.newTrip.destinationAddress = new Address();
+    this.newTrip.tripCalendar = new TripCalendar();
   }
 
   showAccountSettings() {
     this.seeVehicles = true;
 
     this.seeMyTrips = true;
+
+    this.seePersonalInformation = true;
+
+    this.seeEditPersonalInformation = true;
+  }
+
+  hideAccountSettings() {
+    this.seeVehicles = false;
+
+    this.seeMyTrips = false;
 
     this.seePersonalInformation = true;
 

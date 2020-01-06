@@ -7,6 +7,7 @@
               <div class="recent_heading">
                 <h4>Recent</h4>
               </div>
+
               <div class="compose_bar">
                 <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"
                 role="button"><i class="glyphicon glyphicon-edit"></i>
@@ -33,12 +34,14 @@
             <div class="inbox_chat">
 
 
-              <div class="chat_list" *ngFor="let friend of friends" (click)="selected = friend">
+              <div *ngFor="let friend of friends" [ngClass]="selected ? 'chat_list active_chat' : 'chat_list'" (click)="selected = friend">
                 <div class="chat_people">
                   <div class="chat_img">  <img [src]="friend.profilePic.url" alt=""></div>
                   <div class="chat_ib">
-                    <h5>{{friend.firstName}} {{friend.lastName}}<span class="chat_date">Dec 25</span></h5>
-                    <p *ngFor="let message of messages  | latestMessage: friend: me">&emsp;{{message.content}}</p>
+                    <h5>{{friend.firstName}} {{friend.lastName}}</h5>
+                    <p *ngFor="let message of messages  | latestMessage: friend: me">&emsp;{{message.content}}<br>
+                      <span class="chat_date">{{message.datePosted}}</span></p>
+
                   </div>
                 </div>
               </div>
@@ -50,71 +53,35 @@
           <div class="mesgs">
             <div class="msg_history">
 
-
               <div *ngIf="selected">
-                <div class="list-group" *ngFor="let message of messages  | friendMessages: selected: me">
-                  <a href="#" class="list-group-item">
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox">
-                      </label>
-                    </div>
-                    <p class="text-center"><strong>{{message.myProfile.firstName}} {{message.myProfile.lastName}}:</strong></p>
-                    <p class="text-center">{{message.content}}</p>
-                    <br>
-                    <span class="badge">{{message.datePosted}}</span>
-                  </a>
-                </div>
-                <button class="btn btn-secondary" (click)="selected = null">Back</button>
-                <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">
-                  Reply
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right mt-2">
-                  <li class="px-3 py-2">
-                    <form>
-                      <div class="form-group">
-                        <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
-                          [(ngModel)]="myReply.content" required="required">
-                        <button (click)="reply()" type="submit" name="reply" class="btn btn-info btn-block">Send</button>
-                      </div>
-                    </form>
-                  </li>
-                </ul>
-                <br>
-                <br>
-              </div>
-
-              <div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+              <div class="incoming_msg" *ngFor="let message of messages  | friendMessages: selected: me">
+                <div *ngIf="message.friendProfile.user.id === me.id">
+                <div class="incoming_msg_img"> <img [src]="message.myProfile.profilePic.url"> </div>
                 <div class="received_msg">
                   <div class="received_withd_msg">
-                    <p>Test which is a new approach to have all
-                      solutions</p>
-                    <span class="time_date"> 11:01 AM    |    June 9</span></div>
-                </div>
-              </div>
-              <div class="outgoing_msg">
-                <div class="sent_msg">
-                  <p>Test which is a new approach to have all
-                    solutions</p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-              </div>
-              <div class="incoming_msg">
-                <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="received_msg">
-                  <div class="received_withd_msg">
-                    <p>Test, which is a new approach to have</p>
-                    <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
+                    <p>{{message.content}}</p>
+                    <span class="time_date">{{message.datePosted}}</span></div>
                 </div>
               </div>
 
+              <div *ngIf="message.myProfile.user.id === me.id">
+                  <div class="outgoing_msg">
+                    <div class="sent_msg">
+                    <p>{{message.content}}</p>
+                    <span class="time_date">{{message.datePosted}}</span></div>
+                </div>
+              </div>
+            </div>
+            </div>
 
             </div><!--end msg_history-->
 
             <div class="type_msg">
               <div class="input_msg_write">
-                <input type="text" class="write_msg" placeholder="Type a message" />
-                <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                <form>
+                <input type="text" name="content" class="write_msg" placeholder="Type a message" [(ngModel)]="myReply.content" required="required"/>
+                <button (click)="reply()" class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+              </form>
               </div>
             </div>
 

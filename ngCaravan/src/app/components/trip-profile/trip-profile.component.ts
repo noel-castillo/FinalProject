@@ -140,6 +140,8 @@ export class TripProfileComponent implements OnInit {
       data => {
         console.log(data);
         this.tripTraveler = data;
+        this.thisTripTravelers.push(data);
+        this.joined = data;
       },
       err => {
         console.error(err);

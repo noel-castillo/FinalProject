@@ -11,37 +11,38 @@
     <div class="row">
       <div class="col-lg-3 col-sm-6">
         <div class="footer-widget">
-          <h4>Usefull Links</h4>
+          <h4>Caravan</h4>
           <ul>
-            <li>About us</li>
-            <li>Testimonials</li>
-            <li>How it works</li>
-            <li>Create an account</li>
-            <li>Our Services</li>
+            <li>Explore</li>
+            <li *ngIf="checkIfLoggedIn()">Profile</li>
+            <li *ngIf="checkIfLoggedIn()">Inbox</li>
+            <li *ngIf="checkIfLoggedIn()">My Trips</li>
+            <li *ngIf="!checkIfLoggedIn()">Login</li>
+            <li *ngIf="!checkIfLoggedIn()">Register</li>
           </ul>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="footer-widget">
-          <h4>Categories</h4>
+          <h4>Contact Team</h4>
           <ul>
-            <li>Hotels</li>
-            <li>Restaurant</li>
-            <li>Spa & resorts</li>
-            <li>Concert & Events</li>
-            <li>Bars & Pubs</li>
+            <li><a href = "mailto: abc@example.com">Cesar Moreno</a></li>
+            <li><a href = "mailto: mcgowanjs@gmail.com">Jared McGowan</a></li>
+            <li><a href = "mailto: jesse.trew@gmail.com">Jesse Trew</a></li>
+            <li><a href = "mailto: castillo752x@gmail.com">Noel Castillo</a></li>
+            <li><a href = "mailto: rick@richardnewman.dev">Rick Newman</a></li>
           </ul>
         </div>
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="footer-widget">
-          <h4>Usefull Links</h4>
+          <h4>Github Links</h4>
           <ul>
-            <li>About us</li>
-            <li>Testimonials</li>
-            <li>How it works</li>
-            <li>Create an account</li>
-            <li>Our Services</li>
+            <li><a href = "https://github.com/CMoreno04" target="_blank">Cesar Moreno</a></li>
+            <li><a href = "https://github.com/jaredm3" target="_blank">Jared McGowan</a></li>
+            <li><a href = "https://github.com/JesseTrew" target="_blank">Jesse Trew</a></li>
+            <li><a href = "https://github.com/noel-castillo" target="_blank">Noel Castillo</a></li>
+            <li><a href = "https://github.com/richardanewman" target="_blank">Rick Newman</a></li>
           </ul>
         </div>
       </div>

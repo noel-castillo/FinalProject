@@ -19,6 +19,8 @@
 
                                 <p><strong>Departure Location:</strong> {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
                                 <p><strong>Destination Location:</strong> {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
+                                <p><strong>Start Date:</strong> {{trip.tripCalendar.startDate}}</p>
+                                <p><strong>End Date:</strong> {{trip.tripCalendar.endDate}}</p>
                                 <p><strong>Description:</strong> {{trip.description}}</p>
                                 <p><strong>Total Cost:</strong> ${{trip.totalCost}}</p>
                                 <p><strong>Vehicle:</strong> {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
@@ -32,6 +34,7 @@
                         <div class="intro-share">
                             <div class="share-btn">
                               <p> <img src="{{trip.featureImage}}" class="featureImage"></p>
+                              <p> <img src="{{trip.vehicle.imageURL}}" class="featureImage"></p>
                             </div>
                         </div>
                     </div>
@@ -51,13 +54,15 @@
                                   <h5>Email: {{trip.host.email}}</h5>
                                   <h5>Bio: {{trip.host.bio}}</h5>
                               </div> -->
+
+
                             <div class="client-reviews">
 
                               <h3>People Traveling on this Trip</h3>
                                 <ng-container *ngFor="let advenTravelerr of thisTripTravelers">
                                 <div *ngIf="advenTravelerr" class="reviews-item">
                                   <ul>
-                                    <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} </li>
+                                    <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} ({{advenTravelerr.travelerStatus}}) </li>
                                   </ul>
                                   <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
                                 </div>

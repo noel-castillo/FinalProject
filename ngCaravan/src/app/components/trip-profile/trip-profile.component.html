@@ -12,9 +12,10 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="about-intro">
-                            <div class="rating">Rating</div>
+                            <div class="rating"></div>
                             <div class="intro-text">
                                 <h2>{{trip.title}}</h2>
+
                                 <p><strong>Departure Location:</strong> {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
                                 <p><strong>Destination Location:</strong> {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
                                 <p><strong>Description:</strong> {{trip.description}}</p>
@@ -29,6 +30,7 @@
                     <div class="col-lg-4 offset-lg-1">
                         <div class="intro-share">
                             <div class="share-btn">
+                              <p> <img src="{{trip.featureImage}}" class="featureImage"></p>
                             </div>
                         </div>
                     </div>

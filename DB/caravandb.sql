@@ -114,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `vehicle` (
   `interior_description` VARCHAR(400) NULL,
   `user_profile_id` INT NULL,
   `enabled` TINYINT NULL DEFAULT 1,
+  `imageURL` VARCHAR(200) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_vehicle_user_profile1_idx` (`user_profile_id` ASC),
   CONSTRAINT `fk_vehicle_user_profile1`
@@ -262,29 +263,6 @@ CREATE TABLE IF NOT EXISTS `adventure_category` (
   CONSTRAINT `fk_adventure_category_adventure1`
     FOREIGN KEY (`adventure_id`)
     REFERENCES `adventure` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `vehicle_image`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `vehicle_image` ;
-
-CREATE TABLE IF NOT EXISTS `vehicle_image` (
-  `vehicle_id` INT NOT NULL,
-  `image_id` INT NOT NULL,
-  INDEX `fk_vehicle_image_vehicle1_idx` (`vehicle_id` ASC),
-  INDEX `fk_vehicle_image_image1_idx` (`image_id` ASC),
-  CONSTRAINT `fk_vehicle_image_vehicle1`
-    FOREIGN KEY (`vehicle_id`)
-    REFERENCES `vehicle` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_vehicle_image_image1`
-    FOREIGN KEY (`image_id`)
-    REFERENCES `image` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -711,16 +689,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (1, 'Toyota', 'Corolla', 1996, 40, 3, 'very nice', 1, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (2, 'Honda', 'Accord', 1993, 38, 4, 'kinda old looking', 3, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (3, 'GMC', 'Yukon', 2012, 37, 5, 'Very nice and clean.', 4, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (4, 'Chevrolet', 'Tahoe', 2010, 30, 4, 'Lots of room to stretch out.', 5, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (5, 'Ford', 'Mustang', 1999, 25, 1, 'Sporty, so not a lot of room inside.', 6, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (6, 'Subaru', 'Forrester', 2007, 80, 3, 'My Forrester is pretty roomy. I like to keep it clean, too.', 7, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (7, 'Subaru', 'Legacy', 2013, 50, 2, 'I\'m a bit of a neat freak. Please help me keep my car clean :)', 8, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (8, 'Ford', 'Explorer', 2003, 45, 4, 'Got a lot of room in here. I\'m not a slob, but I\'m not a clean freak either.', 9, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (9, 'Toyota', 'Camry', 2009, 41, 2, 'Clean interior. Pretty comfy too.', 10, 1);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`) VALUES (10, 'Ford', 'Escape', 2010, 80, 3, 'There a few stains here and there. Otherwise clean. Non smoker.', 11, 1);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (1, 'Toyota', 'Corolla', 1996, 40, 3, 'very nice', 1, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (2, 'Honda', 'Accord', 1993, 38, 4, 'kinda old looking', 3, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (3, 'GMC', 'Yukon', 2012, 37, 5, 'Very nice and clean.', 4, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (4, 'Chevrolet', 'Tahoe', 2010, 30, 4, 'Lots of room to stretch out.', 5, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (5, 'Ford', 'Mustang', 1999, 25, 1, 'Sporty, so not a lot of room inside.', 6, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (6, 'Subaru', 'Forrester', 2007, 80, 3, 'My Forrester is pretty roomy. I like to keep it clean, too.', 7, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (7, 'Subaru', 'Legacy', 2013, 50, 2, 'I\'m a bit of a neat freak. Please help me keep my car clean :)', 8, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (8, 'Ford', 'Explorer', 2003, 45, 4, 'Got a lot of room in here. I\'m not a slob, but I\'m not a clean freak either.', 9, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (9, 'Toyota', 'Camry', 2009, 41, 2, 'Clean interior. Pretty comfy too.', 10, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (10, 'Ford', 'Escape', 2010, 80, 3, 'There a few stains here and there. Otherwise clean. Non smoker.', 11, 1, NULL);
 
 COMMIT;
 
@@ -787,17 +765,6 @@ COMMIT;
 START TRANSACTION;
 USE `caravandb`;
 INSERT INTO `adventure_category` (`category_id`, `adventure_id`) VALUES (1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `vehicle_image`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `caravandb`;
-INSERT INTO `vehicle_image` (`vehicle_id`, `image_id`) VALUES (1, 2);
-INSERT INTO `vehicle_image` (`vehicle_id`, `image_id`) VALUES (2, 1);
 
 COMMIT;
 

@@ -11,7 +11,9 @@ import { UserProfileService } from 'src/app/services/user-profile.service';
 })
 export class NavbarComponent implements OnInit {
   isCollapsed = true;
-  userProf: UserProfile;
+  userProf: UserProfile = null;
+
+  first = null;
 
   constructor(
     private auth: AuthService,
@@ -23,6 +25,29 @@ export class NavbarComponent implements OnInit {
     this.usrProfSvc.getUserInSessionProfile().subscribe(
       data => {
         this.userProf = data;
+        this.first = this.userProf.firstName;
+        let firstLtr: string = this.first.substring(0, 1);
+        firstLtr = firstLtr.toUpperCase();
+        const rest: string = this.first.substring(1, this.first.length);
+
+        this.first = firstLtr + rest;
+      },
+      error => {
+        console.error(error);
+        this.router.navigateByUrl('not-found');
+      }
+    );
+  }
+  reloadName() {
+    this.usrProfSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.userProf = data;
+        this.first = this.userProf.firstName;
+        let firstLtr: string = this.first.substring(0, 1);
+        firstLtr = firstLtr.toUpperCase();
+        const rest: string = this.first.substring(1, this.first.length);
+
+        this.first = firstLtr + rest;
       },
       error => {
         console.error(error);

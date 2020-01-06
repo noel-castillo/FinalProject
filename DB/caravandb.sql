@@ -689,16 +689,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (1, 'Toyota', 'Corolla', 1996, 40, 3, 'very nice', 1, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (2, 'Honda', 'Accord', 1993, 38, 4, 'kinda old looking', 3, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (3, 'GMC', 'Yukon', 2012, 37, 5, 'Very nice and clean.', 4, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (4, 'Chevrolet', 'Tahoe', 2010, 30, 4, 'Lots of room to stretch out.', 5, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (5, 'Ford', 'Mustang', 1999, 25, 1, 'Sporty, so not a lot of room inside.', 6, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (6, 'Subaru', 'Forrester', 2007, 80, 3, 'My Forrester is pretty roomy. I like to keep it clean, too.', 7, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (7, 'Subaru', 'Legacy', 2013, 50, 2, 'I\'m a bit of a neat freak. Please help me keep my car clean :)', 8, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (8, 'Ford', 'Explorer', 2003, 45, 4, 'Got a lot of room in here. I\'m not a slob, but I\'m not a clean freak either.', 9, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (9, 'Toyota', 'Camry', 2009, 41, 2, 'Clean interior. Pretty comfy too.', 10, 1, NULL);
-INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (10, 'Ford', 'Escape', 2010, 80, 3, 'There a few stains here and there. Otherwise clean. Non smoker.', 11, 1, NULL);
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (1, 'Toyota', 'Corolla', 1996, 40, 3, 'very nice', 1, 1, 'https://i.imgur.com/WsYvbDj.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (2, 'Honda', 'Accord', 1993, 38, 4, 'kinda old looking', 3, 1, 'https://i.imgur.com/DPgR8Kk.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (3, 'GMC', 'Yukon', 2012, 37, 5, 'Very nice and clean.', 4, 1, 'https://i.imgur.com/WtM2fXV.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (4, 'Chevrolet', 'Tahoe', 2010, 30, 4, 'Lots of room to stretch out.', 5, 1, 'https://i.imgur.com/XdhBKlT.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (5, 'Ford', 'Mustang', 1999, 25, 1, 'Sporty, so not a lot of room inside.', 6, 1, 'https://i.imgur.com/KkJlcOm.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (6, 'Subaru', 'Forester', 2007, 80, 3, 'My Forrester is pretty roomy. I like to keep it clean, too.', 7, 1, 'https://i.imgur.com/tXuIHFM.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (7, 'Subaru', 'Legacy', 2013, 50, 2, 'I\'m a bit of a neat freak. Please help me keep my car clean :)', 8, 1, 'https://i.imgur.com/YlGaYsJ.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (8, 'Ford', 'Explorer', 2003, 45, 4, 'Got a lot of room in here. I\'m not a slob, but I\'m not a clean freak either.', 9, 1, 'https://i.imgur.com/yaGKgNv.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (9, 'Toyota', 'Camry', 2009, 41, 2, 'Clean interior. Pretty comfy too.', 10, 1, 'https://i.imgur.com/Fm8eY72.jpg');
+INSERT INTO `vehicle` (`id`, `make`, `model`, `manufacture_year`, `capacity`, `seats_available`, `interior_description`, `user_profile_id`, `enabled`, `imageURL`) VALUES (10, 'Ford', 'Escape', 2010, 80, 3, 'There a few stains here and there. Otherwise clean. Non smoker.', 2, 1, 'https://i.imgur.com/uCUmz4t.jpg');
 
 COMMIT;
 
@@ -811,6 +811,16 @@ INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `tr
 INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (3, '2020-01-21', '2020-01-26', NULL, 3);
 INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (4, '2020-01-22', '2020-01-27', NULL, 4);
 INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (5, '2020-01-23', '2020-01-28', NULL, 5);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (6, '2020-01-23', '2020-01-28', NULL, 6);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (7, '2020-01-23', '2020-01-28', NULL, 7);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (8, '2020-01-23', '2020-01-28', NULL, 8);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (9, '2020-01-23', '2020-01-28', NULL, 9);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (10, '2020-01-23', '2020-01-28', NULL, 10);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (11, '2020-01-23', '2020-01-28', NULL, 11);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (12, '2020-01-23', '2020-01-28', NULL, 12);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (13, '2020-01-23', '2020-01-28', NULL, 13);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (14, '2020-01-23', '2020-01-28', NULL, 14);
+INSERT INTO `trip_calendar` (`id`, `start_date`, `end_date`, `availability`, `trip_id`) VALUES (15, '2020-01-23', '2020-01-28', NULL, 15);
 
 COMMIT;
 

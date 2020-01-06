@@ -34,3 +34,7 @@ li {
   height: 10%;
   width: 10%;
 }
+
+.photo2 {
+  border-radius: 50%;
+}

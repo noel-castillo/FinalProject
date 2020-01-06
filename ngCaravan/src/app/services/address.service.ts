@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 export class AddressService {
   // F i e l d s
 
-  private baseUrl = 'http://localhost:8090/';
+  private baseUrl = environment.baseUrl;
   private url = this.baseUrl + 'api/addresses';
 
   // C o n s t r u c t o r

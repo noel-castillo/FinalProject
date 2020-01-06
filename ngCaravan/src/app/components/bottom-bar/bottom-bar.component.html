@@ -1,7 +1,7 @@
 <div id="bottom-bar" allowfullscreen="" >
 
   <div class="text-center">
-    <a href="/search-results" style="color:black"><i class="material-icons">
+    <a [routerLink]="['/search-results']" style="color:black"><i class="material-icons">
     search
     </i><br>Explore</a>
   </div>
@@ -13,13 +13,13 @@
   </div> -->
 
   <div *ngIf="checkIfLoggedIn()" class="text-center">
-    <a href="/user-profiles" style="color:black"><i class="material-icons">
+    <a  [routerLink]="['/user-profiles']" style="color:black"><i class="material-icons">
     face
     </i><br>Profile</a>
   </div>
 
   <div *ngIf="checkIfLoggedIn()" class="text-center">
-    <a href="/inbox" style="color:black"><i class="material-icons">
+    <a [routerLink]="['/inbox']" style="color:black"><i class="material-icons">
       chat_bubble_outline
     </i><br>Inbox</a>
   </div>
@@ -31,13 +31,13 @@
   </div>
 
   <div *ngIf="! checkIfLoggedIn()" class="text-center">
-    <a href="/register" style="color:black"><i class="material-icons">
+    <a [routerLink]="['/register']" style="color:black"><i class="material-icons">
     menu_book
     </i><br>Register</a>
   </div>
 
   <div *ngIf="! checkIfLoggedIn()" class="text-center">
-    <a href="/login" style="color:black"><i class="material-icons">
+    <a [routerLink]="['/login']" style="color:black"><i class="material-icons">
     vpn_key
     </i><br>Login</a>
   </div>

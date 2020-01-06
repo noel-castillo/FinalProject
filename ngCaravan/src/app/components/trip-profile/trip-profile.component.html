@@ -15,11 +15,11 @@
                             <div class="rating">Rating</div>
                             <div class="intro-text">
                                 <h2>{{trip.title}}</h2>
-                                <p>Departure Location: {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
-                                <p>Destination Location: {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
-                                <p>Description: {{trip.description}}</p>
-                                <p>Total Cost: ${{trip.totalCost}}</p>
-                                <p>Vehicle: {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
+                                <p><strong>Departure Location:</strong> {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
+                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
+                                <p><strong>Description:</strong> {{trip.description}}</p>
+                                <p><strong>Total Cost:</strong> ${{trip.totalCost}}</p>
+                                <p><strong>Vehicle:</strong> {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
                                 <div *ngIf="joined" class="closed">{{joined.travelerStatus}}</div>
                                 <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="closed">Join</div>
                                 <!-- <div *ngIf="joined.travelerStatus === null" class="closed">Your Trip</div> -->
@@ -54,7 +54,7 @@
                                 <ng-container *ngFor="let advenTravelerr of thisTripTravelers">
                                 <div *ngIf="advenTravelerr" class="reviews-item">
                                   <ul>
-                                    <li> <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</li>
+                                    <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} </li>
                                   </ul>
                                   <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
                                 </div>

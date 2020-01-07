@@ -10,7 +10,17 @@ body{
   background-size: cover;
   background-attachment: fixed;
 }
-
+body {
+  background-image: url('https://i.imgur.com/Ky3xehA.png') !important;
+  /* Full height */
+  width: 100% !important;
+  min-height: 100% !important;
+  /* Center and scale the image nicely */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
 p {
   font-weight: bolder;
   text-align: center;

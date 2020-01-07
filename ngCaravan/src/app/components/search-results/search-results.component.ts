@@ -71,6 +71,7 @@ export class SearchResultsComponent implements OnInit {
         this.trips.push(this.trips2[i]);
       }
     }
+
     if (this.trips.length === 0) {
       this.route.navigateByUrl('notfound');
     }

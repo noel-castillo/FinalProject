@@ -153,21 +153,13 @@ export class UserProfileComponent implements OnInit {
   }
 
   addNewVehicle() {
+    this.newVehicle.enabled = true;
     this.vSvc.create(this.newVehicle).subscribe(
       data => {
         console.log('Vehicle has been created!');
         this.newVehicle = new Vehicle();
         this.seeNewVehicle = true;
-        this.currentProfile.vehicles.push(this.newVehicle);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    this.uSvc.getUserInSessionProfile().subscribe(
-      data => {
-        this.currentProfile = data;
+        this.currentProfile.vehicles.push(data);
       },
       err => {
         console.log(err);

@@ -107,6 +107,15 @@ export class AdminComponent implements OnInit {
 
   // M E T H O D S
 
+  openNav() {
+    if ( document.getElementById('mySidenav').style.width === '250px') {
+      document.getElementById('mySidenav').style.width = '0px';
+    } else {
+    document.getElementById('mySidenav').style.width = '250px';
+    }
+  }
+
+
   showHosting() {
     this.seeNewTrip = true;
 

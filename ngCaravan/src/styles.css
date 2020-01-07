@@ -44,7 +44,8 @@
 /*----------------------------------------*/
 
 
-html, body {
+html,
+body {
   padding-top: 32px;
   width: 100vw;
   min-height: 100vh;
@@ -172,9 +173,12 @@ a:focus {
   overflow: hide;
 }
 
-@media screen and (min-width: 768px) and (max-width: 991px){
-  #topnav {
+@media screen and (max-width: 768px){
+  .navbar {
     display: none;
+  }
+  html, body{
+    padding-top: 0;
   }
 }
 

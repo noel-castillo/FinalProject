@@ -35,6 +35,7 @@ export class TripProfileComponent implements OnInit {
   tripTraveler: TripTraveler = new TripTraveler();
   tripTravelers: TripTraveler[] = [];
   thisTripTravelers: TripTraveler[] = [];
+  thisApprovedTripTravelers: TripTraveler[] = [];
   thisTripReviews: TripTraveler[] = [];
   iframeURL = '';
 
@@ -120,6 +121,9 @@ export class TripProfileComponent implements OnInit {
             this.thisTripTravelers.push(element);
             if (element.review !== null) {
                 this.thisTripReviews.push(element);
+            }
+            if (element.travelerStatus === 'Approved') {
+                this.thisApprovedTripTravelers.push(element);
             }
             console.log('***REVIEWWW**' + this.thisTripTravelers[0].review);
             console.log('ELEMENT ADDED******');

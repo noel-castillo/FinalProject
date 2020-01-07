@@ -80,8 +80,8 @@
                             <div class="client-reviews">
 
                               <h3>People Traveling on this Trip</h3>
-                                <ng-container *ngFor="let advenTravelerr of thisTripTravelers">
-                                <div *ngIf="advenTravelerr" class="reviews-item">
+                                <ng-container *ngFor="let advenTravelerr of thisApprovedTripTravelers">
+                                <div *ngIf="advenTravelerr.travelerStatus === 'Approved'" class="reviews-item">
                                   <ul>
                                     <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} ({{advenTravelerr.travelerStatus}}) </li>
                                   </ul>
@@ -90,7 +90,7 @@
 
                               </ng-container>
 
-                              <div *ngIf="thisTripTravelers.length === 0" class="reviews-item">
+                              <div *ngIf="thisApprovedTripTravelers.length === 0" class="reviews-item">
                                 <ul>
                                   <h4><em>Be the first to sign up for this trip!</em></h4>
                                 </ul>

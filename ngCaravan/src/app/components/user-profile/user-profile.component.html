@@ -114,7 +114,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seePendingRequests = false">
+            <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seePendingRequests = false; getTripReq()">
               <span data-feather="file-text"></span>
               Pending Requests
             </a>
@@ -214,11 +214,11 @@
                               </tr>
                               <tr>
                                 <td class="nav-item">
-                                  Capacity:
+                                  Vehicle Image:
                                 </td>
                                 <td class="nav-item">
-                                  <input type="number" name="manufacutreYear" class="form-control form-control-lg"
-                                    required="required" type="text" [(ngModel)]="newVehicle.capacity">
+                                  <input type="number" name="imageURL" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="newVehicle.imageURL">
                                 </td>
                               </tr>
                               <tr>
@@ -287,11 +287,11 @@
                               </tr>
                               <tr>
                                 <td class="nav-item">
-                                  Capacity:
+                                  Vehicle Image URL:
                                 </td>
                                 <td class="nav-item">
-                                  <input type="number" name="manufacutreYear" class="form-control form-control-lg"
-                                    required="required" type="text" [(ngModel)]="editVehicle.capacity">
+                                  <input type="number" name="imageURL" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="editVehicle.imageURL">
                                 </td>
                               </tr>
                               <tr>
@@ -721,7 +721,8 @@
 
                             </td>
                           </tr>
-                          <tr *ngFor="let vehicle of currentProfile.vehicles">
+                          <ng-container *ngFor="let vehicle of currentProfile.vehicles">
+                          <tr *ngIf="vehicle.enabled">
                             <td class="nav-item">
                               {{vehicle.make}} {{vehicle.model}} {{vehicle.manufactureYear}}
                             </td>
@@ -730,6 +731,7 @@
                                 class="btn btn-outline-success">Select</button>
                             </td>
                           </tr>
+                        </ng-container>
                         </tbody>
                       </table>
                       <button type="submit" (click)="createTrip()" class="btn btn-outline-success"
@@ -1043,6 +1045,7 @@
                             <td class="nav-item">
 
                             </td>
+
                           </tr>
                           <tr *ngFor="let vehicle of currentProfile.vehicles">
                             <td class="nav-item">

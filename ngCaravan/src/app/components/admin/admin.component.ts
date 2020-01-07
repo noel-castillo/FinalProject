@@ -184,20 +184,13 @@ export class AdminComponent implements OnInit {
   }
 
   addNewVehicle() {
+    this.newVehicle.enabled = true;
     this.vSvc.create(this.newVehicle).subscribe(
       data => {
         console.log('Vehicle has been created!');
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    this.uSvc.getUserInSessionProfile().subscribe(
-      data => {
-        this.currentProfile = data;
-        this.currentProfile.vehicles.push(this.newVehicle);
         this.newVehicle = new Vehicle();
+        this.seeNewVehicle = true;
+        this.currentProfile.vehicles.push(data);
       },
       err => {
         console.log(err);
@@ -383,6 +376,14 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.uSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.currentProfile = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
     this.tripSvc.index().subscribe(
       data => {
         this.allTrips = data;
@@ -401,14 +402,6 @@ export class AdminComponent implements OnInit {
       }
     );
 
-    this.uSvc.getUserInSessionProfile().subscribe(
-      data => {
-        this.currentProfile = data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
 
     this.tripSvc.indexHosted().subscribe(
       data => {

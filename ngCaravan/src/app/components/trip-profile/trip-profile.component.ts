@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TripService } from 'src/app/services/trip.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { TripTravelerService } from 'src/app/services/trip-traveler.service';
+import { DirectMessageService } from 'src/app/services/direct-message.service';
+import { DirectMessage } from 'src/app/models/direct-message';
 
 declare var jQuery: any;
 
@@ -40,6 +42,8 @@ export class TripProfileComponent implements OnInit {
 
   joined: TripTraveler = null;
 
+  myReply: DirectMessage = new DirectMessage();
+
 
   // C o n s t r u c t o r
   // tslint:disable-next-line: max-line-length
@@ -51,7 +55,8 @@ export class TripProfileComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private mapSvc: MapService,
-    private userPsvc: UserProfileService
+    private userPsvc: UserProfileService,
+    private dmSvc: DirectMessageService
   ) {}
 
   alert() {
@@ -134,6 +139,18 @@ export class TripProfileComponent implements OnInit {
       },
       err => {
         console.error('***ERROR GETTING TRIP TRAVELERS' + err);
+      }
+    );
+  }
+
+  compose() {
+    this.dmSvc.createDirectMessage(this.myReply, this.trip.host.id).subscribe(
+      data => {
+        this.myReply = new DirectMessage();
+      },
+      err => {
+        console.error('Trip Profile Component: Unable to compose message');
+        // this.router.navigateByUrl('notfound');
       }
     );
   }

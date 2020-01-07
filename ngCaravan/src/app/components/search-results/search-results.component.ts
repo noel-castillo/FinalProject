@@ -55,19 +55,30 @@ export class SearchResultsComponent implements OnInit {
     console.log(form.value.currState);
     console.log(form.value.destCity);
     console.log(form.value.destState);
+    console.log('goodbye');
     this.trips = [];
+
+    this.tripSvc.index().subscribe(
+      data => {
+        this.trips2 = data;
+      },
+      err => {
+        console.error('Search Results Component: Unable to retrieve trips');
+      }
+    );
+
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.trips2.length; i++) {
-      if (this.trips2[i].destinationAddress.state === form.value.destState) {
+      if (
+        (this.trips2[i].destinationAddress.state === form.value.destState ||
+        this.trips2[i].departureAddress.state === form.value.destState) &&
+        this.trips2[i].enabled
+      ) {
         this.trips.push(this.trips2[i]);
       }
-      if (this.trips.length === 0) {
-        this.route.navigateByUrl('notfound');
-      }
     }
-    // this.displayTrips(this.trips);
+    if (this.trips.length === 0) {
+      this.route.navigateByUrl('notfound');
+    }
   }
-
-  // displayTrips(trips: Trip[]) {
-  // }
 }

@@ -52,10 +52,14 @@ class TripTest {
 	public void test_vehicle_association() {
 		assertEquals(40, trip.getVehicle().getCapacity());
 	}
+	@Test
+	public void test_cost() {
+		assertEquals("500", trip.getTotalCost());
+	}
 	
 	@Test
 	public void test_departureAddress_association() {
-		assertEquals("CO", trip.getDepartureAddress().getState());
+		assertEquals("OR", trip.getDepartureAddress().getState());
 	}
 
 	@Test
@@ -65,7 +69,7 @@ class TripTest {
 
 	@Test
 	public void test_host_user_profile_association() {
-		assertEquals("userface", trip.getHost().getUser().getUsername());
+		assertEquals("larryl", trip.getHost().getUser().getUsername());
 	}
 	
 }

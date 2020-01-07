@@ -25,7 +25,28 @@
                                 <p><strong>Total Cost:</strong> ${{trip.totalCost}}</p>
                                 <p><strong>Vehicle:</strong> {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
                                 <div *ngIf="joined" class="closed">{{joined.travelerStatus}}</div>
-                                <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="closed">Join</div>
+                                <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="closed">Join<br></div>
+                                <div class="compose_bar">
+                                  <br>
+                                  <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"
+                                  role="button"><i class="glyphicon glyphicon-edit"></i>
+                                  Message Host&emsp;
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right mt-2">
+                                  <li class="px-3 py-2">
+                                    <form>
+                                      <div class="form-group">
+                                        <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
+                                          [(ngModel)]="myReply.content" required="required">
+                                        <button (click)="compose()" type="submit" name="compose"
+                                          class="btn btn-info btn-block">Send</button>
+                                      </div>
+                                    </form>
+                                  </li>
+                                </ul>
+                                <br>
+                                <br>
+                                </div>
                                 <!-- <div *ngIf="joined.travelerStatus === null" class="closed">Your Trip</div> -->
                             </div>
                         </div>

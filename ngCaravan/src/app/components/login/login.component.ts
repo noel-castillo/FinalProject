@@ -27,14 +27,17 @@ export class LoginComponent implements OnInit {
           user => {
             this.currentUser = user;
             if (this.currentUser.role === 'admin') {
+              this.route.navigateByUrl('nav');
               this.route.navigateByUrl('admin');
             } else {
+              this.route.navigateByUrl('nav');
               this.route.navigateByUrl('user-profiles');
             }
           },
           err => {
             console.log('in login, get user session');
             console.log(err);
+            this.route.navigateByUrl('login');
           }
         );
       },

@@ -85,6 +85,7 @@ export class InboxComponent implements OnInit, AfterViewChecked {
       },
       err => {
         console.error('Inbox Component: Unable to reply()');
+        this.router.navigateByUrl('notfound');
       }
     );
   }

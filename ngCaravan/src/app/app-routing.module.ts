@@ -1,3 +1,4 @@
+import { NotfoundComponent } from './components/notfound/notfound.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'search-results', component: SearchResultsComponent},
+  {path: 'notfound', component: NotfoundComponent},
   {path: 'trip-profile/:id', component: TripProfileComponent}
 ];
 

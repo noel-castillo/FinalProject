@@ -16,13 +16,13 @@
         </h6>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" (click)="seeUsers = !seeUsers; seeTrips = true">
+            <a class="nav-link" (click)="seeUsers = !seeUsers; seeTrips = true; hideHosting(); hideAccountSettings();">
               <i class="fas fa-cogs"></i>
               User
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="seeTrips = !seeTrips; seeUsers = true">
+            <a class="nav-link" (click)="seeTrips = !seeTrips; seeUsers = true; hideHosting(); hideAccountSettings();">
               <span data-feather="shopping-cart"></span>
               Trips
             </a>
@@ -37,19 +37,19 @@
         </h6>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" (click)="showAccountSettings(); seePersonalInformation = false">
+            <a class="nav-link" (click)="showAccountSettings(); hideHosting();seePersonalInformation = false; seeTrips = true; seeUsers = true">
               <i class="fas fa-cogs"></i>
               Personal Information
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="showAccountSettings(); seeMyTrips = false">
+            <a class="nav-link" (click)="showAccountSettings(); hideHosting(); seeMyTrips = false; seeTrips = true; seeUsers = true">
               <span data-feather="shopping-cart"></span>
               Trips Joined
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="showAccountSettings(); seeVehicles = false">
+            <a class="nav-link" (click)="showAccountSettings(); hideHosting(); seeVehicles = false; seeTrips = true; seeUsers = true">
               <span data-feather="users"></span>
               My Vehicles
             </a>
@@ -64,19 +64,19 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item">
-            <a class="nav-link" (click)="showHosting(); seeNewTrip = false">
+            <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seeNewTrip = false; seeTrips = true; seeUsers = true">
               <span data-feather="file-text"></span>
               Host New Trip
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="showHosting(); seeMyHostings = false">
+            <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seeMyHostings = false; seeTrips = true; seeUsers = true">
               <span data-feather="file-text"></span>
               My Hostings
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="showHosting(); seePendingRequests = false">
+            <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seePendingRequests = false; seeTrips = true; seeUsers = true">
               <span data-feather="file-text"></span>
               Pending Requests
             </a>

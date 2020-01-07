@@ -17,8 +17,8 @@
                             <div class="intro-text">
                                 <h2>{{trip.title}}</h2>
 
-                                <p><strong>Departure Location:</strong> {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
-                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
+                                <p><strong>Departure Location:</strong> {{trip.departureAddress.street}} {{trip.departureAddress.city}}, {{trip.departureAddress.state}} </p>
+                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.street}} {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} </p>
                                 <p><strong>Start Date:</strong> {{trip.tripCalendar.startDate}}</p>
                                 <p><strong>End Date:</strong> {{trip.tripCalendar.endDate}}</p>
                                 <p><strong>Description:</strong> {{trip.description}}</p>
@@ -88,7 +88,7 @@
                                   </mat-card-header>
                                   <mat-card-content>
 
-                                      <p>Name: {{trip.host.firstName}}, {{trip.host.lastName}}</p>
+                                      <p>Name: {{trip.host.firstName}} {{trip.host.lastName}}</p>
                                      <p>Phone: {{trip.host.phone}}</p>
                                      <p>Email: {{trip.host.email}}</p>
                                       <p>Bio: {{trip.host.bio}}</p>

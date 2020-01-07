@@ -1,10 +1,10 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Adventure } from 'src/app/models/adventure';
 import { Trip } from 'src/app/models/trip';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { TripService } from 'src/app/services/trip.service';
-
 
 @Component({
   selector: 'app-search-results',
@@ -27,7 +27,8 @@ export class SearchResultsComponent implements OnInit {
 
   constructor(
     private tripSvc: TripService,
-    private adventureSvc: AdventureService
+    private adventureSvc: AdventureService,
+    private route: Router
   ) {}
 
   // M E T H O D S
@@ -60,11 +61,13 @@ export class SearchResultsComponent implements OnInit {
       if (this.trips2[i].destinationAddress.state === form.value.destState) {
         this.trips.push(this.trips2[i]);
       }
+      if (this.trips.length === 0) {
+        this.route.navigateByUrl('notfound');
+      }
     }
     // this.displayTrips(this.trips);
   }
 
   // displayTrips(trips: Trip[]) {
   // }
-
 }

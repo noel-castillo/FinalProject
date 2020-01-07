@@ -121,6 +121,33 @@ export class AdminComponent implements OnInit {
     this.newTrip.tripCalendar = this.newTripCalendar;
   }
 
+  hideAccountSettings() {
+    this.seeVehicles = false;
+
+    this.seeMyTrips = false;
+
+    this.seePersonalInformation = true;
+
+    this.seeEditPersonalInformation = true;
+
+
+  }
+
+  hideHosting() {
+    this.seeNewTrip = false;
+
+    this.seeMyHostings = false;
+
+    this.seePendingRequests = false;
+
+    this.selectedTrip = null;
+
+
+
+    this.newTrip.departureAddress = new Address();
+    this.newTrip.destinationAddress = new Address();
+    this.newTrip.tripCalendar = new TripCalendar();
+  }
   showAccountSettings() {
     this.seeVehicles = true;
 

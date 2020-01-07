@@ -68,7 +68,7 @@ public class TripServiceImpl implements TripService {
 		TripCalendar tc = trip.getTripCalendar();
 		tc = tcRepo.saveAndFlush(tc);
 		
-		trip.setFeatureImage("https://i.imgur.com/p6b3NGW.png");
+		trip.setFeatureImage("https://i.imgur.com/5ByV04j.png");
 		trip.setDepartureAddress(address);
 		trip.setDestinationAddress(address2);
 		trip.setHost(userProfile);

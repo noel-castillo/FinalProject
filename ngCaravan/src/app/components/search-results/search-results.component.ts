@@ -70,8 +70,9 @@ export class SearchResultsComponent implements OnInit {
     // tslint:disable-next-line: prefer-for-of
     for (let i = 0; i < this.trips2.length; i++) {
       if (
-        this.trips2[i].destinationAddress.state === form.value.destState ||
-        this.trips2[i].departureAddress.state === form.value.destState
+        (this.trips2[i].destinationAddress.state === form.value.destState ||
+        this.trips2[i].departureAddress.state === form.value.destState) &&
+        this.trips2[i].enabled
       ) {
         this.trips.push(this.trips2[i]);
       }

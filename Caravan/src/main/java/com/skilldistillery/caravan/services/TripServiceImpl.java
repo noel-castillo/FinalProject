@@ -137,7 +137,7 @@ public class TripServiceImpl implements TripService {
 		if (opt.isPresent()) {
 			existing = opt.get();
 			existing.setTitle(trip.getTitle());
-			existing.setHost(trip.getHost());
+//			existing.setHost(trip.getHost());
 			existing.setVehicle(tripVehicle);
 			existing.setDepartureAddress(departureAddress);
 			existing.setDestinationAddress(destinationAddress);

@@ -134,7 +134,7 @@
           <img src="{{trip.featureImage}}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{trip.title}}</h5>
-            <p class="card-text">{{trip.description | truncate:[75, '...']}}
+            <p class="card-text">{{trip.description | truncate:['75', '...']}}
             </p>
             <button class="btn btn-primary btn-block btn-pad" [routerLink]="['/trips/' + trip.id + '']">More Details</button>
 

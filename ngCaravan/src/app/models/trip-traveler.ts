@@ -3,7 +3,7 @@ import { Trip } from './trip';
 
 export class TripTraveler {
   id: number;
-  rating: number;
+  rating: string;
   review: string;
   contributionPledge: number;
   contributionActual: number;
@@ -16,7 +16,7 @@ export class TripTraveler {
   // tslint:disable-next-line: max-line-length
   constructor(
     id?: number,
-    rating?: number,
+    rating?: string,
     review?: string,
     contributionPledge?: number,
     contributionActual?: number,

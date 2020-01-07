@@ -1,12 +1,7 @@
 <nav id="topnav" class="navbar navbar-expand-lg navbar-light bg-light">
-
-
-   <p
-   class="navbar-brand logoo "
-   (click)="goToSearch()"
-   >
-   Caravan
- </p>
+  <p class="navbar-brand logoo " (click)="goToSearch()">
+    Caravan
+  </p>
   <button
     class="navbar-toggler "
     type="button"
@@ -26,10 +21,8 @@
     <div class="navbar-nav">
       <a
         class="nav-item nav-link"
-        href="goToSearch()"
-        style="font-size: 18px !important; color: black"
       >
-        Explore </a
+        <p (click)="goToSearch()" style="font-size: 18px !important; color: black">Explore</p> </a
       ><br />
       <div *ngIf="!checkIfLoggedIn()">
         <div class="navbar-nav">
@@ -62,7 +55,7 @@
             >&nbsp; &nbsp; &nbsp; &nbsp; Inbox
           </a>
           <app-logout></app-logout>
-            <a class="welcome">Welcome, {{userProf.firstName|titlecase}}!</a>
+
         </div>
       </div>
     </div>

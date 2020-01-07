@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.newUser = new User();
+    this.newUserProfile = new UserProfile();
   }
 
   create(newUsr: User) {
@@ -42,22 +43,19 @@ export class RegisterComponent implements OnInit {
       data => {
         this.auth.login(newUsr.username, newUsr.password).subscribe(
           dat => {
-
             this.usrProfSvc.create(this.newUserProfile).subscribe(
               d => {
-
                 this.route.navigateByUrl('user-profiles');
-
               },
               err => {
                 console.log(err);
-                this.route.navigateByUrl('notfound');
+                this.route.navigateByUrl('register');
               }
             );
           },
           err => {
             console.log(err);
-            this.route.navigateByUrl('notfound');
+            this.route.navigateByUrl('register');
           }
         );
       },

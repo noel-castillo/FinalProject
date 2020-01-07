@@ -27,10 +27,8 @@ export class LoginComponent implements OnInit {
           user => {
             this.currentUser = user;
             if (this.currentUser.role === 'admin') {
-              this.route.navigateByUrl('nav');
               this.route.navigateByUrl('admin');
             } else {
-              this.route.navigateByUrl('nav');
               this.route.navigateByUrl('user-profiles');
             }
           },
@@ -39,11 +37,12 @@ export class LoginComponent implements OnInit {
             console.log(err);
             this.route.navigateByUrl('login');
           }
-        );
-      },
-      err => {
-        console.log('in login');
-        console.log(err);
+          );
+        },
+        err => {
+          console.log('in login');
+          console.log(err);
+          this.route.navigateByUrl('login');
       }
     );
   }

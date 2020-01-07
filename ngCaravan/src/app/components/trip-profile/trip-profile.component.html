@@ -13,19 +13,40 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="about-intro">
-                            <div class="rating"></div>
+                            <!-- <div class="rating"></div> -->
                             <div class="intro-text">
                                 <h2>{{trip.title}}</h2>
 
-                                <p><strong>Departure Location:</strong> {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
-                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
+                                <p><strong>Departure Location:</strong> {{trip.departureAddress.street}} {{trip.departureAddress.city}}, {{trip.departureAddress.state}} </p>
+                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.street}} {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} </p>
                                 <p><strong>Start Date:</strong> {{trip.tripCalendar.startDate}}</p>
                                 <p><strong>End Date:</strong> {{trip.tripCalendar.endDate}}</p>
                                 <p><strong>Description:</strong> {{trip.description}}</p>
                                 <p><strong>Total Cost:</strong> ${{trip.totalCost}}</p>
                                 <p><strong>Vehicle:</strong> {{trip.vehicle.manufactureYear}} {{trip.vehicle.make}} {{trip.vehicle.model}}</p>
-                                <div *ngIf="joined" class="closed">{{joined.travelerStatus}}</div>
-                                <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="closed">Join</div>
+                                <div *ngIf="joined" class="btn btn-primary btn-lg">{{joined.travelerStatus}}</div>
+                                <div *ngIf="!joined" (click)="addTrip(trip.id); alert()" class="btn btn-primary btn-lg">Join<br></div>
+                                <div class="compose_bar">
+                                  <br>
+                                  <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"
+                                  role="button"><i class="glyphicon glyphicon-edit"></i>
+                                  Message Host&emsp;
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-right mt-2">
+                                  <li class="px-3 py-2">
+                                    <form>
+                                      <div class="form-group">
+                                        <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
+                                          [(ngModel)]="myReply.content" required="required">
+                                        <button (click)="compose()" type="submit" name="compose"
+                                          class="btn btn-info btn-block">Send</button>
+                                      </div>
+                                    </form>
+                                  </li>
+                                </ul>
+                                <br>
+                                <br>
+                                </div>
                                 <!-- <div *ngIf="joined.travelerStatus === null" class="closed">Your Trip</div> -->
                             </div>
                         </div>
@@ -59,17 +80,50 @@
                             <div class="client-reviews">
 
                               <h3>People Traveling on this Trip</h3>
-                                <ng-container *ngFor="let advenTravelerr of thisTripTravelers">
-                                <div *ngIf="advenTravelerr" class="reviews-item">
+                                <ng-container *ngFor="let advenTravelerr of thisApprovedTripTravelers">
+                                <div *ngIf="advenTravelerr.travelerStatus === 'Approved'" class="reviews-item">
                                   <ul>
-                                    <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} ({{advenTravelerr.travelerStatus}}) </li>
+                                    <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} ({{advenTravelerr.travelerStatus}}) <button *ngIf="currentProfile.id === advenTravelerr.user.id && !advenTravelerr.review" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">Leave a Review</button></li>
                                   </ul>
                                   <!-- <h5>{{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}}</h5> -->
+                                </div>
+                                <div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Leave a Review</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+
+                                      <div class="modal-body">
+                                        <form #composeForm="ngForm">
+                                          <div class="form-group">
+                                            <select name="rating" class="form-control" [(ngModel)]="advenTravelerr.rating">
+                                              <!-- <option value="" disabled selected>Select Rating</option> -->
+                                              <option selected value=1><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
+                                              <option value=2><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
+                                              <option value=3><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
+                                              <option value=4><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span></option>
+                                              <option value=5><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span></option>
+                                            </select>
+                                            <textarea name="content" placeholder="Enter Review" class="form-control inbox" type="textarea"
+                                              [(ngModel)]="advenTravelerr.review" required="required"></textarea>
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button (click)="composeReview(advenTravelerr)" type="submit" name="compose"
+                                        class="btn btn-primary btn-block">Submit</button>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
 
                               </ng-container>
 
-                              <div *ngIf="thisTripTravelers.length === 0" class="reviews-item">
+                              <div *ngIf="thisApprovedTripTravelers.length === 0" class="reviews-item">
                                 <ul>
                                   <h4><em>Be the first to sign up for this trip!</em></h4>
                                 </ul>
@@ -88,7 +142,7 @@
                                   </mat-card-header>
                                   <mat-card-content>
 
-                                      <p>Name: {{trip.host.firstName}}, {{trip.host.lastName}}</p>
+                                      <p>Name: {{trip.host.firstName}} {{trip.host.lastName}}</p>
                                      <p>Phone: {{trip.host.phone}}</p>
                                      <p>Email: {{trip.host.email}}</p>
                                       <p>Bio: {{trip.host.bio}}</p>
@@ -105,7 +159,13 @@
 
                                   <h3>Host Reviews</h3>
 
-                                  <ng-container *ngFor="let advenTraveler of thisTripTravelers">
+                                  <div *ngIf="thisTripReviews.length === 0" class="reviews-item">
+                                    <ul>
+                                      <h4><em>No reviews for this host..</em></h4>
+                                    </ul>
+                                  </div>
+
+                                  <ng-container *ngFor="let advenTraveler of thisTripReviews">
 
 
                                   <div *ngIf="advenTraveler.review" class="reviews-item">
@@ -135,7 +195,7 @@
 
                                     <p>{{advenTraveler.review}}</p>
                                     <div class="client-text">
-                                        <h5>{{advenTraveler.user.firstName}}, {{advenTraveler.user.lastName}}</h5>
+                                        <h5>by {{advenTraveler.user.firstName}} {{advenTraveler.user.lastName}}</h5>
                                         <!-- <span>March 03, 2019</span> -->
                                     </div>
 
@@ -155,4 +215,6 @@
         </div>
 
     <!-- About Secton End -->
+
+
 

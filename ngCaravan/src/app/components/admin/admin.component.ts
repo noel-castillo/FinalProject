@@ -61,7 +61,7 @@ export class AdminComponent implements OnInit {
 
   seeVehicles = true;
 
-  seePersonalInformation = true;
+  seePersonalInformation = false;
 
   seeMyTrips = true;
 
@@ -125,7 +125,7 @@ export class AdminComponent implements OnInit {
 
     this.selectedTrip = null;
 
-    this.newTrip.departureAddress = new Address()
+    this.newTrip.departureAddress = new Address();
     this.newTrip.destinationAddress = new Address();
     this.newTrip.tripCalendar = new TripCalendar();
   }
@@ -140,6 +140,18 @@ export class AdminComponent implements OnInit {
     this.seeEditPersonalInformation = true;
 
 
+  }
+
+  disableTrip(trip: Trip) {
+    trip.enabled = false;
+    this.tripSvc.update(trip).subscribe(
+      data => {
+        console.log('User Profile Component: Able to disableTrip()');
+      },
+      err => {
+        console.log('User Profile Component: Unable to disableTrip()');
+      }
+    );
   }
 
   hideHosting() {
@@ -172,20 +184,13 @@ export class AdminComponent implements OnInit {
   }
 
   addNewVehicle() {
+    this.newVehicle.enabled = true;
     this.vSvc.create(this.newVehicle).subscribe(
       data => {
         console.log('Vehicle has been created!');
-      },
-      err => {
-        console.log(err);
-      }
-    );
-
-    this.uSvc.getUserInSessionProfile().subscribe(
-      data => {
-        this.currentProfile = data;
-        this.currentProfile.vehicles.push(this.newVehicle);
         this.newVehicle = new Vehicle();
+        this.seeNewVehicle = true;
+        this.currentProfile.vehicles.push(data);
       },
       err => {
         console.log(err);

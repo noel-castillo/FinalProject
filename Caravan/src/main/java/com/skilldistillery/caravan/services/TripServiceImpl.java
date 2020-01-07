@@ -68,7 +68,7 @@ public class TripServiceImpl implements TripService {
 		TripCalendar tc = trip.getTripCalendar();
 		tc = tcRepo.saveAndFlush(tc);
 		
-		trip.setFeatureImage("https://i.imgur.com/gS6YmXh.png");
+		trip.setFeatureImage("https://i.imgur.com/p6b3NGW.png");
 		trip.setDepartureAddress(address);
 		trip.setDestinationAddress(address2);
 		trip.setHost(userProfile);
@@ -137,7 +137,7 @@ public class TripServiceImpl implements TripService {
 		if (opt.isPresent()) {
 			existing = opt.get();
 			existing.setTitle(trip.getTitle());
-			existing.setHost(trip.getHost());
+//			existing.setHost(trip.getHost());
 			existing.setVehicle(tripVehicle);
 			existing.setDepartureAddress(departureAddress);
 			existing.setDestinationAddress(destinationAddress);

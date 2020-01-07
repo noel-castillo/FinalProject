@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { TripService } from 'src/app/services/trip.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { TripTravelerService } from 'src/app/services/trip-traveler.service';
+import { DirectMessageService } from 'src/app/services/direct-message.service';
+import { DirectMessage } from 'src/app/models/direct-message';
 
 declare var jQuery: any;
 
@@ -33,11 +35,15 @@ export class TripProfileComponent implements OnInit {
   tripTraveler: TripTraveler = new TripTraveler();
   tripTravelers: TripTraveler[] = [];
   thisTripTravelers: TripTraveler[] = [];
+  thisApprovedTripTravelers: TripTraveler[] = [];
+  thisTripReviews: TripTraveler[] = [];
   iframeURL = '';
 
   currentProfile: UserProfile = null;
 
   joined: TripTraveler = null;
+
+  myReply: DirectMessage = new DirectMessage();
 
 
   // C o n s t r u c t o r
@@ -50,8 +56,9 @@ export class TripProfileComponent implements OnInit {
     private currentRoute: ActivatedRoute,
     private router: Router,
     private mapSvc: MapService,
-    private userPsvc: UserProfileService
-  ) {}
+    private userPsvc: UserProfileService,
+    private dmSvc: DirectMessageService
+  ) { }
 
   alert() {
     window.alert('Your join request has been sent!');
@@ -61,7 +68,7 @@ export class TripProfileComponent implements OnInit {
   }
 
   reloadTripTravelers(tripTrav: TripTraveler) {
-      this.thisTripTravelers.push(tripTrav);
+    this.thisTripTravelers.push(tripTrav);
   }
 
   getMap() {
@@ -97,7 +104,7 @@ export class TripProfileComponent implements OnInit {
 
   getTripTravelers() {
     console.log('******GETTING TRIP TRAVELERS****');
-    this.tripTravelerSvc.index().subscribe (
+    this.tripTravelerSvc.index().subscribe(
       data2 => {
         this.tripTravelers = data2;
         // this.currentRate = this.thisTripAdventureTravelers[0].rating;
@@ -112,11 +119,17 @@ export class TripProfileComponent implements OnInit {
           if (element.trip.id === this.trip.id) {
             console.log('ELEMENT******' + element.trip.id);
             this.thisTripTravelers.push(element);
+            if (element.review !== null) {
+              this.thisTripReviews.push(element);
+            }
+            if (element.travelerStatus === 'Approved') {
+              this.thisApprovedTripTravelers.push(element);
+            }
             console.log('***REVIEWWW**' + this.thisTripTravelers[0].review);
             console.log('ELEMENT ADDED******');
             if (element.user.id === this.currentProfile.id) {
               this.joined = element;
-        }
+            }
           }
 
 
@@ -130,6 +143,30 @@ export class TripProfileComponent implements OnInit {
       },
       err => {
         console.error('***ERROR GETTING TRIP TRAVELERS' + err);
+      }
+    );
+  }
+
+  compose() {
+    this.dmSvc.createDirectMessage(this.myReply, this.trip.host.id).subscribe(
+      data => {
+        this.myReply = new DirectMessage();
+      },
+      err => {
+        console.error('Trip Profile Component: Unable to compose message');
+        // this.router.navigateByUrl('notfound');
+      }
+    );
+  }
+
+  composeReview(tripTraveler: TripTraveler) {
+    this.tripTravelerSvc.updateTripTraveler(tripTraveler).subscribe(
+      data => {
+        this.thisTripReviews.push(data);
+      },
+      err => {
+        console.error('Trip Profile Component: Unable to compose message');
+        // this.router.navigateByUrl('notfound');
       }
     );
   }
@@ -151,15 +188,15 @@ export class TripProfileComponent implements OnInit {
 
   ngOnInit() {
     // tslint:disable-next-line: only-arrow-functions
-    (function($) {
+    (function ($) {
       // tslint:disable-next-line: only-arrow-functions
-      $(document).ready(function() {
+      $(document).ready(function () {
         console.log('Hello from jQuery!');
       });
     })(jQuery);
 
     // tslint:disable-next-line: only-arrow-functions
-    (function($) {
+    (function ($) {
       /*------------------
           Preloader
       --------------------*/
@@ -171,7 +208,7 @@ export class TripProfileComponent implements OnInit {
       /*------------------
           Background Set
       --------------------*/
-      $('.set-bg').each(function() {
+      $('.set-bg').each(function () {
         // tslint:disable-next-line: prefer-const
         let bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
@@ -234,7 +271,7 @@ export class TripProfileComponent implements OnInit {
     --------------------- */
       $('.filter-left .category-filter .category-option .co-item label').on(
         'click',
-        function() {
+        function () {
           $(
             '.filter-left .category-filter .category-option .co-item label'
           ).removeClass('active');
@@ -244,7 +281,7 @@ export class TripProfileComponent implements OnInit {
 
       $('.filter-left .rating-filter .rating-option .ro-item label').on(
         'click',
-        function() {
+        function () {
           $(
             '.filter-left .rating-filter .rating-option .ro-item label'
           ).removeClass('active');
@@ -254,7 +291,7 @@ export class TripProfileComponent implements OnInit {
 
       $('.filter-left .distance-filter .distance-option .do-item label').on(
         'click',
-        function() {
+        function () {
           $(
             '.filter-left .distance-filter .distance-option .do-item label'
           ).removeClass('active');
@@ -267,12 +304,12 @@ export class TripProfileComponent implements OnInit {
     // if (!this.selected && this.currentRoute.snapshot.paramMap.get('id')) {
     // console.log(this.currentRoute.snapshot.paramMap.get('id'));
 
-    this.userPsvc.getUserInSessionProfile().subscribe (
+    this.userPsvc.getUserInSessionProfile().subscribe(
       data => {
         this.currentProfile = data;
       },
       err => {
-      console.log('Trip Profile Comp unable to load current Profile' + err);
+        console.log('Trip Profile Comp unable to load current Profile' + err);
       }
     );
 

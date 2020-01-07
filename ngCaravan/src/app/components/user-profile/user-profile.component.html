@@ -11,19 +11,19 @@
     </h6>
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link" (click)="showAccountSettings(); hideHosting();seePersonalInformation = false; seeTrips = true; seeUsers = true">
+        <a class="nav-link" (click)="showAccountSettings(); hideHosting();seePersonalInformation = false;">
           <i class="fas fa-cogs"></i>
           Personal Information
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showAccountSettings(); hideHosting(); seeMyTrips = false; seeTrips = true; seeUsers = true">
+        <a class="nav-link" (click)="showAccountSettings(); hideHosting(); seeMyTrips = false;">
           <span data-feather="shopping-cart"></span>
           Trips Joined
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showAccountSettings(); hideHosting(); seeVehicles = false; seeTrips = true; seeUsers = true">
+        <a class="nav-link" (click)="showAccountSettings(); hideHosting(); seeVehicles = false;">
           <span data-feather="users"></span>
           My Vehicles
         </a>
@@ -38,19 +38,19 @@
     </h6>
     <ul class="nav flex-column mb-2">
       <li class="nav-item">
-        <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seeNewTrip = false; seeTrips = true; seeUsers = true">
+        <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seeNewTrip = false; ">
           <span data-feather="file-text"></span>
           Host New Trip
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seeMyHostings = false; seeTrips = true; seeUsers = true">
+        <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seeMyHostings = false;">
           <span data-feather="file-text"></span>
           My Hostings
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seePendingRequests = false; seeTrips = true; seeUsers = true">
+        <a class="nav-link" (click)="showHosting(); hideAccountSettings(); seePendingRequests = false;">
           <span data-feather="file-text"></span>
           Pending Requests
         </a>
@@ -214,11 +214,11 @@
                               </tr>
                               <tr>
                                 <td class="nav-item">
-                                  Capacity:
+                                  Vehicle Image:
                                 </td>
                                 <td class="nav-item">
-                                  <input type="number" name="manufacutreYear" class="form-control form-control-lg"
-                                    required="required" type="text" [(ngModel)]="newVehicle.capacity">
+                                  <input type="number" name="imageURL" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="newVehicle.imageURL">
                                 </td>
                               </tr>
                               <tr>
@@ -287,11 +287,11 @@
                               </tr>
                               <tr>
                                 <td class="nav-item">
-                                  Capacity:
+                                  Vehicle Image URL:
                                 </td>
                                 <td class="nav-item">
-                                  <input type="number" name="manufacutreYear" class="form-control form-control-lg"
-                                    required="required" type="text" [(ngModel)]="editVehicle.capacity">
+                                  <input type="number" name="imageURL" class="form-control form-control-lg"
+                                    required="required" type="text" [(ngModel)]="editVehicle.imageURL">
                                 </td>
                               </tr>
                               <tr>
@@ -721,7 +721,8 @@
 
                             </td>
                           </tr>
-                          <tr *ngFor="let vehicle of currentProfile.vehicles">
+                          <ng-container *ngFor="let vehicle of currentProfile.vehicles">
+                          <tr *ngIf="vehicle.enabled">
                             <td class="nav-item">
                               {{vehicle.make}} {{vehicle.model}} {{vehicle.manufactureYear}}
                             </td>
@@ -730,6 +731,7 @@
                                 class="btn btn-outline-success">Select</button>
                             </td>
                           </tr>
+                        </ng-container>
                         </tbody>
                       </table>
                       <button type="submit" (click)="createTrip()" class="btn btn-outline-success"
@@ -757,7 +759,8 @@
                             <u>Destination</u>
                           </th>
                         </tr>
-                        <tr *ngFor="let trip of myHostings">
+                        <ng-container *ngFor="let trip of myHostings">
+                        <tr *ngIf="trip.enabled">
                           <td class="nav-item">
                             <a [routerLink]="['/trips/' + trip.id + '']">{{trip.title}}</a>
                           </td>
@@ -772,9 +775,10 @@
                               class="btn btn-outline-success">View Details</button>
                           </td>
                           <td class="nav-item">
-                            <button type="button" class="btn btn-outline-danger">Delete</button>
+                            <button type="button" (click)="disableTrip(trip)" class="btn btn-outline-danger">Delete</button>
                           </td>
                         </tr>
+                      </ng-container>
                       </tbody>
                     </table>
                     <button type="button" (click)="showHosting()" class="btn btn-light">Back</button>
@@ -1041,6 +1045,7 @@
                             <td class="nav-item">
 
                             </td>
+
                           </tr>
                           <tr *ngFor="let vehicle of currentProfile.vehicles">
                             <td class="nav-item">

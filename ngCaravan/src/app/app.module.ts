@@ -41,6 +41,7 @@ import { AdventureService } from './services/adventure.service';
 import { TripCalendarService } from './services/trip-calendar.service';
 import { TripService } from './services/trip.service';
 import { NotfoundComponent } from './components/notfound/notfound.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 
@@ -78,7 +79,8 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
     LatestMessagePipe,
     MapPipe,
     FooterComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    TruncatePipe
 
 
 

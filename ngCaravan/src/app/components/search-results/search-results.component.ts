@@ -1,10 +1,12 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Adventure } from 'src/app/models/adventure';
 import { Trip } from 'src/app/models/trip';
 import { AdventureService } from 'src/app/services/adventure.service';
 import { TripService } from 'src/app/services/trip.service';
+import { Pipe, PipeTransform } from '@angular/core';
+
 
 @Component({
   selector: 'app-search-results',
@@ -48,14 +50,6 @@ export class SearchResultsComponent implements OnInit {
   }
 
   search(form: NgForm) {
-    console.log('hi');
-    console.log(this.trips2.length);
-    console.log(this.trips2);
-    console.log(form.value.currCity);
-    console.log(form.value.currState);
-    console.log(form.value.destCity);
-    console.log(form.value.destState);
-    console.log('goodbye');
     this.trips = [];
 
     this.tripSvc.index().subscribe(

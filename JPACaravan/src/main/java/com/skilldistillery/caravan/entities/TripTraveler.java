@@ -22,7 +22,7 @@ public class TripTraveler {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private double rating;
+	private String rating;
 
 	private String review;
 
@@ -54,7 +54,7 @@ public class TripTraveler {
 		super();
 	}
 
-	public TripTraveler(double rating, String review, double contributionPledge, boolean attended,
+	public TripTraveler(String rating, String review, double contributionPledge, boolean attended,
 			double contributionActual, UserProfile user, boolean approved, String travelerStatus, Trip trip) {
 		super();
 		this.rating = rating;
@@ -85,11 +85,11 @@ public class TripTraveler {
 		this.id = id;
 	}
 
-	public double getRating() {
+	public String getRating() {
 		return rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 
@@ -169,9 +169,9 @@ public class TripTraveler {
 		temp = Double.doubleToLongBits(contributionPledge);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + id;
-		temp = Double.doubleToLongBits(rating);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
 		result = prime * result + ((review == null) ? 0 : review.hashCode());
+		result = prime * result + ((travelerStatus == null) ? 0 : travelerStatus.hashCode());
 		result = prime * result + ((trip == null) ? 0 : trip.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
@@ -196,12 +196,20 @@ public class TripTraveler {
 			return false;
 		if (id != other.id)
 			return false;
-		if (Double.doubleToLongBits(rating) != Double.doubleToLongBits(other.rating))
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
 			return false;
 		if (review == null) {
 			if (other.review != null)
 				return false;
 		} else if (!review.equals(other.review))
+			return false;
+		if (travelerStatus == null) {
+			if (other.travelerStatus != null)
+				return false;
+		} else if (!travelerStatus.equals(other.travelerStatus))
 			return false;
 		if (trip == null) {
 			if (other.trip != null)

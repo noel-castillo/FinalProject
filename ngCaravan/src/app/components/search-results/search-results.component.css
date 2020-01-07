@@ -28,19 +28,11 @@ select {
   padding: 0 35px;
   font-weight: bolder;
 }
-
 .search {
-  margin-top: 20%;
+  margin-top: 5%;
 }
 .result {
   margin-top: 10% !important;
-
-}
-.card-img-top {
-  max-height: 400px;
-}
-.card-body {
-  min-height: 150px;
 }
 .container {
   min-height: 100vh;
@@ -106,4 +98,8 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+}
+
+.btn {
+  margin: 0;
 }

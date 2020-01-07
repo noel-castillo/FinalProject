@@ -16,7 +16,6 @@ img{ max-width:100%;}
 
 .recent_heading {float: left; width:40%;
 }
-
 .compose_bar {
   display: inline-block;
   text-align: right;
@@ -136,5 +135,9 @@ img{ max-width:100%;}
   height: 516px;
   overflow-y: auto;
 }
+.inbox {
+  min-height: 30vh;
+}
+
 
 

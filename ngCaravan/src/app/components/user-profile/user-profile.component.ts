@@ -179,9 +179,9 @@ export class UserProfileComponent implements OnInit {
     this.tripSvc.create(this.newTrip).subscribe(
       data => {
         this.myHostings.push(data);
-        this.newTrip.departureAddress = this.newAddress;
-        this.newTrip.destinationAddress = this.newAddress;
-        this.newTrip.tripCalendar = this.newTripCalendar;
+        this.newTrip.departureAddress = new Address();
+        this.newTrip.destinationAddress = new Address();
+        this.newTrip.tripCalendar = new TripCalendar();
         this.seeNewTrip = true;
         this.seeMyHostings = false;
       },

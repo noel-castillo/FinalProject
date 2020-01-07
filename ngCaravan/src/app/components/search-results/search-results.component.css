@@ -36,6 +36,9 @@ select {
   margin-top: 10% !important;
 
 }
+.card-img-top {
+  max-height: 400px;
+}
 .card-body {
   min-height: 150px;
 }

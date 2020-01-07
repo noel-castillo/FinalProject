@@ -17,8 +17,8 @@
                             <div class="intro-text">
                                 <h2>{{trip.title}}</h2>
 
-                                <p><strong>Departure Location:</strong> {{trip.departureAddress.city}}, {{trip.departureAddress.state}} {{trip.departureAddress.street}}</p>
-                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} {{trip.destinationAddress.street}}</p>
+                                <p><strong>Departure Location:</strong> {{trip.departureAddress.street}} {{trip.departureAddress.city}}, {{trip.departureAddress.state}} </p>
+                                <p><strong>Destination Location:</strong> {{trip.destinationAddress.street}} {{trip.destinationAddress.city}}, {{trip.destinationAddress.state}} </p>
                                 <p><strong>Start Date:</strong> {{trip.tripCalendar.startDate}}</p>
                                 <p><strong>End Date:</strong> {{trip.tripCalendar.endDate}}</p>
                                 <p><strong>Description:</strong> {{trip.description}}</p>
@@ -80,8 +80,8 @@
                             <div class="client-reviews">
 
                               <h3>People Traveling on this Trip</h3>
-                                <ng-container *ngFor="let advenTravelerr of thisTripTravelers">
-                                <div *ngIf="advenTravelerr" class="reviews-item">
+                                <ng-container *ngFor="let advenTravelerr of thisApprovedTripTravelers">
+                                <div *ngIf="advenTravelerr.travelerStatus === 'Approved'" class="reviews-item">
                                   <ul>
                                     <li>  <img src="{{advenTravelerr.user.profilePic.url}}" class="photo"> {{advenTravelerr.user.firstName}} {{advenTravelerr.user.lastName}} ({{advenTravelerr.travelerStatus}}) </li>
                                   </ul>
@@ -90,7 +90,7 @@
 
                               </ng-container>
 
-                              <div *ngIf="thisTripTravelers.length === 0" class="reviews-item">
+                              <div *ngIf="thisApprovedTripTravelers.length === 0" class="reviews-item">
                                 <ul>
                                   <h4><em>Be the first to sign up for this trip!</em></h4>
                                 </ul>
@@ -109,7 +109,7 @@
                                   </mat-card-header>
                                   <mat-card-content>
 
-                                      <p>Name: {{trip.host.firstName}}, {{trip.host.lastName}}</p>
+                                      <p>Name: {{trip.host.firstName}} {{trip.host.lastName}}</p>
                                      <p>Phone: {{trip.host.phone}}</p>
                                      <p>Email: {{trip.host.email}}</p>
                                       <p>Bio: {{trip.host.bio}}</p>
@@ -126,7 +126,13 @@
 
                                   <h3>Host Reviews</h3>
 
-                                  <ng-container *ngFor="let advenTraveler of thisTripTravelers">
+                                  <div *ngIf="thisTripReviews.length === 0" class="reviews-item">
+                                    <ul>
+                                      <h4><em>No reviews for this host..</em></h4>
+                                    </ul>
+                                  </div>
+
+                                  <ng-container *ngFor="let advenTraveler of thisTripReviews">
 
 
                                   <div *ngIf="advenTraveler.review" class="reviews-item">

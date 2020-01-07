@@ -102,11 +102,11 @@
                                           <div class="form-group">
                                             <select name="rating" class="form-control" [(ngModel)]="advenTravelerr.rating">
                                               <!-- <option value="" disabled selected>Select Rating</option> -->
-                                              <option selected value='1'><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
-                                              <option value='2'><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
-                                              <option value='3'><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
-                                              <option value='4'><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span></option>
-                                              <option value='5'><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span></option>
+                                              <option selected value=1><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
+                                              <option value=2><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
+                                              <option value=3><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span></option>
+                                              <option value=4><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span></option>
+                                              <option value=5><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span></option>
                                             </select>
                                             <textarea name="content" placeholder="Enter Review" class="form-control inbox" type="textarea"
                                               [(ngModel)]="advenTravelerr.review" required="required"></textarea>
@@ -170,26 +170,26 @@
 
                                   <div *ngIf="advenTraveler.review" class="reviews-item">
 
-                                    <div *ngIf="advenTraveler.rating === '1'">
+                                    <div *ngIf="advenTraveler.rating === 1">
                                       <span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
 
                                     </div>
 
-                                    <div *ngIf="advenTraveler.rating === '2'">
+                                    <div *ngIf="advenTraveler.rating === 2">
                                       <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
 
                                     </div>
 
-                                    <div *ngIf="advenTraveler.rating === '3'">
+                                    <div *ngIf="advenTraveler.rating === 3">
                                       <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span><span id="star2">&#9734;</span>
 
                                     </div>
 
-                                    <div *ngIf="advenTraveler.rating === '4'">
+                                    <div *ngIf="advenTraveler.rating === 4">
                                       <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star2">&#9734;</span>
                                     </div>
 
-                                    <div *ngIf="advenTraveler.rating === '5'">
+                                    <div *ngIf="advenTraveler.rating === 5">
                                       <span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span><span id="star1">&#9733;</span>
                                     </div>
 

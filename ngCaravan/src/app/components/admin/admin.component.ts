@@ -383,6 +383,14 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.uSvc.getUserInSessionProfile().subscribe(
+      data => {
+        this.currentProfile = data;
+      },
+      err => {
+        console.log(err);
+      }
+    );
     this.tripSvc.index().subscribe(
       data => {
         this.allTrips = data;
@@ -401,14 +409,6 @@ export class AdminComponent implements OnInit {
       }
     );
 
-    this.uSvc.getUserInSessionProfile().subscribe(
-      data => {
-        this.currentProfile = data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
 
     this.tripSvc.indexHosted().subscribe(
       data => {

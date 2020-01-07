@@ -97,10 +97,10 @@ export class UserProfileComponent implements OnInit {
   // M E T H O D S
 
   openNav() {
-    if ( document.getElementById('mySidenav').style.width === '250px') {
+    if (document.getElementById('mySidenav').style.width === '250px') {
       document.getElementById('mySidenav').style.width = '0px';
     } else {
-    document.getElementById('mySidenav').style.width = '250px';
+      document.getElementById('mySidenav').style.width = '250px';
     }
   }
 
@@ -291,33 +291,18 @@ export class UserProfileComponent implements OnInit {
         this.currentProfile = data;
         if (this.currentProfile.user.role === 'admin') {
           this.router.navigateByUrl('admin');
-
-        } else {
-          this.router.navigateByUrl('user-profiles');
         }
       },
       err => {
         console.log(err);
       }
     );
-
     this.tripSvc.indexHosted().subscribe(
       data => {
         this.myHostings = data;
       },
       err => {
         console.log('User Profile Component: Unable to load myTrips');
-      }
-    );
-
-    this.tripTravSvc.myTripRequests().subscribe(
-      data => {
-        console.log('loading requests');
-        this.myTripRequests = data;
-        console.log(data);
-      },
-      err => {
-        console.log('User Profile Component: Unable to load myTripRequests');
       }
     );
 
@@ -358,6 +343,18 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  getTripReq() {
+    this.tripTravSvc.myTripRequests().subscribe(
+      data => {
+        console.log('loading requests');
+        this.myTripRequests = data;
+        console.log(data);
+      },
+      err => {
+        console.log('User Profile Component: Unable to load myTripRequests');
+      }
+    );
+  }
   getNumOfUserProfiles() {
     return this.userProfiles.length;
   }

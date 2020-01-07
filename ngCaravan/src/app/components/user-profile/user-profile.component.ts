@@ -204,6 +204,18 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
+  disableTrip(trip: Trip) {
+    trip.enabled = false;
+    this.tripSvc.update(trip).subscribe(
+      data => {
+        console.log('User Profile Component: Able to disableTrip()');
+      },
+      err => {
+        console.log('User Profile Component: Unable to disableTrip()');
+      }
+    );
+  }
+
   logout() {
     this.auth.logout();
     this.router.navigateByUrl('login');

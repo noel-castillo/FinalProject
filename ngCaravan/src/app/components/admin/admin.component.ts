@@ -61,7 +61,7 @@ export class AdminComponent implements OnInit {
 
   seeVehicles = true;
 
-  seePersonalInformation = true;
+  seePersonalInformation = false;
 
   seeMyTrips = true;
 
@@ -125,7 +125,7 @@ export class AdminComponent implements OnInit {
 
     this.selectedTrip = null;
 
-    this.newTrip.departureAddress = new Address()
+    this.newTrip.departureAddress = new Address();
     this.newTrip.destinationAddress = new Address();
     this.newTrip.tripCalendar = new TripCalendar();
   }
@@ -140,6 +140,18 @@ export class AdminComponent implements OnInit {
     this.seeEditPersonalInformation = true;
 
 
+  }
+
+  disableTrip(trip: Trip) {
+    trip.enabled = false;
+    this.tripSvc.update(trip).subscribe(
+      data => {
+        console.log('User Profile Component: Able to disableTrip()');
+      },
+      err => {
+        console.log('User Profile Component: Unable to disableTrip()');
+      }
+    );
   }
 
   hideHosting() {

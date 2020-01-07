@@ -13,3 +13,30 @@
 #loginbg {
   height: 100vh;
 }
+.inputdiv{
+min-height: 80vh;
+}
+
+
+#bg {
+  background-image: url('https://i.imgur.com/Ky3xehA.png') !important;
+  /* Full height */
+  width: 100% !important;
+  min-height: 100% !important;
+  /* Center and scale the image nicely */
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-weight: bolder;
+  font-family: 'Nunito', sans-serif;
+  color: #ffffff;
+  text-align: center;
+  margin: 5% 0;
+  text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+  0px 8px 13px rgba(0,0,0,0.1),
+  0px 18px 23px rgba(0,0,0,0.1);;
+}

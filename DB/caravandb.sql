@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `trip` (
   `destination_address_id` INT NULL,
   `host_id` INT NULL,
   `title` VARCHAR(150) NULL,
-  `feature_image` VARCHAR(200) NULL,
+  `feature_image` VARCHAR(200) NULL DEFAULT 'https://i.imgur.com/5ByV04j.png',
   PRIMARY KEY (`id`),
   INDEX `fk_trip_vehicle1_idx` (`vehicle_id` ASC),
   INDEX `fk_trip_address1_idx` (`depart_address_id` ASC),
@@ -626,7 +626,7 @@ INSERT INTO `image` (`id`, `url`) VALUES (13, 'https://i.imgur.com/SOyJZvJ.jpg')
 INSERT INTO `image` (`id`, `url`) VALUES (14, 'https://i.imgur.com/e4sGTr9.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (15, 'https://i.imgur.com/HeKw7Gx.jpg');
 INSERT INTO `image` (`id`, `url`) VALUES (16, 'https://i.imgur.com/MwXmSCr.jpg');
-INSERT INTO `image` (`id`, `url`) VALUES (17, 'https://i.imgur.com/GB3nmYt.jpg');
+INSERT INTO `image` (`id`, `url`) VALUES (17, 'https://i.imgur.com/5ByV04j.png');
 
 COMMIT;
 
@@ -709,11 +709,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (1, 'I\'ve always wanted to see Graceland, so we\'re goin\'! Hmu if you want to come along and see where the King lived!', 4, 50, '2017-08-29', 1, '500', 600, 1, 1, 2, 3, 'Goin\' to Graceland', 'https://i.imgur.com/Iy01VVJ.jpg');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual bake sale!', 2, 36, '2019-12-29', 1, '250', 750, 2, 3, 4, 3, 'Kalamazoo', 'https://i.imgur.com/Iy01VVJ.jpg');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (3, 'I am going to the Titanic Museum in Branson, Missouri. Come along for the ride.', 3, 38, '2019-12-28', 1, '400', 800, 3, 5, 8, 4, 'Branson Titanic Museum', 'https://i.imgur.com/Iy01VVJ.jpg');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (4, 'I\'m going to Gatlinburg. It\'s super sweet. You should come to!', 2, 30, '2019-12-27', 1, '275', 300, 4, 6, 9, 5, 'Gatlinburg Aquarium', 'https://i.imgur.com/Iy01VVJ.jpg');
-INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (5, 'I plan to go this really sweet indoor water park in Pigeon Forge, TN', 2, 40, '2019-12-26', 1, '1200', 3000, 5, 7, 10, 6, 'Pigeon Forge Indoor Water Park', 'https://i.imgur.com/Iy01VVJ.jpg');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (1, 'I\'ve always wanted to see Graceland, so we\'re goin\'! Hmu if you want to come along and see where the King lived!', 4, 50, '2017-08-29', 1, '500', 600, 1, 1, 2, 3, 'Goin\' to Graceland', 'https://i.imgur.com/5ByV04j.png');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (2, 'Let\'s go to Kalamazoo Institue of Arts for their annual bake sale!', 2, 36, '2019-12-29', 1, '250', 750, 2, 3, 4, 3, 'Kalamazoo', 'https://i.imgur.com/5ByV04j.png');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (3, 'I am going to the Titanic Museum in Branson, Missouri. Come along for the ride.', 3, 38, '2019-12-28', 1, '400', 800, 3, 5, 8, 4, 'Branson Titanic Museum', 'https://i.imgur.com/5ByV04j.png');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (4, 'I\'m going to Gatlinburg. It\'s super sweet. You should come to!', 2, 30, '2019-12-27', 1, '275', 300, 4, 6, 9, 5, 'Gatlinburg Aquarium', 'https://i.imgur.com/5ByV04j.png');
+INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (5, 'I plan to go this really sweet indoor water park in Pigeon Forge, TN', 2, 40, '2019-12-26', 1, '1200', 3000, 5, 7, 10, 6, 'Pigeon Forge Indoor Water Park', 'https://i.imgur.com/5ByV04j.png');
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (6, 'I\'m driving to Miami for a family reunion. It\'s a super long drive, but I hate flying! So come along for the trip, help chip in with costs, and if you like, we can take shifts driving. Should be a fun trip!', 3, 100, '2020-01-05', 1, '1000', 3300, 1, 12, 18, 7, 'Miami for Family Reunion', 'https://i.imgur.com/XZa2ZlJ.jpg');
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (7, 'Hey guys. I\'m driving from my home in Fort Collins, CO all the way to Miami to for a business conference. Give me a shout if you want to tag along.', 2, 30, '2020-01-06', 1, '800', 2500, 2, 12, 17, 8, 'Going to Miami for business', 'https://i.imgur.com/5G6mUxP.jpg');
 INSERT INTO `trip` (`id`, `description`, `seats_available`, `cargo_capacity`, `create_date`, `enabled`, `total_cost`, `miles`, `vehicle_id`, `depart_address_id`, `destination_address_id`, `host_id`, `title`, `feature_image`) VALUES (8, 'Going to Miami for vacation!! Super excited. Happy to share the ride with you!', 2, 40, '2020-01-05', 1, '600', 2500, 3, 21, 18, 9, 'Miami Vacation', 'https://i.imgur.com/YI84IYt.jpg');

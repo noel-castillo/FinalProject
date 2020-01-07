@@ -298,7 +298,7 @@ DROP TABLE IF EXISTS `trip_traveler_review_of_host` ;
 
 CREATE TABLE IF NOT EXISTS `trip_traveler_review_of_host` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `rating` DOUBLE NULL,
+  `rating` VARCHAR(10) NULL,
   `review` VARCHAR(400) NULL,
   `contribution_pledged` DOUBLE NULL,
   `attended` TINYINT NULL,
@@ -794,9 +794,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `caravandb`;
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (1, 5, 'I joined up with this trip in Missouri. Larry was a great host. Dropped me off where I needed. Great guy. Hope to do it again.', 50, 1, 50, 1, 2, 1, 'Approved');
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (2, 5, 'Graceland was so cool! Thanks, Shaun! What a great trip :)', 35, 1, 35, 1, 3, 1, 'Approved');
-INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (3, 4, 'I got car sick (sorry, Larry!), but otherwise was a good trip. I really liked seeing Elvis\' sequiny jump suits. Super cool.', 20, 1, 20, 2, 5, 1, 'Approved');
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (1, '5', 'I joined up with this trip in Missouri. Larry was a great host. Dropped me off where I needed. Great guy. Hope to do it again.', 50, 1, 50, 1, 2, 1, 'Approved');
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (2, '5', 'Graceland was so cool! Thanks, Shaun! What a great trip :)', 35, 1, 35, 1, 3, 1, 'Approved');
+INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (3, '4', 'I got car sick (sorry, Larry!), but otherwise was a good trip. I really liked seeing Elvis\' sequiny jump suits. Super cool.', 20, 1, 20, 2, 5, 1, 'Approved');
 INSERT INTO `trip_traveler_review_of_host` (`id`, `rating`, `review`, `contribution_pledged`, `attended`, `contribution_actual`, `trip_id`, `user_profile_id`, `approved`, `traveler_status`) VALUES (4, NULL, NULL, 50, 1, 50, 11, 11, 1, 'Approved');
 
 COMMIT;

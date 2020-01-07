@@ -6,32 +6,16 @@
           <div class="inbox_people">
             <div class="headind_srch">
               <div class="recent_heading">
-                <h4>Recent</h4>
+                <!-- Button trigger modal -->
+                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModalCenter">
+                  Compose New Message
+                 </button>
+                 <br>
+                 <br>
+                 <h4>Recent</h4>
+                </div>
               </div>
 
-              <div class="compose_bar">
-                <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-info dropdown-toggle"
-                role="button"><i class="glyphicon glyphicon-edit"></i>
-                Compose&emsp;
-              </button>
-              <ul class="dropdown-menu dropdown-menu-right mt-2">
-                <li class="px-3 py-2">
-                  <form #composeForm="ngForm">
-                    <div class="form-group">
-                      <input name="friendUsername" placeholder="Enter Recipient's Username" class="form-control form-control-sm"
-                        type="text" ngModel required="required">
-                      <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
-                        [(ngModel)]="myReply.content" required="required">
-                      <button (click)="compose(composeForm)" type="submit" name="compose"
-                        class="btn btn-info btn-block">Send</button>
-                    </div>
-                  </form>
-                </li>
-              </ul>
-              <br>
-              <br>
-              </div>
-            </div>
             <div class="inbox_chat">
 
 
@@ -89,3 +73,30 @@
           </div><!--end mesgs-->
         </div>
 
+<!-- Modal -->
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Compose A New Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #composeForm="ngForm">
+          <div class="form-group">
+            <input name="friendUsername" placeholder="Enter Recipient's Username" class="form-control form-control-lg"
+              type="text" ngModel required="required">
+            <textarea name="content" placeholder="Enter Message" class="form-control inbox" type="textarea"
+              [(ngModel)]="myReply.content" required="required"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button (click)="compose(composeForm)" type="submit" name="compose"
+        class="btn btn-primary btn-block">Send</button>
+      </div>
+    </div>
+  </div>
+</div>

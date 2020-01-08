@@ -216,8 +216,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <input name="content" placeholder="Enter Message" class="form-control form-control-sm" type="text"
-        [(ngModel)]="myReply.content" required="required">
+        <textarea class="form-control inbox" type="textarea" name="content" placeholder="Enter Message"
+        [(ngModel)]="myReply.content" required="required"></textarea>
       </div>
       <div class="modal-footer">
         <button (click)="compose()" type="submit" name="compose"

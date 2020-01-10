@@ -56,7 +56,6 @@ export class TripTravelerService {
           return throwError('error');
         })
       );
-
   }
 
   myTrips() {
@@ -77,7 +76,6 @@ export class TripTravelerService {
           return throwError('error');
         })
       );
-
   }
   getRequests() {
     const credentials = this.authService.getCredentials();
@@ -135,7 +133,7 @@ export class TripTravelerService {
     };
     return this.http
       .put<TripTraveler>(
-        `${this.url}/${tripTraveler.id}`,
+        this.url + '/' + tripTraveler.id,
         tripTraveler,
         httpOptions
       )

@@ -57,10 +57,8 @@ public class TripTravelerServiceImpl implements TripTravelerService {
 
 	@Override
 	public TripTraveler update(TripTraveler tripTraveler, int id) {
-		TripTraveler existing = null;
-		Optional<TripTraveler> opt = ttRepo.findById(id);
-		if (opt.isPresent()) {
-			existing = opt.get();
+		TripTraveler existing = ttRepo.findById(id).get() ;
+		if (existing != null) {
 			existing.setRating(tripTraveler.getRating());
 			existing.setReview(tripTraveler.getReview());
 			existing.setContributionPledge(tripTraveler.getContributionPledge());
